@@ -4,7 +4,7 @@
 <div id="menucontainer">
 	<table id="sidemenu">
 		<tr style="height: 30%; text-align: center">
-			<td><img src="">img</td>
+			<td><img src="resources/img/마이페이지유저.png" style="max-width: 100%; max-height: 100%;"></td>
 		</tr>
 		<tr style="height: 10%; text-align: center">
 			<td>닉네임(아이디)</td>
