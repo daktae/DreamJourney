@@ -25,6 +25,8 @@
 	
 	<context:component-scan base-package="com.test.dreamjourney" />
 	<context:component-scan base-package="com.test.controller" />
+	<context:component-scan base-package="com.test.account" />
+	
 	
 	<security:global-method-security pre-post-annotations="enabled" />
 	

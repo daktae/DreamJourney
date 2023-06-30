@@ -1,3 +1,2 @@
 eclipse.preferences.version=1
-encoding//src/main/webapp/resources/inc/footer.jsp=UTF-8
-encoding//src/main/webapp/resources/inc/header.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/account/login.jsp=UTF-8
