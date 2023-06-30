@@ -11,6 +11,12 @@
   opacity: 1;
 }
 
+.btn-lg-circle {
+    width: 46px;
+    height: 46px;
+    border-radius: 30px;
+}
+
 .btn-chat {
   color: #fff;
   background-color: #fff;
@@ -23,5 +29,4 @@
 
 .btn-chat:hover {
   background-color: #adb5bd2e;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
