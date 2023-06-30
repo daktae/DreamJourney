@@ -43,6 +43,7 @@
         margin-right: 30px;
         border-radius: 20px;
         padding-left: 30px;
+        padding-right: 30px;
     }
     
     #mypage_content {
