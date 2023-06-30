@@ -1,0 +1,27 @@
+.chatcounseling {
+  position: fixed;
+  right: 45px;
+  bottom: 110px;
+  z-index: 11;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.chatcounseling.show {
+  opacity: 1;
+}
+
+.btn-chat {
+  color: #fff;
+  background-color: #fff;
+  background-image: url('/dreamjourney/resources/img/chatbutton/pngegg.png');
+  background-size: 60% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-chat:hover {
+  background-color: #adb5bd2e;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}

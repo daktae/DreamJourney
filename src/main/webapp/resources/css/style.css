@@ -9483,6 +9483,7 @@ h6,
 .btn-lg-square {
   width: 46px;
   height: 46px;
+  border-radius: 30px;
 }
 
 .btn-square,
