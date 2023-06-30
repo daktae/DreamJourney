@@ -4,7 +4,8 @@
 
 <mapper namespace="com.test.mapper.TripMapper">
 
-
+	<select id="time" resultType="String">select sysdate from dual</select>
+	
 </mapper>
 
 

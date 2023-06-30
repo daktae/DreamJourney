@@ -6,6 +6,7 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- hikari 객체 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
@@ -15,16 +16,19 @@
 		<property name="password" value="java1234"></property>
 	</bean>
 
+	<!-- DataSource 객체 -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig"></constructor-arg>
 	</bean>
 
+	<!-- SqlSessionFactory 객체 -->
 	<bean id="sessionfactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+	<!-- Mapper만 스캔 -->
 	<mybatis-spring:scan base-package="com.test.mapper"/>
 
 	

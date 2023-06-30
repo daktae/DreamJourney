@@ -293,8 +293,8 @@
                     <div class="destination-item position-relative overflow-hidden mb-2">
                         <img class="img-fluid" src="/dreamjourney/resources/img/destination-3.jpg" alt="">
                         <a class="destination-overlay text-white text-decoration-none" href="">
-                            <h5 class="text-white">성심당</h5>
-                            <span>BAKERY</span>
+                            <h5 class="text-white">최고의 대전</h5>
+                            <span>Daejeon Is U</span>
                         </a>
                     </div>
                 </div>

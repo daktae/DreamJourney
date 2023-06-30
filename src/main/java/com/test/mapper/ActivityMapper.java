@@ -1,6 +1,6 @@
 package com.test.mapper;
 
-public interface TripMapper {
+public interface ActivityMapper {
 
 	String time();
 
