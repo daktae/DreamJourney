@@ -64,6 +64,22 @@
     	width: 100%; 
     	height: 100%;
     }
+    
+    #mypage_reserve_view {
+    	border: 1px solid #CCCCCC;
+    	border-radius: 20px;
+    	width: 80%;
+    	height: auto;
+    }
+    
+    .table.reserve_view th {
+    	background-color: #CCC;
+    }
+    
+    .table.reserve_view {
+    	border-top : 1px solid #CCCCCC;
+    }
+    
 </style>
 <body>
     <!-- Topbar Start -->
@@ -84,7 +100,87 @@
     
     <div class="container-fluid py-5 mypagecontainer">
         <%@ include file="/resources/inc/mypage_sidemenu.jsp" %>
-        <div id="mypage_content">내용 만들기</div>
+        
+        
+        
+        
+        
+        
+        
+        <div id="mypage_content">
+	        <div class="m-3">
+				<h2>예약 상세</h2>
+			</div>
+			<div id="mypage_reserve_view" class="container-fluid">
+				<div>
+					<div><a href="mypage_reserve.do" class="btn btn-secondary">돌아가기</a></div>
+				</div>
+				<table class="table table-borderless">
+					<tr>
+						<td>예약 상세</td>
+						<td>e-티켓</td>
+					</tr>
+				</table>
+				<table class="table reserve_view">
+					<tr>
+						<th>예약번호</th>
+						<td>1234567</td>
+						<th>이용일</th>
+						<td>2019-12-12</td>
+					</tr>
+					<tr>
+						<th>여행자</th>
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<th>주문정보</th>
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<th>여행컨셉</th>
+						<td colspan="3"></td>
+					</tr>
+				</table>
+				<table class="table table-borderless">
+					<tr>
+						<td>결제 금액</td>
+						<td>영수증</td>
+					</tr>
+				</table>
+				<table class="table table-borderless reserve_view">
+					<tr>
+						<th>결제일 2019-12-12 14:50</th>
+						<td>총금액 ₩25000원</td>
+					</tr>
+					<tr>
+						<th>결제수단 무통장 입금</th>
+						<td>총 할인금액 -₩0원</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><hr></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td>결제금액 ₩25600</td>
+					</tr>
+				</table>
+				<table class="table table-borderless">
+					<tr>
+						<td>기타사항</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </div>
     <!-- Blog End -->
     <%@ include file="/resources/inc/footer.jsp" %>
