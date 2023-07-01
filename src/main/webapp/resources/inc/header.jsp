@@ -15,7 +15,7 @@
                     <div class="d-inline-flex align-items-center">
                         <p><a href="*">로그인</a></p>
                         <p class="text-body px-3">|</p>
-                        <p><a href="*">회원가입</a></p>
+                        <p><a href="/dreamjourney/register">회원가입</a></p>
                     </div>
                 </div>
             </div>

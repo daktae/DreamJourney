@@ -30,3 +30,24 @@
 .btn-chat:hover {
   background-color: #adb5bd2e;
 }
+
+.container_wj {
+	height:100vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+
+}
+
+.regicon_wj {
+	width:50%;
+	margin-left:5rem;
+	margin-top:3rem;
+}
+
+.container_regi {
+	width:60vw;
+	background-color:#fff;
+	height:80vh;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
