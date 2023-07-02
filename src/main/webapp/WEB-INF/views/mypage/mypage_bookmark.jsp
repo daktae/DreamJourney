@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,7 +87,6 @@ table.reserve_list {
 
 .table.reserve_list td, .table.reserve_list td {
 	padding: 0.3rem;
-	
 }
 
 table.bookmark {
@@ -95,11 +95,7 @@ table.bookmark {
 
 .table.bookmark td, .table.bookmark th {
 	padding: 0.3rem;
-} 
-
-
-
-
+}
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -123,62 +119,118 @@ table.bookmark {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
-		
-		
-		
-		
-		
-		
-		
-		<div id="mypage_reserve_search">
-			<button type="button" class="btn btn-primary btn-lg m-3">전체</button>
-			<button type="button" class="btn btn-primary btn-lg m-3">교통</button>
-			<button type="button" class="btn btn-primary btn-lg m-3">숙소</button>
-			<button type="button" class="btn btn-primary btn-lg m-3">액티비티</button>
-		</div>
-		
-		<table class="table table-borderless bookmark">
-			<tr>
-				<td colspan="2"><img src="../resources/img/mypage/호텔.jpg" width="300" height="200"></td>
-			</tr>
-			<tr>
-				<td>여수밤바다 타워 호텔</td>
-				<td><span class="material-symbols-outlined">star</span>4.8 (30)</td>
-			</tr>
-			<tr>
-				<td>전남 여수 호텔</td>
-				<td>230,000원</td>
-			</tr>
-		</table>
-		
-		
+
+
+
+
+
+
+
+			<div id="mypage_reserve_search">
+				<button type="button" class="btn btn-primary btn-lg m-3">전체</button>
+				<button type="button" class="btn btn-primary btn-lg m-3">교통</button>
+				<button type="button" class="btn btn-primary btn-lg m-3">숙소</button>
+				<button type="button" class="btn btn-primary btn-lg m-3">액티비티</button>
+			</div>
+
+			<c:forEach items="${list}" var="dto">
+				<c:if test="${not empty dto.accommodate_name}">
+					<table class="table table-borderless bookmark">
+						<tr>
+							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
+								width="300" height="200"></td>
+						</tr>
+						<tr>
+							<td>${dto.accommodate_name}</td>
+							<td><span class="material-symbols-outlined">star</span>4.8
+								(30)</td>
+						</tr>
+						<tr>
+							<td>호텔</td>
+							<td>230,000원</td>
+						</tr>
+					</table>
+				</c:if>
+				<c:if test="${not empty dto.activity_name}">
+					<table class="table table-borderless bookmark">
+						<tr>
+							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
+								width="300" height="200"></td>
+						</tr>
+						<tr>
+							<td>${dto.activity_name}</td>
+							<td><span class="material-symbols-outlined">star</span>4.8
+								(30)</td>
+						</tr>
+						<tr>
+							<td>${dto.activity_category}</td>
+							<td><fmt:formatNumber value="${dto.activity_price}" pattern="#,###"/>원</td>
+						</tr>
+					</table>
+				</c:if>
+				<c:if test="${not empty dto.food_name}">
+					<table class="table table-borderless bookmark">
+						<tr>
+							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
+								width="300" height="200"></td>
+						</tr>
+						<tr>
+							<td>${dto.food_name}</td>
+							<td><span class="material-symbols-outlined">star</span>4.8
+								(30)</td>
+						</tr>
+						<tr>
+							<td>맛집</td>
+							<td></td>
+						</tr>
+					</table>
+				</c:if>
+				<c:if test="${not empty dto.area_name}">
+					<table class="table table-borderless bookmark">
+						<tr>
+							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
+								width="300" height="200"></td>
+						</tr>
+						<tr>
+							<td>${dto.area_name}</td>
+							<td><span class="material-symbols-outlined">star</span>4.8
+								(30)</td>
+						</tr>
+						<tr>
+							<td>관광지</td>
+							<td></td>
+						</tr>
+					</table>
+				</c:if>
+			</c:forEach>
+
+
+
 			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-			  </ul>
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
 			</nav>
-			
+
 		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
 	</div>
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-	<scirpt>
-	
-	</scirpt>
+	<scirpt> </scirpt>
 
 
 </body>

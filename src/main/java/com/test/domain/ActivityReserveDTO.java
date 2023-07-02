@@ -3,7 +3,7 @@ package com.test.domain;
 import lombok.Data;
 
 @Data
-public class tblActivityReserveDTO {
+public class ActivityReserveDTO {
 
 	private String areserve_seq; 
 	private String adate_seq;
