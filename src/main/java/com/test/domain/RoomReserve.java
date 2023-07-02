@@ -3,10 +3,10 @@ package com.test.domain;
 import lombok.Data;
 
 @Data
-public class tblTranReserveDTO {
+public class RoomReserve {
 
-	private String treserve_seq;
-	private String trandate_seq;
+	private String rreserve_seq; 
+	private String rdate_seq;
 	private String regdate;
 	private String member_seq;
 	

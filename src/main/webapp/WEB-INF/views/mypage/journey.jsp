@@ -145,7 +145,7 @@
 					<table>
 						<tr>
 							<td><img src="../resources/img/mypage_gwangan.jpg"
-								style="max-width: 100%; max-height: 100%;"></td>
+								style="max-width: 10%; max-height: 10%;"></td>
 						</tr>
 						<tr>
 							<td>내 생에 마지막 발리 같은 여수 여행</td>
