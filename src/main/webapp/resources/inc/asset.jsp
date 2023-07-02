@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
  <meta charset="utf-8">
-    <title>TRAVELER - Free Travel Website Template</title>
+    <title>DreamJourney - 드림저니와 함께 어디든!</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -18,3 +20,8 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/dreamjourney/resources/css/style.css" rel="stylesheet">
     <link href="/dreamjourney/resources/css/wanjin.css" rel="stylesheet">
+    
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
