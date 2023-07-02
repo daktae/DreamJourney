@@ -63,7 +63,7 @@
 }
 
 .card {
-	height: 230px;
+	height: 250px;
 	width: 280px;
 	border-radius: 15px;
 	display: inline-block;
@@ -79,6 +79,15 @@
 .card>table {
 	margin: 10px;
 	width: 100%;
+}
+
+#image-cell {
+text-align: center;
+}
+
+.card img {
+	max-height: 130px;
+	max-width: 230px;
 }
 
 #btn-td {
@@ -144,8 +153,7 @@
 				<div class="card">
 					<table>
 						<tr>
-							<td><img src="../resources/img/mypage_gwangan.jpg"
-								style="max-width: 100%; max-height: 100%;"></td>
+							<td id="image-cell"><img src="../resources/img/mypage/mypage_gwangan.jpg"></td>
 						</tr>
 						<tr>
 							<td>내 생에 마지막 발리 같은 여수 여행</td>
@@ -166,11 +174,10 @@
 				<div class="card">
 					<table>
 						<tr>
-							<td><img src="../resources/img/mypage_gwangan.jpg"
-								style="max-width: 100%; max-height: 100%;"></td>
+							<td id="image-cell"><img src="../resources/img/mypage_gwangan.jpg"></td>
 						</tr>
 						<tr>
-							<td>내 생에 마지막 발리 같은 여수 여행</td>
+							<td >내 생에 마지막 발리 같은 여수 여행</td>
 						</tr>
 						<tr>
 							<td>2023.06.27</td>
@@ -188,11 +195,10 @@
 				<div class="card">
 					<table>
 						<tr>
-							<td><img src="../resources/img/mypage_gwangan.jpg"
-								style="max-width: 100%; max-height: 100%;"></td>
+							<td id="image-cell"><img src="../resources/img/mypage_gwangan.jpg"></td>
 						</tr>
 						<tr>
-							<td>내 생에 마지막 발리 같은 여수 여행</td>
+							<td >내 생에 마지막 발리 같은 여수 여행</td>
 						</tr>
 						<tr>
 							<td>2023.06.27</td>
@@ -209,7 +215,7 @@
 			</div>
 
 			<!-- card-area end -->
-			<button id="btn-add">여행 등록</button>
+			<button id="btn-add" onclick="location.href='/dreamjourney/mypage/addjourney';">여행 등록</button>
 		</div>
 
 
