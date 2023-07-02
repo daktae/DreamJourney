@@ -35,17 +35,6 @@
         display: flex;
         flex-direction: row;
     }
-
-    #menucontainer {
-    	border: 1px solid #CCCCCC;
-        width: 15%;
-        height: 800px; 
-        margin-left: 100px; 
-        margin-right: 30px;
-        border-radius: 20px;
-        padding-left: 30px;
-        padding-right: 30px;
-    }
     
     #mypage_content {
     	border: 1px solid #CCCCCC;
@@ -59,11 +48,6 @@
         width: auto;
     }
     
-    #sidemenu {
-    	text-align: left; 
-    	width: 100%; 
-    	height: 100%;
-    }
 </style>
 <body>
     <!-- Topbar Start -->
