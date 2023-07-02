@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>TRAVELER - Free Travel Website Template</title>
+<title>Dream Journey</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="Free HTML Templates" name="keywords">
 <meta content="Free HTML Templates" name="description">
@@ -45,17 +45,6 @@
 	flex-direction: row;
 }
 
-#menucontainer {
-	border: 1px solid #CCCCCC;
-	width: 15%;
-	height: 800px;
-	margin-left: 100px;
-	margin-right: 30px;
-	border-radius: 20px;
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
 #mypage_content {
 	border: 1px solid #CCCCCC;
 	width: 75%;
@@ -68,38 +57,17 @@
 	width: auto;
 }
 
-#sidemenu {
-	text-align: left;
-	width: 100%;
-	height: 100%;
+.table.write td, .table.write th {
+	padding: 0.3rem;
+	text-align: center;
+	vertical-align: middle;
 }
 
-#mypage_reserve_search {
-	margin-top: 30px;
-	margin-left: 30px;
-}
-
-table.reserve_list {
-	border: 1px solid #CCCCCC;
+.table.write {
+	border-collapse: collapse;
 	border-radius: 20px;
+	box-shadow: 0 0 0 1px #CCC;
 }
-
-.table.reserve_list td, .table.reserve_list td {
-	padding: 0.3rem;
-	
-}
-
-table.bookmark {
-	display: inline;
-}
-
-.table.bookmark td, .table.bookmark th {
-	padding: 0.3rem;
-} 
-
-
-
-
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -123,64 +91,46 @@ table.bookmark {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
-		
-		
-		
-		
-		
-		
-		
-		<div id="mypage_reserve_search">
-			<button type="button" class="btn btn-primary btn-lg m-3">전체</button>
-			<button type="button" class="btn btn-primary btn-lg m-3">교통</button>
-			<button type="button" class="btn btn-primary btn-lg m-3">숙소</button>
-			<button type="button" class="btn btn-primary btn-lg m-3">액티비티</button>
-		</div>
-		
-		<table class="table table-borderless bookmark">
-			<tr>
-				<td colspan="2"><img src="resources/img/mypage/호텔.jpg" width="300" height="200"></td>
-			</tr>
-			<tr>
-				<td>여수밤바다 타워 호텔</td>
-				<td><span class="material-symbols-outlined">star</span>4.8 (30)</td>
-			</tr>
-			<tr>
-				<td>전남 여수 호텔</td>
-				<td>230,000원</td>
-			</tr>
-		</table>
-		
-		
+
+
+
+
+			<div class="m-3">
+				<h2>내 작성글</h2>
+			</div>
+
+			<div class="container-fluid mt-5 mb-5">
+				<table class="table m-1 write">
+					<tr>
+						<td style="width: 10%;">추천 여행</td>
+						<td style="width: 40%; text-align:left;">1박2일 제주도 여행기</td>
+						<td style="width: 10%;">2023-07-02</td>
+						<td style="width: 10%;"><span class="material-symbols-outlined">favorite</span>36</td>
+						<td style="width: 10%;"><a href="#" class="btn btn-primary">수정하기</a></td>
+						<td style="width: 10%;"><a href="#" class="btn btn-danger">삭제하기</a></td>
+					</tr>
+				</table>
+			</div>
+
 			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-			  </ul>
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
 			</nav>
-			
+
 		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	</div>
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-	<scirpt>
-	
-	</scirpt>
-
-
+	<script>
+		
+	</script>
 </body>
 
 </html>

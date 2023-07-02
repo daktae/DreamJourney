@@ -80,17 +80,15 @@
 }
 
 table.reserve_list {
-	border: 1px solid #CCCCCC;
+	border-collapse: collapse;
 	border-radius: 20px;
+	border-style: hidden;
+	box-shadow: 0 0 0 1px #CCC;
 }
 
 .table.reserve_list td, .table.reserve_list td {
 	padding: 0.3rem;
-	
 }
-
-
-
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -114,70 +112,72 @@ table.reserve_list {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
-		
-		
-		
-		
-		
-		
-		
-		<div id="mypage_reserve_search">
-			<button type="button" class="btn btn-primary btn-lg m-3">전체</button>
-			<button type="button" class="btn btn-primary btn-lg m-3">교통</button>
-			<button type="button" class="btn btn-primary btn-lg m-3">숙소</button>
-			<button type="button" class="btn btn-primary btn-lg m-3">액티비티</button>
-		</div>
-		
-		<div class="container-fluid mt-5">
-			<table class="table table-borderless reserve_list table-height">
-				<tr>
-					<td style="text-align: center; vertical-align: middle;">예약완료</td>
-					<td colspan="2">2023.06.01(목)</td>
-				</tr>
-				<tr>
-					<td rowspan="2" style="text-align: center; vertical-align: middle;">교통</td>
-					<td>KTX</td>
-					<td>2023.06.29(목) 10:00</td>
-					<td>1명</td>
-					<td rowspan="2" style="text-align: center; vertical-align: middle;">
-						<a href="mypage_reserve_view.do" class="btn btn-primary">상세보기</a>
-						<button type="button" class="btn btn-danger">예매취소</button>
-					</td>
-				</tr>
-				<tr>
-					<td>LJE123</td>
-					<td>서울 > 부산</td>
-					<td>45000</td>
-				</tr>
-			</table>
-			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-			  </ul>
-			</nav>
-			
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+			<div id="mypage_reserve_search">
+				<button type="button" class="btn btn-primary btn-lg m-3">전체</button>
+				<button type="button" class="btn btn-primary btn-lg m-3">교통</button>
+				<button type="button" class="btn btn-primary btn-lg m-3">숙소</button>
+				<button type="button" class="btn btn-primary btn-lg m-3">액티비티</button>
+			</div>
+
+			<div class="container-fluid mt-5">
+				<table class="table table-borderless reserve_list table-height">
+					<tr>
+						<td style="text-align: center; vertical-align: middle;">예약완료</td>
+						<td colspan="3">2023.06.01(목)</td>
+						<td rowspan="3"
+							style="text-align: center; vertical-align: middle;"><a
+							href="mypage_reserve_view.do" class="btn btn-primary">상세보기</a>
+							<button type="button" class="btn btn-danger">예매취소</button></td>
+					</tr>
+					<tr>
+						<td rowspan="2"
+							style="text-align: center; vertical-align: middle;">교통</td>
+						<td>KTX</td>
+						<td>2023.06.29(목) 10:00</td>
+						<td>1명</td>
+						
+					</tr>
+					<tr>
+						<td>LJE123</td>
+						<td>서울 > 부산</td>
+						<td>45000</td>
+					</tr>
+				</table>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				</nav>
+
+			</div>
+
+
+
+
+
+
+
+
+
 		</div>
 	</div>
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-	<scirpt>
-	
-	</scirpt>
+	<script>
+		
+	</script>
 
 
 </body>
