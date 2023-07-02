@@ -136,7 +136,7 @@ input {
 					<table id="profile-table">
 						<tr>
 							<td id="imgtd" colspan="2"><img
-								src="resources/img/마이페이지유저.png"></td>
+								src="../resources/img/마이페이지유저.png"></td>
 						</tr>
 						<tr>
 							<td>이름</td>

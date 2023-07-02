@@ -139,7 +139,7 @@ table.bookmark {
 		
 		<table class="table table-borderless bookmark">
 			<tr>
-				<td colspan="2"><img src="resources/img/mypage/호텔.jpg" width="300" height="200"></td>
+				<td colspan="2"><img src="../resources/img/mypage/호텔.jpg" width="300" height="200"></td>
 			</tr>
 			<tr>
 				<td>여수밤바다 타워 호텔</td>

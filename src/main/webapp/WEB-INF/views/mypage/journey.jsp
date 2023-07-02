@@ -144,7 +144,7 @@
 				<div class="card">
 					<table>
 						<tr>
-							<td><img src="resources/img/mypage_gwangan.jpg"
+							<td><img src="../resources/img/mypage_gwangan.jpg"
 								style="max-width: 100%; max-height: 100%;"></td>
 						</tr>
 						<tr>
@@ -166,7 +166,7 @@
 				<div class="card">
 					<table>
 						<tr>
-							<td><img src="resources/img/mypage_gwangan.jpg"
+							<td><img src="../resources/img/mypage_gwangan.jpg"
 								style="max-width: 100%; max-height: 100%;"></td>
 						</tr>
 						<tr>
@@ -188,7 +188,7 @@
 				<div class="card">
 					<table>
 						<tr>
-							<td><img src="resources/img/mypage_gwangan.jpg"
+							<td><img src="../resources/img/mypage_gwangan.jpg"
 								style="max-width: 100%; max-height: 100%;"></td>
 						</tr>
 						<tr>
