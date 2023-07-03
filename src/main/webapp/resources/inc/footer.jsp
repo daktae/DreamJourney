@@ -73,3 +73,5 @@
     <!-- Template Javascript -->
     <script src="/dreamjourney/resources/js/main.js"></script>
     <script src="/dreamjourney/resources/js/wanjin.js"></script>
+       <script src="/dreamjourney/resources/js/wanjinindex.js"></script>
+    
