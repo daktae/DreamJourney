@@ -5,21 +5,33 @@
 <html lang="en">
 
 <style>
-	.divider:after,
-	.divider:before {
-	content: "";
-	flex: 1;
-	height: 1px;
-	background: #eee;
-	}
-	.h-custom {
-	height: calc(100% - 73px);
-	}
-	@media (max-width: 450px) {
-	.h-custom {
-	height: 100%;
-	}
-	}
+	.form-signin {
+     height: auto;
+     padding: 50px;
+     margin: 0;
+     position: relative;
+     width: 500px;
+   }
+   
+   .form-signin .checkbox {
+     font-weight: 400;
+   }
+   
+   .form-signin .form-floating:focus-within {
+     z-index: 2;
+   }
+   
+   .form-signin input[type="email"] {
+     margin-bottom: -1px;
+     border-bottom-right-radius: 0;
+     border-bottom-left-radius: 0;
+   }
+   
+   .form-signin input[type="password"] {
+     margin-bottom: 10px;
+     border-top-left-radius: 0;
+     border-top-right-radius: 0;
+   }
 </style>
 
 <head>
@@ -66,58 +78,69 @@
     <!-- Header End -->	
 
 	<!-- 내용쓰는곳 -->
- 	<div class="container-fluid py-5" style="height: 1000px;">
-	    <section class="vh-100">
-		  <div class="container-fluid h-custom">
-		    <div class="row d-flex justify-content-center align-items-center h-100">
-		      <div class="col-md-9 col-lg-6 col-xl-5">
-		        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-		          class="img-fluid" alt="Sample image">
-		      </div>
-		      <div class="col-md-8 col-lg-6 col-xl-4">
-		        <form>
-		
-		
-		          <!-- Email input -->
-		          <div class="form-outline mb-4">
-		            <input type="email" id="form3Example3" class="form-control form-control-lg"
-		              placeholder="아이디" />
-		          </div>
-		
-		          <!-- Password input -->
-		          <div class="form-outline mb-3">
-		            <input type="password" id="form3Example4" class="form-control form-control-lg"
-		              placeholder="비밀번호" />
-		          </div>
-		
-		          <div class="d-flex justify-content-between align-items-center">
-		            <!-- Checkbox -->
-		            <div class="form-check mb-0">
-		              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-		              <label class="form-check-label" for="form2Example3">
-		                아이디 기억하기
-		              </label>
-		            </div>
-		            <a href="#!" class="text-body">비밀번호 찾기</a>
-		          </div>
-		
-		          <div class="text-center text-lg-start mt-4 pt-2">
-		            <button type="button" class="btn btn-primary btn-lg"
-		              style="padding-left: 2.5rem; padding-right: 2.5rem;">로그인</button>
-		            <p class="small fw-bold mt-2 pt-1 mb-0">아직 회원이 아니신가요? <a href="#!"
-		                class="link-danger">회원가입</a></p>
-		          </div>
-		
-		        </form>
-		      </div>
-		    </div>
-		  </div>
-		</section>
+ 	<div class="container-fluid" style="height: 700px; padding-left: 100px; padding-right: 100px;">
+ 		<div style="display: flex; justify-content: space-around; position: relative; top: 100px;">
+	      <div style="text-align: center; display: flex; align-content: center;">
+	         <img src="/dreamjourney/resources/img/Journey.png" style="width: 300px;">
+	      </div>
+	    <main class="form-signin">
+	      <div>
+		      <form action="login.jsp" method="post">
+		         <h1 class="h3 mb-3 fw-normal">로그인 페이지</h1>
+		         
+		         <div class="form-floating">
+		            <input type="text" class="form-control" id="id" placeholder="아이디 입력...">
+		            <label for="id">아이디</label>
+		         </div>
+		         <div class="form-floating">
+		            <input type="password" class="form-control" id="pwd" placeholder="Password">
+		            <label for="pwd">비밀번호</label>
+		         </div>
+		         
+		         <div class="checkbox mb-3">
+		            <label>
+		               <input type="checkbox" value="remember-me"> 아이디 저장
+		            </label>
+		         </div>
+		         <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+		         
+		      </form>
+		      <div class="wrap">
+			   <div class="title">로그인</div>
+			     <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=f98ab1de86240e7d44a67bba135eaebc&redirect_uri=	
+http://localhost/dreamjourney/index&response_type=code">
+			     	<!-- REST_API키 및 REDIRECT_URI는 본인걸로 수정하세요 -->
+			        
+			      	<div class="kakao_i"></div>
+			      	<div class="kakao_txt">카카오톡으로 간편로그인 </div>
+			   	</a>
+			</div>
+
+	      </div>
+	   </main>
+ 		</div>
 	</div>
                 
 
 
     <%@ include file="/resources/inc/footer.jsp" %>
+    
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
+    
+<script>
+	window.addEventListener('scroll', function() {
+		var chatcounseling = document.querySelector('.chatcounseling');
+		var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+		var windowHeight = window.innerHeight;
+		var targetHeight = windowHeight * 0.2;
+
+		if (scrollHeight > targetHeight) {
+		  chatcounseling.classList.add('show');
+		} else {
+		  chatcounseling.classList.remove('show');
+		}
+	});
+</script>
 </body>
 
 </html>
