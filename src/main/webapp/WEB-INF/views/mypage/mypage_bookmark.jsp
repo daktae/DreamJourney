@@ -143,7 +143,7 @@ table.reserve_list {
 			<div class="table-container">
 			<c:forEach items="${list}" var="dto">
 				<c:if test="${not empty dto.accommodate_name}">
-					<table class="table table-borderless bookmark " id="table-accommodate">
+					<table class="table table-borderless bookmark table-accommodate">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
 								width="300" height="200"></td>
@@ -160,9 +160,9 @@ table.reserve_list {
 					</table>
 				</c:if>
 				<c:if test="${not empty dto.activity_name}">
-					<table class="table table-borderless bookmark" id="table-activity">
+					<table class="table table-borderless bookmark table-activity">
 						<tr>
-							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
+							<td colspan="2"><img src="../resources/img/mypage/액티비티.jpg"
 								width="300" height="200"></td>
 						</tr>
 						<tr>
@@ -177,9 +177,9 @@ table.reserve_list {
 					</table>
 				</c:if>
 				<c:if test="${not empty dto.food_name}">
-					<table class="table table-borderless bookmark" id="table-food">
+					<table class="table table-borderless bookmark table-food">
 						<tr>
-							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
+							<td colspan="2"><img src="../resources/img/mypage/맛집.jpg"
 								width="300" height="200"></td>
 						</tr>
 						<tr>
@@ -194,9 +194,9 @@ table.reserve_list {
 					</table>
 				</c:if>
 				<c:if test="${not empty dto.area_name}">
-					<table class="table table-borderless bookmark" id="table-area">
+					<table class="table table-borderless bookmark table-area">
 						<tr>
-							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
+							<td colspan="2"><img src="../resources/img/mypage/관광지.jpg"
 								width="300" height="200"></td>
 						</tr>
 						<tr>
@@ -242,45 +242,45 @@ table.reserve_list {
 <script>
 $(document).ready(function() {
     // Hide all tables initially
-    $("#table-accommodation").show();
-    $("#table-activity").show();
-    $("#table-food").show();
-    $("#table-area").show();
+    $(".table-accommodation").show();
+    $(".table-activity").show();
+    $(".table-food").show();
+    $(".table-area").show();
 
     // Show/hide tables based on button clicks
     $("#btn-all").click(function() {
-        $("#table-accommodate").show();
-        $("#table-activity").show();
-        $("#table-food").show();
-        $("#table-area").show();
+        $(".table-accommodate").show();
+        $(".table-activity").show();
+        $(".table-food").show();
+        $(".table-area").show();
     });
 
     $("#btn-food").click(function() {
-        $("#table-accommodate").hide();
-        $("#table-activity").hide();
-        $("#table-food").show();
-        $("#table-area").hide();
+        $(".table-accommodate").hide();
+        $(".table-activity").hide();
+        $(".table-food").show();
+        $(".table-area").hide();
     });
 
     $("#btn-accommodate").click(function() {
-        $("#table-accommodate").show();
-        $("#table-activity").hide();
-        $("#table-food").hide();
-        $("#table-area").hide();
+        $(".table-accommodate").show();
+        $(".table-activity").hide();
+        $(".table-food").hide();
+        $(".table-area").hide();
     });
 
     $("#btn-activity").click(function() {
-        $("#table-accommodate").hide();
-        $("#table-activity").show();
-        $("#table-food").hide();
-        $("#table-area").hide();
+        $(".table-accommodate").hide();
+        $(".table-activity").show();
+        $(".table-food").hide();
+        $(".table-area").hide();
     });
     
     $("#btn-area").click(function() {
-        $("#table-accommodate").hide();
-        $("#table-activity").hide();
-        $("#table-food").hide();
-        $("#table-area").show();
+        $(".table-accommodate").hide();
+        $(".table-activity").hide();
+        $(".table-food").hide();
+        $(".table-area").show();
     });
     
 });

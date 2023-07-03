@@ -23,6 +23,25 @@
 	left outer join tblArea ar on b.area_seq = ar.area_seq
 	where b.member_seq = 5
 	</select>
+	
+	<select id="transList" resultType="com.test.domain.TranReserveDTO">
+		select 
+		    tp.type,
+		    tp.runtime,
+		    tp.departure,
+		    tp.destination,
+		    tp.price,
+		    td.tran_date,
+		    td.begin,
+		    tr.regdate
+		from tblTranReserve tr
+		    inner join tblTranDate td
+		        on tr.trandate_seq = td.trandate_seq
+		            inner join tblTransport tp
+		                on td.tran_seq = tp.tran_seq
+		                    where tr.member_seq = 5
+	</select>
+	
 
 </mapper>
 

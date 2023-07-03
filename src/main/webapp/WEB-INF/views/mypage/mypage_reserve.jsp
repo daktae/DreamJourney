@@ -127,10 +127,11 @@ table.reserve_list {
 			</div>
 
 			<div class="container-fluid mt-5">
+			<c:forEach items="${tlist}" var="tdto">
 				<table class="table table-borderless reserve_list table-height">
 					<tr>
 						<td style="text-align: center; vertical-align: middle;">예약완료</td>
-						<td colspan="3">2023.06.01(목)</td>
+						<td colspan="3">${tdto.regdate}</td>
 						<td rowspan="3"
 							style="text-align: center; vertical-align: middle;"><a
 							href="mypage_reserve_view.do" class="btn btn-primary">상세보기</a>
@@ -139,17 +140,18 @@ table.reserve_list {
 					<tr>
 						<td rowspan="2"
 							style="text-align: center; vertical-align: middle;">교통</td>
-						<td>KTX</td>
-						<td>2023.06.29(목) 10:00</td>
+						<td>${tdto.type}</td>
+						<td>${tdto.tran_date} ${tdto.begin}</td>
 						<td>1명</td>
 						
 					</tr>
 					<tr>
 						<td>LJE123</td>
-						<td>서울 > 부산</td>
-						<td>45000</td>
+						<td>${tdto.departure} > ${tdto.destination}</td>
+						<td>${tdto.price}</td>
 					</tr>
 				</table>
+				</c:forEach>
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
 						<li class="page-item"><a class="page-link" href="#">Previous</a></li>

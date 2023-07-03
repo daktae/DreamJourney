@@ -64,8 +64,10 @@ public class MypageController {
 	
 	// 예약 목록
 	@GetMapping("/mypage/mypage_reserve")
-	private String mypage_reserve() {
+	private String mypage_reserve(Model model) {
 
+		model.addAttribute("tlist", service.transList());
+		
 		return "mypage/mypage_reserve";
 	}
 
