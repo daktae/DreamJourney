@@ -168,10 +168,58 @@
    <div class="detail">
    <h2>상품정보</h2>
    <hr>
-   
+   <img src="">
+   <div>액티비티 명</div>
+   <div>액티비티 주소</div>
+   <div>액티비티 사용 일자</div>
+   <div style="background-color: #AAA;">가격</div>
+   </div>
+   <div></div>
+   <h2>예약자</h2>
+   <hr>
+   <div style="background-color: #AAA;">
+   		예약자 이름 : 
+   		아이디 : 
+   		연락처 : 
+   </div>
+   <div>
+   <h2>결제 방법</h2>
+   <hr>
+   <input type="radio" name="pay_radio" value="card">신용카드
+   <input type="radio" name="pay_radio" value="kakao">카카오페이
+   <input type="radio" name="pay_radio" value="naver">네이버페이
+   <input type="radio" name="pay_radio" value="bank">무통장입금
    </div>
    </div>
    
+   <div>
+   <h1>결제정보</h1>
+   <hr>
+   <div>
+   <h2>주문금액</h2>
+   얼마 X 몇 명
+   <h2>총 결제금액</h2>
+   총 얼마
+   </div>
+   <h2>약관 안내</h2>
+   <input type="checkbox">전체 약관 동의
+   <input type="checkbox">개인정보 제공 동의[필수]
+   <input type="checkbox">개인정보 수집 및 이용 동의[필수]
+   </div>
+	<h2>예약 취소 규정</h2>
+	<div>
+	- 체크인 8일 전 : 무료 취소
+	- 체크인 7일 전 : 취소 수수료 10%
+	- 체크인 6일 전 : 취소 수수료 20%
+	- 체크인 5일 전 : 취소 수수료 30%
+	- 체크인 4일 전 : 취소 수수료 50%
+	- 체크인 3일 전 : 취소 수수료 70%
+	- 체크인 2일 전 : 취소 수수료 90%
+	- 체크인 1일 전 ~ 당일 : 취소 환불 불가
+	- 취소요청 이후에는 취소의 철회가 불가능합니다.
+	- 구매당일 취소시에도 환불 규정에 따라 취소 수수료가 부과됩니다. 
+	</div>   
+	<input type="button">
    
    <!-- 내용 작성 -->
     <div class="container-fluid py-5" style="height: 100px;">
