@@ -2,12 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
-<html>
-<head>
 <html lang="en">
 
+<head>
     <meta charset="utf-8">
-    <title>TRAVELER - Free Travel Website Template</title>
+    <title>DreamJourney > 예약/예매 > 액티비티</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -28,15 +27,68 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/dreamjourney/resources/css/style.css" rel="stylesheet">
+    
+    <!-- Google Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <style>
 
-</style>
-</head>
-<body>
-	<!-- activity.jsp 액티비티 메뉴 -->
+	.pay_container {
+		justify-content: center;
+		display: inline-block;
+		width: 1500px;
+	}
+
+	.detail {
+		width: 800px;
 	
-	    <!-- Topbar Start -->
+	}
+
+	.sub {
+		font-weight: bold;
+	}
+
+	.p1-4, .px-4, .p-4 {
+		padding-left : none;
+	}
+
+	.text-truncate {
+		font-weight: bold;
+		font-size: 25px;
+	}
+	
+	.btn-square {
+		width: 100px;
+	}
+	
+	.text-truncate {
+		font-weight: bold;
+	}
+	
+	img {
+		width: 500px;
+	}
+	
+	a:hover {
+		text-decoration:none;
+	}
+	
+	.row {
+		justify-content:center;
+	}
+	
+	.team-img {
+		width: 255px;
+		height: 210px;
+	}
+	
+</style>
+<body>
+   <!-- pay.jsp > 결제 페이지 -->
+   
+    
+
+    <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
             <div class="row">
@@ -56,6 +108,7 @@
         </div>
     </div>
     <!-- Topbar End -->
+    
 
 
     <!-- Navbar Start -->
@@ -70,8 +123,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-5" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">홈</a>
-                        <a href="about.html" class="nav-item nav-link">예약/예매</a>
+                        <a href="index.html" class="nav-item nav-link ">홈</a>
+                        <a href="about.html" class="nav-item nav-link active">예약/예매</a>
                         <a href="service.html" class="nav-item nav-link">추천 여행지</a>
                         <a href="single.html" class="nav-item nav-link">커뮤니티</a>
                         
@@ -89,28 +142,42 @@
         </div>
     </div>
     <!-- Navbar End -->
-	
+    
 
+    
+     <!-- 제목 쓰는곳 -->
+    <div class="container-fluid page-header">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                <h3 class="display-4 text-white text-uppercase">예약하기</h3>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->   
+    
+    
+    
+    
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   <!-- 내용쓰는곳 -->
+   
+   <div class="pay_container">
+   <h1>예약하기</h1>
+   <div class="detail">
+   <h2>상품정보</h2>
+   <hr>
+   
+   </div>
+   </div>
+   
+   
+   <!-- 내용 작성 -->
+    <div class="container-fluid py-5" style="height: 100px;">
+       
+   </div>
+                
 
 
     <!-- Footer Start -->
@@ -182,18 +249,9 @@
 
     <!-- Template Javascript -->
     <script src="/dreamjourney/resources/js/main.js"></script>
-    
-    
-    
-    
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script>
-
-</script>
 </body>
-</html>
 
+</html>
 
 
 

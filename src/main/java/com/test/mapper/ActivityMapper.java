@@ -1,7 +1,10 @@
 package com.test.mapper;
 
-public interface ActivityMapper {
+import org.springframework.stereotype.Repository;
 
+@Repository
+public interface ActivityMapper {
+	//DAO역할
 	String time();
 
 }
