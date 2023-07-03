@@ -36,6 +36,8 @@
         flex-direction: row;
     }
     
+
+    
     #mypage_content {
     	border: 1px solid #CCCCCC;
     	width: 75%;

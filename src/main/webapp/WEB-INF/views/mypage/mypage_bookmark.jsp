@@ -89,8 +89,14 @@ table.reserve_list {
 	padding: 0.3rem;
 }
 
-table.bookmark {
-	display: inline;
+.table-container {
+	display: flex; /* Added */
+	flex-wrap: wrap; /* Added */
+}
+
+.table.bookmark {
+	display: inline-block;
+	width: 25%;
 }
 
 .table.bookmark td, .table.bookmark th {
@@ -134,9 +140,10 @@ table.bookmark {
 				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-area">관광지</button>
 			</div>
 
+			<div class="table-container">
 			<c:forEach items="${list}" var="dto">
 				<c:if test="${not empty dto.accommodate_name}">
-					<table class="table table-borderless bookmark" id="table-accommodate">
+					<table class="table table-borderless bookmark " id="table-accommodate">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
 								width="300" height="200"></td>
@@ -151,7 +158,6 @@ table.bookmark {
 							<td>230,000원</td>
 						</tr>
 					</table>
-					<input type="hidden" value="숙소">
 				</c:if>
 				<c:if test="${not empty dto.activity_name}">
 					<table class="table table-borderless bookmark" id="table-activity">
@@ -169,7 +175,6 @@ table.bookmark {
 							<td><fmt:formatNumber value="${dto.activity_price}" pattern="#,###"/>원</td>
 						</tr>
 					</table>
-					<input type="hidden" value="액티비티">
 				</c:if>
 				<c:if test="${not empty dto.food_name}">
 					<table class="table table-borderless bookmark" id="table-food">
@@ -187,7 +192,6 @@ table.bookmark {
 							<td></td>
 						</tr>
 					</table>
-					<input type="hidden" value="맛집">
 				</c:if>
 				<c:if test="${not empty dto.area_name}">
 					<table class="table table-borderless bookmark" id="table-area">
@@ -205,9 +209,9 @@ table.bookmark {
 							<td></td>
 						</tr>
 					</table>
-					<input type="hidden" value="관광지">
 				</c:if>
 			</c:forEach>
+			</div>
 
 
 
