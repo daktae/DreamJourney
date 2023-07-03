@@ -92,4 +92,13 @@ public class MypageController {
 	      return "mypage/mypage_write";
 
 	}
+	
+	//테스트
+	@GetMapping("/mypage/mapmap")
+	private String mapmap() {
+	      
+	      return "mypage/mapmap";
+
+	}
+	
 }

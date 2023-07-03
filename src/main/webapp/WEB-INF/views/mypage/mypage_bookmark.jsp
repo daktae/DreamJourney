@@ -127,15 +127,16 @@ table.bookmark {
 
 
 			<div id="mypage_reserve_search">
-				<button type="button" class="btn btn-primary btn-lg m-3">전체</button>
-				<button type="button" class="btn btn-primary btn-lg m-3">교통</button>
-				<button type="button" class="btn btn-primary btn-lg m-3">숙소</button>
-				<button type="button" class="btn btn-primary btn-lg m-3">액티비티</button>
+				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-all">전체</button>
+				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-food">맛집</button>
+				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-accommodate">숙소</button>
+				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-activity">액티비티</button>
+				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-area">관광지</button>
 			</div>
 
 			<c:forEach items="${list}" var="dto">
 				<c:if test="${not empty dto.accommodate_name}">
-					<table class="table table-borderless bookmark">
+					<table class="table table-borderless bookmark" id="table-accommodate">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
 								width="300" height="200"></td>
@@ -150,9 +151,10 @@ table.bookmark {
 							<td>230,000원</td>
 						</tr>
 					</table>
+					<input type="hidden" value="숙소">
 				</c:if>
 				<c:if test="${not empty dto.activity_name}">
-					<table class="table table-borderless bookmark">
+					<table class="table table-borderless bookmark" id="table-activity">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
 								width="300" height="200"></td>
@@ -167,9 +169,10 @@ table.bookmark {
 							<td><fmt:formatNumber value="${dto.activity_price}" pattern="#,###"/>원</td>
 						</tr>
 					</table>
+					<input type="hidden" value="액티비티">
 				</c:if>
 				<c:if test="${not empty dto.food_name}">
-					<table class="table table-borderless bookmark">
+					<table class="table table-borderless bookmark" id="table-food">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
 								width="300" height="200"></td>
@@ -184,9 +187,10 @@ table.bookmark {
 							<td></td>
 						</tr>
 					</table>
+					<input type="hidden" value="맛집">
 				</c:if>
 				<c:if test="${not empty dto.area_name}">
-					<table class="table table-borderless bookmark">
+					<table class="table table-borderless bookmark" id="table-area">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
 								width="300" height="200"></td>
@@ -201,6 +205,7 @@ table.bookmark {
 							<td></td>
 						</tr>
 					</table>
+					<input type="hidden" value="관광지">
 				</c:if>
 			</c:forEach>
 
@@ -230,28 +235,51 @@ table.bookmark {
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-	<scirpt> </scirpt>
 <script>
+$(document).ready(function() {
+    // Hide all tables initially
+    $("#table-accommodation").show();
+    $("#table-activity").show();
+    $("#table-food").show();
+    $("#table-area").show();
 
+    // Show/hide tables based on button clicks
+    $("#btn-all").click(function() {
+        $("#table-accommodate").show();
+        $("#table-activity").show();
+        $("#table-food").show();
+        $("#table-area").show();
+    });
 
-var xhr = new XMLHttpRequest();
-var url = 'http://apis.data.go.kr/1613000/ExpBusInfoService/getStrtpntAlocFndExpbusInfo'; /*URL*/
-var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'서비스키'; /*Service Key*/
-queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
-queryParams += '&' + encodeURIComponent('_type') + '=' + encodeURIComponent('xml'); /**/
-queryParams += '&' + encodeURIComponent('depTerminalId') + '=' + encodeURIComponent('NAEK010'); /**/
-queryParams += '&' + encodeURIComponent('arrTerminalId') + '=' + encodeURIComponent('NAEK300'); /**/
-queryParams += '&' + encodeURIComponent('depPlandTime') + '=' + encodeURIComponent('20230401'); /**/
-queryParams += '&' + encodeURIComponent('busGradeId') + '=' + encodeURIComponent('1'); /**/
-xhr.open('GET', url + queryParams);
-xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-    }
-};
+    $("#btn-food").click(function() {
+        $("#table-accommodate").hide();
+        $("#table-activity").hide();
+        $("#table-food").show();
+        $("#table-area").hide();
+    });
 
-xhr.send('');
+    $("#btn-accommodate").click(function() {
+        $("#table-accommodate").show();
+        $("#table-activity").hide();
+        $("#table-food").hide();
+        $("#table-area").hide();
+    });
+
+    $("#btn-activity").click(function() {
+        $("#table-accommodate").hide();
+        $("#table-activity").show();
+        $("#table-food").hide();
+        $("#table-area").hide();
+    });
+    
+    $("#btn-area").click(function() {
+        $("#table-accommodate").hide();
+        $("#table-activity").hide();
+        $("#table-food").hide();
+        $("#table-area").show();
+    });
+    
+});
 
 </script>
 
