@@ -52,7 +52,7 @@ public class MypageController {
 	// 내 여행 상세보기
 	@GetMapping("/mypage/viewjourney")
 	private String viewjourney() {
-		return "remypage/viewjourney";
+		return "mypage/viewjourney";
 	}
 
 	// 내 리뷰

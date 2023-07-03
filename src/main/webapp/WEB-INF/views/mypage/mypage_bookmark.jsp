@@ -231,6 +231,29 @@ table.bookmark {
 	<%@ include file="/resources/inc/footer.jsp"%>
 
 	<scirpt> </scirpt>
+<script>
+
+
+var xhr = new XMLHttpRequest();
+var url = 'http://apis.data.go.kr/1613000/ExpBusInfoService/getStrtpntAlocFndExpbusInfo'; /*URL*/
+var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'서비스키'; /*Service Key*/
+queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+queryParams += '&' + encodeURIComponent('_type') + '=' + encodeURIComponent('xml'); /**/
+queryParams += '&' + encodeURIComponent('depTerminalId') + '=' + encodeURIComponent('NAEK010'); /**/
+queryParams += '&' + encodeURIComponent('arrTerminalId') + '=' + encodeURIComponent('NAEK300'); /**/
+queryParams += '&' + encodeURIComponent('depPlandTime') + '=' + encodeURIComponent('20230401'); /**/
+queryParams += '&' + encodeURIComponent('busGradeId') + '=' + encodeURIComponent('1'); /**/
+xhr.open('GET', url + queryParams);
+xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+    }
+};
+
+xhr.send('');
+
+</script>
 
 
 </body>
