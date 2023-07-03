@@ -25,7 +25,12 @@
 	
 	<context:component-scan base-package="com.test.dreamjourney" />
 	<context:component-scan base-package="com.test.controller" />
+<<<<<<< HEAD
 	<context:component-scan base-package="com.test.persistence" />
+=======
+	<context:component-scan base-package="com.test.account" />
+	
+>>>>>>> 3fe4104a3bae845cef6aebd4c93d81a186b87323
 	
 	<security:global-method-security pre-post-annotations="enabled" />
 	
