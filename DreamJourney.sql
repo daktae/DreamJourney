@@ -27,4 +27,28 @@ from tblBookmark b
     left outer join tblArea ar on b.area_seq = ar.area_seq
     where b.member_seq = 5;
     
+select
+    *
+from tblMember m;
+    
+select * from tblTranReserve tr
+    inner join tblTranDate td
+        on tr.trandate_seq = td.trandate_seq
+            inner join tblTransport tp
+                on td.tran_seq = tp.tran_seq;
+SELECT
+    a.type,
+    a.begin,
+    a.departure,
+    a.destination,
+    a.regdate,
+    a.price
+FROM tblMember m
+INNER JOIN (
+    SELECT tr.*, td.*, tp.*
+    FROM tblTranReserve tr
+    INNER JOIN tblTranDate td ON tr.trandate_seq = td.trandate_seq
+    INNER JOIN tblTransport tp ON td.tran_seq = tp.tran_seq) a ON m.member_seq = a.member_seq
+        where m.member_seq = 5;
+    
 select * from tblAccommodate where acco_seq = 1;

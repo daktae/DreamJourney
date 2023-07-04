@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.domain.BookmarkDTO;
+import com.test.domain.TranReserveDTO;
 import com.test.mapper.MypageMapper;
 
 @Service
@@ -19,6 +20,12 @@ public class MypageServiceImpl implements MypageService {
 
 		
 		return mapper.bookmarkList();
+	}
+	
+	@Override
+	public List<TranReserveDTO> transList() {
+
+		return mapper.transList();
 	}
 	
 }
