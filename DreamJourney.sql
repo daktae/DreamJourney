@@ -1,8 +1,6 @@
-select * from tblbookmark;
 
 select
 			*
-		from tblBookmark
 			where member_seq = 5
 				order by bookmark_seq desc;
 

@@ -67,16 +67,30 @@ public class MypageController {
 	private String mypage_reserve(Model model) {
 
 		model.addAttribute("tlist", service.transList());
+		model.addAttribute("alist", service.accommodateList());
+		model.addAttribute("aclist", service.activityList());
 		
 		return "mypage/mypage_reserve";
 	}
 
 	// 예약 상세
 	@GetMapping("/mypage/mypage_reserve_view")
-	private String mypage_reserve_view() {
+	private String mypage_reserve_view(Model model, String treserve_seq, String areserve_seq, String rreserve_seq) {
 
+		if (treserve_seq != null) {
+			model.addAttribute("tlist", service.treservedetail(treserve_seq));
+			model.addAttribute("list", service.tpay(treserve_seq));
+		} else if (rreserve_seq != null) {
+			model.addAttribute("rlist", service.rreservedetail(rreserve_seq));
+			model.addAttribute("list", service.rpay(rreserve_seq));
+	    } else if (areserve_seq != null) {
+//	    	model.addAttribute("alist", service.areservedetail(areserve_seq));
+//			model.addAttribute("list", service.rpay(areserve_seq));
+	    }		
+		
 		return "mypage/mypage_reserve_view";
 	}
+	
 
 	// 즐겨찾기
 	@GetMapping("/mypage/mypage_bookmark")

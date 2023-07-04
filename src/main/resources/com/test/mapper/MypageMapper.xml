@@ -33,16 +33,113 @@
 		    tp.price,
 		    td.tran_date,
 		    td.begin,
-		    tr.regdate
+		    tr.regdate,
+		    tr.treserve_seq
 		from tblTranReserve tr
 		    inner join tblTranDate td
 		        on tr.trandate_seq = td.trandate_seq
 		            inner join tblTransport tp
 		                on td.tran_seq = tp.tran_seq
 		                    where tr.member_seq = 5
+		                    	order by regdate desc
 	</select>
 	
-
+	<select id="accommodateList" resultType="com.test.domain.AccoReserveDTO">
+		select 
+		    a.type,
+		    rr.regdate,
+		    rd.rdate,
+		    a.address,
+		    r.price,
+		    r.limit,
+		    rr.rreserve_seq
+		from tblRoomReserve rr
+		inner join tblRoomDate rd on rr.rdate_seq = rd.rdate_seq
+		inner join tblRoom r on rd.room_seq = r.room_seq
+		inner join tblAccommodate a on r.acco_seq = a.acco_seq
+		where rr.member_seq = 5
+		order by regdate desc
+	</select>
+	
+	<select id="activityList" resultType="com.test.domain.ActivityReserveDTO">
+		select
+		    a.title,
+		    ar.regdate,
+		    a.category,
+		    ad.adate,
+		    a.address,
+		    a.price,
+		    ar.areserve_seq
+		from tblActivityReserve ar
+		inner join tblActivityDate ad on ar.adate_seq = ad.adate_seq
+		inner join tblActivity a on ad.activity_seq = a.activity_seq
+		where ar.member_seq = 5
+		order by regdate desc
+	</select>
+	
+	<select id="treservedetail" resultType="com.test.domain.TranReserveDTO">
+		select 
+		    tp.type,
+		    tp.runtime,
+		    tp.departure,
+		    tp.destination,
+		    tp.price,
+		    td.tran_date,
+		    td.begin,
+		    tr.regdate,
+		    tr.treserve_seq
+		from tblTranReserve tr
+		    inner join tblTranDate td
+		        on tr.trandate_seq = td.trandate_seq
+		            inner join tblTransport tp
+		                on td.tran_seq = tp.tran_seq
+		                    where tr.treserve_seq = #{treserve_seq}
+	</select>
+	
+	<select id="tpay" resultType="com.test.domain.PayDTO">
+		select * from tblPay where treserve_seq = #{treserve_seq}	
+	</select>
+	
+	<select id="rreservelist" resultType="com.test.domain.AccoReserveDTO">
+		select 
+		    a.type,
+		    rr.regdate,
+		    rd.rdate,
+		    a.address,
+		    r.price,
+		    r.limit,
+		    rr.rreserve_seq
+		from tblRoomReserve rr
+		inner join tblRoomDate rd on rr.rdate_seq = rd.rdate_seq
+		inner join tblRoom r on rd.room_seq = r.room_seq
+		inner join tblAccommodate a on r.acco_seq = a.acco_seq
+		where rr.rreserve_seq = #{rreserve_seq}
+	</select>
+	
+	<select id="rpay" resultType="com.test.domain.PayDTO">
+		select * from tblPay where rreserve_seq = #{rreserve_seq}	
+	</select>
+	
+	<!-- <select id="areservelist" resultType="com.test.domain.ActivityReserveDTO">
+		select
+		    a.title,
+		    ar.regdate,
+		    a.category,
+		    ad.adate,
+		    a.address,
+		    a.price,
+		    ar.areserve_seq
+		from tblActivityReserve ar
+		inner join tblActivityDate ad on ar.adate_seq = ad.adate_seq
+		inner join tblActivity a on ad.activity_seq = a.activity_seq
+		where ar.areserve_seq = #{areserve_seq}
+		order by regdate desc
+	</select>
+	
+	<select id="rpay" resultType="com.test.domain.PayDTO">
+		select * from tblPay where areserve_seq = #{areserve_seq}	
+	</select> -->
+	
 </mapper>
 
 

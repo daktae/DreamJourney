@@ -126,19 +126,19 @@
 						<th>예약번호</th>
 						<td>1234567</td>
 						<th>이용일</th>
-						<td>2019-12-12</td>
+						<td>${tlist.regdate}${rlist.regdate}</td>
 					</tr>
 					<tr>
 						<th>여행자</th>
-						<td colspan="3"></td>
+						<td colspan="3">세션아이디</td>
 					</tr>
 					<tr>
 						<th>주문정보</th>
-						<td colspan="3"></td>
+						<td colspan="3">${tlist.type}</td>
 					</tr>
 					<tr>
 						<th>여행컨셉</th>
-						<td colspan="3"></td>
+						<td colspan="3">없음</td>
 					</tr>
 				</table>
 				<table class="table table-borderless">
@@ -149,12 +149,12 @@
 				</table>
 				<table class="table table-borderless reserve_view">
 					<tr>
-						<th>결제일 2019-12-12 14:50</th>
-						<td>총금액 ₩25000원</td>
+						<th>결제일  : ${list.regdate}</th>
+						<td style="text-align:right;">총금액 ₩${list.price}원</td>
 					</tr>
 					<tr>
-						<th>결제수단 무통장 입금</th>
-						<td>총 할인금액 -₩0원</td>
+						<th>결제수단 : ${list.paymethod}</th>
+						<td style="text-align:right;">총 할인금액 -₩0원</td>
 					</tr>
 					<tr>
 						<th></th>
@@ -162,7 +162,7 @@
 					</tr>
 					<tr>
 						<th></th>
-						<td>결제금액 ₩25600</td>
+						<td style="text-align:right;">결제금액 ₩${list.price}</td>
 					</tr>
 				</table>
 				<table class="table table-borderless">
