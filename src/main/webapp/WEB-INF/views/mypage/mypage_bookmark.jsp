@@ -242,7 +242,7 @@ table.reserve_list {
 <script>
 $(document).ready(function() {
     // Hide all tables initially
-    $(".table-accommodation").show();
+    $(".table-accommodate").show();
     $(".table-activity").show();
     $(".table-food").show();
     $(".table-area").show();

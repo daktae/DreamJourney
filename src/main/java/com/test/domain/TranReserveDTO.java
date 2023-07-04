@@ -5,9 +5,10 @@ import lombok.Data;
 @Data
 public class TranReserveDTO {
 
+	private String treserve_seq;
 	private String type;
 	private String runtime;
-	private String defarture;
+	private String departure;
 	private String destination;
 	private String price;
 	private String tran_date;

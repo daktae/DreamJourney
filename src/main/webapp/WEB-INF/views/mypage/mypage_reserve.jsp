@@ -120,37 +120,92 @@ table.reserve_list {
 
 
 			<div id="mypage_reserve_search">
-				<button type="button" class="btn btn-primary btn-lg m-3">전체</button>
-				<button type="button" class="btn btn-primary btn-lg m-3">교통</button>
-				<button type="button" class="btn btn-primary btn-lg m-3">숙소</button>
-				<button type="button" class="btn btn-primary btn-lg m-3">액티비티</button>
+				<button type="button" class="btn btn-primary btn-lg m-3"
+					id="btn-transport">교통</button>
+				<button type="button" class="btn btn-primary btn-lg m-3"
+					id="btn-accommodate">숙소</button>
+				<button type="button" class="btn btn-primary btn-lg m-3"
+					id="btn-activity">액티비티</button>
 			</div>
 
 			<div class="container-fluid mt-5">
-			<c:forEach items="${tlist}" var="tdto">
-				<table class="table table-borderless reserve_list table-height">
-					<tr>
-						<td style="text-align: center; vertical-align: middle;">예약완료</td>
-						<td colspan="3">${tdto.regdate}</td>
-						<td rowspan="3"
-							style="text-align: center; vertical-align: middle;"><a
-							href="mypage_reserve_view.do" class="btn btn-primary">상세보기</a>
-							<button type="button" class="btn btn-danger">예매취소</button></td>
-					</tr>
-					<tr>
-						<td rowspan="2"
-							style="text-align: center; vertical-align: middle;">교통</td>
-						<td>${tdto.type}</td>
-						<td>${tdto.tran_date} ${tdto.begin}</td>
-						<td>1명</td>
-						
-					</tr>
-					<tr>
-						<td>LJE123</td>
-						<td>${tdto.departure} > ${tdto.destination}</td>
-						<td>${tdto.price}</td>
-					</tr>
-				</table>
+				<c:forEach items="${tlist}" var="tdto">
+					<table
+						class="table table-borderless reserve_list table-height table-transport">
+						<tr>
+							<td style="width: 10%; text-align: center; vertical-align: middle;">예약완료</td>
+							<td style="width: 70%;" colspan="3">${tdto.regdate}</td>
+							<td rowspan="3"
+								style="text-align: center; vertical-align: middle; width: 20%"><a
+								href="mypage_reserve_view?treserve_seq=${tdto.treserve_seq}&rreserve_seq=&areserve_seq=" class="btn btn-primary">상세보기</a>
+								<button type="button" class="btn btn-danger">예매취소</button></td>
+						</tr>
+						<tr>
+							<td rowspan="2"
+								style="text-align: center; vertical-align: middle;">교통</td>
+							<td style="width: 25%;">${tdto.type}</td>
+							<td style="width: 25%;">${tdto.tran_date}${tdto.begin}</td>
+							<td style="width: 10%;">1명</td>
+
+						</tr>
+						<tr>
+							<td style="width: 25%;">LJE123</td>
+							<td style="width: 25%;">${tdto.departure}> ${tdto.destination}</td>
+							<td style="width: 10%;">${tdto.price}원</td>
+						</tr>
+					</table>
+				</c:forEach>
+				<c:forEach items="${alist}" var="adto">
+					<table
+						class="table table-borderless reserve_list table-height table-accommodate">
+						<tr>
+							<td style="width: 10%; text-align: center; vertical-align: middle;">예약완료</td>
+							<td colspan="3" style="width: 60%">${adto.regdate}</td>
+							<td rowspan="3"
+								style="text-align: center; vertical-align: middle; width:30%;"><a
+								href="mypage_reserve_view?treserve_seq=&rreserve_seq=${adto.rreserve_seq}&areserve_seq=" class="btn btn-primary">상세보기</a>
+								<button type="button" class="btn btn-danger">예매취소</button></td>
+						</tr>
+						<tr>
+							<td rowspan="2"
+								style="text-align: center; vertical-align: middle;">숙소</td>
+							<td style="width: 25%;">${adto.type}</td>
+							<td style="width: 25%;">${adto.rdate}</td>
+							<td style="width: 10%;">${adto.limit}명</td>
+
+						</tr>
+						<tr>
+							<td style="width: 25%;">LJE123</td>
+							<td style="width: 25%;">${adto.address}</td>
+							<td style="width: 10%;">${adto.price}원</td>
+						</tr>
+					</table>
+				</c:forEach>
+				<c:forEach items="${aclist}" var="acdto">
+					<table
+						class="table table-borderless reserve_list table-height table-activity">
+						<tr>
+							<td style="width: 10%;text-align: center; vertical-align: middle;">예약완료</td>
+							<td style="width: 70%;" colspan="3">${acdto.regdate}</td>
+							<td rowspan="3"
+								style="text-align: center; vertical-align: middle; width:20%;"><a
+								href="mypage_reserve_view?treserve_seq=&rreserve_seq=&areserve_seq=${acdto.areserve_seq}" class="btn btn-primary">상세보기</a>
+								<button type="button" class="btn btn-danger">예매취소</button></td>
+						</tr>
+						<tr>
+							<td rowspan="2"
+								style="text-align: center; vertical-align: middle;">숙소</td>
+							<td style="width: 25%;">${acdto.category}</td>
+							<td style="width: 25%;">${acdto.adate}</td>
+							<td style="width: 10%;">1명</td>
+
+						</tr>
+						<tr>
+							<td style="width: 25%;">${acdto.title}</td>
+							<td style="width: 25%;">${acdto.address}</td>
+							<td style="width: 10%;">${acdto.price}원</td>
+						</tr>
+					</table>
 				</c:forEach>
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
@@ -178,7 +233,31 @@ table.reserve_list {
 	<%@ include file="/resources/inc/footer.jsp"%>
 
 	<script>
-		
+		$(document).ready(function() {
+			// Hide all tables initially
+			$(".table-accommodate").hide();
+			$(".table-activity").hide();
+			$(".table-transport").show();
+
+			$("#btn-accommodate").click(function() {
+				$(".table-accommodate").show();
+				$(".table-activity").hide();
+				$(".table-transport").hide();
+			});
+
+			$("#btn-activity").click(function() {
+				$(".table-accommodate").hide();
+				$(".table-activity").show();
+				$(".table-transport").hide();
+			});
+
+			$("#btn-transport").click(function() {
+				$(".table-accommodate").hide();
+				$(".table-activity").hide();
+				$(".table-transport").show();
+			});
+
+		});
 	</script>
 
 
