@@ -123,10 +123,10 @@
 				</table>
 				<table class="table reserve_view">
 					<tr>
-						<th>예약번호</th>
-						<td>1234567</td>
+						<th>예약일</th>
+						<td>${tlist.regdate}${rlist.regdate}${alist.regdate}</td>
 						<th>이용일</th>
-						<td>${tlist.regdate}${rlist.regdate}</td>
+						<td>${tlist.begin}${rlist.rdate}${alist.adate}</td>
 					</tr>
 					<tr>
 						<th>여행자</th>
@@ -134,20 +134,18 @@
 					</tr>
 					<tr>
 						<th>주문정보</th>
-						<td colspan="3">${tlist.type}</td>
+						<td colspan="3">${tlist.type}${rlist.name}${alist.title}</td>
 					</tr>
 					<tr>
 						<th>여행컨셉</th>
 						<td colspan="3">없음</td>
 					</tr>
 				</table>
-				<table class="table table-borderless">
+				<table class="table table-borderless reserve_view">
 					<tr>
 						<td>결제 금액</td>
 						<td>영수증</td>
 					</tr>
-				</table>
-				<table class="table table-borderless reserve_view">
 					<tr>
 						<th>결제일  : ${list.regdate}</th>
 						<td style="text-align:right;">총금액 ₩${list.price}원</td>

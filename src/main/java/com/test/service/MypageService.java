@@ -26,9 +26,9 @@ public interface MypageService {
 	AccoReserveDTO rreservedetail(String rreserve_seq);
 
 	PayDTO rpay(String rreserve_seq);
-//
-//	ActivityReserveDTO areservedetail(String areserve_seq);
-//
-//	PayDTO apay(String areserve_seq);
+
+	ActivityReserveDTO areservedetail(String areserve_seq);
+
+	PayDTO apay(String areserve_seq);
 
 }

@@ -12,5 +12,6 @@ public class AccoReserveDTO {
 	private String address;
 	private String price;
 	private String limit;
+	private String name;
 	
 }

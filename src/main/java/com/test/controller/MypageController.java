@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.test.domain.AccoReserveDTO;
 import com.test.service.MypageService;
 
 @Controller
@@ -75,18 +76,22 @@ public class MypageController {
 
 	// 예약 상세
 	@GetMapping("/mypage/mypage_reserve_view")
-	private String mypage_reserve_view(Model model, String treserve_seq, String areserve_seq, String rreserve_seq) {
+	private String mypage_reserve_view(Model model, String treserve_seq, String rreserve_seq, String areserve_seq) {
 
-		if (treserve_seq != null) {
+		
+		
+		if (treserve_seq != null && treserve_seq != "") {
 			model.addAttribute("tlist", service.treservedetail(treserve_seq));
 			model.addAttribute("list", service.tpay(treserve_seq));
-		} else if (rreserve_seq != null) {
+		} else if (rreserve_seq != null && rreserve_seq != "") {
 			model.addAttribute("rlist", service.rreservedetail(rreserve_seq));
 			model.addAttribute("list", service.rpay(rreserve_seq));
-	    } else if (areserve_seq != null) {
-//	    	model.addAttribute("alist", service.areservedetail(areserve_seq));
-//			model.addAttribute("list", service.rpay(areserve_seq));
+	    } else if (areserve_seq != null && areserve_seq != "") {
+	    	model.addAttribute("alist", service.areservedetail(areserve_seq));
+	    	model.addAttribute("list", service.apay(areserve_seq));
 	    }		
+		
+
 		
 		return "mypage/mypage_reserve_view";
 	}

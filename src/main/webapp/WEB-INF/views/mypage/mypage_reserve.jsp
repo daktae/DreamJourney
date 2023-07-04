@@ -134,22 +134,22 @@ table.reserve_list {
 						class="table table-borderless reserve_list table-height table-transport">
 						<tr>
 							<td style="width: 10%; text-align: center; vertical-align: middle;">예약완료</td>
-							<td style="width: 70%;" colspan="3">${tdto.regdate}</td>
+							<td style="width: 75%;" colspan="3">${tdto.regdate}</td>
 							<td rowspan="3"
-								style="text-align: center; vertical-align: middle; width: 20%"><a
+								style="text-align: center; vertical-align: middle; width: 15%"><a
 								href="mypage_reserve_view?treserve_seq=${tdto.treserve_seq}&rreserve_seq=&areserve_seq=" class="btn btn-primary">상세보기</a>
 								<button type="button" class="btn btn-danger">예매취소</button></td>
 						</tr>
 						<tr>
 							<td rowspan="2"
 								style="text-align: center; vertical-align: middle;">교통</td>
-							<td style="width: 25%;">${tdto.type}</td>
+							<td style="width: 30%;">${tdto.type}</td>
 							<td style="width: 25%;">${tdto.tran_date}${tdto.begin}</td>
 							<td style="width: 10%;">1명</td>
 
 						</tr>
 						<tr>
-							<td style="width: 25%;">LJE123</td>
+							<td style="width: 30%;">LJE123</td>
 							<td style="width: 25%;">${tdto.departure}> ${tdto.destination}</td>
 							<td style="width: 10%;">${tdto.price}원</td>
 						</tr>
@@ -169,13 +169,13 @@ table.reserve_list {
 						<tr>
 							<td rowspan="2"
 								style="text-align: center; vertical-align: middle;">숙소</td>
-							<td style="width: 25%;">${adto.type}</td>
+							<td style="width: 30%;">${adto.type}</td>
 							<td style="width: 25%;">${adto.rdate}</td>
 							<td style="width: 10%;">${adto.limit}명</td>
 
 						</tr>
 						<tr>
-							<td style="width: 25%;">LJE123</td>
+							<td style="width: 30%;">${adto.name}</td>
 							<td style="width: 25%;">${adto.address}</td>
 							<td style="width: 10%;">${adto.price}원</td>
 						</tr>
@@ -194,14 +194,14 @@ table.reserve_list {
 						</tr>
 						<tr>
 							<td rowspan="2"
-								style="text-align: center; vertical-align: middle;">숙소</td>
-							<td style="width: 25%;">${acdto.category}</td>
+								style="text-align: center; vertical-align: middle;">액티비티</td>
+							<td style="width: 30%;">${acdto.category}</td>
 							<td style="width: 25%;">${acdto.adate}</td>
 							<td style="width: 10%;">1명</td>
 
 						</tr>
 						<tr>
-							<td style="width: 25%;">${acdto.title}</td>
+							<td style="width: 30%;">${acdto.title}</td>
 							<td style="width: 25%;">${acdto.address}</td>
 							<td style="width: 10%;">${acdto.price}원</td>
 						</tr>

@@ -66,17 +66,17 @@ public class MypageServiceImpl implements MypageService {
 
 		return mapper.rpay(rreserve_seq);
 	}
-//	
-//	@Override
-//	public ActivityReserveDTO areservedetail(String areserve_seq) {
-//
-//		return mapper.areservedetail(areserve_seq);
-//	}
-//	
-//	@Override
-//	public PayDTO apay(String areserve_seq) {
-//
-//		return mapper.apay(areserve_seq);
-//	}
+	
+	@Override
+	public ActivityReserveDTO areservedetail(String areserve_seq) {
+
+		return mapper.areservedetail(areserve_seq);
+	}
+	
+	@Override
+	public PayDTO apay(String areserve_seq) {
+
+		return mapper.apay(areserve_seq);
+	}
 	
 }
