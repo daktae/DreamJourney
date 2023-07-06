@@ -1,13 +1,11 @@
-package com.test.mapper;
+package com.test.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.test.domain.ActivityDTO;
 
-//DAO 역할 > DB 데이터에 접근
-public interface ActivityMapper {
+//DAO 데이터를 주고 받으며 비즈니스 로직 수행
+public interface ActivityService {
 
 	List<ActivityDTO> activitylist();
 
@@ -18,4 +16,3 @@ public interface ActivityMapper {
 	ActivityDTO pay(String activity_seq);
 
 }
-

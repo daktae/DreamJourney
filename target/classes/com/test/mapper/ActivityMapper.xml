@@ -4,4 +4,24 @@
 
 	<select id="time" resultType="String">select sysdate from dual</select>
 
+	<!-- 액티비티 전체 목록 -->
+	<select id="activitylist" resultType="com.test.domain.ActivityDTO">
+		select * from vwActivity order by adate desc
+	</select>
+	
+	<!-- 액티비티 상세보기 -->
+	<select id="get" resultType="com.test.domain.ActivityDTO" parameterType="String">
+		select * from vwActivity where activity_seq = #{activity_seq}
+	</select>
+	
+	<!-- 리뷰 보기 -->
+	<select id="review" resultType="com.test.domain.ActivityDTO" parameterType="String">
+		select * from vwActivityReview where activity_seq = #{activity_seq} order by rdate desc
+	</select>
+	
+	<!-- 결제 가져오기 -->
+	<select id="pay" resultType="com.test.domain.ActivityDTO" parameterType="String">
+		select * from vwActivity where activity_seq = #{activity_seq}
+	</select>
+	
 </mapper>

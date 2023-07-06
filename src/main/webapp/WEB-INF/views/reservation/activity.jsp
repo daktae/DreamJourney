@@ -33,6 +33,49 @@
 </head>
 <style>
 
+	.prev, .next {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	.prev {
+		left: 10px;
+	}
+	
+	.next {
+		right: 10px;
+	}
+
+	.row {
+		justify-content:center;
+		overflow:hidden;
+		position: relative;
+		width: 100%;
+	}
+	
+	.slide {
+		display: none;
+		flaot:left;
+		width: 25%;		/* 4개씩 보여주기 */
+	}
+	
+	.row2 {
+		justify-content:center;
+		overflow:hidden;
+		position: relative;
+		top: 50%;
+		width: 100%;
+	}
+	
+	.slide2 {
+		display: none;
+		flaot:left;
+		top: 50px;
+		width: 25%;		/* 4개씩 보여주기 */
+	}
+	
+
 	.categoryAll {
 		display: inline-block;
 		width: 100%;
@@ -75,12 +118,9 @@
 		text-decoration:none;
 	}
 	
-	.row {
-		justify-content:center;
-	}
 	
 	.team-img {
-		width: 255px;
+		width: 250px;
 		height: 210px;
 	}
 	
@@ -215,164 +255,67 @@
    <!-- 내용쓰는곳 -->
    
     
-    <!-- Team Start > 숙소 -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <div class="text-center mb-3 pb-3">
-                <h1><a href="#">숙소</a></h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-4.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                <div style="float:right; font-size: 20px; font-weight: bold;"> 
-					<a href="">더보기 →</a>					                
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
-    
     
     <!-- Team Start > 액티비티 -->
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
-            <div class="text-center mb-3 pb-3">
-                <h1><a href="#">액티비티</a></h1>
-            </div>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
+            <c:forEach items="${list }" var="dto">
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide">
+                    <div class="team-item bg-white mb-4">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="/dreamjourney/resources/img/reservation/${dto.image1 }"alt="">
+                            <div class="team-social">
+                            <input type="hidden" >
+                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}">상세보기</a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <h5 class="text-truncate">${dto.title }</h5>
+                            <p class="m-0">${dto.content }</p>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+                <div>
+                	<button type="button" class="prev">←</button>
+                	<button type="button" class="next">→</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+    
+    
+     <!-- Team Start > 액티비티 -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="row2">
+            <c:forEach items="${list }" var="dto">
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
                             <div class="team-social">
                                 <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
+                            <h5 class="text-truncate">${dto.title }</h5>
+                            <p class="m-0">${dto.content }</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
+                </c:forEach>
+                <div>
+                	<button type="button" class="prev">←</button>
+                	<button type="button" class="next">→</button>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-4.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                    <div style="float:right; font-size: 20px; font-weight: bold;"> 
-					<a href="">더보기 →</a>					                
-                </div>
-                </div>
-                
             </div>
         </div>
     </div>
     <!-- Team End -->
+   
    
    
    <!-- 내용 작성 -->
@@ -382,53 +325,7 @@
                 
 
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 px-sm-3   px-lg-5" >
-        <div class="row pt-5">
-            <div class="col-lg-3 col-md-6 mb-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">Dream</span>Journey</h1>
-                </a>
-                <p style="margin-bottom: 0px; font-weight: bold;">고객지원실 운영안내</p>
-                <p style="margin-bottom: 0px;">02-3482-4632</p>
-                <p style="margin-bottom: 0px;">전화 상담: 09:00 ~ 18:00</p>
-                <p style="margin-bottom: 0px;">채팅 상담: 09:00 ~ 20:00</p>
-
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
-                <div class="d-flex justify-content-start">
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >소개</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>회사소개</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>채용</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >제휴 업체</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>늘봄 실버타운</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>늘봄 요양원</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>쌍용교육센터</a>
-                    
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >지원</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>자주 묻는 질문</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>최저가 보장제</a>
-                    
-                </div>
-            </div>
-            
-        </div>
-    </div>
+    <%@ include file="/resources/inc/footer.jsp"%>
     
 
 
@@ -452,7 +349,50 @@
     <!-- Template Javascript -->
     <script src="/dreamjourney/resources/js/main.js"></script>
 </body>
+<script>
+	var slideIndex = 0;
+	showSlides();
+	
+	function showSlides() {
+		var slide = $(".slide");
+		var prevBtn = $(".prev");
+		var nextBtn = $(".next");
+		
+		//현재 슬라이드 숨김
+		slide.hide();
+		
+		//다음 4개의 슬라이드 표시
+		for (var j = slideIndex; j < slideIndex + 4; j++) {
+			if (slide.eq(j)) {		//slide 객체의 j번째 요소 선택
+				slide.eq(j).show();
+			}
+		}
 
+		//이전 버튼 클릭 시 슬라이드 이동
+		prevBtn.on("click", function() {
+			slideIndex -= 4;
+			
+			if (slideIndex < 0) {
+				slideIndex = slide.length - 4;
+			}
+			showSlides();
+		})
+		
+		//다음 버튼 클릭 시 슬라이드 이동
+		nextBtn.on("click", function() {
+			slideIndex += 4;
+			
+			if (slideIndex >= slide.length) {
+				slideIndex = 0;
+			}
+			showSlides();
+		})
+		
+		
+	}
+
+
+</script>
 </html>
 
 

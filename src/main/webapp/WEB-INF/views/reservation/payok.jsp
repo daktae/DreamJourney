@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>TRAVELER - Free Travel Website Template</title>
+    <title>DreamJourney > 예약/예매 > 액티비티</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -27,10 +27,66 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/dreamjourney/resources/css/style.css" rel="stylesheet">
+    
+    <!-- Google Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+<style>
 
+	.categoryAll {
+		display: inline-block;
+		width: 100%;
+		justify-content:center;
+	}
+
+	.category {
+		display: inline-block;
+		border: 1px solid black;
+		padding: 20px;
+		margin: 0 10px;
+	}
+
+	.sub {
+		font-weight: bold;
+	}
+
+	.p1-4, .px-4, .p-4 {
+		padding-left : none;
+	}
+
+	.text-truncate {
+		font-weight: bold;
+		font-size: 25px;
+	}
+	
+	.btn-square {
+		width: 100px;
+	}
+	
+	.text-truncate {
+		font-weight: bold;
+	}
+	
+	img {
+		width: 500px;
+	}
+	
+	a:hover {
+		text-decoration:none;
+	}
+	
+	.row {
+		justify-content:center;
+	}
+	
+	.team-img {
+		width: 255px;
+		height: 210px;
+	}
+	
+</style>
 <body>
-   
+   <!-- activity.jsp > 액티비티 페이지 -->
    
     
 
@@ -95,70 +151,19 @@
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">제목</h3>
+                <h3 class="display-4 text-white text-uppercase">결제완료</h3>
                 
             </div>
         </div>
     </div>
-    
-    
-    
-    
     <!-- Header End -->   
-
-   <!-- 내용쓰는곳 -->
-       <!-- Booking Start 검색 바 -->
-    <div class="container-fluid booking mt-5 pb-5">
-        <div class="container pb-5">
-            <div class="bg-light shadow" style="padding: 30px;">
-                <div class="row align-items-center" style="min-height: 60px;">
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="mb-3 mb-md-0">
-                                    <input type="text" class="form-control  px-4" style="height: 47px;" placeholder="어디로 떠나시나요?">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3 mb-md-0">
-                                    <div class="date" id="date1" data-target-input="nearest">
-                                        <input type="text" class="form-control p-4 datetimepicker-input" placeholder="출발 일" data-target="#date1" data-toggle="datetimepicker"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3 mb-md-0">
-                                    <div class="date" id="date2" data-target-input="nearest">
-                                        <input type="text" class="form-control p-4 datetimepicker-input" placeholder="도착 일" data-target="#date2" data-toggle="datetimepicker"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="mb-3 mb-md-0">
-                                    <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>인원 수</option>
-                                        <option value="1">Duration 1</option>
-                                        <option value="2">Duration 1</option>
-                                        <option value="3">Duration 1</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">검색 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                          </svg></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Booking End -->
+    
+    
+    
    
    <!-- 내용 작성 -->
-    <div class="container-fluid py-5" style="height: 1000px;">
-       
+    <div class="container-fluid py-5" style="height: 100px; border: 1px solid black;">
+       결제가 완료되었습니다.
    </div>
                 
 
