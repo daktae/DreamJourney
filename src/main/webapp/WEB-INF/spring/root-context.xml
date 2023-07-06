@@ -7,30 +7,29 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- hikari 객체 -->
-	<!-- <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
 			value="jdbc:log4jdbc:oracle:thin:@180.68.11.121:1521:xe"></property>
 		<property name="username" value="dj"></property>
 		<property name="password" value="java1234"></property>
-	</bean> -->
+	</bean>
 
 	<!-- DataSource 객체 -->
-	<!-- <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig"></constructor-arg>
-	</bean> -->
+	</bean>
 
 	<!-- SqlSessionFactory 객체 -->
-	<!-- <bean id="sessionfactory"
+	<bean id="sessionfactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-	</bean> -->
+	</bean>
 	
 	<!-- Mapper만 스캔 -->
-	<!-- <mybatis-spring:scan base-package="com.test.mapper"/> -->
+	<mybatis-spring:scan base-package="com.test.mapper"/>
 
-	
 
 </beans>
