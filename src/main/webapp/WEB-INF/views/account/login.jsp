@@ -85,37 +85,16 @@
 	      </div>
 	    <main class="form-signin">
 	      <div>
-		      <form action="login.jsp" method="post">
-		         <h1 class="h3 mb-3 fw-normal">로그인 페이지</h1>
-		         
-		         <div class="form-floating">
-		            <input type="text" class="form-control" id="id" placeholder="아이디 입력...">
-		            <label for="id">아이디</label>
-		         </div>
-		         <div class="form-floating">
-		            <input type="password" class="form-control" id="pwd" placeholder="Password">
-		            <label for="pwd">비밀번호</label>
-		         </div>
-		         
-		         <div class="checkbox mb-3">
-		            <label>
-		               <input type="checkbox" value="remember-me"> 아이디 저장
-		            </label>
-		         </div>
-		         <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
-		         
-		      </form>
 		      <div class="wrap">
 			   <div class="title">로그인</div>
-			     <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=f98ab1de86240e7d44a67bba135eaebc&redirect_uri=	
-http://localhost/dreamjourney/index&response_type=code">
-			     	<!-- REST_API키 및 REDIRECT_URI는 본인걸로 수정하세요 -->
-			        
-			      	<div class="kakao_i"></div>
-			      	<div class="kakao_txt">카카오톡으로 간편로그인 </div>
-			   	</a>
+				<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=13346f688f01a6d944eb750631266672&redirect_uri=	
+				http://localhost/dreamjourney/kakao&response_type=code">
+				  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
+				    alt="카카오 로그인 버튼" />
+				</a>
+					<p id="token-result"></p>
 			</div>
-
+		         
 	      </div>
 	   </main>
  		</div>
@@ -125,21 +104,13 @@ http://localhost/dreamjourney/index&response_type=code">
 
     <%@ include file="/resources/inc/footer.jsp" %>
     
-<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.2.0/kakao.min.js"
+  integrity="sha384-x+WG2i7pOR+oWb6O5GV5f1KN2Ko6N7PTGPS7UlasYWNxZMKQA63Cj/B2lbUmUfuC" crossorigin="anonymous"></script>
     
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-	window.addEventListener('scroll', function() {
-		var chatcounseling = document.querySelector('.chatcounseling');
-		var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-		var windowHeight = window.innerHeight;
-		var targetHeight = windowHeight * 0.2;
-
-		if (scrollHeight > targetHeight) {
-		  chatcounseling.classList.add('show');
-		} else {
-		  chatcounseling.classList.remove('show');
-		}
-	});
+	
 </script>
 </body>
 
