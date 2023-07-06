@@ -1,6 +1,6 @@
 package com.test.controller;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -68,6 +69,12 @@ public class MypageController {
 	@GetMapping("/mypage/addjourney")
 	private String addjourney() {
 		return "mypage/addjourney";
+	}
+	
+	@PostMapping("/mypage/addjourneyok")
+	private String addjourneyok(@RequestParam("placeInputValues") ArrayList<String> placeInputValues,
+	                            @RequestParam("memoInputValues") ArrayList<String> memoInputValues) {
+	    return "redirect:/mypage/journey";
 	}
 
 	// 내 여행 상세보기
