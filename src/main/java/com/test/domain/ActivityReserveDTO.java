@@ -13,4 +13,6 @@ public class ActivityReserveDTO {
 	private String address;
 	private String price;
 	
+	private String pay_seq;
+	
 }

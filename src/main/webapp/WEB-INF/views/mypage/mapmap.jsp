@@ -30,7 +30,7 @@
 #placesList .item .marker_2 {background-position: 0 -56px;}
 #placesList .item .marker_3 {background-position: 0 -102px}
 #placesList .item .marker_4 {background-position: 0 -148px;}
-#placesList .item .marker_5 {background-position: 0 -194px;}
+#placesList .item .marker_5 {background	-position: 0 -194px;}
 #placesList .item .marker_6 {background-position: 0 -240px;}
 #placesList .item .marker_7 {background-position: 0 -286px;}
 #placesList .item .marker_8 {background-position: 0 -332px;}
@@ -180,8 +180,11 @@
 						infowindow.close();
 					};
 				})(marker, places[i].place_name);
-
+				
 				fragment.appendChild(itemEl);
+				
+				
+				
 			}
 
 			// 검색결과 항목들을 검색결과 목록 Element에 추가합니다
@@ -191,6 +194,7 @@
 			// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 			map.setBounds(bounds);
 		}
+		
 
 		// 검색결과 항목을 Element로 반환하는 함수입니다
 		function getListItem(index, places) {
@@ -214,6 +218,20 @@
 
 			el.innerHTML = itemStr;
 			el.className = 'item';
+			
+			el.addEventListener('click', function() {
+		        // Add your logic here to send values to addjourney.jsp
+		        var placeName = places.place_name;
+		        var address = places.road_address_name;
+
+		        
+		        
+		        if (window.opener) {
+		            window.opener.receiveValues(placeName, address);
+		        }
+		        
+		        
+		    });
 
 			return el;
 		}

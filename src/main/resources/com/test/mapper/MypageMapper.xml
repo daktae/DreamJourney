@@ -34,14 +34,17 @@
 		    td.tran_date,
 		    td.begin,
 		    tr.regdate,
-		    tr.treserve_seq
+		    tr.treserve_seq,
+		    p.pay_seq
 		from tblTranReserve tr
 		    inner join tblTranDate td
 		        on tr.trandate_seq = td.trandate_seq
 		            inner join tblTransport tp
 		                on td.tran_seq = tp.tran_seq
+		                    left outer join tblPay p
+		                        on tr.treserve_seq = p.treserve_seq
 		                    where tr.member_seq = 5
-		                    	order by regdate desc
+		                        order by regdate desc
 	</select>
 	
 	<select id="accommodateList" resultType="com.test.domain.AccoReserveDTO">
@@ -140,6 +143,18 @@
 	<select id="apay" resultType="com.test.domain.PayDTO">
 		select * from tblPay where areserve_seq = #{areserve_seq}	
 	</select>
+	
+	<delete id="treservedel">
+		delete from tblTranReserve where treserve_seq = #{treserve_seq}
+	</delete>
+
+	<delete id="rreservedel">
+		delete from tblRoomReserve where rreserve_seq = #{rreserve_seq}
+	</delete>
+
+	<delete id="areservedel">
+		delete from tblActivityReserve where areserve_seq = #{areserve_seq}
+	</delete>
 	
 </mapper>
 

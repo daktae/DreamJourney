@@ -96,6 +96,25 @@ public class MypageController {
 		return "mypage/mypage_reserve_view";
 	}
 	
+	@PostMapping("/mypage/mypage_reservedelok")
+	private String mypage_reservedelok(Model model, String treserve_seq, String rreserve_seq, String areserve_seq) {
+
+
+		System.out.println(treserve_seq);
+		
+		if (treserve_seq != null && treserve_seq != "") {
+			int result = service.treservedel(treserve_seq);
+		} else if (rreserve_seq != null && rreserve_seq != "") {
+			int result = service.rreservedel(rreserve_seq);
+	    } else if (areserve_seq != null && areserve_seq != "") {
+	    	int result = service.areservedel(areserve_seq);
+	    }		
+		
+
+		
+		return "redirect:/mypage/mypage_reserve";
+	}
+	
 
 	// 즐겨찾기
 	@GetMapping("/mypage/mypage_bookmark")
@@ -121,5 +140,15 @@ public class MypageController {
 	      return "mypage/mapmap";
 
 	}
+	
+	//테스트
+	@PostMapping("/mypage/mapmapok")
+	private String mapmapok(String placeName, String addressName) {
+		
+		return "redirect:/mypage/journey";
+		
+	}
+
+
 	
 }

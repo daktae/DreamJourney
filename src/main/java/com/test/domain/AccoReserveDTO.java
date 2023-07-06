@@ -14,4 +14,6 @@ public class AccoReserveDTO {
 	private String limit;
 	private String name;
 	
+	private String pay_seq;
+	
 }

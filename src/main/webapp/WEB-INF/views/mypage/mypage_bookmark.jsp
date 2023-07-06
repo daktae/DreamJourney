@@ -143,7 +143,7 @@ table.reserve_list {
 			<div class="table-container">
 			<c:forEach items="${list}" var="dto">
 				<c:if test="${not empty dto.accommodate_name}">
-					<table class="table table-borderless bookmark table-accommodate">
+					<table class="table table-borderless bookmark table-accommodate" onclick="redirectToLink('#')">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
 								width="300" height="200"></td>
@@ -160,7 +160,7 @@ table.reserve_list {
 					</table>
 				</c:if>
 				<c:if test="${not empty dto.activity_name}">
-					<table class="table table-borderless bookmark table-activity">
+					<table class="table table-borderless bookmark table-activity" onclick="redirectToLink('#')">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/액티비티.jpg"
 								width="300" height="200"></td>
@@ -177,7 +177,7 @@ table.reserve_list {
 					</table>
 				</c:if>
 				<c:if test="${not empty dto.food_name}">
-					<table class="table table-borderless bookmark table-food">
+					<table class="table table-borderless bookmark table-food" onclick="redirectToLink('#')">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/맛집.jpg"
 								width="300" height="200"></td>
@@ -194,7 +194,7 @@ table.reserve_list {
 					</table>
 				</c:if>
 				<c:if test="${not empty dto.area_name}">
-					<table class="table table-borderless bookmark table-area">
+					<table class="table table-borderless bookmark table-area" onclick="redirectToLink('#')">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/관광지.jpg"
 								width="300" height="200"></td>
@@ -240,6 +240,11 @@ table.reserve_list {
 	<%@ include file="/resources/inc/footer.jsp"%>
 
 <script>
+
+function redirectToLink(link) {
+    window.location.href = link;
+}
+
 $(document).ready(function() {
     // Hide all tables initially
     $(".table-accommodate").show();

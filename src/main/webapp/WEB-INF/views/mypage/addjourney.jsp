@@ -138,8 +138,18 @@ button {
 						<td></td>
 					</tr>
 					<tr>
-						<td><input type="text" placeholder="장소 추가">
-							<button id="btn-search">
+						<td><input type="text" class="placeInput" placeholder="장소 추가">
+							<button id="btn-search" onclick="openPopup()">
+								검색<span class="material-symbols-outlined"> search </span>
+							</button></td>
+						<td><input type="text" placeholder="메모 추가">
+							<button id="btn-add">
+								<span class="material-symbols-outlined"> add </span>
+							</button></td>
+					</tr>
+					<tr>
+						<td><input type="text" class="placeInput" placeholder="장소 추가">
+							<button id="btn-search" onclick="openPopup()">
 								검색<span class="material-symbols-outlined"> search </span>
 							</button></td>
 						<td><input type="text" placeholder="메모 추가">
@@ -160,7 +170,20 @@ button {
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-	<scirpt> </scirpt>
+	<script> 
+	
+		function openPopup() {
+		  window.open("mapmap.do", "Map Popup", "width=800,height=500");
+		}
+		
+		function receiveValues(placeName, address) {
+			 var placeInput = document.getElementsByClassName('placeInput')[0];
+			 
+			 placeInput.value = placeName + ', ' + address;
+
+		}
+	
+	</script>
 
 
 </body>

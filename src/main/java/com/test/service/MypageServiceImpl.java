@@ -79,4 +79,22 @@ public class MypageServiceImpl implements MypageService {
 		return mapper.apay(areserve_seq);
 	}
 	
+	@Override
+	public int treservedel(String treserve_seq) {
+
+		return mapper.treservedel(treserve_seq);
+	}
+	
+	@Override
+	public int rreservedel(String rreserve_seq) {
+		
+		return mapper.rreservedel(rreserve_seq);
+	}
+	
+	@Override
+	public int areservedel(String areserve_seq) {
+
+		return mapper.areservedel(areserve_seq);
+	}
+	
 }

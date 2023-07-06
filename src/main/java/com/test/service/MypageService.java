@@ -31,4 +31,10 @@ public interface MypageService {
 
 	PayDTO apay(String areserve_seq);
 
+	int treservedel(String treserve_seq);
+
+	int rreservedel(String rreserve_seq);
+
+	int areservedel(String areserve_seq);
+
 }
