@@ -1,12 +1,16 @@
 package com.test.mapper;
 
-import java.util.List;
+import java.util.List; 
+import java.util.Map;
 
 import com.test.domain.AccoReserveDTO;
 import com.test.domain.ActivityReserveDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.PayDTO;
 import com.test.domain.TranReserveDTO;
+import com.test.domain.BookableReviewDTO;
+import com.test.domain.MemberDTO;
+import com.test.domain.UnbookableReviewDTO;
 
 public interface MypageMapper {
 
@@ -35,5 +39,18 @@ public interface MypageMapper {
 	int rreservedel(String rreserve_seq);
 
 	int areservedel(String areserve_seq);
+
+	MemberDTO getMemberInfo(int seq);
+
+	void saveMemberInfo(MemberDTO dto);
+
+	List<BookableReviewDTO> getAccommodateReview();
+
+	List<BookableReviewDTO> getActivityReview();
+
+	List<UnbookableReviewDTO> getFoodReview();
+
+	int updateBookableReview(Map<String, String> map);
+
 
 }

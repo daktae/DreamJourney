@@ -51,10 +51,16 @@
 	height: auto;
 	border-radius: 20px;
 	margin-right: 100px;
+	padding: 15px;
 }
 
 #content {
 	width: auto;
+}
+
+#reviews-container {
+	margin-top: 20px;
+	/* Adjust the margin-top value to set the desired vertical spacing */
 }
 
 .review-box {
@@ -75,18 +81,23 @@
 	padding: 30px;
 }
 
-#btn-edit {
+.btn-edit {
 	background-color: #5392F9;
 	border: none;
 	border-radius: 10px;
 	color: white;
 }
 
-#btn-delete {
+.btn-delete {
 	background-color: #757575;
 	border: none;
 	border-radius: 10px;
 	color: white;
+}
+
+textarea {
+	border: none;
+	resize: none;
 }
 
 .reply {
@@ -117,75 +128,206 @@
 		<div id="mypage_content">
 			<div style="margin-top: 15px; margin-left: 15px;">내 리뷰</div>
 
-			<div class="review-box">
-				<table>
-					<colgroup>
-						<col width=20%>
-						<col width=30%>
-						<col width=15%>
-						<col width=15%>
-						<col width=15%>
-					</colgroup>
-					<tr>
-						<td>★★★★★ 5</td>
-						<td>[숙소]휘닉스평창스카이콘도</td>
-						<td>23/06/13</td>
-						<td>♥︎36</td>
-						<td rowspan="2">
-							<button id="btn-edit">수정</button>
-							<button id="btn-delete">삭제</button>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="4">정말좋아요싫어하는부장님께추천어쩌구ipsum</td>
-					</tr>
-				</table>
+			<div>
+				<button id="btn-accommodate">숙박</button>
+				<button id="btn-activity">액티비티</button>
+				<button id="btn-restaurant">맛집</button>
 			</div>
 
-			<div class="review-box reply">
-				<table>
-					<tr>
-						<td><span class="material-symbols-outlined">
-								subdirectory_arrow_right </span>휘닉스평창스카이콘도</td>
-					</tr>
-					<tr>
-						<td>님이만족못하신게 저희탓은아닌것같아요 ^^ 유감</td>
-					</tr>
-				</table>
-			</div>
-
-			<div class="review-box">
-				<table>
-					<colgroup>
-						<col width=20%>
-						<col width=30%>
-						<col width=15%>
-						<col width=15%>
-						<col width=15%>
-					</colgroup>
-					<tr>
-						<td>★★★★★ 5</td>
-						<td>[숙소]휘닉스평창스카이콘도</td>
-						<td>23/06/13</td>
-						<td>♥︎36</td>
-						<td rowspan="2">
-							<button id="btn-edit">수정</button>
-							<button id="btn-delete">삭제</button>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="4">정말좋아요싫어하는부장님께추천어쩌구ipsum</td>
-					</tr>
-				</table>
-			</div>
-
+			<div id="reviews-container"></div>
 
 		</div>
 	</div>
-	<!-- Blog End -->
+
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-	<script> </script>
+	<script>
+	
+	
+		// default
+		$(document).ready(function() {
+			updateData('accommodate');
+		});
+
+		
+		
+		// 버튼 핸들링
+		$("#btn-accommodate").click(function() {
+			updateData('accommodate');
+		});
+		$("#btn-restaurant").click(function() {
+			updateData('restaurant');
+		});
+		$("#btn-activity").click(function() {
+			updateData('activity');
+		});
+
+		
+		
+		// 리뷰 데이터 호출
+		function updateData(selected) {
+
+			var url = '';
+
+			if (selected === 'accommodate' || selected === 'activity') {
+				url = 'bookablereview';
+			} else {
+				url = 'unbookablereview';
+			}
+
+			$.ajax({
+				url : url,
+				type : 'GET',
+				dataType : 'json',
+				data : {
+					selected : selected
+				},
+				success : function(response) {
+					tablehandling(selected, response);
+				},
+				error : function(a, b, c) {
+					console.log(a, b, c);
+				}
+			});
+
+		} // updateData()
+ 
+		
+		
+
+		// 리뷰 데이터로 테이블 형성
+		function tablehandling(selected, result) {
+
+			// 컨테이너 형성
+			var container = $('#reviews-container');
+			container.empty();
+
+			for (var i = 0; i < result.length; i++) {
+
+				(function() {
+
+					var review = result[i];
+
+					// 테이블 형성
+					var table = $('<table>');
+					var editButton = $('<button class="btn-edit">수정</button>');
+					var deleteButton = $('<button class="btn-delete">삭제</button>');
+
+					// column 너비 조정
+					var colgroup = $('<colgroup>');
+					colgroup.append('<col width="20%">');
+					colgroup.append('<col width="35%">');
+					colgroup.append('<col width="20%">');
+					colgroup.append('<col width="20%">');
+					table.append(colgroup);
+
+					var tbody = $('<tbody>');
+
+					var row = $('<tr>');
+
+					// 리뷰 정보 appending
+					row.append('<td>' + review.score + '</td>'); //평점
+					row.append('<td>' + review.name + '</td>'); //장소명
+
+					var rdate = review.rdate.substring(0, 10);
+					row.append('<td>' + rdate + '</td>'); //작성일
+
+					// 수정, 삭제 버튼 appending
+					row.append($('<td>').append(editButton).append(deleteButton));
+
+					tbody.append(row);
+
+					// 리뷰 내용 appending
+					var contentrow = $('<tr>');
+					var contentcell = $('<td colspan="3">' + review.content	+ '</td>');
+
+					contentrow.append(contentcell);
+					tbody.append(contentrow);
+
+					table.append(tbody);
+					container.append(table);
+
+					var seq = '';
+
+					switch (selected) {
+					case 'accommodate':
+					case 'activity':
+						seq = review.review_seq;
+						break;
+					case 'restaurant':
+						seq = review.freview_seq;
+						break;
+					}
+
+					editButton.click(function() {
+						 onedit(seq, selected, editButton, deleteButton);
+					});
+
+				})();
+			}
+		} // tablehandling()
+		
+		
+		
+		function onedit(seq, selected, editButton, deleteButton) {
+			
+			console.log('edit');
+
+			var contentCell = editButton.closest('tr').next('tr').find('td');
+			var content = contentCell.text();
+			var rowspan = contentCell.prop('rowspan'); 
+			  
+			contentCell.empty();
+
+			var textarea = $('<textarea style="width:100%;">' + content + '</textarea>');
+			textarea.val(content); 
+			  
+			textarea.attr('rows', Math.ceil(content.length / 50)); // textarea 길이 조절
+			contentCell.append(textarea);
+			
+			// 버튼 교환
+			editButton.hide();
+			deleteButton.hide();
+			
+			var confirmButton = $('<button class="btn-edit">확인</button>');
+			var cancelButton = $('<button class="btn-delete">취소</button>');
+			
+			var buttonCell = editButton.parent();
+			buttonCell.append(confirmButton);
+			buttonCell.append(cancelButton);
+			
+			confirmButton.click(function() {
+				var newContent = textarea.val();
+				onconfirm(seq, selected, newContent);
+			});
+
+				
+		} // onedit()
+
+		
+		
+		function onconfirm(seq, selected, newContent) {
+			
+			$.ajax({
+				 url: 'updatereview',
+				 type: 'POST', 
+				 data: {
+				 seq: seq,
+				 selected: selected,
+				 newContent: newContent
+				 },
+				 success: function (response) {
+				 console.log('Data updated successfully');
+				 },
+				 error: function (a, b, c) {
+				 // Handle the error response
+				 console.log(a, b, c);
+				 }
+				 });
+			
+		} // onconfirm()
+		
+	</script>
 
 
 </body>

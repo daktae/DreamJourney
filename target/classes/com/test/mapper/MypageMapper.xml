@@ -3,25 +3,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.test.mapper.MypageMapper">
-	
-	<select id="bookmarkList" resultType="com.test.domain.BookmarkDTO">
-	select
-	ac.name as Accommodate_name,
-	ac.address as Accommodate_address,
-	at.title as Activity_name,
-	at.address as Activity_address,
-	at.category as Activity_category,
-	at.price as Activity_price,
-	f.name as Food_name,
-	f.address as Food_address,
-	ar.name as Area_name,
-	ar.address as Area_address
-	from tblBookmark b
-	left outer join tblAccommodate ac on b.acco_seq = ac.acco_seq
-	left outer join tblActivity at on b.activity_seq = at.activity_seq
-	left outer join tblFood f on b.food_seq = f.food_seq
-	left outer join tblArea ar on b.area_seq = ar.area_seq
-	where b.member_seq = 5
+
+	<select id="bookmarkList"
+		resultType="com.test.domain.BookmarkDTO">
+		select
+		ac.name as Accommodate_name,
+		ac.address as
+		Accommodate_address,
+		at.title as Activity_name,
+		at.address as
+		Activity_address,
+		at.category as Activity_category,
+		at.price as
+		Activity_price,
+		f.name as Food_name,
+		f.address as Food_address,
+		ar.name
+		as Area_name,
+		ar.address as Area_address
+		from tblBookmark b
+		left outer
+		join tblAccommodate ac on b.acco_seq = ac.acco_seq
+		left outer join
+		tblActivity at on b.activity_seq = at.activity_seq
+		left outer join
+		tblFood f on b.food_seq = f.food_seq
+		left outer join tblArea ar on
+		b.area_seq = ar.area_seq
+		where b.member_seq = 5
 	</select>
 	
 	<select id="transList" resultType="com.test.domain.TranReserveDTO">
@@ -156,6 +165,97 @@
 		delete from tblActivityReserve where areserve_seq = #{areserve_seq}
 	</delete>
 	
+	<select id="getMemberInfo" parameterType="Integer"
+		resultType="com.test.domain.MemberDTO">
+		SELECT * FROM tblMember WHERE member_seq = #{member_seq}
+	</select>
+
+	<update id="saveMemberInfo"
+		parameterType="com.test.domain.MemberDTO">
+		UPDATE tblMember SET
+		name = #{name},
+		email = #{email},
+		pw =
+		#{pw},
+		nickname = #{nickname},
+		tel = #{tel}
+		WHERE member_seq =
+		#{member_seq}
+	</update>
+
+	<select id="getAccommodateReview"
+		resultType="com.test.domain.BookableReviewDTO">
+		select
+		a.name,
+		r.review_seq,
+		r.content,
+		r.score,
+		r.thread,
+		r.depth,
+		r.pay_seq,
+		p.rreserve_seq,
+		p.areserve_seq,
+		r.rdate
+		from tblreview r
+		left outer join tblpay p
+		on r.pay_seq = p.pay_seq
+		inner join tblroomreserve rr
+		on p.rreserve_seq = rr.rreserve_seq
+		inner join tblroomdate rd
+		on rr.rdate_seq = rd.rdate_seq
+		inner join tblroom rm
+		on rd.room_seq = rm.room_seq
+		inner join tblaccommodate a
+		on rm.acco_seq = a.acco_seq
+		where p.rreserve_seq is not null
+		and rr.member_seq = 5
+		order by r.pay_seq asc
+	</select>
+
+	<select id="getActivityReview"
+		resultType="com.test.domain.BookableReviewDTO">
+		select
+		a.title as name,
+		r.review_seq,
+		r.content,
+		r.score,
+		r.thread,
+		r.depth,
+		r.pay_seq,
+		p.rreserve_seq,
+		p.areserve_seq,
+		r.rdate
+		from tblreview r
+		left outer join tblpay p
+		on r.pay_seq = p.pay_seq
+		inner join tblactivityreserve ar
+		on p.areserve_seq = ar.areserve_seq
+		inner join tblactivitydate ad
+		on ar.adate_seq = ad.adate_seq
+		inner join tblactivity a
+		on ad.activity_seq = a.activity_seq
+		where p.areserve_seq is not null
+		and ar.member_seq = 5
+		order by r.pay_seq asc
+	</select>
+
+	<select id="getFoodReview"
+		resultType="com.test.domain.UnbookableReviewDTO">
+		select freview_seq, content, score, thread, depth, name,
+		rdate
+		from tblfoodreview fr
+		inner join tblfood f on fr.food_seq =
+		f.food_seq
+		where member_seq = 5
+
+	</select>
+
+	<update id="updateBookableReview">
+		update tblReview
+		set content = #{newContent}
+		where review_seq = #{seq}
+	</update>
+
 </mapper>
 
 
