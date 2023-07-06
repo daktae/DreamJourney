@@ -664,7 +664,7 @@
 
     <!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp" %>
-	
+	       <script src="/dreamjourney/resources/js/wanjinindex.js"></script>
     <script>
 
     </script>

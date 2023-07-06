@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.MemberMapper">
+	<select id="emailCheck" parameterType="String" resultType="int">
+		SELECT COUNT(email) FROM tblmember WHERE email= #{email}
+	</select>
+	
+	
+			<select id="telCheck2" parameterType="String" resultType="int">
+select count(tel) from tblmember where tel = #{tel}
+
+	</select>
+	
+				<select id="nickCheck" parameterType="String" resultType="int">
+select count(nickname) from tblmember where nickname = #{nick}
+	</select>
+	
+	<insert id = "addMember">
+		 insert into tblmember (member_seq, name, email, pw, nickname, tel)
+        values (member_seq.nextval, #{name}, #{email}, #{pw}, #{nickname}, #{tel})
+	</insert>
+
+</mapper>
+
+
+

@@ -14,6 +14,14 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
+	<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+</repositories>
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -208,6 +216,27 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>5.0.7.RELEASE</version>
 		</dependency>
+
+		<!-- eamil verify -->
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.3.9</version>
+		</dependency>
+		<!-- iamport -->
+			<dependency>
+				<groupId>com.github.iamport</groupId>
+				<artifactId>iamport-rest-client-java</artifactId>
+				<version>0.2.23</version>
+			</dependency>
 
 	</dependencies>
 	<build>
