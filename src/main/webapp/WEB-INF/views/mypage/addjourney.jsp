@@ -72,13 +72,13 @@ button {
 	border: none;
 }
 
-#btn-search {
+.btn-search {
 	background-color: #5392F9;
 	color: white;
 	border-radius: 20px;
 }
 
-#btn-add {
+.btn-add {
 	border: 1px solid #CCCCCC;
 	border-radius: 20px;
 }
@@ -117,44 +117,32 @@ button {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
-			<form>
-				<table>
+			<form method="POST" action="/dreamjourney/mypage/addjourneyok">
+				<table id="journey-table">
 					<tr>
-						<td colspan="2"><input type="text" placeholder="여행 제목"
-							required></td>
+						<td colspan="2"><input type="text" placeholder="여행 제목"></td>
 					</tr>
 					<tr>
-						<td>여행 시작일<span class="material-symbols-outlined">
-								calendar_month </span></td>
-						<td>여행 종료일<span class="material-symbols-outlined">
-								calendar_month </span></td>
+						<td>여행 시작일<span class="material-symbols-outlined">calendar_month</span></td>
+						<td>여행 종료일<span class="material-symbols-outlined">calendar_month</span></td>
 					</tr>
 					<tr>
-						<td colspan="2"><img src="../resources/img/mypage/map.png" width="480" 
-							height="260"></td>
+						<td colspan="2"><img src="../resources/img/mypage/map.png"
+							width="480" height="260"></td>
 					</tr>
 					<tr>
 						<td><b>day1</b> 07.02</td>
 						<td></td>
 					</tr>
-					<tr>
-						<td><input type="text" class="placeInput" placeholder="장소 추가">
-							<button id="btn-search" onclick="openPopup()">
+					<tr class="temp">
+						<td><input type="text" name="placeInput" class="placeInput"
+							placeholder="장소 추가">
+							<button type="button" class="btn-search" onclick="openPopup(this)">
 								검색<span class="material-symbols-outlined"> search </span>
 							</button></td>
-						<td><input type="text" placeholder="메모 추가">
-							<button id="btn-add">
-								<span class="material-symbols-outlined"> add </span>
-							</button></td>
-					</tr>
-					<tr>
-						<td><input type="text" class="placeInput" placeholder="장소 추가">
-							<button id="btn-search" onclick="openPopup()">
-								검색<span class="material-symbols-outlined"> search </span>
-							</button></td>
-						<td><input type="text" placeholder="메모 추가">
-							<button id="btn-add">
-								<span class="material-symbols-outlined"> add </span>
+						<td><input type="text" name="memoInput" class="memoInput" placeholder="메모 추가">
+							<button type="button" class="btn-add" onclick="addTableRow()">
+								<span class="material-symbols-outlined">add</span>
 							</button></td>
 					</tr>
 					<tr>
@@ -170,19 +158,104 @@ button {
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-	<script> 
-	
-		function openPopup() {
-		  window.open("mapmap.do", "Map Popup", "width=800,height=500");
-		}
-		
-		function receiveValues(placeName, address) {
-			 var placeInput = document.getElementsByClassName('placeInput')[0];
-			 
-			 placeInput.value = placeName + ', ' + address;
+	<script>
+		function addTableRow() {
+			var table = $("#journey-table");
 
+			// Create a new row element
+			var newRow = $("<tr>");
+
+			// Create the first cell with input and search button
+			var cell1 = $("<td>");
+			var input = $("<input>").attr("type", "text")
+					.addClass("placeInput").attr("placeholder", "장소 추가");
+			var searchBtn = $("<button>")
+			.attr("type", "button")
+					.addClass("btn-search")
+					.html(
+							"검색<span class='material-symbols-outlined'> search </span>");
+			searchBtn.on("click", function() {
+				openPopup(this);
+			});
+
+			// Create the second cell with input and add button
+			var cell2 = $("<td>");
+			var memoInput = $("<input>").addClass("memoInput").attr("type", "text").attr(
+					"placeholder", "메모 추가");
+			var addBtn = $("<button>").addClass("btn-add").attr("type", "button").html(
+					"<span class='material-symbols-outlined'>add</span>");
+			addBtn.on("click", addTableRow);
+
+			// Append input and buttons to the cells
+			cell1.append(input, searchBtn);
+			cell2.append(memoInput, addBtn);
+
+			// Append cells to the new row
+			newRow.append(cell1, cell2);
+
+			// Find the row with btn-submit and btn-cancel
+			var submitCancelRow = table.find("tr:has(#btn-submit)");
+
+			// Insert the new row before the submitCancelRow
+			newRow.insertBefore(submitCancelRow);
 		}
-	
+
+		function openPopup(button) {
+			window.open("mapmap.do", "Map Popup", "width=800,height=500");
+
+			// Store the clicked button element in a global variable
+			window.clickedButton = button;
+		}
+
+		function receiveValues(placeName, address) {
+			var placeInput = window.clickedButton.parentElement
+					.getElementsByClassName('placeInput')[0];
+			placeInput.value = placeName + ', ' + address;
+		}
+
+		$(document).ready(function() {
+		    $('#btn-submit').click(function() {
+		        var placeInputs = $('.placeInput'); // Get all placeInput fields
+		        var memoInputs = $('.memoInput');
+
+		        var placeInputValues = []; // Array to store the values
+		        var memoInputValues = [];
+
+		        placeInputs.each(function() {
+		            placeInputValues.push($(this).val()); // Add the value to the array
+		            console.log($(this).val());
+		        });
+		        
+		        memoInputs.each(function() {
+		            memoInputValues.push($(this).val());
+		            console.log($(this).val());
+		        });
+
+		        // Send the data to the server
+		        $.ajax({
+		            type: "POST",
+		            url: "/dreamjourney/mypage/addjourneyok",
+		            data: {
+		                placeInputValues: placeInputValues,
+		                memoInputValues: memoInputValues
+		            },
+		            success: function(response) {
+		                console.log(response);
+		                // Handle the success response here
+		            },
+		            error: function(error) {
+		                console.log(error);
+		                // Handle the error response here
+		            },
+		            complete: function() {
+		                // This block will be executed regardless of success or error
+		            }
+		        });
+		    });
+		});
+
+
+
 	</script>
 
 
