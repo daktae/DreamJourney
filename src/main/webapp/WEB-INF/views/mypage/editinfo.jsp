@@ -131,6 +131,7 @@ input {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
+
 			<form action="/dreamjourney/mypage/saveinfo" method="POST">
 				<div id="table-container">
 					<table id="profile-table">
@@ -140,26 +141,27 @@ input {
 						</tr>
 						<tr>
 							<td>이름</td>
-							<td><input type="text" name="name" value="홍길동"></td>
+							<td><input type="text" name="name" value="${dto.name}"></td>
 						</tr>
 						<tr>
 							<td>닉네임</td>
-							<td><input type="text" name="nickname" value="고슴도치"></td>
+							<td><input type="text" name="nickname"
+								value="${dto.nickname }"></td>
 						</tr>
 						<tr>
 							<td>이메일</td>
-							<td><input type="text" name="email"
-								value="asdfasdf15313@gmail.com"></td>
+							<td><input type="text" name="email" value="${dto.email }"></td>
 						</tr>
 						<tr>
 							<td>비밀번호</td>
-							<td><input type="text" name="password" value="ㄴㄴㅁㅎㄴㄷ@1"></td>
+							<td><input type="text" name="pw" value="${dto.pw}"></td>
 						</tr>
 						<tr>
 							<td>전화번호</td>
-							<td><input type="text" name="tel" value="010-1234-1234"></td>
+							<td><input type="text" name="tel" value="${dto.tel}"></td>
 						</tr>
 					</table>
+						<input type="hidden" name="member_seq" value="${dto.member_seq}">
 				</div>
 				<div id="button-container">
 					<button id="btn-edit" type="submit">수정하기</button>

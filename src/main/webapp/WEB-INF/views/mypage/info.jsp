@@ -138,23 +138,23 @@
 					</tr>
 					<tr>
 						<td>이름</td>
-						<td>홍길동</td>
+						<td>${dto.name }</td>
 					</tr>
 					<tr>
 						<td>닉네임</td>
-						<td>고슴도치</td>
+						<td>${dto.nickname }</td>
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td>asdfasdf15313@gmail.com</td>
+						<td>${dto.email }</td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td>ㄴㄴㅁㅎㄴㄷ@1</td>
+						<td>${dto.pw }</td>
 					</tr>
 					<tr>
 						<td>전화번호</td>
-						<td>010-1234-1234</td>
+						<td>${dto.tel }</td>
 					</tr>
 				</table>
 			</div>
