@@ -49,7 +49,7 @@ public class AccountController {
 		    
 		    if(list.isEmpty()) {
 		    	
-		    	System.out.println("회원가입 ㄱㄱ");
+		    	
 		    	model.addAttribute("name", name);
 		    	model.addAttribute("email", email);
 		    	return "redirect:/register";
@@ -59,7 +59,7 @@ public class AccountController {
 		    	System.out.println(list);
 		    	model.addAttribute("name", list.get(0).getName());
 		    	model.addAttribute("email", list.get(0).getEmail());
-		    	return "/account/kakao";
+		    	return "redirect:/index";
 		    	
 		    }
 		    

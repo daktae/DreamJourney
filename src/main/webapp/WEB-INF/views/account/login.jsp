@@ -78,26 +78,21 @@
     <!-- Header End -->	
 
 	<!-- 내용쓰는곳 -->
- 	<div class="container-fluid" style="height: 700px; padding-left: 100px; padding-right: 100px;">
- 		<div style="display: flex; justify-content: space-around; position: relative; top: 100px;">
-	      <div style="text-align: center; display: flex; align-content: center;">
-	         <img src="/dreamjourney/resources/img/Journey.png" style="width: 300px;">
-	      </div>
-	    <main class="form-signin">
-	      <div>
-		      <div class="wrap">
-			   <div class="title">로그인</div>
+ 	<div class="container-fluid" style="height: 500px; padding-left: 100px; padding-right: 100px; padding-top: 50px; padding-bottom: 50px; ">
+ 			  <div style="display: flex; justify-content: center; margin: 20px;">
+			      <div style="width: 220px; height:150px; display:flex; align-content: center;">
+			         <img src="/dreamjourney/resources/img/Journey.png" style="width: 220px;">
+			      </div>
+ 			  </div>
+			  <div class="wrap" style="text-align: center; position: relative;">
+			  	<p style="margin-bottom: 30px;"><span style="color: #7AB730; font-size: 20px; font-weight: bold;">"꿈"</span>같은 <span style="font-size: 20px; font-weight: bold;">여행</span>을 위해 로그인하세요!</p>
 				<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?client_id=13346f688f01a6d944eb750631266672&redirect_uri=	
-				http://localhost/dreamjourney/kakao&response_type=code">
-				  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-				    alt="카카오 로그인 버튼" />
+					http://localhost/dreamjourney/kakao&response_type=code">
+				<img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
+					    alt="카카오 로그인 버튼" />
 				</a>
-					<p id="token-result"></p>
-			</div>
+		     </div> 
 		         
-	      </div>
-	   </main>
- 		</div>
 	</div>
                 
 
