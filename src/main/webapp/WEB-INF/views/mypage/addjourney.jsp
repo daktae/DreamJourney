@@ -11,6 +11,9 @@
 <meta content="Free HTML Templates" name="keywords">
 <meta content="Free HTML Templates" name="description">
 
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <!-- Favicon -->
 <link href="../asset/img/favicon.ico" rel="icon">
 
@@ -57,10 +60,9 @@
 	width: auto;
 }
 
-form>table {
+.journey-table {
 	margin: 30px;
 	width: 100%;
-	height: 400px;
 }
 
 input {
@@ -94,6 +96,10 @@ button {
 	color: white;
 	border-radius: 20px;
 }
+
+.clickable {
+	cursor: pointer;
+}
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -117,52 +123,87 @@ button {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
-			<form method="POST" action="/dreamjourney/mypage/addjourneyok">
-				<table id="journey-table">
+		
+		
+			
+				<table class="journey-table">
+				
 					<tr>
 						<td colspan="2"><input id="title" type="text"
 							placeholder="여행 제목"></td>
 					</tr>
+					
+					
+					<!-- 여행 날짜 지정 -->
 					<tr>
-						<td>여행 시작일<span class="material-symbols-outlined">calendar_month</span></td>
-						<td>여행 종료일<span class="material-symbols-outlined">calendar_month</span></td>
+						<td>여행 시작일<span id="journey-begin"
+							class="clickable material-symbols-outlined">calendar_month</span></td>
+						<td>여행 종료일<span id="journey-end"
+							class="clickable material-symbols-outlined">calendar_month</span></td>
 					</tr>
+
+					<!-- 지도 영역 -->
 					<tr>
 						<td colspan="2"><p style="margin-top: -12px"></p>
 							<div id="map" style="width: 80%; height: 350px;"></div></td>
 					</tr>
-					<tr>
-						<td><b>day1</b> 07.02</td>
-						<td></td>
-					</tr>
-					<tr class="temp">
-						<td><input type="text" class="placeInput" placeholder="장소 추가">
-							<button type="button" class="btn-search"
-								onclick="openPopup(this)">
-								검색<span class="material-symbols-outlined"> search </span>
-							</button></td>
-						<td><input type="text" class="memoInput" placeholder="메모 추가">
-							<button type="button" class="btn-add" onclick="addTableRow()">
-								<span class="material-symbols-outlined">add</span>
-							</button></td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<button id="btn-submit" type="button">등록하기</button>
-							<button id="btn-cancel">취소하기</button>
-						</td>
-					</tr>
 				</table>
-			</form>
+				
+				<div id="new-tables">
+				
+					<table class="journey-table">
+					
+						<!-- nth/날짜 출력 영역 -->
+						<tr>
+							<td class="date-td">
+								<b>DAY <span id="nth">1</span></b>
+								<div class="selected-date">date</div>
+							</td>
+							<td></td>
+						</tr>					
+						
+						<!-- 일정 추가 영역 -->
+						<tr>
+							<td>
+								<input type="text" class="placeInput" placeholder="장소 추가">
+								<button type="button" class="btn-search" onclick="openPopup(this)">
+									검색<span class="material-symbols-outlined"> search </span> </button>
+							</td>
+							<td>
+								<input type="text" class="memoInput" placeholder="메모 추가">
+								<button type="button" class="btn-add">
+									<span class="material-symbols-outlined" onclick="addTableRow()">add</span>
+								</button>
+							</td>
+						</tr>
+					</table>
+					
+				</div>
+				
+				<div id="buttons-container">
+					<table id="buttons">
+						<tr>
+							<td colspan="2">
+								<button id="btn-submit" type="button">등록하기</button>
+								<button id="btn-cancel">취소하기</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				
 		</div>
 	</div>
-	<!-- Blog End -->
+
 	<%@ include file="/resources/inc/footer.jsp"%>
 
+<<<<<<< HEAD
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=015fae8b95c2d0f2c4d727e44d11a138&libraries=services"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
@@ -211,47 +252,32 @@ button {
 				}
 
 
-		function addTableRow() {
-			var table = $("#journey-table");
+	
 
-			// Create a new row element
-			var newRow = $("<tr>");
+	
+	$(document).ready(function() {
+		  $('.btn-add').click(function() {
+		    var newPlaceRow = $('<tr class="place-tr">');
+		    var newPlaceRowContent = `
+		      <td>
+		        <input type="text" class="placeInput" placeholder="장소 추가">
+		        <button type="button" class="btn-search" onclick="openPopup(this)">
+		          검색<span class="material-symbols-outlined"> search </span>
+		        </button>
+		      </td>
+		      <td>
+		        <input type="text" class="memoInput" placeholder="메모 추가">
+		        <button type="button" class="btn-add" onclick="addTableRow()">
+		          <span class="material-symbols-outlined">add</span>
+		        </button>
+		      </td>
+		    `;
+		    newPlaceRow.html(newPlaceRowContent);
 
-			// Create the first cell with input and search button
-			var cell1 = $("<td>");
-			var input = $("<input>").attr("type", "text")
-					.addClass("placeInput").attr("placeholder", "장소 추가");
-			var searchBtn = $("<button>")
-					.attr("type", "button")
-					.addClass("btn-search")
-					.html(
-							"검색<span class='material-symbols-outlined'> search </span>");
-			searchBtn.on("click", function() {
-				openPopup(this);
-			});
-
-			// Create the second cell with input and add button
-			var cell2 = $("<td>");
-			var memoInput = $("<input>").addClass("memoInput").attr("type",
-					"text").attr("placeholder", "메모 추가");
-			var addBtn = $("<button>").addClass("btn-add").attr("type",
-					"button").html(
-					"<span class='material-symbols-outlined'>add</span>");
-			addBtn.on("click", addTableRow);
-
-			// Append input and buttons to the cells
-			cell1.append(input, searchBtn);
-			cell2.append(memoInput, addBtn);
-
-			// Append cells to the new row
-			newRow.append(cell1, cell2);
-
-			// Find the row with btn-submit and btn-cancel
-			var submitCancelRow = table.find("tr:has(#btn-submit)");
-
-			// Insert the new row before the submitCancelRow
-			newRow.insertBefore(submitCancelRow);
-		}
+		    // Find the parent table and append the new row after the current row
+		    $(this).closest('tr').after(newPlaceRow);
+		  });
+		});
 
 		function openPopup(button) {
 			window.open("mapmap.do", "Map Popup", "width=800,height=500");
@@ -338,6 +364,60 @@ button {
 				});
 			});
 		});
+
+		
+		$(function() {
+			  $('#journey-begin').click(function() {
+			    $(this).datepicker({
+			      format: 'yyyy-mm-dd',
+			      autoclose: true
+			    }).on('changeDate', function(e) {
+			      var selectedDate = e.format('yyyy-mm-dd');
+			      $('.date-td .selected-date').text(selectedDate); // 선택된 날짜를 업데이트하여 출력
+			    }).focus(function() {
+			      $(this).blur();
+			    });
+
+			    // 캘린더가 다른 요소들을 밀어내는 것을 방지
+			    $(".datepicker").css("position", "absolute");
+
+			    // 캘린더 외부를 클릭하면 캘린더를 닫음
+			    $(document).on("mousedown", function(event) {
+			      if (!$(event.target).closest(".datepicker").length && !$(event.target).is("#journey-start")) {
+			        $("#journey-start").datepicker("hide");
+			      }
+			    });
+			  });
+			});
+
+			$(function() {
+			  $('#journey-end').click(function() {
+			    $(this).datepicker({
+			      format: 'yyyy-mm-dd',
+			      autoclose: true
+			    }).on('changeDate', function(e) {
+			      var selectedDate = e.format('yyyy-mm-dd');
+			     	journeyhandling(selectedDate);
+			    }).focus(function() {
+			      $(this).blur();
+			    });
+
+			    // 캘린더가 다른 요소들을 밀어내는 것을 방지
+			    $(".datepicker").css("position", "absolute");
+
+			    // 캘린더 외부를 클릭하면 캘린더를 닫음
+			    $(document).on("mousedown", function(event) {
+			      if (!$(event.target).closest(".datepicker").length && !$(event.target).is("#journey-start")) {
+			        $("#journey-start").datepicker("hide");
+			      }
+			    });
+			  });
+			});
+			
+		function journeyhandling(selectedDate) {
+			  console.log('end-date: ' + selectedDate);
+		};
+
 	</script>
 
 

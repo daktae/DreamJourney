@@ -126,6 +126,7 @@ textarea {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
+		
 			<div style="margin-top: 15px; margin-left: 15px;">내 리뷰</div>
 
 			<div>
@@ -312,16 +313,15 @@ textarea {
 				 url: 'updatereview',
 				 type: 'POST', 
 				 data: {
-				 seq: seq,
-				 selected: selected,
-				 newContent: newContent
+					 seq: seq,
+					 selected: selected,
+				 	newContent: newContent
 				 },
 				 success: function (response) {
-				 console.log('Data updated successfully');
+				 	console.log('Data updated successfully');
 				 },
 				 error: function (a, b, c) {
-				 // Handle the error response
-				 console.log(a, b, c);
+					 console.log(a, b, c);
 				 }
 				 });
 			
