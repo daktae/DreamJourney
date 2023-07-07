@@ -233,7 +233,7 @@ a:hover {
 			<div>
 				<h3 style="margin-top: 30px;">결제 방법</h3>
 				<hr>
-				<input type="radio" name="pay_radio" value="card"> 신용카드 <select
+				<input type="radio" name="pay_radio" value="card" id="card"> 신용카드 <select
 					style="width: 200px;" class="pay_way">
 					<option value>카드를 선택해주세요</option>
 					<option value="samsung">삼성카드</option>

@@ -33,7 +33,10 @@
 </head>
 <style>
 
-	.prev, .next {
+	.thumbnail {
+		width: 250px;
+	}
+	/* .prev, .next {
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
@@ -57,23 +60,9 @@
 	.slide {
 		display: none;
 		flaot:left;
-		width: 25%;		/* 4개씩 보여주기 */
-	}
+		width: 25%;		
+	}*/
 	
-	.row2 {
-		justify-content:center;
-		overflow:hidden;
-		position: relative;
-		top: 50%;
-		width: 100%;
-	}
-	
-	.slide2 {
-		display: none;
-		flaot:left;
-		top: 50px;
-		width: 25%;		/* 4개씩 보여주기 */
-	}
 	
 
 	.categoryAll {
@@ -93,9 +82,9 @@
 		font-weight: bold;
 	}
 
-	.p1-4, .px-4, .p-4 {
+	/* .p1-4, .px-4, .p-4 {
 		padding-left : none;
-	}
+	} */
 
 	.text-truncate {
 		font-weight: bold;
@@ -245,17 +234,12 @@
     			<div class="category">스파&마사지</div>
     			<div class="category">스카이다이빙</div>
     			<div class="category">일일투어</div>
-    
-    
     </div>
     
     
     
 
    <!-- 내용쓰는곳 -->
-   
-    
-    
     <!-- Team Start > 액티비티 -->
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
@@ -264,65 +248,28 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="/dreamjourney/resources/img/reservation/${dto.image1 }"alt="">
+                            <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${dto.image1 }"alt="">
                             <div class="team-social">
-                            <input type="hidden" >
                             	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}">상세보기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">${dto.title }</h5>
-                            <p class="m-0">${dto.content }</p>
+                            <h5 class="text-truncate" id="title">${dto.title }</h5>
+                            <div class="m-0" id="content">${dto.content }</div>
                         </div>
                     </div>
                 </div>
                 </c:forEach>
-                <div>
+                <!-- <div>
                 	<button type="button" class="prev">←</button>
                 	<button type="button" class="next">→</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
     <!-- Team End -->
     
-    
-     <!-- Team Start > 액티비티 -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <div class="row2">
-            <c:forEach items="${list }" var="dto">
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">${dto.title }</h5>
-                            <p class="m-0">${dto.content }</p>
-                        </div>
-                    </div>
-                </div>
-                </c:forEach>
-                <div>
-                	<button type="button" class="prev">←</button>
-                	<button type="button" class="next">→</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
    
-   
-   
-   <!-- 내용 작성 -->
-    <div class="container-fluid py-5" style="height: 100px;">
-       
-   </div>
-                
 
 
     <%@ include file="/resources/inc/footer.jsp"%>
@@ -389,6 +336,13 @@
 		})
 		
 		
+	}
+	
+	var contentDiv = $('#content');
+	var contentText = contentDiv.text();
+	if (contentText.length > 50) {
+		var content = contentText.substr(0, 50) + '...';
+		contentDiv.text(content);
 	}
 
 

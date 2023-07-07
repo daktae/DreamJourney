@@ -63,12 +63,21 @@ footer {
 	width: 100%:
 }
 
+#bookmark {
+	width: 200px; 
+	margin-left: 200px;
+	float: left,
+}
+
 </style>
 <body>
 	<%@ include file="/resources/inc/header.jsp"%>
 	<!-- 본문 -->
 	<div style="height: 3000px; margin-top: 100px;">
-		<form method="POST" action="/dreamjourney/reservation/pay">
+	<div>
+	<button type="submit" class="btn btn-primary" id="bookmark" name="bookmark"">즐겨찾기 추가</button>
+	</div>
+		<form method="POST" action="/dreamjourney/reservation/pay" id="form">
 			<div style="width: 800px; float: left; margin-left: 200px;">
 				<div style="text-align: center;">
 					<h1>${adetail.title }</h1>
@@ -90,9 +99,6 @@ footer {
 
 				<div>${adetail.content }</div>
 
-
-
-				
 				<hr>
 				<div>주소 : ${adetail.address }</div>
 				<div id="map" style="width: 500px; height: 400px;"></div>
@@ -131,11 +137,12 @@ footer {
 				<div>
 					<button type="submit" class="btn btn-primary reservation" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
 					<input type="hidden" value="${adetail.activity_seq }" name="activity_seq">
-					<button type="submit" class="btn btn-primary" id="bookmark">즐겨찾기 추가</button>
+					
 				</div>
 			</div>
 			<input type="hidden" name="totalPrice"> 
 			<input type="hidden" name="totalPeople"> 
+			<%-- <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"> --%>	<!-- 인증 토큰 -->
 		</form>
 	</div>
 
@@ -154,20 +161,31 @@ footer {
 <script>
 
 	/* 즐겨찾기 */
-	$(document).ready(function() {
-		$('#bookmark').on('click', function() {
-			$.ajax({
-				url: ""
-				
-				
-			});
+	$('#bookmark').click(function() {
+		$.ajax({
+			url: "viewactivity",		//url 이슈 > 왜 /reservation/viewactivity가 아니라 그냥 viewactivity 하니까 됐음(연우 덕)
+			type: "POST",
+			dataType: "json",
+			data: {
+				activity_seq : "${adetail.activity_seq}"
+			},
+			success: function(result) {
+					console.log('성공');
+				},
+			error: function(a, b, c) {
+				console.log(a, b, c);
+			}
 		});
 	});
+	
 
 	/* 캘린더 */
-	$('input[name="dates"]').daterangepicker({
+	/* $('input[name="dates"]').daterangepicker({
    		singleDatePicker: true
-	});
+	}); */
+	
+	document.querySelector("input[name=totalPrice]").value = ${adetail.price};
+	document.querySelector("input[name=totalPeople]").value = 1;
 
 	/* 인원 수 */
 	function displayNumber() {
@@ -178,16 +196,13 @@ footer {
 		display.textContent = number + "명";
 
 		/* 총 가격 */
-		const price = ${adetail.price};
-		const totalPrice = price * number;
+		var price = ${adetail.price};
+		var totalPrice = price * number;
 		
-		/* 날짜 선택 */
-
-		document.getElementById("totalPrice").innerText = totalPrice.toLocaleString();
-/* 		$("input[name=totalPrice]").val(totalPrice.toLocaleString());
-		$("input[name=totalPeople]").val(number); */
+		document.getElementById("totalPrice").innerText = totalPrice;
+		
 		document.querySelector("input[name=totalPrice]").value = totalPrice;
-		document.querySelector("input[name=totalPeople]").value = number;
+		//document.querySelector("input[name=totalPeople]").value = number;
 	}
 
 	/* Kakao Maps API & 지오코딩 */

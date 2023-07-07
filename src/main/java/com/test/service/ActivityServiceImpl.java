@@ -33,6 +33,14 @@ public class ActivityServiceImpl implements ActivityService {
 	public ActivityDTO pay(String activity_seq) {
 		return mapper.pay(activity_seq);
 	}
+	
+	
+	@Override
+	public void bookmark_on(String activity_seq) {
+		mapper.bookmark_on(activity_seq);
+		System.out.println(activity_seq);
+	}
+	
 
 
 }

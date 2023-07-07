@@ -15,4 +15,8 @@ public interface ActivityService {
 
 	ActivityDTO pay(String activity_seq);
 
+	void bookmark_on(String activity_seq);
+
+
+
 }

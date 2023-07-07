@@ -28,5 +28,7 @@ public class ActivityDTO {
 	private String totalPrice;		//총 가격
 	private String totalPeople;	//총 인원
 	private String dates;			//선택 날짜		
+	
+	private String member_seq;	//멤버 seq
 
 }
