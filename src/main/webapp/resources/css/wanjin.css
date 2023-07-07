@@ -37,7 +37,6 @@
 }
 
 .container_wj {
-	height:100vh;
 	display:flex;
 	justify-content:center;
 	align-items:center;
@@ -53,7 +52,9 @@
 .container_regi {
 	width:60vw;
 	background-color:#fff;
-	height:95vh;
+	height:90vh;
+	margin-top:30px;
+	margin-bottom:30px;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 

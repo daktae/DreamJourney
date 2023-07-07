@@ -41,7 +41,9 @@
 	display: none;
 }
 
-
+.form-check {
+	padding-left:0px !important; 
+}
 
 </style>
 </head>
@@ -122,9 +124,9 @@
 							>											
 					</div>				
 				</div>
-				<div class="regicon_wj" style="margin-top: 150px;">
-					<div>
-						<b style="color: #000000"> 개인정보 처리방침 </b>
+				<div class="regicon_wj">
+					<div style="margin-top:5rem;">
+						<b style="color: #000000;"> 개인정보 처리방침 </b>
 					</div>
 					<div
 						style="border-top: 1px solid #b3b3b3; width: 80%; margin-top: 10px;">
@@ -138,16 +140,16 @@
 						</div>
 						<div style="margin-top: 10px; background-color: #EDF1FC;">
 							<div class="form-check" style="margin-top: 20px;">
-								<input class="form-checkInput" type="checkbox" value="" required
-									id="flexCheckDefault"> <label class="form-check-label"
-									for="flexCheckDefault"> 본인은 본 서비스 약관에 동의하며 18세 이상임을
+								 <label class="form-check-label"
+									for="flexCheckDefault"><input class="form-checkInput" type="checkbox" value="" required
+									id="flexCheckDefault"> 본인은 본 서비스 약관에 동의하며 18세 이상임을
 									확인합니다. <span style="color: #6268FF;">[필수]</span>
 								</label>
 							</div>
 							<div class="form-check" style="margin-top: 20px;">
-								<input class="form-checkInput" type="checkbox" value="" required
-									id="flexCheckDefault"> <label class="form-check-label"
-									for="flexCheckDefault"> 본인은 개인정보 처리방침에 따라 본인의 개인 정보를
+								 <label class="form-check-label"
+									for="flexCheckDefault"><input class="form-checkInput" type="checkbox" value="" required
+									id="flexCheckDefault"> 본인은 개인정보 처리방침에 따라 본인의 개인 정보를
 									사용하고 수집하는 것에 동의합니다. <span style="color: #6268FF;">[필수]</span>
 								</label>
 							</div>
