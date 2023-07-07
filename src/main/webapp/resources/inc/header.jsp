@@ -15,7 +15,7 @@
                     <div class="d-inline-flex align-items-center">
                         <p><a href="/dreamjourney/login">로그인</a></p>
                         <p class="text-body px-3">|</p>
-                        <p><a href="*">회원가입</a></p>
+                        <p><a href="/dreamjourney/register">회원가입</a></p>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="" class="navbar-brand">
+                <a href="/dreamjourney/index" class="navbar-brand">
                     <h1 class="m-0 text-primary"><span class="text-dark">Dream</span>Journey</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
