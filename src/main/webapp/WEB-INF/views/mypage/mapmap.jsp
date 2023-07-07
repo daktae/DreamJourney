@@ -223,12 +223,12 @@
 		        // Add your logic here to send values to addjourney.jsp
 		        var placeName = places.place_name;
 		        var address = places.road_address_name;
-
-		        
 		        
 		        if (window.opener) {
 		            window.opener.receiveValues(placeName, address);
 		        }
+		        
+		        window.close();
 		        
 		        
 		    });

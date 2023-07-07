@@ -53,5 +53,13 @@ public interface MypageService {
 
 	int updatebr(String seq, String newContent);
 
+	int schInsert(String nth, String string, String string2, String string3);
+
+	int tripInsert(String title, String begin, String end);
+
+	String getTripId();
+
+	int dayInsert(String nth, String trip_seq);
+
 
 }

@@ -1,6 +1,6 @@
 package com.test.service;
 
-import java.util.HashMap; 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.test.domain.AccoReserveDTO;
 import com.test.domain.ActivityReserveDTO;
+import com.test.domain.BookableReviewDTO;
 import com.test.domain.BookmarkDTO;
+import com.test.domain.MemberDTO;
 import com.test.domain.PayDTO;
 import com.test.domain.TranReserveDTO;
-import com.test.domain.BookableReviewDTO;
-import com.test.domain.MemberDTO;
 import com.test.domain.UnbookableReviewDTO;
 import com.test.mapper.MypageMapper;
 
@@ -135,6 +135,46 @@ public class MypageServiceImpl implements MypageService {
 	public int areservedel(String areserve_seq) {
 
 		return mapper.areservedel(areserve_seq);
+	}
+	
+	@Override
+	public int schInsert(String nth, String memo, String place, String address) {
+
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("nth", nth);
+		map.put("memo", memo);
+		map.put("place", place);
+		map.put("address", address);
+		
+		return mapper.schInsert(map);
+	}
+	
+	@Override
+	public int tripInsert(String title, String begin, String end) {
+		
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("title", title);
+		map.put("begin", begin);
+		map.put("end", end);
+		
+		
+		return mapper.tripInsert(map);
+	}
+	
+	@Override
+	public String getTripId() {
+
+		return mapper.getTripId();
+	}
+	
+	@Override
+	public int dayInsert(String nth, String trip_seq) {
+
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("nth", nth);
+		map.put("trip_seq", trip_seq);
+		
+		return mapper.dayInsert(map);
 	}
 	
 }

@@ -120,29 +120,28 @@ button {
 			<form method="POST" action="/dreamjourney/mypage/addjourneyok">
 				<table id="journey-table">
 					<tr>
-						<td colspan="2"><input type="text" placeholder="여행 제목"></td>
+						<td colspan="2"><input id="title" type="text"
+							placeholder="여행 제목"></td>
 					</tr>
 					<tr>
 						<td>여행 시작일<span class="material-symbols-outlined">calendar_month</span></td>
 						<td>여행 종료일<span class="material-symbols-outlined">calendar_month</span></td>
 					</tr>
 					<tr>
-						<td colspan="2"><img src="../resources/img/mypage/map.png"
-							width="480" height="260"></td>
+						<td colspan="2"><p style="margin-top: -12px"></p>
+							<div id="map" style="width: 80%; height: 350px;"></div></td>
 					</tr>
 					<tr>
 						<td><b>day1</b> 07.02</td>
 						<td></td>
 					</tr>
 					<tr class="temp">
-						<td><input type="text" class="placeInput"
-							placeholder="장소 추가">
+						<td><input type="text" class="placeInput" placeholder="장소 추가">
 							<button type="button" class="btn-search"
 								onclick="openPopup(this)">
 								검색<span class="material-symbols-outlined"> search </span>
 							</button></td>
-						<td><input type="text" class="memoInput"
-							placeholder="메모 추가">
+						<td><input type="text" class="memoInput" placeholder="메모 추가">
 							<button type="button" class="btn-add" onclick="addTableRow()">
 								<span class="material-symbols-outlined">add</span>
 							</button></td>
@@ -160,7 +159,58 @@ button {
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
 
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=015fae8b95c2d0f2c4d727e44d11a138&libraries=services"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+		
+		// 마커와 선을 담을 배열
+		var markers = [];
+		var lines = [];
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		function createMarkerAndLine(position, title) {
+			 	var marker = new kakao.maps.Marker({
+			    	position: position,
+			    	map: map
+			  	});
+			 	
+				var linePath = [position];
+				
+				  // 이전 마커가 있을 경우 이전 마커와 현재 마커 사이에 선을 생성합니다
+				  if (markers.length > 0) {
+				    var prevMarker = markers[markers.length - 1];
+				    var prevPosition = prevMarker.getPosition();
+				    linePath.unshift(prevPosition);
+
+				    var line = new kakao.maps.Polyline({
+				      path: linePath,
+				      strokeWeight: 3,
+				      strokeColor: '#ff0000',
+				      strokeOpacity: 0.7,
+				      strokeStyle: 'solid'
+				    });
+
+				    line.setMap(map);
+				    lines.push(line);
+				  }
+
+				  markers.push(marker);
+				}
+
+
 		function addTableRow() {
 			var table = $("#journey-table");
 
@@ -211,18 +261,45 @@ button {
 		}
 
 		function receiveValues(placeName, address) {
-			var placeInput = window.clickedButton.parentElement
-					.getElementsByClassName('placeInput')[0];
-			placeInput.value = placeName + ', ' + address;
+			var placeInput = window.clickedButton.parentElement.getElementsByClassName('placeInput')[0];
+			placeInput.value = placeName + '_' + address;
+			
+			// 주소로 좌표를 검색합니다
+			  geocoder.addressSearch(address, function(result, status) {
+			    // 정상적으로 검색이 완료됐으면 
+			    if (status === kakao.maps.services.Status.OK) {
+			      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+			      // 결과값으로 받은 위치를 마커로 표시합니다
+			      var marker = new kakao.maps.Marker({
+			        map: map,
+			        position: coords
+			      });
+
+			      createMarkerAndLine(coords, placeName);
+			      
+			      // 인포윈도우로 장소에 대한 설명을 표시합니다
+			      var infowindow = new kakao.maps.InfoWindow({
+			        content: '<div style="width:150px;text-align:center;padding:6px 0;">' + placeName + '</div>'
+			      });
+			      infowindow.open(map, marker);
+
+			      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			      map.setCenter(coords);
+			    }
+			  });
 		}
 
 		$(document).ready(function() {
+
+			var placeInputValues = []; // Array to store the values
+			var memoInputValues = [];
+
 			$('#btn-submit').click(function() {
 				var placeInputs = $('.placeInput'); // Get all placeInput fields
 				var memoInputs = $('.memoInput');
 
-				var placeInputValues = []; // Array to store the values
-				var memoInputValues = [];
+				var title = $('#title').val();
 
 				placeInputs.each(function() {
 					placeInputValues.push($(this).val()); // Add the value to the array
@@ -233,7 +310,7 @@ button {
 					memoInputValues.push($(this).val());
 					console.log($(this).val());
 				});
-				
+
 				console.log(placeInputValues);
 				console.log(memoInputValues);
 
@@ -241,10 +318,11 @@ button {
 				$.ajax({
 					type : "POST",
 					url : "/dreamjourney/mypage/addjourneyok",
-					traditional: true,
+					traditional : true,
 					data : {
 						placeInputValues : placeInputValues,
-						memoInputValues : memoInputValues
+						memoInputValues : memoInputValues,
+						title : title
 					},
 					success : function(response) {
 						console.log(response);

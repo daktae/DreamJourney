@@ -256,6 +256,22 @@
 		where review_seq = #{seq}
 	</update>
 
+	<insert id="tripInsert">
+		insert into tblTrip values (trip_seq.nextVal, 5, #{title}, 0, default, #{begin}, #{end}, 'n')
+	</insert>
+	
+	<insert id="schInsert">
+		insert into tblSchedule values(schedule_seq.nextVal, #{nth}, #{memo}, #{place}, #{address})
+	</insert>
+	
+	<select id="getTripId" resultType="String">
+		SELECT trip_seq.CURRVAL FROM DUAL
+	</select>
+	
+	<insert id="dayInsert">
+		insert into tblDay values (day_seq.nextVal, #{nth}, #{trip_seq})
+	</insert>
+
 </mapper>
 
 

@@ -1,8 +1,9 @@
 package com.test.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,11 @@ import com.test.domain.BookableReviewDTO;
 import com.test.domain.MemberDTO;
 import com.test.domain.UnbookableReviewDTO;
 import com.test.service.MypageService;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class MypageController {
@@ -71,12 +77,68 @@ public class MypageController {
 		return "mypage/addjourney";
 	}
 	
+	// 내 여행 등록
 	@PostMapping("/mypage/addjourneyok")	
-	private String addjourneyok(String[] placeInputValues,
+	private String addjourneyok(Model model,
+								String title,
+								String nth,
+								String[] placeInputValues,
 	                            String[] memoInputValues) {
-		System.out.println(Arrays.toString(placeInputValues));
-		System.out.println(Arrays.toString(memoInputValues));
-	    return "redirect:/mypage/journey";
+		
+		String[] place = new String[placeInputValues.length];
+	    String[] address = new String[placeInputValues.length];
+	    
+	    String begin = "2023-07-07";
+	    String end = "2023-07-08";
+	    
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date beginDate = dateFormat.parse(begin);
+            Date endDate = dateFormat.parse(end);
+
+            long diffInMillies = Math.abs(endDate.getTime() - beginDate.getTime());
+            long diffInDays = (TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)) + 1;
+
+            System.out.println("날짜 차이: " + diffInDays + "일");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        
+        
+	    
+	    System.out.println("title: " + title);
+	    
+	    //int tripResult = service.tripInsert(title, begin, end);
+	    
+	    //String trip_seq = service.getTripId();
+	    
+	    //int dayResult = service.dayInsert(nth, trip_seq);
+		
+	    for (int i = 0; i < placeInputValues.length; i++) {
+	        String[] parts = placeInputValues[i].split("_");  // 쉼표로 분리
+	        
+	        
+	        if (parts.length >= 2) {
+	            place[i] = parts[0].trim();  // place 배열에 저장
+	            address[i] = parts[1].trim();  // placeAddress 배열에 저장
+	        } else {
+	            // 배열에 저장할 요소가 충분하지 않은 경우 처리
+	            place[i] = placeInputValues[i];
+	            address[i] = "";  // 빈 문자열로 저장하거나 다른 방식으로 처리할 수 있습니다.
+	        }
+	        
+	        
+	        System.out.println("memo: " + memoInputValues[i]);
+	        System.out.println("Place: " + place[i]);
+	        System.out.println("Place Address: " + address[i]);
+	        
+	        //int schResult = service.schInsert(nth, memoInputValues[i], place[i], address[i]);
+	        
+	    }
+		
+		
+		
+	    return null;
 	}
 
 	// 내 여행 상세보기

@@ -52,5 +52,15 @@ public interface MypageMapper {
 
 	int updateBookableReview(Map<String, String> map);
 
+	int schInsert(Map<String, String> map);
+
+	int tripInsert(Map<String, String> map);
+
+	String getTripId();
+
+	int dayInsert();
+
+	int dayInsert(Map<String, String> map);
+
 
 }
