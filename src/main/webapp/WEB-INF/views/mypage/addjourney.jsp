@@ -171,8 +171,8 @@ button {
 							</td>
 							<td>
 								<input type="text" class="memoInput" placeholder="메모 추가">
-								<button type="button" class="btn-add">
-									<span class="material-symbols-outlined" onclick="addTableRow()">add</span>
+								<button type="button" class="btn-add" onclick="addTableRow()">
+									<span class="material-symbols-outlined">add</span>
 								</button>
 							</td>
 						</tr>
@@ -197,15 +197,17 @@ button {
 
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-<<<<<<< HEAD
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=015fae8b95c2d0f2c4d727e44d11a138&libraries=services"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+	
 	<script>
+	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 			level : 3
@@ -250,35 +252,39 @@ button {
 
 				  markers.push(marker);
 				}
+		
+		function addTableRow() {
+			  var currentRow = $(this).closest('tr'); // Find the closest parent row
+			  var newPlaceRow = $('<tr class="place-tr">');
+			  var newPlaceRowContent = `
+			    <td>
+			      <input type="text" class="placeInput" placeholder="장소 추가">
+			      <button type="button" class="btn-search" onclick="openPopup(this)">
+			        검색<span class="material-symbols-outlined"> search </span>
+			      </button>
+			    </td>
+			    <td>
+			      <input type="text" class="memoInput" placeholder="메모 추가">
+			      <button type="button" class="btn-add" onclick="addTableRow()">
+			        <span class="material-symbols-outlined">add</span>
+			      </button>
+			    </td>
+			  `;
+			  newPlaceRow.html(newPlaceRowContent);
 
+			  // Insert the new row after the current row
+			  currentRow.after(newPlaceRow);
+			}
+
+			$(document).ready(function() {
+			  // Delegate the click event to dynamically generated "Add" buttons
+			  $(document).on('click', '.btn-add', addTableRow);
+
+			  // Rest of your code...
+			});
 
 	
-
 	
-	$(document).ready(function() {
-		  $('.btn-add').click(function() {
-		    var newPlaceRow = $('<tr class="place-tr">');
-		    var newPlaceRowContent = `
-		      <td>
-		        <input type="text" class="placeInput" placeholder="장소 추가">
-		        <button type="button" class="btn-search" onclick="openPopup(this)">
-		          검색<span class="material-symbols-outlined"> search </span>
-		        </button>
-		      </td>
-		      <td>
-		        <input type="text" class="memoInput" placeholder="메모 추가">
-		        <button type="button" class="btn-add" onclick="addTableRow()">
-		          <span class="material-symbols-outlined">add</span>
-		        </button>
-		      </td>
-		    `;
-		    newPlaceRow.html(newPlaceRowContent);
-
-		    // Find the parent table and append the new row after the current row
-		    $(this).closest('tr').after(newPlaceRow);
-		  });
-		});
-
 		function openPopup(button) {
 			window.open("mapmap.do", "Map Popup", "width=800,height=500");
 
