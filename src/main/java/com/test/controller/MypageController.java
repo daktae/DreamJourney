@@ -74,8 +74,10 @@ public class MypageController {
 	@PostMapping("/mypage/addjourneyok")	
 	private String addjourneyok(String[] placeInputValues,
 	                            String[] memoInputValues) {
+		
 		System.out.println(Arrays.toString(placeInputValues));
 		System.out.println(Arrays.toString(memoInputValues));
+		
 	    return "redirect:/mypage/journey";
 	}
 
@@ -148,7 +150,6 @@ public class MypageController {
 		
 		System.out.println("seq: " + seq);
 		System.out.println("selected: " + selected);
-		//여기까진 잘 넘어오는데 어째서...? new Content not found...?
 		
 		if(selected.equals("accommodate")||selected.equals("activity")) {
 			System.out.println("newContent: " + newContent);
