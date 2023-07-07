@@ -6,6 +6,10 @@
 	<select id="login" resultType="com.test.domain.MemberDTO">
 		select * from tblmember where name=#{name} and email=#{email}
 	</select>
+	
+	<select id="glogin" resultType="com.test.domain.MemberDTO">
+		select * from tblmember where email=#{email} and pw=#{pw}
+	</select>
 
 </mapper>
 

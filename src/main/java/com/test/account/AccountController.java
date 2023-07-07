@@ -74,6 +74,12 @@ public class AccountController {
 		
 	}
 	
+	@GetMapping("/glogin") 
+	private String gLogin(Model model) {
+		
+		return "/account/glogin";
+	}
+	
 	
 	@GetMapping("/register")
 	private String register() {
