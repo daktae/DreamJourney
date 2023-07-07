@@ -123,75 +123,71 @@ button {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
-		
-		
-			
-				<table class="journey-table">
-				
+
+
+
+			<table class="journey-table">
+
+				<tr>
+					<td colspan="2"><input id="title" type="text"
+						placeholder="여행 제목"></td>
+				</tr>
+
+
+				<!-- 여행 날짜 지정 -->
+				<tr>
+					<td>여행 시작일<span id="journey-begin"
+						class="clickable material-symbols-outlined">calendar_month</span></td>
+					<td>여행 종료일<span id="journey-end"
+						class="clickable material-symbols-outlined">calendar_month</span></td>
+				</tr>
+
+				<!-- 지도 영역 -->
+				<tr>
+					<td colspan="2"><p style="margin-top: -12px"></p>
+						<div id="map" style="width: 80%; height: 350px;"></div></td>
+				</tr>
+			</table>
+
+			<div id="new-tables">
+
+				<!-- 	<table class="journey-table">
+
+					nth/날짜 출력 영역
 					<tr>
-						<td colspan="2"><input id="title" type="text"
-							placeholder="여행 제목"></td>
-					</tr>
-					
-					
-					<!-- 여행 날짜 지정 -->
-					<tr>
-						<td>여행 시작일<span id="journey-begin"
-							class="clickable material-symbols-outlined">calendar_month</span></td>
-						<td>여행 종료일<span id="journey-end"
-							class="clickable material-symbols-outlined">calendar_month</span></td>
+						<td class="date-td"><b>DAY <span id="nth">1</span></b>
+							<div class="selected-date">date</div></td>
+						<td></td>
 					</tr>
 
-					<!-- 지도 영역 -->
+					일정 추가 영역
 					<tr>
-						<td colspan="2"><p style="margin-top: -12px"></p>
-							<div id="map" style="width: 80%; height: 350px;"></div></td>
+						<td><input type="text" class="placeInput" placeholder="장소 추가">
+							<button type="button" class="btn-search"
+								onclick="openPopup(this)">
+								검색<span class="material-symbols-outlined"> search </span>
+							</button></td>
+						<td><input type="text" class="memoInput" placeholder="메모 추가">
+							<button type="button" class="btn-add" onclick="addTableRow()">
+								<span class="material-symbols-outlined">add</span>
+							</button></td>
+					</tr>
+				</table> -->
+
+			</div>
+
+			<div id="buttons-container">
+				<table id="buttons">
+					<tr>
+						<td colspan="2">
+							<button id="btn-submit" type="button">등록하기</button>
+							<button id="btn-cancel">취소하기</button>
+						</td>
 					</tr>
 				</table>
-				
-				<div id="new-tables">
-				
-					<table class="journey-table">
-					
-						<!-- nth/날짜 출력 영역 -->
-						<tr>
-							<td class="date-td">
-								<b>DAY <span id="nth">1</span></b>
-								<div class="selected-date">date</div>
-							</td>
-							<td></td>
-						</tr>					
-						
-						<!-- 일정 추가 영역 -->
-						<tr>
-							<td>
-								<input type="text" class="placeInput" placeholder="장소 추가">
-								<button type="button" class="btn-search" onclick="openPopup(this)">
-									검색<span class="material-symbols-outlined"> search </span> </button>
-							</td>
-							<td>
-								<input type="text" class="memoInput" placeholder="메모 추가">
-								<button type="button" class="btn-add" onclick="addTableRow()">
-									<span class="material-symbols-outlined">add</span>
-								</button>
-							</td>
-						</tr>
-					</table>
-					
-				</div>
-				
-				<div id="buttons-container">
-					<table id="buttons">
-						<tr>
-							<td colspan="2">
-								<button id="btn-submit" type="button">등록하기</button>
-								<button id="btn-cancel">취소하기</button>
-							</td>
-						</tr>
-					</table>
-				</div>
-				
-				
+			</div>
+
+
 		</div>
 	</div>
 
@@ -202,9 +198,13 @@ button {
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
-	
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+
 	<script>
+	
+	
+		// 지도 관련 코드
 	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		
@@ -252,39 +252,8 @@ button {
 
 				  markers.push(marker);
 				}
-		
-		function addTableRow() {
-			  var currentRow = $(this).closest('tr'); // Find the closest parent row
-			  var newPlaceRow = $('<tr class="place-tr">');
-			  var newPlaceRowContent = `
-			    <td>
-			      <input type="text" class="placeInput" placeholder="장소 추가">
-			      <button type="button" class="btn-search" onclick="openPopup(this)">
-			        검색<span class="material-symbols-outlined"> search </span>
-			      </button>
-			    </td>
-			    <td>
-			      <input type="text" class="memoInput" placeholder="메모 추가">
-			      <button type="button" class="btn-add" onclick="addTableRow()">
-			        <span class="material-symbols-outlined">add</span>
-			      </button>
-			    </td>
-			  `;
-			  newPlaceRow.html(newPlaceRowContent);
-
-			  // Insert the new row after the current row
-			  currentRow.after(newPlaceRow);
-			}
-
-			$(document).ready(function() {
-			  // Delegate the click event to dynamically generated "Add" buttons
-			  $(document).on('click', '.btn-add', addTableRow);
-
-			  // Rest of your code...
-			});
-
 	
-	
+			
 		function openPopup(button) {
 			window.open("mapmap.do", "Map Popup", "width=800,height=500");
 
@@ -321,6 +290,173 @@ button {
 			    }
 			  });
 		}
+		
+		
+		// '+' 버튼 클릭 시 새 열 삽입
+		
+		function addTableRow() {
+			
+			  var currentRow = $(this).closest('tr'); // Find the closest parent row
+			  var newPlaceRow = $('<tr class="place-tr">');
+			  
+			  var newPlaceRowContent = `
+			    <td>
+			      <input type="text" class="placeInput" placeholder="장소 추가">
+			      <button type="button" class="btn-search" onclick="openPopup(this)">
+			        검색<span class="material-symbols-outlined"> search </span>
+			      </button>
+			    </td>
+			    <td>
+			      <input type="text" class="memoInput" placeholder="메모 추가">
+			      <button type="button" class="btn-add" onclick="addTableRow()">
+			        <span class="material-symbols-outlined">add</span>
+			      </button>
+			    </td>
+			  `;
+			  newPlaceRow.html(newPlaceRowContent);
+
+			  // 현재 열 아래에 새 열 삽입
+			  currentRow.after(newPlaceRow);
+			}
+
+			$(document).ready(function() {
+			  // Delegate the click event to dynamically generated "Add" buttons
+			  $(document).on('click', '.btn-add', addTableRow);
+
+			  
+			});
+			
+			
+			
+			var startdate;
+			var enddate;
+			
+			
+				
+				// 여행 시작 날짜 클릭 이벤트
+				$(document).on('click', '#journey-begin', function() {
+	  $(this).datepicker({
+	    format: 'yyyy-mm-dd',
+	    autoclose: true
+	  }).on('changeDate', function(e) {
+	    var selectedDate = e.format('yyyy-mm-dd');
+	    startdate = new Date(selectedDate);
+	
+	    // 여행 종료일 선택 버튼 보여주기
+	    $('.date-td .selected-date').text(selectedDate); // 선택된 날짜를 업데이트하여 출력
+	    createTable(1, startdate);
+	
+	    // 등록하기 버튼 있는 테이블 보여주기
+	  }).focus(function() {
+	    $(this).blur();
+	  });
+	
+	  // 캘린더가 다른 요소들을 밀어내는 것을 방지
+	  $(".datepicker").css("position", "absolute");
+	
+	  // 캘린더 외부를 클릭하면 캘린더를 닫음
+	  $(document).on("mousedown", function(event) {
+	    if (!$(event.target).closest(".datepicker").length && !$(event.target).is("#journey-start")) {
+	      $("#journey-start").datepicker("hide");
+	    }
+	  });
+	});
+
+			
+			
+			// 여행 종료 날짜 클릭 이벤트
+
+				$(function() {
+				  $('#journey-end').click(function() {
+				    $(this).datepicker({
+				      format: 'yyyy-mm-dd',
+				      autoclose: true
+				    }).on('changeDate', function(e) {
+				      var selectedDate = e.format('yyyy-mm-dd');
+				      enddate = new Date(selectedDate);
+				     	calculateDate();
+				    }).focus(function() {
+				      $(this).blur();
+				    });
+
+				    // 캘린더가 다른 요소들을 밀어내는 것 방지
+				    $(".datepicker").css("position", "absolute");
+
+				    // 캘린더 외부를 클릭하면 캘린더를 닫음
+				    $(document).on("mousedown", function(event) {
+				      if (!$(event.target).closest(".datepicker").length && !$(event.target).is("#journey-start")) {
+				        $("#journey-start").datepicker("hide");
+				      }
+				    });
+				  });
+				});
+			
+			
+				  
+				
+				function calculateDate() {
+					  console.log(startdate + " ^^ " + enddate);
+
+					  // Calculate the difference in milliseconds between the two dates
+					  var timeDiff = Math.abs(enddate.getTime() - startdate.getTime());
+
+					  // Convert the time difference to days
+					  var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+					  for (var i = 2; i <= diffDays + 1; i++) {
+					    var nextdate = new Date(startdate);
+					    nextdate.setDate(startdate.getDate() + (i - 1));
+
+					    var year = nextdate.getFullYear();
+					    var month = (nextdate.getMonth() + 1).toString().padStart(2, '0');
+					    var day = nextdate.getDate().toString().padStart(2, '0');
+					    var formattedDate = year + '-' + month + '-' + day;
+
+					    createTable(i, formattedDate);
+					  }
+					};
+
+				
+			
+					function createTable(nth, date) {
+						  var newTable = $('<table class="journey-table">');
+
+						  // Add the table content
+						  var tableContent = '<tr>' +
+						    '<td class="date-td">' +
+						    '<div><b>DAY ' + nth + '</b></div>' +
+						    '<div class="selected-date">' + date + '</div>' +
+						    '</td>' +
+						    '<td></td>' +
+						    '</tr>' +
+						    '<tr>' +
+						    '<td>' +
+						    '<input type="text" class="placeInput" placeholder="장소 추가">' +
+						    '<button type="button" class="btn-search" onclick="openPopup(this)">' +
+						    '검색<span class="material-symbols-outlined"> search </span>' +
+						    '</button>' +
+						    '</td>' +
+						    '<td>' +
+						    '<input type="text" class="memoInput" placeholder="메모 추가">' +
+						    '<button type="button" class="btn-add" onclick="addTableRow()">' +
+						    '<span class="material-symbols-outlined">add</span>' +
+						    '</button>' +
+						    '</td>' +
+						    '</tr>';
+
+						  newTable.html(tableContent);
+
+						  // Append the new table to the #new-tables div
+						  $('#new-tables').append(newTable);
+						}
+
+
+
+				
+
+		
+		
+		
 
 		$(document).ready(function() {
 
@@ -371,58 +507,6 @@ button {
 			});
 		});
 
-		
-		$(function() {
-			  $('#journey-begin').click(function() {
-			    $(this).datepicker({
-			      format: 'yyyy-mm-dd',
-			      autoclose: true
-			    }).on('changeDate', function(e) {
-			      var selectedDate = e.format('yyyy-mm-dd');
-			      $('.date-td .selected-date').text(selectedDate); // 선택된 날짜를 업데이트하여 출력
-			    }).focus(function() {
-			      $(this).blur();
-			    });
-
-			    // 캘린더가 다른 요소들을 밀어내는 것을 방지
-			    $(".datepicker").css("position", "absolute");
-
-			    // 캘린더 외부를 클릭하면 캘린더를 닫음
-			    $(document).on("mousedown", function(event) {
-			      if (!$(event.target).closest(".datepicker").length && !$(event.target).is("#journey-start")) {
-			        $("#journey-start").datepicker("hide");
-			      }
-			    });
-			  });
-			});
-
-			$(function() {
-			  $('#journey-end').click(function() {
-			    $(this).datepicker({
-			      format: 'yyyy-mm-dd',
-			      autoclose: true
-			    }).on('changeDate', function(e) {
-			      var selectedDate = e.format('yyyy-mm-dd');
-			     	journeyhandling(selectedDate);
-			    }).focus(function() {
-			      $(this).blur();
-			    });
-
-			    // 캘린더가 다른 요소들을 밀어내는 것을 방지
-			    $(".datepicker").css("position", "absolute");
-
-			    // 캘린더 외부를 클릭하면 캘린더를 닫음
-			    $(document).on("mousedown", function(event) {
-			      if (!$(event.target).closest(".datepicker").length && !$(event.target).is("#journey-start")) {
-			        $("#journey-start").datepicker("hide");
-			      }
-			    });
-			  });
-			});
-			
-		function journeyhandling(selectedDate) {
-			  console.log('end-date: ' + selectedDate);
-		};
 
 	</script>
 
