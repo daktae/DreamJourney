@@ -135,19 +135,21 @@ button {
 						<td></td>
 					</tr>
 					<tr class="temp">
-						<td><input type="text" name="placeInput" class="placeInput"
+						<td><input type="text" class="placeInput"
 							placeholder="장소 추가">
-							<button type="button" class="btn-search" onclick="openPopup(this)">
+							<button type="button" class="btn-search"
+								onclick="openPopup(this)">
 								검색<span class="material-symbols-outlined"> search </span>
 							</button></td>
-						<td><input type="text" name="memoInput" class="memoInput" placeholder="메모 추가">
+						<td><input type="text" class="memoInput"
+							placeholder="메모 추가">
 							<button type="button" class="btn-add" onclick="addTableRow()">
 								<span class="material-symbols-outlined">add</span>
 							</button></td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button id="btn-submit" type="submit">등록하기</button>
+							<button id="btn-submit" type="button">등록하기</button>
 							<button id="btn-cancel">취소하기</button>
 						</td>
 					</tr>
@@ -170,7 +172,7 @@ button {
 			var input = $("<input>").attr("type", "text")
 					.addClass("placeInput").attr("placeholder", "장소 추가");
 			var searchBtn = $("<button>")
-			.attr("type", "button")
+					.attr("type", "button")
 					.addClass("btn-search")
 					.html(
 							"검색<span class='material-symbols-outlined'> search </span>");
@@ -180,9 +182,10 @@ button {
 
 			// Create the second cell with input and add button
 			var cell2 = $("<td>");
-			var memoInput = $("<input>").addClass("memoInput").attr("type", "text").attr(
-					"placeholder", "메모 추가");
-			var addBtn = $("<button>").addClass("btn-add").attr("type", "button").html(
+			var memoInput = $("<input>").addClass("memoInput").attr("type",
+					"text").attr("placeholder", "메모 추가");
+			var addBtn = $("<button>").addClass("btn-add").attr("type",
+					"button").html(
 					"<span class='material-symbols-outlined'>add</span>");
 			addBtn.on("click", addTableRow);
 
@@ -214,48 +217,49 @@ button {
 		}
 
 		$(document).ready(function() {
-		    $('#btn-submit').click(function() {
-		        var placeInputs = $('.placeInput'); // Get all placeInput fields
-		        var memoInputs = $('.memoInput');
+			$('#btn-submit').click(function() {
+				var placeInputs = $('.placeInput'); // Get all placeInput fields
+				var memoInputs = $('.memoInput');
 
-		        var placeInputValues = []; // Array to store the values
-		        var memoInputValues = [];
+				var placeInputValues = []; // Array to store the values
+				var memoInputValues = [];
 
-		        placeInputs.each(function() {
-		            placeInputValues.push($(this).val()); // Add the value to the array
-		            console.log($(this).val());
-		        });
-		        
-		        memoInputs.each(function() {
-		            memoInputValues.push($(this).val());
-		            console.log($(this).val());
-		        });
+				placeInputs.each(function() {
+					placeInputValues.push($(this).val()); // Add the value to the array
+					console.log($(this).val());
+				});
 
-		        // Send the data to the server
-		        $.ajax({
-		            type: "POST",
-		            url: "/dreamjourney/mypage/addjourneyok",
-		            data: {
-		                placeInputValues: placeInputValues,
-		                memoInputValues: memoInputValues
-		            },
-		            success: function(response) {
-		                console.log(response);
-		                // Handle the success response here
-		            },
-		            error: function(error) {
-		                console.log(error);
-		                // Handle the error response here
-		            },
-		            complete: function() {
-		                // This block will be executed regardless of success or error
-		            }
-		        });
-		    });
+				memoInputs.each(function() {
+					memoInputValues.push($(this).val());
+					console.log($(this).val());
+				});
+				
+				console.log(placeInputValues);
+				console.log(memoInputValues);
+
+				// Send the data to the server
+				$.ajax({
+					type : "POST",
+					url : "/dreamjourney/mypage/addjourneyok",
+					traditional: true,
+					data : {
+						placeInputValues : placeInputValues,
+						memoInputValues : memoInputValues
+					},
+					success : function(response) {
+						console.log(response);
+						// Handle the success response here
+					},
+					error : function(error) {
+						console.log(error);
+						// Handle the error response here
+					},
+					complete : function() {
+						// This block will be executed regardless of success or error
+					}
+				});
+			});
 		});
-
-
-
 	</script>
 
 
