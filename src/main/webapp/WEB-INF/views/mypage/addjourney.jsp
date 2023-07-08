@@ -334,42 +334,43 @@ button {
 			
 				
 				// 여행 시작 날짜 클릭 이벤트
-				$(document).on('click', '#journey-begin', function() {
-	  $(this).datepicker({
-	    format: 'yyyy-mm-dd',
-	    autoclose: true
-	  }).on('changeDate', function(e) {
-	    var selectedDate = e.format('yyyy-mm-dd');
-	    startdate = new Date(selectedDate);
-	
-	    // 여행 종료일 선택 버튼 보여주기
-	    $('.date-td .selected-date').text(selectedDate); // 선택된 날짜를 업데이트하여 출력
-	    createTable(1, startdate);
-	
-	    // 등록하기 버튼 있는 테이블 보여주기
-	  }).focus(function() {
-	    $(this).blur();
-	  });
-	
-	  // 캘린더가 다른 요소들을 밀어내는 것을 방지
-	  $(".datepicker").css("position", "absolute");
-	
-	  // 캘린더 외부를 클릭하면 캘린더를 닫음
-	  $(document).on("mousedown", function(event) {
-	    if (!$(event.target).closest(".datepicker").length && !$(event.target).is("#journey-start")) {
-	      $("#journey-start").datepicker("hide");
-	    }
-	  });
-	});
-
-			
-			
-			// 여행 종료 날짜 클릭 이벤트
-
-				$(function() {
-				  $('#journey-end').click(function() {
+				$('#journey-begin').one('click', function() {
 				    $(this).datepicker({
 				      format: 'yyyy-mm-dd',
+				      language: "ko",
+				      autoclose: true
+				    }).on('changeDate', function(e) {
+				      var selectedDate = e.format('yyyy-mm-dd');
+				      startdate = new Date(selectedDate);
+				
+				    // 여행 종료일 선택 버튼 보여주기
+				    $('.date-td .selected-date').text(selectedDate); // 선택된 날짜를 업데이트하여 출력
+				    createTable(1, startdate);
+				
+				    // 등록하기 버튼 있는 테이블 보여주기
+				  }).focus(function() {
+				    $(this).blur();
+				  });
+				
+				  // 캘린더가 다른 요소들을 밀어내는 것을 방지
+				  $(".datepicker").css("position", "absolute");
+				
+				  // 캘린더 외부를 클릭하면 캘린더를 닫음
+				  $(document).on("mousedown", function(event) {
+				    if (!$(event.target).closest(".datepicker").length && !$(event.target).is("#journey-start")) {
+				      $("#journey-start").datepicker("hide");
+				    }
+				  });
+				});
+
+			
+			
+				// 여행 종료 날짜 클릭 이벤트
+
+				$('#journey-end').one('click', function() {
+				    $(this).datepicker({
+				      format: 'yyyy-mm-dd',
+				      language: "ko",
 				      autoclose: true
 				    }).on('changeDate', function(e) {
 				      var selectedDate = e.format('yyyy-mm-dd');
@@ -389,7 +390,6 @@ button {
 				      }
 				    });
 				  });
-				});
 			
 			
 				  
@@ -452,7 +452,7 @@ button {
 
 
 
-				
+				 
 
 		
 		
