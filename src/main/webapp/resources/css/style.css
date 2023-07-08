@@ -2347,7 +2347,6 @@ textarea.form-control {
 
 .btn:focus, .btn.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(122, 183, 48, 0.25);
 }
 
 .btn.disabled, .btn:disabled {
@@ -7266,7 +7265,9 @@ button.bg-dark:focus {
 }
 
 .w-100 {
-  width: 100% !important;
+   height: 30rem;
+    width: 100%;
+    object-fit: cover;
 }
 
 .w-auto {
@@ -9483,6 +9484,7 @@ h6,
 .btn-lg-square {
   width: 46px;
   height: 46px;
+  border-radius: 30px;
 }
 
 .btn-square,
