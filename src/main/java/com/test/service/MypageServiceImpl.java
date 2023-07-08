@@ -66,6 +66,17 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
+	public int updateubr(String seq, String newContent) {
+		
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("seq", seq);
+		map.put("newContent", newContent);
+		
+		return mapper.updateUnbookableReview(map);
+		
+	}
+	
+	@Override
 	public List<TranReserveDTO> transList() {
 
 		return mapper.transList();

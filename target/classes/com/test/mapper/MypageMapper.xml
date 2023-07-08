@@ -255,6 +255,12 @@
 		set content = #{newContent}
 		where review_seq = #{seq}
 	</update>
+	
+	<update id="updateUnbookableReview">
+		update tblFoodReview
+		set content = #{newContent}
+		where freview_seq = #{seq}
+	</update>
 
 	<insert id="tripInsert">
 		insert into tblTrip values (trip_seq.nextVal, 5, #{title}, 0, default, #{begin}, #{end}, 'n')
