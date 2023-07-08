@@ -64,5 +64,9 @@ public interface MypageMapper {
 
 	int dayInsert(Map<String, String> map);
 
+	int deletebr(String seq);
+
+	int deleteubr(String seq);
+
 
 }

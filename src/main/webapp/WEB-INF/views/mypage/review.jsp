@@ -86,10 +86,18 @@
 	border: none;
 	border-radius: 10px;
 	color: white;
+	margin-right: 5px;
 }
 
 .btn-delete {
-	background-color: #757575;
+	background-color: #dc3545;
+	border: none;
+	border-radius: 10px;
+	color: white;
+}
+
+.btn-cancel {
+background-color: #757575;
 	border: none;
 	border-radius: 10px;
 	color: white;
@@ -104,7 +112,7 @@ textarea {
 	background-color: #D9D9D9;
 }
 
-#btn-accommodate {	
+#btn-accommodate {
 	width: 45px;
 	height: 30px;
 	background-color: #FFBF00;
@@ -126,6 +134,18 @@ textarea {
 	border-radius: 20px;
 	color: white;
 }
+
+.table-container {
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.review-table {
+	width: 100%;
+}
+
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -221,78 +241,82 @@ textarea {
 
 		// 리뷰 데이터로 테이블 형성
 		function tablehandling(selected, result) {
-
-			// 컨테이너 형성
-			var container = $('#reviews-container');
-			container.empty();
-
-			for (var i = 0; i < result.length; i++) {
-
-				(function() {
-
-					var review = result[i];
-
-					// 테이블 형성
-					var table = $('<table>');
-					var editButton = $('<button class="btn-edit">수정</button>');
-					var deleteButton = $('<button class="btn-delete">삭제</button>');
-
-					// column 너비 조정
-					var colgroup = $('<colgroup>');
-					colgroup.append('<col width="20%">');
-					colgroup.append('<col width="35%">');
-					colgroup.append('<col width="20%">');
-					colgroup.append('<col width="20%">');
-					table.append(colgroup);
-
-					var tbody = $('<tbody>');
-
-					var row = $('<tr>');
-
-					// 리뷰 정보 appending
-					row.append('<td>' + review.score + '</td>'); //평점
-					row.append('<td>' + review.name + '</td>'); //장소명
-
-					var rdate = review.rdate.substring(0, 10);
-					row.append('<td>' + rdate + '</td>'); //작성일
-
-					// 수정, 삭제 버튼 appending
-					row.append($('<td>').append(editButton).append(deleteButton));
-
-					tbody.append(row);
-
-					// 리뷰 내용 appending
-					var contentrow = $('<tr>');
-					var contentcell = $('<td colspan="3">' + review.content	+ '</td>');
-
-					contentrow.append(contentcell);
-					tbody.append(contentrow);
-
-					table.append(tbody);
-					container.append(table);
-
-					var seq = '';
-
-					switch (selected) {
-					case 'accommodate':
-					case 'activity':
-						seq = review.review_seq;
-						break;
-					case 'restaurant':
-						seq = review.freview_seq;
-						break;
-					}
-
-					editButton.click(function() {
-						 onedit(seq, selected, editButton, deleteButton);
-					});
-
-				})();
-			}
+		  // 컨테이너 형성
+		  var container = $('#reviews-container');
+		  container.empty();
+		
+		  for (var i = 0; i < result.length; i++) {
+		    (function () {
+		      var review = result[i];
+		
+		      // 테이블 형성
+		      var tableContainer = $('<div class="table-container">'); 
+		      var table = $('<table class="review-table">');
+		      var editButton = $('<button class="btn-edit">수정</button>');
+		      var deleteButton = $('<button class="btn-delete">삭제</button>');
+		
+		      // column 너비 조정
+		      var colgroup = $('<colgroup>');
+		      colgroup.append('<col width="20%">');
+		      colgroup.append('<col width="35%">');
+		      colgroup.append('<col width="20%">');
+		      colgroup.append('<col width="20%">');
+		      table.append(colgroup);
+		
+		      var tbody = $('<tbody>');
+		
+		      var row = $('<tr>');
+		
+		      // 리뷰 정보 appending
+		      row.append('<td>' + review.score + '</td>'); //평점
+		      row.append('<td>' + review.name + '</td>'); //장소명
+		
+		      var rdate = review.rdate.substring(0, 10);
+		      row.append('<td>' + rdate + '</td>'); //작성일
+		
+		      // 수정, 삭제 버튼 appending
+		      row.append($('<td style="text-align: center;">').append(editButton).append(deleteButton));
+		
+		      tbody.append(row);
+		
+		      // 리뷰 내용 appending
+		      var contentrow = $('<tr>');
+		      var contentcell = $('<td colspan="3">' + review.content + '</td>');
+		
+		      contentrow.append(contentcell);
+		      tbody.append(contentrow);
+		
+		      table.append(tbody);
+		      tableContainer.append(table); 
+		      container.append(tableContainer); 
+		
+		      var seq = '';
+		
+		      switch (selected) {
+		        case 'accommodate':
+		        case 'activity':
+		          seq = review.review_seq;
+		          break;
+		        case 'restaurant':
+		          seq = review.freview_seq;
+		          break;
+		      }
+		
+		      editButton.click(function () {
+		        onedit(seq, selected, editButton, deleteButton);
+		      });
+		      
+		      deleteButton.click(function() {
+		    	  ondelete(seq, selected);
+		      })
+		      
+		    })();
+		  }
 		} // tablehandling()
+
 		
-		
-		
+
+		// 수정 버튼 클릭 이벤트
 		function onedit(seq, selected, editButton, deleteButton) {
 			
 			console.log('edit');
@@ -314,7 +338,7 @@ textarea {
 			deleteButton.hide();
 			
 			var confirmButton = $('<button class="btn-edit">확인</button>');
-			var cancelButton = $('<button class="btn-delete">취소</button>');
+			var cancelButton = $('<button class="btn-cancel">취소</button>');
 			
 			var buttonCell = editButton.parent();
 			buttonCell.append(confirmButton);
@@ -322,7 +346,7 @@ textarea {
 			
 			confirmButton.click(function() {
 				var newContent = textarea.val();
-				onconfirm(seq, selected, newContent);
+				onconfirm(seq, selected, newContent, contentCell, editButton, deleteButton, confirmButton, cancelButton);
 			});
 
 				
@@ -331,8 +355,7 @@ textarea {
 		
 		
 		// 수정 완료
-		
-		function onconfirm(seq, selected, newContent) {
+		function onconfirm(seq, selected, newContent, contentCell, editButton, deleteButton, confirmButton, cancelButton) {
 			
 			$.ajax({
 				 url: 'updatereview',
@@ -343,7 +366,16 @@ textarea {
 				 	newContent: newContent
 				 },
 				 success: function (response) {
-				 	console.log('Data updated successfully');
+				 	
+						confirmButton.hide();
+						cancelButton.hide();
+
+						editButton.show();
+						deleteButton.show();
+						
+						contentCell.empty();
+						contentCell.text(newContent);
+
 				 },
 				 error: function (a, b, c) {
 					 console.log(a, b, c);
@@ -351,6 +383,58 @@ textarea {
 				 });
 			
 		} // onconfirm()
+		
+		
+		
+		// 삭제 버튼 클릭 이벤트
+		function ondelete(seq, selected) {
+			
+			 // 모달창 생성
+		    var modal = $('<div class="modal" tabindex="-1" role="dialog">');
+		    var modalDialog = $('<div class="modal-dialog modal-dialog-centered" role="document">');
+		    var modalContent = $('<div class="modal-content">');
+		    var modalBody = $('<div class="modal-body">');
+		    var confirmText = $('<p>정말 삭제하시겠습니까?</p>');
+		    var confirmButton = $('<button type="button" class="btn-delete">삭제</button>');
+		    var cancelButton = $('<button type="button" class="btn-cancel" style="margin-left: 10px;" data-dismiss="modal">취소</button>');
+
+		    // 모달창에 appending
+		    modalBody.append(confirmText);
+		    modalBody.append(confirmButton);
+		    modalBody.append(cancelButton);
+		    modalContent.append(modalBody);
+		    modalDialog.append(modalContent);
+		    modal.append(modalDialog);
+
+		    modal.modal('show');
+
+		    confirmButton.click(function() {
+		    	
+		    	$.ajax({
+					 url: 'deletereview',
+					 type: 'POST', 
+					 data: {
+						 seq: seq,
+						 selected: selected
+					 },
+					 success: function (response) {
+						 console.log('delete success');
+					 },
+					 error: function (a, b, c) {
+						 console.log(a, b, c);
+					 }
+					 });
+
+						  modal.modal('hide');
+		    });
+
+		    // Handle modal close event
+		    modal.on('hidden.bs.modal', function() {
+		        // Remove the modal from the DOM
+		        modal.remove();
+		    });
+		}
+		
 		
 	</script>
 

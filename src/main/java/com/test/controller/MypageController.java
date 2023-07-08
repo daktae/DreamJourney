@@ -212,9 +212,20 @@ public class MypageController {
 		if(selected.equals("accommodate")||selected.equals("activity")) result = service.updatebr(seq, newContent);
 		else if(selected.equals("restaurant")) result = service.updateubr(seq, newContent);
 		
-		System.out.println("update result: " + result);
+	}
+	
+	
+	// 내 리뷰 삭제
+	@PostMapping("/mypage/deletereview")
+	private void deletereview(String seq, String selected) {
+		
+		int result = -1;
+		
+		if(selected.equals("accommodate")||selected.equals("activity")) result = service.deletebr(seq);
+		else if(selected.equals("restaurant")) result = service.deleteubr(seq);
 		
 	}
+	
 
 	// 예약 목록
 	@GetMapping("/mypage/mypage_reserve")

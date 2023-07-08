@@ -277,6 +277,14 @@
 	<insert id="dayInsert">
 		insert into tblDay values (day_seq.nextVal, #{nth}, #{trip_seq})
 	</insert>
+	
+	<delete id="deletebr">
+		delete from tblReview where review_seq = #{seq}
+	</delete>
+	
+		<delete id="deleteubr">
+		delete from tblFoodReview where freview_seq = #{seq}
+	</delete>
 
 </mapper>
 

@@ -187,5 +187,15 @@ public class MypageServiceImpl implements MypageService {
 		
 		return mapper.dayInsert(map);
 	}
+
+	@Override
+	public int deletebr(String seq) {
+		return mapper.deletebr(seq);
+	}
+
+	@Override
+	public int deleteubr(String seq) {
+		return mapper.deleteubr(seq);
+	}
 	
 }

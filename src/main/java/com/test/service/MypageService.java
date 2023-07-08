@@ -63,5 +63,9 @@ public interface MypageService {
 
 	int updateubr(String seq, String newContent);
 
+	int deletebr(String seq);
+
+	int deleteubr(String seq);
+
 
 }
