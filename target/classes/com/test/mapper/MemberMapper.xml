@@ -34,18 +34,32 @@ select count(nickname) from tblmember where nickname = #{nick}
   ]]>
 </select>
 
-<select id="serachAirplnae">
+<!-- 항공권 검색 -->
+<select id="searchAirplane" resultType="com.test.domain.AccommodateDTO">
   <![CDATA[
-    select * from vwairplane where departure like '%${departure}%' and destination like '%${destination}%' and limit >= #{limit};
+    select * from vwairplane where departure like '%${departure}%' and destination like '%${destination}%' and limit >= #{limit} and tran_date >= #{tran_date}
   ]]>
 </select>
 
-<select id="serachAirplnae">
-
+<!-- 버스 검색 -->
+<select id="searchBus" resultType="com.test.domain.AccommodateDTO">
+  <![CDATA[
+    select * from vwbus where departure like '%${departure}%' and destination like '%${destination}%' and limit >= #{limit} and tran_date >= #{tran_date}
+  ]]>
 </select>
 
-<select id="serachAirplnae">
+<!-- 기차 검색 -->
+<select id="searchTrain" resultType="com.test.domain.AccommodateDTO">
+  <![CDATA[
+    select * from vwtrain where departure like '%${departure}%' and destination like '%${destination}%' and limit >= #{limit} and tran_date >= #{tran_date}
+  ]]>
+</select>
 
+<!-- 액티비티 검색 -->
+<select id="searchActivity" resultType="com.test.domain.AccommodateDTO">
+  <![CDATA[
+    select * from vwairplane where departure like '%${departure}%' and destination like '%${destination}%' and limit >= #{limit} and tran_date >= #{tran_date}
+  ]]>
 </select>
 
 </mapper>

@@ -129,16 +129,16 @@ public class CheckControllerWj {
 		    // 매개변수 처리 및 필요한 로직 수행
 		    // ...
 			
-			System.out.println(dto.getAddress());
-			System.out.println(dto.getLimit());
-			
-		    List<SearchResult> searchResults = memberService.searchAcc(dto); // 검색 결과를 받아옴
+			/*
+			 * System.out.println(dto.getAddress()); System.out.println(dto.getLimit());
+			 */
+		    List<AccommodateDTO> searchResults = memberService.searchAcc(dto); // 검색 결과를 받아옴
 
 		    
 		    // 검색 결과를 모델에 추가
 		    model.addAttribute("searchResults", searchResults);
 		    
-		    System.out.println(searchResults);
+//		    System.out.println(searchResults);
 		    
 		    // 검색 결과를 표시할 View 이름을 반환
 		    return "reservation/accommodate";
@@ -150,10 +150,7 @@ public class CheckControllerWj {
 			// 매개변수 처리 및 필요한 로직 수행
 			// ...
 			
-			System.out.println(dto.getAddress());
-			System.out.println(dto.getLimit());
-			
-			List<SearchResult> searchResults = memberService.serachAirplnae(dto); // 검색 결과를 받아옴
+			List<AccommodateDTO> searchResults = memberService.searchAirplane(dto); // 검색 결과를 받아옴
 			
 			
 			// 검색 결과를 모델에 추가
@@ -165,16 +162,13 @@ public class CheckControllerWj {
 			return "reservation/airplane";
 		}
 		
-		//기차 검색하면 예약 페이지로
+		//버스 검색하면 예약 페이지로
 		@GetMapping("/searchbus")
 		public String searchbus(AccommodateDTO dto, Model model) {
 		    // 매개변수 처리 및 필요한 로직 수행
 		    // ...
-			
-			System.out.println(dto.getAddress());
-			System.out.println(dto.getLimit());
-			
-		    List<SearchResult> searchResults = memberService.searchBus(dto); // 검색 결과를 받아옴
+
+		    List<AccommodateDTO> searchResults = memberService.searchBus(dto); // 검색 결과를 받아옴
 
 		    
 		    // 검색 결과를 모델에 추가
@@ -194,10 +188,7 @@ public class CheckControllerWj {
 				    // 매개변수 처리 및 필요한 로직 수행
 				    // ...
 					
-					System.out.println(dto.getAddress());
-					System.out.println(dto.getLimit());
-					
-				    List<SearchResult> searchResults = memberService.searchTrain(dto); // 검색 결과를 받아옴
+				    List<AccommodateDTO> searchResults = memberService.searchTrain(dto); // 검색 결과를 받아옴
 
 				    
 				    // 검색 결과를 모델에 추가
@@ -215,10 +206,7 @@ public class CheckControllerWj {
 				    // 매개변수 처리 및 필요한 로직 수행
 				    // ...
 					
-					System.out.println(dto.getAddress());
-					System.out.println(dto.getLimit());
-					
-				    List<SearchResult> searchResults = memberService.searchActivity(dto); // 검색 결과를 받아옴
+				    List<AccommodateDTO> searchResults = memberService.searchActivity(dto); // 검색 결과를 받아옴
 
 				    
 				    // 검색 결과를 모델에 추가
