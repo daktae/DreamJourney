@@ -193,50 +193,38 @@
 		r.thread,
 		r.depth,
 		r.pay_seq,
-		p.rreserve_seq,
-		p.areserve_seq,
+		p.rdate_seq,
 		r.rdate
 		from tblreview r
 		left outer join tblpay p
 		on r.pay_seq = p.pay_seq
-		inner join tblroomreserve rr
-		on p.rreserve_seq = rr.rreserve_seq
 		inner join tblroomdate rd
-		on rr.rdate_seq = rd.rdate_seq
+		on p.rdate_seq = rd.rdate_seq
 		inner join tblroom rm
 		on rd.room_seq = rm.room_seq
 		inner join tblaccommodate a
 		on rm.acco_seq = a.acco_seq
-		where p.rreserve_seq is not null
-		and rr.member_seq = 5
-		order by r.pay_seq asc
+		where p.rdate_seq is not null
+		and p.member_seq = 5
+		order by r.rdate desc
 	</select>
 
 	<select id="getActivityReview"
 		resultType="com.test.domain.BookableReviewDTO">
 		select
-		a.title as name,
-		r.review_seq,
-		r.content,
-		r.score,
-		r.thread,
-		r.depth,
-		r.pay_seq,
-		p.rreserve_seq,
-		p.areserve_seq,
-		r.rdate
+		a.title as name, r.review_seq, r.content,
+		r.score, r.thread, r.depth, r.pay_seq,
+		p.adate_seq, r.rdate
 		from tblreview r
 		left outer join tblpay p
 		on r.pay_seq = p.pay_seq
-		inner join tblactivityreserve ar
-		on p.areserve_seq = ar.areserve_seq
 		inner join tblactivitydate ad
-		on ar.adate_seq = ad.adate_seq
+		on p.adate_seq = ad.adate_seq
 		inner join tblactivity a
 		on ad.activity_seq = a.activity_seq
-		where p.areserve_seq is not null
-		and ar.member_seq = 5
-		order by r.pay_seq asc
+		where p.adate_seq is not null
+		and p.member_seq = 5
+		order by r.rdate desc
 	</select>
 
 	<select id="getFoodReview"
@@ -244,8 +232,7 @@
 		select freview_seq, content, score, thread, depth, name,
 		rdate
 		from tblfoodreview fr
-		inner join tblfood f on fr.food_seq =
-		f.food_seq
+		inner join tblfood f on fr.food_seq = f.food_seq
 		where member_seq = 5
 
 	</select>

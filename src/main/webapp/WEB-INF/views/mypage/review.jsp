@@ -97,7 +97,7 @@
 }
 
 .btn-cancel {
-background-color: #757575;
+	background-color: #757575;
 	border: none;
 	border-radius: 10px;
 	color: white;
@@ -145,7 +145,6 @@ textarea {
 .review-table {
 	width: 100%;
 }
-
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -348,6 +347,15 @@ textarea {
 				var newContent = textarea.val();
 				onconfirm(seq, selected, newContent, contentCell, editButton, deleteButton, confirmButton, cancelButton);
 			});
+			
+			cancelButton.click(function() {
+				contentCell.empty();
+				contentCell.text(content);
+				confirmButton.hide();
+				cancelButton.hide();
+				editButton.show();
+				deleteButton.show();
+			});
 
 				
 		} // onedit()
@@ -419,13 +427,13 @@ textarea {
 					 },
 					 success: function (response) {
 						 console.log('delete success');
+					     modal.modal('hide');
+						 updateData(selected);
 					 },
 					 error: function (a, b, c) {
 						 console.log(a, b, c);
 					 }
 					 });
-
-						  modal.modal('hide');
 		    });
 
 		    // Handle modal close event

@@ -217,6 +217,7 @@ public class MypageController {
 	
 	// 내 리뷰 삭제
 	@PostMapping("/mypage/deletereview")
+	@ResponseBody
 	private void deletereview(String seq, String selected) {
 		
 		int result = -1;
