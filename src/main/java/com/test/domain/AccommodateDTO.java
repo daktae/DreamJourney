@@ -15,5 +15,6 @@ public class AccommodateDTO {
 	private String tran_date;
 	private String destination;
 	private String departure;
+
 	
 }
