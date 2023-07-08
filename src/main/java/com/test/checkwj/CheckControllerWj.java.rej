@@ -1,9 +1,0 @@
-diff a/src/main/java/com/test/checkwj/CheckControllerWj.java b/src/main/java/com/test/checkwj/CheckControllerWj.java	(rejected hunks)
-@@ -136,6 +136,7 @@
- 			/*
- 			 * System.out.println(dto.getAddress()); System.out.println(dto.getLimit());
- 			 */
-+		    List<AccommodateDTO> searchResults = memberService.searchAcc(dto); // 검색 결과를 받아옴
- 
- 		    
- 		    // 검색 결과를 모델에 추가
