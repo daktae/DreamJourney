@@ -132,7 +132,7 @@
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">버스</h3>
+				<h3 class="display-4 text-white text-uppercase">비행기</h3>
 
 			</div>
 		</div>
@@ -216,7 +216,7 @@
 					class="d-flex align-items-center text-decoration-none bg-white mb-3"
 					style="padding: 10px;" href=""> <img class="img-fluid"
 					style="width: 80px;"
-					src="/dreamjourney/resources/img/reservation/bus.jpeg" alt="123">
+					src="/dreamjourney/resources/img/reservation/airplane.jpg" alt="123">
 					<div style="width: 100%;">
 						<div class="text-center">
 							<h5 class="m-1">

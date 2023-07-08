@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.test.domain.AccommodateDTO;
 import com.test.domain.RoomDTO;
+import com.test.domain.TransportDTO;
 import com.test.service.AccommodateService;
 
 @Controller
@@ -76,9 +76,28 @@ public class ReservationController {
 	}
 
 	@GetMapping("/reservation/transport")
-	private String transport() {
+	private String transport(Model model) {
 
+		model.addAttribute("list", service.transportlist());
+		
 		return "/reservation/transport";
+	}
+
+
+	@GetMapping("/reservation/train")
+	private String train(Model model) {
+
+		model.addAttribute("list", service.trainlist());
+		
+		return "/reservation/train";
+	}
+	
+	@GetMapping("/reservation/airplane")
+	private String airplane(Model model) {
+		
+		model.addAttribute("list", service.airplanelist());
+		
+		return "/reservation/airplane";
 	}
 
 }

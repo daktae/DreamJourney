@@ -269,7 +269,9 @@
 							<br>
 						</div>
 						<button class="btn btn-primary btn-block" type="submit"
-							style="height: 47px; margin-top: -2px;">예약하기</button>
+							style="height: 47px; ">예약하기</button>
+						<button class="btn btn-primary btn-block" type="submit"
+							style="height: 47px; margin-top: 5px;">즐겨찾기 추가</button>
 					</div>
 				</div>
 			</div>
