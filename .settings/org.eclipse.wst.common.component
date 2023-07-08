@@ -3,8 +3,17 @@
     
     
     <wb-module deploy-name="dreamjourney-1.0.0-BUILD-SNAPSHOT">
+<<<<<<< HEAD
                         		
         
+=======
+                                
+        
+        
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                        		
+        
+>>>>>>> dc4abb43d5b22fc551aafd6b22bf2970b7bdea71
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
                         		
@@ -15,6 +24,10 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< HEAD
+=======
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/main"/>
+>>>>>>> dc4abb43d5b22fc551aafd6b22bf2970b7bdea71
                         		
         
         

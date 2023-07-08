@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.test.domain.AccommodateDTO;
 import com.test.domain.RoomDTO;
+import com.test.domain.TransportDTO;
 import com.test.mapper.AccommodateMapper;
 
 @Service
@@ -33,6 +34,23 @@ public class AccommodateServiceImpl implements AccommodateService{
 	public List<RoomDTO> view(String acco_seq) {
 
 		return mapper.view(acco_seq);
+	}
+
+
+	@Override
+	public List<TransportDTO> trainlist() {
+		return  mapper.trainlist();
+	}
+
+	@Override
+	public List<TransportDTO> airplanelist() {
+		return  mapper.airplanelist();
+	}
+
+	@Override
+	public List<TransportDTO> transportlist() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

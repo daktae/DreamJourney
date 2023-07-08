@@ -10,6 +10,10 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
+<<<<<<< HEAD
+=======
+		<config>src/main/webapp/WEB-INF/spring/root-context.xml</config>
+>>>>>>> dc4abb43d5b22fc551aafd6b22bf2970b7bdea71
 	</autoconfigs>
 	<configSets>
 	</configSets>

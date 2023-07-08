@@ -2,10 +2,10 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.test.mapper.TripMapper">
-
-	<select id="time" resultType="String">select sysdate from dual</select>
-	
+<mapper namespace="com.test.mapper.AccountMapper">
+	<!--  select 태그 -->
+   
+   
 </mapper>
 
 

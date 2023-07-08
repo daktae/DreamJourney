@@ -13,8 +13,6 @@
 
 <!-- Favicon -->
 <link href="../asset/img/favicon.ico" rel="icon">
-<!-- Googleicon -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -37,8 +35,26 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="/dreamjourney/resources/css/style.css" rel="stylesheet">
-</head>
 
+
+
+</head>
+<style>
+.text-center {
+	text-align: center;
+}
+
+.text {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.text2 {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+</style>
 <body>
 
 
@@ -116,7 +132,7 @@
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<!-- <h3 class="display-4 text-white text-uppercase">제목</h3> -->
+				<h3 class="display-4 text-white text-uppercase">비행기</h3>
 
 			</div>
 		</div>
@@ -128,154 +144,99 @@
 	<!-- Header End -->
 
 	<!-- 내용쓰는곳 -->
-	<!-- Blog Start -->
-	<div class="container-fluid py-5">
-		<div class="container py-5">
-			<div class="row">
-				<div class="col-lg-8">
-					<!-- Blog Detail Start -->
-					<div class="pb-3">
-						<div class="blog-item">
-							<div class="position-relative">
-								<img class="img-fluid w-100"
-									src="/dreamjourney/resources/img/accommodate/${dto.acco_img}.jpg"
-									alt="">
-								<div class="blog-date">
-									<!-- <h6 class="font-weight-bold mb-n1">01</h6>
-                                    <small class="text-white text-uppercase">Jan</small> -->
+	<!-- Booking Start 검색 바 -->
+	<div class="container-fluid booking mt-5 pb-5">
+		<div class="container pb-5">
+			<div class="bg-light shadow" style="padding: 30px;">
+				<div class="row align-items-center" style="min-height: 60px;">
+					<div class="col-md-10">
+						<div class="row">
+							<div class="col-md-5">
+								<div class="mb-3 mb-md-0">
+									<input type="text" class="form-control  px-4"
+										style="height: 47px;" placeholder="출발지">
+								</div>
+							</div>
+							<div class="col-md-5">
+								<div class="mb-3 mb-md-0">
+									<input type="text" class="form-control  px-4"
+										style="height: 47px;" placeholder="도착지">
+								</div>
+							</div>
+							<div class="col-md-5">
+								<div class="mb-3 mb-md-0">
+									<div class="date" id="date1" data-target-input="nearest">
+										<input type="text"
+											class="form-control p-4 datetimepicker-input"
+											placeholder="출발 일" data-target="#date1"
+											data-toggle="datetimepicker" />
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5">
+								<div class="mb-3 mb-md-0">
+									<div class="date" id="date2" data-target-input="nearest">
+										<input type="text"
+											class="form-control p-4 datetimepicker-input"
+											placeholder="도착 일" data-target="#date2"
+											data-toggle="datetimepicker" />
+									</div>
+								</div>
+							</div>
+							<div class="col-md-10">
+								<div class="mb-3 mb-md-0">
+									<input type="text" class="form-control  px-4"
+										style="height: 47px;" placeholder="인원 수"> </input>
 								</div>
 							</div>
 						</div>
-						<div class="bg-white mb-3" style="padding: 30px;">
-							<div class="d-flex mb-3">
-								<a class="text-primary text-uppercase text-decoration-none"
-									href="">${dto.type}</a>
-								<!-- <span class="text-primary px-2">|</span>
-                                <a class="text-primary text-uppercase text-decoration-none" href="">Tours & Travel</a> -->
-							</div>
-							<h2 class="mb-3">${dto.name}</h2>
-							<p>${dto.address}</p>
-							<p>${dto.note}</p>
-							<hr>
-							<c:forEach items="${list}" var="list">
-								<h4 class="mb-3">${list.name}</h4>
-								<img class="img-fluid w-100"
-									src="/dreamjourney/resources/img/accommodate/${list.room_img}.jpg"
-									alt="">
-								<h5 class="mb-3">
-									<br>수용인원 : ${list.limit}
-								</h5>
-								<h5 class="mb-3">
-									<br>가격 : ${list.price}
-								</h5>
-								<h5 class="mb-3">
-									<br>상세내용
-								</h5>
-								<p>${list.note}</p>
-								<button class="btn btn-primary btn-block" type="submit"
-									style="height: 47px; margin-top: -2px;">예약하기</button>
-								<hr>
-							</c:forEach>
-						</div>
 					</div>
-					<!-- Blog Detail End -->
-
-					<!-- Comment List Start -->
-					<div class="bg-white" style="padding: 30px; margin-bottom: 30px;">
-						<h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">2
-							Comments</h4>
-						<div class="media mb-4">
-							<span class="material-symbols-outlined"> person </span>
-							<div class="media-body">
-								<h6>
-									<a href="">양진영</a> <small><i>01 Jan 2022</i></small>
-								</h6>
-								<p>소피텔 앰배서더 서울 호텔은 훌륭한 서비스와 아름다운 전망이 인상적이었습니다. 정말로 편안하고 품위
-									있는 숙박을 즐길 수 있었습니다.</p>
-							</div>
-						</div>
-						<div class="media">
-							<span class="material-symbols-outlined"> person </span>
-							<div class="media-body">
-								<h6>
-									<a href="">오소엽</a> <small><i>01 Jan 2023</i></small>
-								</h6>
-								<p>서비스드 레지던스는 넓은 객실과 편리한 시설을 갖춘 곳으로, 장기간의 숙박에 최적입니다. 자유로운
-									생활을 즐기면서도 호텔 수준의 서비스를 받을 수 있어서 만족스러웠습니다.</p>
-							</div>
-						</div>
-					</div>
-					<!-- Comment List End -->
-
-					<!-- Comment Form Start -->
-					<div class="bg-white mb-3" style="padding: 30px;">
-						<h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Leave
-							a comment</h4>
-						<form>
-							<div class="form-group">
-								<label for="message">Message</label>
-								<textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-							</div>
-							<div class="form-group mb-0">
-								<input type="submit" value="Leave a comment"
-									class="btn btn-primary font-weight-semi-bold py-2 px-3">
-							</div>
-						</form>
-					</div>
-					<!-- Comment Form End -->
-				</div>
-
-				<div class="col-lg-4 mt-5 mt-lg-0">
-					<div class="d-flex flex-column text-center bg-white mb-5 py-5 px-4">
-						<div class="col-md-10">
-							<div class="mb-3 mb-md-0">
-								<!-- <span class="sub">출발일</span> -->
-								<div class="date" id="date1" data-target-input="nearest">
-									<input type="text"
-										class="form-control p-4 datetimepicker-input"
-										placeholder="출발 일" data-target="#date1"
-										data-toggle="datetimepicker" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-10">
-							<div class="mb-3 mb-md-0">
-								<!-- <span class="sub">도착일</span> -->
-								<div class="date" id="date2" data-target-input="nearest">
-									<input type="text"
-										class="form-control p-4 datetimepicker-input"
-										placeholder="도착 일" data-target="#date2"
-										data-toggle="datetimepicker" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-10">
-							<div class="mb-3 mb-md-0">
-								<!-- <span class="sub">숙박인원</span> -->
-								<input class="form-control  px-4" type="text"
-									style="height: 47px;" placeholder="인원 수"> </input>
-							</div>
-						</div>
-						<div class="col-md-10">
-							<div class="mb-3 mb-md-0">
-								<select class="form-control  px-4" type="select"
-									style="height: 47px;">
-									<option value="">방 이름 선택하세요</option>
-									<option value="option1">프리미어 코너룸</option>
-									<option value="option2">스위트 룸</option>
-									<option value="option3">어쩌구 룸</option>
-								</select>
-							</div>
-							<br>
-						</div>
+					<div class="col-md-2">
 						<button class="btn btn-primary btn-block" type="submit"
-							style="height: 47px; margin-top: 5px;">즐겨찾기 추가</button>
+							style="height: 47px; margin-top: -2px;">
+							검색
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                          </svg>
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Blog End -->
+	<!-- Booking End -->
+
+	<!-- 내용 작성 -->
+	<div class="container-fluid py-5" style="height: 1000px; width: 80%;">
+		<c:forEach items="${list}" var="dto">
+			<div>
+				<a
+					class="d-flex align-items-center text-decoration-none bg-white mb-3"
+					style="padding: 10px;" href=""> <img class="img-fluid"
+					style="width: 80px;"
+					src="/dreamjourney/resources/img/reservation/airplane.jpg" alt="123">
+					<div style="width: 100%;">
+						<div class="text-center">
+							<h5 class="m-1">
+								<span class="text">${dto.departure}</span> <span class="text">>></span>
+								<span class="text">${dto.destination}</span>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="text2">운영
+									시간 : ${dto.runtime}분</span> <span class="text2">정원 :
+									${dto.limit}</span> <span class="text2">가격 : ${dto.price}</span>
+							</h5>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-primary btn-block" type="submit"
+							style="height: 47px; margin-top: -2px;">예약</button>
+					</div>
+				</a>
+			</div>
+		</c:forEach>
+	</div>
+
 
 
 
@@ -368,8 +329,9 @@
 
 	<!-- Template Javascript -->
 	<script src="/dreamjourney/resources/js/main.js"></script>
-</body>
 
+	
+</body>
 </html>
 
 
