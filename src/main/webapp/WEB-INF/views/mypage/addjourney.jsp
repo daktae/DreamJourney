@@ -193,11 +193,14 @@ button {
 
 	<%@ include file="/resources/inc/footer.jsp"%>
 
+
+	
+	
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=015fae8b95c2d0f2c4d727e44d11a138&libraries=services"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 
@@ -343,9 +346,9 @@ button {
 				      var selectedDate = e.format('yyyy-mm-dd');
 				      startdate = new Date(selectedDate);
 				
-				    // 여행 종료일 선택 버튼 보여주기
-				    $('.date-td .selected-date').text(selectedDate); // 선택된 날짜를 업데이트하여 출력
-				    createTable(1, startdate);
+				    
+				    $('.date-td:eq(0) .selected-date').text(selectedDate); // 첫 번째 선택된 날짜를 업데이트하여 출력
+				    createTable(1, selectedDate); // selectedDate를 "yyyy-mm-dd" 형식으로 전달
 				
 				    // 등록하기 버튼 있는 테이블 보여주기
 				  }).focus(function() {
@@ -419,7 +422,7 @@ button {
 				
 			
 					function createTable(nth, date) {
-						  var newTable = $('<table class="journey-table">');
+						  var newTable = $('<table class="journey-table my-table">');
 
 						  // Add the table content
 						  var tableContent = '<tr>' +
@@ -460,14 +463,15 @@ button {
 
 		$(document).ready(function() {
 
-			var placeInputValues = []; // Array to store the values
-			var memoInputValues = [];
-
 			$('#btn-submit').click(function() {
+				
 				var placeInputs = $('.placeInput'); // Get all placeInput fields
 				var memoInputs = $('.memoInput');
-
 				var title = $('#title').val();
+				
+				var placeInputValues = []; // Array to store the values
+				var memoInputValues = [];
+				var nthInputValues = [];
 
 				placeInputs.each(function() {
 					placeInputValues.push($(this).val()); // Add the value to the array
@@ -478,18 +482,26 @@ button {
 					memoInputValues.push($(this).val());
 					console.log($(this).val());
 				});
+				
+				$('.my-table').each(function() {
+				    var nth = $(this).find('.date-td > div:first-child').text();
+				    nthInputValues.push(nth);
+				});
+				
 
 				console.log(placeInputValues);
 				console.log(memoInputValues);
+				console.log(nthInputValues);
 
 				// Send the data to the server
-				$.ajax({
+				jQuery.ajax({
 					type : "POST",
 					url : "/dreamjourney/mypage/addjourneyok",
 					traditional : true,
 					data : {
 						placeInputValues : placeInputValues,
 						memoInputValues : memoInputValues,
+						nth: nthInputValues,
 						title : title
 					},
 					success : function(response) {

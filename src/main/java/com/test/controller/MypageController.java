@@ -81,7 +81,7 @@ public class MypageController {
 	@PostMapping("/mypage/addjourneyok")	
 	private String addjourneyok(Model model,
 								String title,
-								String nth,
+								String[] nth,
 								String[] placeInputValues,
 	                            String[] memoInputValues) {
 		
@@ -131,6 +131,7 @@ public class MypageController {
 	        System.out.println("memo: " + memoInputValues[i]);
 	        System.out.println("Place: " + place[i]);
 	        System.out.println("Place Address: " + address[i]);
+	        System.out.println("nth: " + nth[i]);
 	        
 	        //int schResult = service.schInsert(nth, memoInputValues[i], place[i], address[i]);
 	        
