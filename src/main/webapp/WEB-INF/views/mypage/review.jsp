@@ -103,6 +103,29 @@ textarea {
 .reply {
 	background-color: #D9D9D9;
 }
+
+#btn-accommodate {	
+	width: 45px;
+	height: 30px;
+	background-color: #FFBF00;
+	border: none;
+	border-radius: 20px;
+	color: white;
+}
+
+#btn-activity {
+	background-color: #7AB730;
+	border: none;
+	border-radius: 20px;
+	color: white;
+}
+
+#btn-restaurant {
+	background-color: #5F8D4E;
+	border: none;
+	border-radius: 20px;
+	color: white;
+}
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -126,7 +149,7 @@ textarea {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
-		
+
 			<div style="margin-top: 15px; margin-left: 15px;">내 리뷰</div>
 
 			<div>
@@ -306,6 +329,8 @@ textarea {
 		} // onedit()
 
 		
+		
+		// 수정 완료
 		
 		function onconfirm(seq, selected, newContent) {
 			

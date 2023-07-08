@@ -170,7 +170,6 @@ public class MypageController {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResponse;
 		try {
-			System.out.println(b.toString());
 			jsonResponse = mapper.writeValueAsString(b);
 			return jsonResponse;
 		} catch (JsonProcessingException e) {
@@ -194,7 +193,6 @@ public class MypageController {
 		try {
 			jsonResponse = mapper.writeValueAsString(ub);
 			
-			System.out.println(jsonResponse);
 			return jsonResponse;
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -208,16 +206,12 @@ public class MypageController {
 	@ResponseBody
 	private void updateBookableReview(String seq, String selected, String newContent) {
 		
-		System.out.println("seq: " + seq);
-		System.out.println("selected: " + selected);
-		//여기까진 잘 넘어오는데 어째서...? new Content not found...?
+		int result = -1;
 		
-		if(selected.equals("accommodate")||selected.equals("activity")) {
-			System.out.println("newContent: " + newContent);
-			int result = service.updatebr(seq, newContent);
-			System.out.println("result: " + result);
-			}
-	//	else if(selected.equals("restaurant")) service.updateubr(seq, newContent);
+		if(selected.equals("accommodate")||selected.equals("activity")) result = service.updatebr(seq, newContent);
+		else if(selected.equals("restaurant")) result = service.updateubr(seq, newContent);
+		
+		System.out.println("update result: " + result);
 		
 	}
 

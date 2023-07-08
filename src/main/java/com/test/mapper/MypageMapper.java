@@ -51,6 +51,8 @@ public interface MypageMapper {
 	List<UnbookableReviewDTO> getFoodReview();
 
 	int updateBookableReview(Map<String, String> map);
+	
+	int updateUnbookableReview(Map<String, String> map);
 
 	int schInsert(Map<String, String> map);
 

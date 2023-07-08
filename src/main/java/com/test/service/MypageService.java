@@ -61,5 +61,7 @@ public interface MypageService {
 
 	int dayInsert(String nth, String trip_seq);
 
+	int updateubr(String seq, String newContent);
+
 
 }
