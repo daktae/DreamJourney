@@ -315,6 +315,7 @@ a:hover {
 								</div>
 							</div>
 						</c:forEach>
+<<<<<<< HEAD
 <c:if test="${not empty searchResults}">
     <!-- 검색 결과가 있는 경우 -->
     <c:forEach items="${searchResults}" var="result">
@@ -345,6 +346,8 @@ a:hover {
     <!-- 검색 결과가 없는 경우 -->
     <h5 style="margin-bottom:30px;">검색 결과가 없습니다.</h5>
 </c:if>
+=======
+>>>>>>> dc4abb43d5b22fc551aafd6b22bf2970b7bdea71
 						<div class="col-12">
 							<nav aria-label="Page navigation">
 								<ul

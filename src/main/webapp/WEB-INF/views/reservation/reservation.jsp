@@ -257,7 +257,11 @@ directions_bus
                         </div>
                     </div>
                 <div style="float:right; font-size: 20px; font-weight: bold;"> 
+<<<<<<< HEAD
 					<a href="/dreamjourney/reservation/accommodate">더보기 →</a>					                
+=======
+					<a href="">더보기 →</a>					                
+>>>>>>> dc4abb43d5b22fc551aafd6b22bf2970b7bdea71
                 </div>
                 </div>
             </div>

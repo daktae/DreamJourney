@@ -6,7 +6,6 @@
 	<groupId>com.test</groupId>
 	<artifactId>dreamjourney</artifactId>
 	<name>DreamJourney</name>
-	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>11</java-version>
