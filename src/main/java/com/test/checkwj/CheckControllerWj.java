@@ -1,7 +1,5 @@
 package com.test.checkwj;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,11 +8,16 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.naming.directory.SearchResult;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
 import com.siot.IamportRestClient.response.IamportResponse;
+import com.test.domain.AccommodateDTO;
 import com.test.domain.MemberDTO;
 import com.test.emailwj.IamportClient;
 import com.test.mapper.MemberMapper;
@@ -119,5 +123,114 @@ public class CheckControllerWj {
 		   return response;
 	}
 	
+	//숙소 검색하면 예약 페이지로
+		@GetMapping("/search")
+		public String search(AccommodateDTO dto, Model model) {
+		    // 매개변수 처리 및 필요한 로직 수행
+		    // ...
+			
+			System.out.println(dto.getAddress());
+			System.out.println(dto.getLimit());
+			
+		    List<SearchResult> searchResults = memberService.searchAcc(dto); // 검색 결과를 받아옴
+
+		    
+		    // 검색 결과를 모델에 추가
+		    model.addAttribute("searchResults", searchResults);
+		    
+		    System.out.println(searchResults);
+		    
+		    // 검색 결과를 표시할 View 이름을 반환
+		    return "reservation/accommodate";
+		}
+		
+		//항공 검색하면 예약 페이지로
+		@GetMapping("/searchairplane")
+		public String searchairplane(AccommodateDTO dto, Model model) {
+			// 매개변수 처리 및 필요한 로직 수행
+			// ...
+			
+			System.out.println(dto.getAddress());
+			System.out.println(dto.getLimit());
+			
+			List<SearchResult> searchResults = memberService.serachAirplnae(dto); // 검색 결과를 받아옴
+			
+			
+			// 검색 결과를 모델에 추가
+			model.addAttribute("searchResults", searchResults);
+			
+			System.out.println(searchResults);
+			
+			// 검색 결과를 표시할 View 이름을 반환
+			return "reservation/airplane";
+		}
+		
+		//기차 검색하면 예약 페이지로
+		@GetMapping("/searchbus")
+		public String searchbus(AccommodateDTO dto, Model model) {
+		    // 매개변수 처리 및 필요한 로직 수행
+		    // ...
+			
+			System.out.println(dto.getAddress());
+			System.out.println(dto.getLimit());
+			
+		    List<SearchResult> searchResults = memberService.searchBus(dto); // 검색 결과를 받아옴
+
+		    
+		    // 검색 결과를 모델에 추가
+		    model.addAttribute("searchResults", searchResults);
+		    
+		    System.out.println(searchResults);
+		    
+		    // 검색 결과를 표시할 View 이름을 반환
+		    return "reservation/train";
+		}
+		
+		
+	
+		//기차 검색하면 예약 페이지로
+				@GetMapping("/searchtrain")
+				public String searchtrain(AccommodateDTO dto, Model model) {
+				    // 매개변수 처리 및 필요한 로직 수행
+				    // ...
+					
+					System.out.println(dto.getAddress());
+					System.out.println(dto.getLimit());
+					
+				    List<SearchResult> searchResults = memberService.searchTrain(dto); // 검색 결과를 받아옴
+
+				    
+				    // 검색 결과를 모델에 추가
+				    model.addAttribute("searchResults", searchResults);
+				    
+				    System.out.println(searchResults);
+				    
+				    // 검색 결과를 표시할 View 이름을 반환
+				    return "reservation/train";
+				}
+				
+				//액티비티 검색하면 예약 페이지로
+				@GetMapping("/searchactivity")
+				public String searchactivity(AccommodateDTO dto, Model model) {
+				    // 매개변수 처리 및 필요한 로직 수행
+				    // ...
+					
+					System.out.println(dto.getAddress());
+					System.out.println(dto.getLimit());
+					
+				    List<SearchResult> searchResults = memberService.searchActivity(dto); // 검색 결과를 받아옴
+
+				    
+				    // 검색 결과를 모델에 추가
+				    model.addAttribute("searchResults", searchResults);
+				    
+				    System.out.println(searchResults);
+				    
+				    // 검색 결과를 표시할 View 이름을 반환
+				    return "reservation/train";
+				}
+			
+			
 	
 }
+

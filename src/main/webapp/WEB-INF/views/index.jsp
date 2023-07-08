@@ -23,30 +23,31 @@
 }
 
 h6 {
-display: inline;
-    position: relative;
-    top: -8px;
-    left: -20px;
+	display: inline;
+	position: relative;
+	top: -8px;
+	left: -20px;
 }
 
 .material-symbols-outlined {
-	font-size:30px;
+	font-size: 30px;
 }
 
 .col2 {
-	display:flex; 
-	align-items:center;
+	display: flex;
+	align-items: center;
 	flex-basis: 0;
-    flex-grow: 1;
-    max-width: 100%;
+	flex-grow: 1;
+	max-width: 100%;
 }
 
-a:hover { color:#7AB730 !important; }
+a:hover {
+	color: #7AB730 !important;
+}
 
 .active {
-	color:#7AB730 !important;
+	color: #7AB730 !important;
 }
-
 </style>
 
 <body>
@@ -98,108 +99,113 @@ a:hover { color:#7AB730 !important; }
 	<!-- Booking Start -->
 	<div class="container-fluid booking mt-5 pb-5">
 		<div class="container pb-5">
-			<div class="bg-light shadow" style="padding: 30px; margin:0 auto; width:800px;">
-  <div class="row" style="margin-left:30px;">
-    <div class="col2">
-    <a href="" onclick="searchLod(this)" class="active" style="color:black;">
-      <span class="material-symbols-outlined">
-apartment <h6 style="display:inline;">숙소</h6>
-</span>
-	</a>
-    </div>
-    <div class="col2">
-    <a href="#" onclick="searchLod2(this)" style="color:black;">
-      <span class="material-symbols-outlined">
-flight_takeoff
-	<h6 style="display:inline;">항공</h6>
-</span>
-</a>
-    </div>
-    <div class="col2">
-    <a href="#" onclick="searchLod2(this)" style="color:black;">
-<span class="material-symbols-outlined">
-directions_bus
-	<h6 style="display:inline;">버스</h6>
-</span>
-</a>
-    </div>
-     <div class="col2">
-     <a href="#" onclick="searchLod2(this)" style="color:black;">
-<span class="material-symbols-outlined">
-tram
-<h6 style="display:inline;">기차</h6>
-</span>
-</a>
-    </div>
-     <div class="col2">
-     <a href="#" onclick="searchLod3(this)" style="color:black;">
-            <span class="material-symbols-outlined">
-attractions
-<h6 style="display:inline;">액티비티</h6>
-</span>
-</a>
-    </div>
-  </div>
-			</div>
-			<div class="bg-light shadow" id="searchbar1" style="padding: 30px; ">
-				<div class="row align-items-center" style="min-height: 60px;">
-					<div class="col-md-10">
-						<div class="row">
-							<div class="col-md-4">
-
-
-
-								<input class="form-control p-4" type="text"
-									placeholder="어디로 떠나실건가요?">
-
-							</div>
-
-							<div class="col-md-3">
-								<input class="form-control p-4" id="checkin"
-									pattern="\d{4}-\d{2}-\d{2}" placeholder="체크인" required
-									type="text" value="">
-							</div>
-
-
-							<div class="col-md-3">
-								<input class="form-control p-4" id="checkout"
-									pattern="\d{4}-\d{2}-\d{2}" placeholder="체크아웃" required
-									type="text" value="">
-							</div>
-
-
-							<div class="col-md-2">
-								<div class="mb-3 mb-md-0">
-									<input class="form-control p-4" type="text" placeholder="인원 수">
-								</div>
-							</div>
-						</div>
+			<div class="bg-light shadow"
+				style="padding: 30px; margin: 0 auto; width: 800px;">
+				<div class="row" style="margin-left: 30px;">
+					<div class="col2">
+						<a href="" onclick="searchLod(this)" class="active"
+							style="color: black;"> <span
+							class="material-symbols-outlined"> apartment
+								<h6 style="display: inline;">숙소</h6>
+						</span>
+						</a>
 					</div>
-					<div class="col-md-2">
-						<button class="btn btn-primary btn-block" type="submit"
-							style="height: 47px; margin-top: -2px;">
-							검색
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path
-									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                          </svg>
-						</button>
+					<div class="col2">
+						<a href="#" onclick="searchLod2(this)" style="color: black;">
+							<span class="material-symbols-outlined"> flight_takeoff
+								<h6 style="display: inline;">항공</h6>
+						</span>
+						</a>
+					</div>
+					<div class="col2">
+						<a href="#" onclick="searchLod3(this)" style="color: black;">
+							<span class="material-symbols-outlined"> directions_bus
+								<h6 style="display: inline;">버스</h6>
+						</span>
+						</a>
+					</div>
+					<div class="col2">
+						<a href="#" onclick="searchLod4(this)" style="color: black;">
+							<span class="material-symbols-outlined"> tram
+								<h6 style="display: inline;">기차</h6>
+						</span>
+						</a>
+					</div>
+					<div class="col2">
+						<a href="#" onclick="searchLod5(this)" style="color: black;">
+							<span class="material-symbols-outlined"> attractions
+								<h6 style="display: inline;">액티비티</h6>
+						</span>
+						</a>
 					</div>
 				</div>
 			</div>
-			<div class="bg-light shadow" id="searchbar3" style="padding: 30px; display:none;">
-				<div class="row align-items-center" style="min-height: 60px;">
-					<div class="col-md" style="max-width:80%;">
-						<div class="row" style="width:60rem;">
-							<div class="col-md" style="width:70%;">
+			
+			<form action="/dreamjourney/search" method="GET">
+				<div class="bg-light shadow" id="searchbar1" style="padding: 30px;">
+					<div class="row align-items-center" style="min-height: 60px;">
+						<div class="col-md-10">
+							<div class="row">
+								<div class="col-md-4">
 
-								<input class="form-control p-4" style="width:50em;" type="text" 
+
+
+									<input class="form-control p-4" type="text" name="address"
+										required placeholder="어디로 떠나실 건가요?">
+
+								</div>
+
+								<div class="col-md-3">
+									<input class="form-control p-4" id="checkin"
+										pattern="\d{4}-\d{2}-\d{2}" placeholder="체크인" required
+										type="text" value="">
+								</div>
+
+
+								<div class="col-md-3">
+									<input class="form-control p-4" id="checkout"
+										pattern="\d{4}-\d{2}-\d{2}" placeholder="체크아웃" required
+										type="text" value="">
+								</div>
+
+
+								<div class="col-md-2">
+									<div class="mb-3 mb-md-0">
+										<input class="form-control p-4" type="text" required
+											placeholder="인원 수" name="limit"
+											oninput="this.value = this.value.replace(/\D/g, '')">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<button class="btn btn-primary btn-block" type="submit"
+								id="searchsubmit" style="height: 47px; margin-top: -2px;">
+								검색
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+										d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                          </svg>
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			
+			<div class="bg-light shadow" id="searchbar5"
+				style="padding: 30px; display: none;">
+				<div class="row align-items-center" style="min-height: 60px;">
+					<div class="col-md" style="max-width: 80%;">
+						<div class="row" style="width: 60rem;">
+							<div class="col-md" style="width: 70%;">
+
+								<input class="form-control p-4" style="width: 50em;" type="text" required
 									placeholder="도시/액티비티 검색">
 
 							</div>
 
-							
+
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -215,28 +221,74 @@ attractions
 					</div>
 				</div>
 			</div>
-			<div class="bg-light shadow" id="searchbar2" style="padding: 30px; display:none;">
+			
+						<form action="/dreamjourney/searchairplane" method="GET">
+			<div class="bg-light shadow" id="searchbar2"
+				style="padding: 30px; width:100%; display: none;">
 				<div class="row align-items-center" style="min-height: 60px;">
 					<div class="col-md-10">
 						<div class="row">
-							<div class="col-md-4">
+							<div class="col-md-3">
 
-								<input class="form-control p-4" type="text"
-									placeholder="서울">
+								<input class="form-control p-4" type="text" required placeholder="출발지" name="departure">
+
+							</div>
+														<div class="col-md-3">
+
+								<input class="form-control p-4" type="text" required placeholder="도착지" name="destination">
 
 							</div>
 
+							<div class="col-md-4">
+								<input class="form-control p-4" id="startdate" id="startdate"
+									pattern="\d{4}-\d{2}-\d{2}" placeholder="출발일" required
+									type="text" value="" name="tran_date"> 
+							</div>
+
+
+							<div class="col-md-2">
+								<div class="mb-3 mb-md-0">
+									<input class="form-control p-4" type="text" placeholder="인원 수" name="limit">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-primary btn-block searchtrans" type="submit"
+							style="height: 47px; margin-top: -2px;">
+							검색
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                          </svg>
+						</button>
+					</div>
+				</div>
+			</div>
+			</form>
+			
+			<form action="/dreamjourney/searchbus" method="GET">
+			<div class="bg-light shadow" id="searchbar3"
+				style="padding: 30px; width:100%; display: none;">
+				<div class="row align-items-center" style="min-height: 60px;">
+					<div class="col-md-10">
+						<div class="row">
 							<div class="col-md-3">
+
+								<input class="form-control p-4" type="text" required placeholder="출발지" name="departure">
+
+							</div>
+														<div class="col-md-3">
+
+								<input class="form-control p-4" type="text" required placeholder="도착지" name="destination">
+
+							</div>
+
+							<div class="col-md-4">
 								<input class="form-control p-4" id="startdate"
 									pattern="\d{4}-\d{2}-\d{2}" placeholder="출발일" required
-									type="text" value="">
-							</div>
-
-
-							<div class="col-md-3">
-								<input class="form-control p-4" id="enddate"
-									pattern="\d{4}-\d{2}-\d{2}" placeholder="도착일" required
-									type="text" value="">
+									type="text" value="" name="startdate"> 
 							</div>
 
 
@@ -248,7 +300,7 @@ attractions
 						</div>
 					</div>
 					<div class="col-md-2">
-						<button class="btn btn-primary btn-block" type="submit"
+						<button class="btn btn-primary btn-block searchtrans" type="submit"
 							style="height: 47px; margin-top: -2px;">
 							검색
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -260,6 +312,54 @@ attractions
 					</div>
 				</div>
 			</div>
+			</form>
+			
+			<form action="/dreamjourney/searchtrain" method="GET">
+			<div class="bg-light shadow" id="searchbar4"
+				style="padding: 30px; width:100%; display: none;">
+				<div class="row align-items-center" style="min-height: 60px;">
+					<div class="col-md-10">
+						<div class="row">
+							<div class="col-md-3">
+
+								<input class="form-control p-4" type="text" required placeholder="출발지" name="departure">
+
+							</div>
+														<div class="col-md-3">
+
+								<input class="form-control p-4" type="text" required placeholder="도착지" name="destination">
+
+							</div>
+
+							<div class="col-md-4">
+								<input class="form-control p-4" id="startdate"
+									pattern="\d{4}-\d{2}-\d{2}" placeholder="출발일" required
+									type="text" value="" name="startdate"> 
+							</div>
+
+
+							<div class="col-md-2">
+								<div class="mb-3 mb-md-0">
+									<input class="form-control p-4" type="text" placeholder="인원 수">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-primary btn-block searchtrans" type="submit"
+							style="height: 47px; margin-top: -2px;">
+							검색
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                          </svg>
+						</button>
+					</div>
+				</div>
+			</div>
+			</form>
+			
 		</div>
 	</div>
 	<!-- Booking End -->
@@ -977,32 +1077,90 @@ attractions
 	<%@ include file="/resources/inc/footer.jsp"%>
 	<script src="/dreamjourney/resources/js/wanjinindex.js"></script>
 	<script>
-	 function searchLod(element) {
-		 event.preventDefault();
-		 $("#searchbar1").css("display", "inline-block")
-		 $("#searchbar2").css("display", "none");
-		 $("#searchbar3").css("display", "none");
-		    $("a").removeClass("active");
-		    $(element).addClass("active");
-		  }
-	 
-	 function searchLod2(element) {
-		 event.preventDefault();
-		 $("#searchbar1").css("display", "none");
-		 $("#searchbar3").css("display", "none");
-		 $("#searchbar2").css("display", "inline-block");
-		    $("a").removeClass("active");
-		    $(element).addClass("active");
-		  }
-	 
-	 function searchLod3(element) {
-		 event.preventDefault();
-		 $("#searchbar1").css("display", "none");
-		 $("#searchbar2").css("display", "none");
-		 $("#searchbar3").css("display", "inline-block");
-		    $("a").removeClass("active");
-		    $(element).addClass("active");
-		  }
+	/* 숙박시 체크인,체크아웃 확인 */
+		$('#searchsubmit').click(function() {
+			if ($('#checkin').val() == '') {
+				alert('체크인 날짜를 입력하세요');
+				$('#checkin').val('');
+				return false;
+
+			} else if ($('#checkout').val() == '') {
+				alert('체크아웃 날짜를 입력하세요');
+				$('#checkout').val('');
+				return false;
+			}
+		});
+		
+	/* 출발일 확인 */
+		$('.searchtrans').click(function() {
+			if ($('#startdate').val() == '') {
+				alert('출발 날짜를 입력하세요');
+				$('#startdate').val('');
+				return false;
+
+			}
+		});
+		
+
+		/* 숙박검색 */
+		function searchLod(element) {
+			event.preventDefault();
+			$("#searchbar1").css("display", "inline-block")
+			$("#searchbar2").css("display", "none");
+			$("#searchbar3").css("display", "none");
+			$("#searchbar4").css("display", "none");
+			$("#searchbar5").css("display", "none");
+			$("a").removeClass("active");
+			$(element).addClass("active");
+		}
+
+		/* 항공검색 */
+		function searchLod2(element) {
+			event.preventDefault();
+			$("#searchbar1").css("display", "none");
+			$("#searchbar3").css("display", "none");
+			$("#searchbar4").css("display", "none");
+			$("#searchbar5").css("display", "none");
+			$("#searchbar2").css("display", "inline-block");
+			$("a").removeClass("active");
+			$(element).addClass("active");
+		}
+		
+		/* 버스검색 */
+		function searchLod3(element) {
+			event.preventDefault();
+			$("#searchbar1").css("display", "none");
+			$("#searchbar3").css("display", "none");
+			$("#searchbar4").css("display", "none");
+			$("#searchbar5").css("display", "none");
+			$("#searchbar2").css("display", "inline-block");
+			$("a").removeClass("active");
+			$(element).addClass("active");
+		}
+		
+		/* 기차검색 */
+		function searchLod4(element) {
+			event.preventDefault();
+			$("#searchbar1").css("display", "none");
+			$("#searchbar3").css("display", "none");
+			$("#searchbar4").css("display", "none");
+			$("#searchbar5").css("display", "none");
+			$("#searchbar2").css("display", "inline-block");
+			$("a").removeClass("active");
+			$(element).addClass("active");
+		}
+
+		/* 액티비티 */
+		function searchLod5(element) {
+			event.preventDefault();
+			$("#searchbar1").css("display", "none");
+			$("#searchbar2").css("display", "none");
+			$("#searchbar3").css("display", "none");
+			$("#searchbar4").css("display", "none");
+			$("#searchbar5").css("display", "inline-block");
+			$("a").removeClass("active");
+			$(element).addClass("active");
+		}
 	</script>
 </body>
 

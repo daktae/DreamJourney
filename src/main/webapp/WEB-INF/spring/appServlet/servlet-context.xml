@@ -29,6 +29,7 @@
 	<context:component-scan base-package="com.test.emailwj" />
 		<context:component-scan base-package="com.test.mapper" />
 		<context:component-scan base-package="com.test.checkwj" />
+				<context:component-scan base-package="com.test.service" />
 
 	
 	<security:global-method-security pre-post-annotations="enabled" />

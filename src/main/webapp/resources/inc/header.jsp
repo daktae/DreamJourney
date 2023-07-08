@@ -37,7 +37,7 @@
                 <div class="collapse navbar-collapse justify-content-between px-5" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.html" class="nav-item nav-link active">홈</a>
-                        <a href="about.html" class="nav-item nav-link">예약/예매</a>
+                        <a href="/dreamjourney/reservation" class="nav-item nav-link">예약/예매</a>
                         <a href="service.html" class="nav-item nav-link">추천 여행지</a>
                         <a href="single.html" class="nav-item nav-link">커뮤니티</a>
                         
