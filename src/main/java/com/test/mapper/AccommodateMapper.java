@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.test.domain.AccommodateDTO;
 import com.test.domain.RoomDTO;
+import com.test.domain.TrandateDTO;
 import com.test.domain.TransportDTO;
 
 public interface AccommodateMapper {
@@ -20,4 +21,12 @@ public interface AccommodateMapper {
 	List<TransportDTO> trainlist();
 	
 	List<TransportDTO> airplanelist();
+
+	List<TrandateDTO> tranlist();
+
+	TransportDTO tran_get(String tran_seq);
+
+	List<TrandateDTO> tran_view(String tran_seq);
+	
+	//Integer count() throws Exception;
 }

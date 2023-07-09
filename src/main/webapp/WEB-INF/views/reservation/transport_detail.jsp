@@ -53,6 +53,7 @@
 	margin-left: 15px;
 	margin-right: 15px;
 }
+
 </style>
 <body>
 
@@ -132,7 +133,6 @@
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
 				<h3 class="display-4 text-white text-uppercase">버스</h3>
-
 			</div>
 		</div>
 	</div>
@@ -144,7 +144,7 @@
 
 	<!-- 내용쓰는곳 -->
 	<!-- Booking Start 검색 바 -->
-	<div class="container-fluid booking mt-5 pb-5">
+<!-- 	<div class="container-fluid booking mt-5 pb-5">
 		<div class="container pb-5">
 			<div class="bg-light shadow" style="padding: 30px;">
 				<div class="row align-items-center" style="min-height: 60px;">
@@ -204,7 +204,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- Booking End -->
 
 	<!-- 내용 작성 -->
@@ -219,22 +219,18 @@
 					<div style="width: 100%;">
 						<div class="text-center">
 							<h5 class="m-1">
-								<span class="text">${dto.departure}</span> <span class="text">>></span>
-								<span class="text">${dto.destination}</span>
+								<span class="text"></span> <span class="text">>></span>
+								<span class="text"></span>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="text2">운영
-									시간 : ${dto.runtime}분</span> <span class="text2">정원 :
-									${dto.limit}</span> <span class="text2">가격 : ${dto.price}</span>
+									시간 : 분</span> <span class="text2">정원 :
+									</span> <span class="text2">가격 : </span>
 							</h5>
 						</div>
 					</div>
 					<div class="col-md-2">
-						<form action="/dreamjourney/reservation/transport_detail" method="GET">
-							<input type="hidden" name="tran_seq" value="${dto.tran_seq}">
-							<button class="btn btn-primary btn-block" type="submit"
-								style="height: 47px; margin-top: -2px;">예약</button>
-						</form>
+						<button class="btn btn-primary btn-block" type="submit"
+							style="height: 47px; margin-top: -2px;">예약</button>
 					</div>
-
 				</a>
 			</div>
 		</c:forEach>
@@ -333,7 +329,7 @@
 	<!-- Template Javascript -->
 	<script src="/dreamjourney/resources/js/main.js"></script>
 
-
+	
 </body>
 </html>
 

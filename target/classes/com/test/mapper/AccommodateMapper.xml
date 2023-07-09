@@ -4,17 +4,20 @@
 
 <mapper namespace="com.test.mapper.AccommodateMapper">
 	<!-- select 태그 -->
-
+	
+<!-- 숙소 리스트 -->
 	<select id="accommodatelist"
 		resultType="com.test.domain.AccommodateDTO">
 		select * from tblAccommodate
 	</select>
-
+	
+<!-- 하다가 만거 -->
 	<select id="accomodatecategorycount"
 		resultType="com.test.domain.AccommodateDTO">
 		SELECT COUNT(*) FROM tblAccommodate WHERE type = '호텔'
 	</select>
 
+<!-- 숙소 상세페이지 -->
 	<select id="get" resultType="com.test.domain.AccommodateDTO"
 		parameterType="String">
 		select * from tblAccommodate where acco_seq = #{acco_seq}
@@ -25,21 +28,55 @@
 		select * from tblRoom where acco_seq = #{acco_seq}
 	</select>
 
+<!-- 버스 상세 -->	
+	<select id="tran_get" resultType="com.test.domain.TransportDTO"
+		parameterType="String">
+		select * from tblTransport where tran_seq = #{tran_seq}
+	</select>
+	
+	<select id="tran_view" resultType="com.test.domain.TrandateDTO"
+		parameterType="String">
+		select * from tblTrandate where tran_seq = #{tran_seq}
+	</select>
 
+<!-- 버스 리스트 -->
 	<select id="transportlist"
 		resultType="com.test.domain.TransportDTO" parameterType="String">
 		select * from tblTransport where type = '버스'
 	</select>
-	
+
+<!-- 기차 리스트 -->	
 	<select id="trainlist"
 		resultType="com.test.domain.TransportDTO" parameterType="String">
 		select * from tblTransport where type = '기차'
 	</select>
-	
+
+<!-- 비행기 리스트 -->	
 	<select id="airplanelist"
 		resultType="com.test.domain.TransportDTO" parameterType="String">
 		select * from tblTransport where type = '비행기'
 	</select>
+	
+	
+	
+	<!-- 게시물 총 갯수 -->
+	<!-- 
+<select id="count" resultType="int">
+ select count(*) from tblTransport 
+</select>
+ -->
+
+
+<!-- 게시물 목록 + 페이징 -->
+<!-- 
+<select id="listPage" parameterType="hashMap" resultType="com.board.domain.BoardVO">
+ select
+  bno, title, writer, regDate, viewCnt
+ from tbl_board
+ order by bno desc
+  limit #{displayPost}, #{postNum}
+</select>
+ -->
 
 </mapper>
 

@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.test.domain.AccommodateDTO;
 import com.test.domain.RoomDTO;
+import com.test.domain.TrandateDTO;
 import com.test.domain.TransportDTO;
 import com.test.service.AccommodateService;
 
@@ -37,6 +40,7 @@ public class ReservationController {
 		
 		model.addAttribute("list", service.accommodatelist());
 
+		return "/reservation/accommodate";
 		
 		/* API
 		 * StringBuffer result = new StringBuffer(); String strResult = ""; try {
@@ -60,7 +64,6 @@ public class ReservationController {
 		 * model.addAttribute("result", strResult);
 		 */
 
-		return "/reservation/accommodate";
 	}
 
 	@GetMapping("/reservation/accommodate_detail")
@@ -74,10 +77,24 @@ public class ReservationController {
 		
 		return "/reservation/accommodate_detail";
 	}
+	
+	@GetMapping("/reservation/transport_detail")
+	private String transport_detail(Model model, String tran_seq) {
+		
+		TransportDTO tran_dto = service.tran_get(tran_seq);
+		List<TrandateDTO> tran_list = service.tran_view(tran_seq);
+		
+		model.addAttribute("dto", tran_dto);
+		model.addAttribute("list", tran_list);
+		
+		return "/reservation/transport_detail";
+	}
 
 	@GetMapping("/reservation/transport")
-	private String transport(Model model) {
+	private String transport(Model model) throws Exception {
 
+		//Integer cnt = service.count();
+		
 		model.addAttribute("list", service.transportlist());
 		
 		return "/reservation/transport";
@@ -99,5 +116,13 @@ public class ReservationController {
 		
 		return "/reservation/airplane";
 	}
-
+	
+	// 게시물 목록 + 페이징 추가
+	/*
+	 * public void getListPage(Model model) throws Exception {
+	 * 
+	 * List list = null; list = service.list(); model.addAttribute("list", list); }
+	 */
+	
+	
 }

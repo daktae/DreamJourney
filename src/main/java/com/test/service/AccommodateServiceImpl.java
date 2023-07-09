@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.test.domain.AccommodateDTO;
 import com.test.domain.RoomDTO;
+import com.test.domain.TrandateDTO;
 import com.test.domain.TransportDTO;
 import com.test.mapper.AccommodateMapper;
 
@@ -52,9 +53,34 @@ public class AccommodateServiceImpl implements AccommodateService{
 		return  mapper.airplanelist();
 	}
 
-	
-	
+	@Override
+	public List<TrandateDTO> tranlist() {
+		
+		return mapper.tranlist();
+	}
 
+	@Override
+	public TransportDTO tran_get(String tran_seq) {
+
+		return mapper.tran_get(tran_seq);
+	}
+
+	@Override
+	public List<TrandateDTO> tran_view(String tran_seq) {
+
+		return mapper.tran_view(tran_seq);
+	}
+
+	
+	// 게시물 총 갯수
+	/*
+	@Override
+	public Integer count() throws Exception {
+	 return mapper.count(); 
+	}
+	*/
+	
+	
 	//DAO 데이터를 주고 받으며 비즈니스 로직 수행
 	
 }
