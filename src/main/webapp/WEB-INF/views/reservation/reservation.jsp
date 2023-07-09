@@ -149,7 +149,7 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img src="/dreamjourney/resources/img/reservation/비행기.png">
                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
+                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/airplane">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -162,7 +162,7 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img src="/dreamjourney/resources/img/reservation/기차.jpg">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
+                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/train">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -175,13 +175,11 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img src="/dreamjourney/resources/img/reservation/고속버스.jpg">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
+                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/transport">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <div class="text-truncate"><span class="material-symbols-outlined">
-directions_bus
-</span> 고속버스</div>
+                            <div class="text-truncate"><span class="material-symbols-outlined">directions_bus</span> 고속버스</div>
                         </div>
                     </div>
                 </div>
@@ -257,7 +255,7 @@ directions_bus
                         </div>
                     </div>
                 <div style="float:right; font-size: 20px; font-weight: bold;"> 
-					<a href="">더보기 →</a>					                
+					<a href="/dreamjourney/reservation/accommodate">더보기 →</a>					                
                 </div>
                 </div>
             </div>

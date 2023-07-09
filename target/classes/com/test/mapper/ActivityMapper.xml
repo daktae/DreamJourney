@@ -18,7 +18,7 @@
 	</select>
 	
 	<!-- 리뷰 개수 -->
-	<select id="reviewCount" resultType="int" parameterType="String">
+	<select id="reviewCount" resultType="com.test.domain.ActivityDTO" parameterType="String">
 		select count(activity_seq) as rcount from vwActivityReview where activity_seq=#{activity_seq}
 	</select>
 	

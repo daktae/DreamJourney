@@ -21,12 +21,6 @@ public class ActivityController {
 	@Autowired
 	public ActivityService service;
 	
-	@GetMapping("/reservation") 
-	public String reservation() {
-		
-		return "/reservation/reservation";
-	}
-	
 	//액티비티 글 리스트
 	@GetMapping("/reservation/activity")
 	public String activity(Model model) {
