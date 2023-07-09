@@ -150,12 +150,11 @@ table.reserve_list {
 						</tr>
 						<tr>
 							<td>${dto.accommodate_name}</td>
-							<td><span class="material-symbols-outlined">star</span>4.8
-								(30)</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>호텔</td>
-							<td>230,000원</td>
+							<td></td>
 						</tr>
 					</table>
 				</c:if>
@@ -167,12 +166,11 @@ table.reserve_list {
 						</tr>
 						<tr>
 							<td>${dto.activity_name}</td>
-							<td><span class="material-symbols-outlined">star</span>4.8
-								(30)</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>${dto.activity_category}</td>
-							<td><fmt:formatNumber value="${dto.activity_price}" pattern="#,###"/>원</td>
+							<td></td>
 						</tr>
 					</table>
 				</c:if>
@@ -184,8 +182,7 @@ table.reserve_list {
 						</tr>
 						<tr>
 							<td>${dto.food_name}</td>
-							<td><span class="material-symbols-outlined">star</span>4.8
-								(30)</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>맛집</td>
@@ -201,8 +198,7 @@ table.reserve_list {
 						</tr>
 						<tr>
 							<td>${dto.area_name}</td>
-							<td><span class="material-symbols-outlined">star</span>4.8
-								(30)</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>관광지</td>

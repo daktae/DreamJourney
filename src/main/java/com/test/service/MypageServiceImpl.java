@@ -14,6 +14,7 @@ import com.test.domain.BookmarkDTO;
 import com.test.domain.MemberDTO;
 import com.test.domain.PayDTO;
 import com.test.domain.TranReserveDTO;
+import com.test.domain.TripDTO;
 import com.test.domain.UnbookableReviewDTO;
 import com.test.domain.UnwrittenReviewDTO;
 import com.test.mapper.MypageMapper;
@@ -205,6 +206,19 @@ public class MypageServiceImpl implements MypageService {
 		map.put("trip_seq", trip_seq);
 		
 		return mapper.getDaySeq(map);
+	}
+	
+	@Override
+	public List<TripDTO> getTrip() {
+
+		return mapper.getTrip();
+	}
+	
+	@Override
+	public void journeyshar(String trip_seq) {
+
+		mapper.journeyshar(trip_seq);
+		
 	}
 	
 }

@@ -1,10 +1,10 @@
 package com.test.controller;
 
-import java.text.SimpleDateFormat; 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,14 +19,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.MemberDTO;
+import com.test.domain.TripDTO;
 import com.test.domain.UnbookableReviewDTO;
 import com.test.domain.UnwrittenReviewDTO;
 import com.test.service.MypageService;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 
 @Controller
@@ -70,8 +66,34 @@ public class MypageController {
 
 	// 내 여행
 	@GetMapping("/mypage/journey")
-	private String journey() {
+	private String journey(Model model) {
+		
+		//세션 아이디 받아서 넘겨줘야함
+		model.addAttribute("list", service.getTrip());
+		
 		return "mypage/journey";
+	}
+	
+	@PostMapping("/mypage/journeydel")
+	private String journeydel(String trip_seq) {
+		
+		String day_seq = service.getDay_seq(trip_seq);
+		
+		service.scheduledel(trip_seq);
+		service.daydel(trip_seq);
+		service.journeydel(trip_seq);
+		
+		return "redirect:/mypage/journey";
+		
+	}
+	
+	@PostMapping("/mypage/journeyshar")
+	private String journeyshar(String trip_seq) {
+		
+		service.journeyshar(trip_seq);
+		
+		return "redirect:/mypage/journey";
+		
 	}
 
 	// 내 여행 등록
@@ -297,20 +319,14 @@ public class MypageController {
 
 	// 예약 상세
 	@GetMapping("/mypage/mypage_reserve_view")
-	private String mypage_reserve_view(Model model, String trandate_seq, String rdate_seq, String adate_seq) {
+	private String mypage_reserve_view(Model model, String pay_seq) {
 
 		
 		
-		if (trandate_seq != null && trandate_seq != "") {
-			model.addAttribute("tlist", service.treservedetail(trandate_seq));
-			model.addAttribute("list", service.tpay(trandate_seq));
-		} else if (rdate_seq != null && rdate_seq != "") {
-			model.addAttribute("rlist", service.rreservedetail(rdate_seq));
-			model.addAttribute("list", service.rpay(rdate_seq));
-	    } else if (adate_seq != null && adate_seq != "") {
-	    	model.addAttribute("alist", service.areservedetail(adate_seq));
-	    	model.addAttribute("list", service.apay(adate_seq));
-	    }		
+			model.addAttribute("tlist", service.treservedetail(pay_seq));
+			model.addAttribute("rlist", service.rreservedetail(pay_seq));
+	    	model.addAttribute("alist", service.areservedetail(pay_seq));
+	    	model.addAttribute("list", service.rpay(pay_seq));
 		
 
 		

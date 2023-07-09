@@ -14,8 +14,7 @@
 		at.address as
 		Activity_address,
 		at.category as Activity_category,
-		at.price as
-		Activity_price,
+		at.price as	Activity_price,
 		f.name as Food_name,
 		f.address as Food_address,
 		ar.name
@@ -91,7 +90,7 @@
 	</select>
 	
 	<select id="treservedetail" resultType="com.test.domain.TranReserveDTO">
-		select 
+		select
 		    tp.type,
 		    tp.runtime,
 		    tp.departure,
@@ -99,59 +98,59 @@
 		    tp.price,
 		    td.tran_date,
 		    td.begin,
-		    tr.regdate,
-		    tr.treserve_seq
-		from tblTranReserve tr
+		    p.trandate_seq,
+		    p.regdate,
+		    p.pay_seq
+		from tblPay p
 		    inner join tblTranDate td
-		        on tr.trandate_seq = td.trandate_seq
-		            inner join tblTransport tp
-		                on td.tran_seq = tp.tran_seq
-		                    where tr.treserve_seq = #{treserve_seq}
+				        on p.trandate_seq = td.trandate_seq
+				            inner join tblTransport tp
+				                on td.tran_seq = tp.tran_seq
+				                    where p.member_seq = 5 and p.pay_seq = #{pay_seq}
+				                        order by regdate desc
 	</select>
 	
-	<select id="tpay" resultType="com.test.domain.PayDTO">
-		select * from tblPay where treserve_seq = #{treserve_seq}	
-	</select>
 	
 	<select id="rreservedetail" resultType="com.test.domain.AccoReserveDTO">
 		select 
-		    a.type,
-		    rr.regdate,
+    		a.type,
+		    p.regdate,
 		    rd.rdate,
 		    a.address,
 		    r.price,
 		    r.limit,
-		    rr.rreserve_seq,
-		    a.name
-		from tblRoomReserve rr
-		inner join tblRoomDate rd on rr.rdate_seq = rd.rdate_seq
-		inner join tblRoom r on rd.room_seq = r.room_seq
-		inner join tblAccommodate a on r.acco_seq = a.acco_seq
-		where rr.rreserve_seq = #{rreserve_seq}
+		    p.rdate_seq,
+		    a.name,
+		    p.pay_seq
+		from tblPay p
+		    inner join tblRoomDate rd on p.rdate_seq = rd.rdate_seq
+				inner join tblRoom r on rd.room_seq = r.room_seq
+				inner join tblAccommodate a on r.acco_seq = a.acco_seq
+				where p.member_seq = 5 and p.pay_seq = #{pay_seq}
+				order by regdate desc
 	</select>
 	
 	<select id="rpay" resultType="com.test.domain.PayDTO">
-		select * from tblPay where rreserve_seq = #{rreserve_seq}	
+		select * from tblPay where pay_seq = #{pay_seq}	
 	</select>
 	
 	<select id="areservedetail" resultType="com.test.domain.ActivityReserveDTO">
 		select
 		    a.title,
-		    ar.regdate,
+		    p.regdate,
 		    a.category,
 		    ad.adate,
 		    a.address,
 		    a.price,
-		    ar.areserve_seq
-		from tblActivityReserve ar
-		inner join tblActivityDate ad on ar.adate_seq = ad.adate_seq
+		    p.adate_seq,
+		    p.pay_seq
+		from tblPay p
+		inner join tblActivityDate ad on p.adate_seq = ad.adate_seq
 		inner join tblActivity a on ad.activity_seq = a.activity_seq
-		where ar.areserve_seq = #{areserve_seq}
+		where p.member_seq = 5 and p.pay_seq = #{pay_seq}
+		order by regdate desc
 	</select>
 	
-	<select id="apay" resultType="com.test.domain.PayDTO">
-		select * from tblPay where areserve_seq = #{areserve_seq}	
-	</select>
 
 	<delete id="payDel">
 		delete from tblPay where pay_seq = #{pay_seq}
@@ -274,10 +273,15 @@
 		WHERE (SELECT pay_seq FROM tblReview WHERE review_seq = #{seq})
 	</update>
 	
-<!-- 	<select id="getUnwrittenAccommodate" resultType="com.test.domain.UnwrittenReviewDTO">
-		
+	<select id="getTrip" resultType="com.test.domain.TripDTO">
+		select * from tblTrip where member_seq = 5 order by regdate desc
 	</select>
- -->
+	
+	<update id="journeyshar">
+		update tblTrip set is_shared = 'y'
+		where trip_seq = #{trip_seq}
+	</update>
+	
 </mapper>
 
 

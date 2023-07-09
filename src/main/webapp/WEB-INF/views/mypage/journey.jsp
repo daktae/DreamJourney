@@ -151,82 +151,60 @@ text-align: center;
 
 			<div id="card-area">
 
+				<c:forEach items="${list}" var="dto">
 				<div class="card">
 					<table>
 						<tr>
 							<td id="image-cell"><img src="../resources/img/mypage/mypage_gwangan.jpg"></td>
 						</tr>
 						<tr>
-							<td>내 생에 마지막 발리 같은 여수 여행</td>
+							<td>${dto.title}</td>
 						</tr>
 						<tr>
-							<td>2023.06.27</td>
+							<td>${dto.regdate.substring(0, 10)}</td>
 						</tr>
 						<tr>
 							<td id="btn-td">
-								<button id="btn-edit">수정</button>
+								<button id="btn-edit" onclick="goToViewJourney(${dto.trip_seq})">조회</button>
+								<form method="POST" action="/dreamjourney/mypage/journeydel">
+								<input type="hidden" name="trip_seq" value="${dto.trip_seq}">
 								<button id="btn-delete">삭제</button>
+								</form>
+								<c:if test="${dto.is_shared eq 'n'}">
+								<form method="POST" action="/dreamjourney/mypage/journeyshar">
+								<input type="hidden" name="trip_seq" value="${dto.trip_seq}">
 								<button id="btn-share">공유</button>
+								</form>
+								</c:if>
 							</td>
 						</tr>
 					</table>
 				</div>
+				</c:forEach>
 
-				<div class="card">
-					<table>
-						<tr>
-							<td id="image-cell"><img src="../resources/img/mypage/mypage_gwangan.jpg"></td>
-						</tr>
-						<tr>
-							<td>내 생에 마지막 발리 같은 여수 여행</td>
-						</tr>
-						<tr>
-							<td>2023.06.27</td>
-						</tr>
-						<tr>
-							<td id="btn-td">
-								<button id="btn-edit">수정</button>
-								<button id="btn-delete">삭제</button>
-								<button id="btn-share">공유</button>
-							</td>
-						</tr>
-					</table>
-				</div>
-
-				<div class="card">
-					<table>
-						<tr>
-							<td id="image-cell"><img src="../resources/img/mypage/mypage_gwangan.jpg"></td>
-						</tr>
-						<tr>
-							<td>내 생에 마지막 발리 같은 여수 여행</td>
-						</tr>
-						<tr>
-							<td>2023.06.27</td>
-						</tr>
-						<tr>
-							<td id="btn-td">
-								<button id="btn-edit">수정</button>
-								<button id="btn-delete">삭제</button>
-								<button id="btn-share">공유</button>
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
+				
+						
+		</div>
 
 			<!-- card-area end -->
 			<button id="btn-add" onclick="location.href='/dreamjourney/mypage/addjourney';">여행 등록</button>
 		</div>
 
-
 	</div>
+
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
-
-	<script>
+<script>
+	
+	function goToViewJourney(tripSeq) {
+		// tripSeq 값을 사용하여 URL을 동적으로 생성합니다.
+		var url = '/dreamjourney/mypage/viewjourney?trip_seq=' + tripSeq;
 		
-	</script>
+		// 생성된 URL로 이동합니다.
+		window.location.href = url;
+	}
+	
+</script>
 
 
 </body>

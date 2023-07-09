@@ -8,6 +8,7 @@ import com.test.domain.ActivityReserveDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.PayDTO;
 import com.test.domain.TranReserveDTO;
+import com.test.domain.TripDTO;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.MemberDTO;
 import com.test.domain.UnbookableReviewDTO;
@@ -70,6 +71,10 @@ public interface MypageMapper {
 	int setReviewStatus(String seq);
 
 	List<UnwrittenReviewDTO> getUnwrittenAccommodate();
+
+	List<TripDTO> getTrip();
+
+	void journeyshar(String trip_seq);
 
 
 }
