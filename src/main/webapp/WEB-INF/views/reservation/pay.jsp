@@ -45,7 +45,15 @@
 </head>
 <style>
 img {
-	width: 100px;
+	width: 250px;
+	float: left;
+	margin-right: 20px;
+}
+
+.info {
+	display: inline-block;
+	margin: 5px 0;
+	width: 430px;
 }
 
 p {
@@ -65,7 +73,7 @@ h3 {
 	background-color: #EEE;
 	float: right;
 	width: 650px;
-	height: 820px;
+	height: 800px;
 	margin-right: 30px;
 	padding: 20px;
 }
@@ -78,7 +86,7 @@ h3 {
 	justify-content: center;
 	display: inline-block;
 	width: 750px;
-	height: 820px;
+	height: 800px;
 	padding: 20px;
 }
 
@@ -107,9 +115,7 @@ h3 {
 	font-weight: bold;
 }
 
-img {
-	width: 500px;
-}
+
 
 a:hover {
 	text-decoration: none;
@@ -216,13 +222,16 @@ a:hover {
 	<div class="container-fluid py-5" style="height: 1000px;">
 
 		<div class="pay_container">
+			<div style="height: 270px;">
 			<h3>상품정보</h3>
 			<hr>
 			<img src="/dreamjourney/resources/img/reservation/${pdetail.image1 }" >
-			<div style="font-weight: bold; font-size: 18px;" id="title">${pdetail.title}</div>
-			<div>${pdetail.address}</div>
-			<div>${dto.dates }</div>
-			<div style="background-color: #DDD; height: 50px; padding: 15px;">가격</div>
+			<div style="font-weight: bold; font-size: 18px;" id="title" class="info">${pdetail.title}</div>
+			<div class="info"><span class="material-symbols-outlined">location_on</span> ${pdetail.address}</div>
+			<div class="info"><span class="material-symbols-outlined">calendar_month</span> ${dto.dates }</div>
+			<div class="info"><span class="material-symbols-outlined">person</span> ${dto.totalPeople}명</div>
+			</div>
+			<div style="height: 200px;">
 			<h3 style="margin-top: 30px;">예약자</h3>
 			<hr>
 			<div style="background-color: #DDD; padding: 15px;">
@@ -230,7 +239,8 @@ a:hover {
 				<div>아이디 :</div>
 				<div>연락처 :</div>
 			</div>
-			<div>
+			</div>
+			<div style="height: 230px;">
 				<h3 style="margin-top: 30px;">결제 방법</h3>
 				<hr>
 				<input type="radio" name="pay_radio" value="card" id="card"> 신용카드 <select
@@ -255,11 +265,9 @@ a:hover {
 			<h3>결제정보</h3>
 			<hr>
 			<div>
-				<h4>주문금액</h4>
-				${pdetail.price }원 * ${dto.totalPeople }명
 				<div id="totalprice"	style="background-color: #F5FBFF; color: #2B96ED; padding: 15px; margin: 10px 0;">
 					<h3 style="color: #2B96ED;">총 결제금액</h3>
-					<div id="totalPrice">${dto.totalPrice }원</div>
+					<div id="totalPrice"><span style="font-weight: bold; font-size: 20px;">${dto.totalPrice }원</span> (${pdetail.price }원 * ${dto.totalPeople }명)</div>
 				</div>
 			</div>
 			<h4 style="margin: 20px 0;">약관 안내</h4>
@@ -362,7 +370,7 @@ $('#check_module').click(function() {
 	    pay_method : 'card',		//지불 수단
 	    merchant_uid: 'merchant_' + new Date().getTime(), //상점에서 생성한 고유 주문번호
 	    name : "${pdetail.title}",			//상품명
-	    amount : "${dto.totalPrice}",		//가격
+	    amount : 100,		//가격
 	    
 	    buyer_email : 'iamport@siot.do',	//구매자 이메일
 	    buyer_name : '구매자이름',			//구매자 이름
@@ -378,6 +386,21 @@ $('#check_module').click(function() {
 			msg += '상점 거래 ID : ' + rsp.merchant_uid;
 			msg += '결제 금액 : ' + rsp.paid_amount;
 			msg += '카드 승인번호 : ' + rsp.apply_num;  
+			
+				$.ajax({
+					url: "/dreamjourney/reservation/payok",
+					type: "POST",
+					dataType: "json",
+					data: {
+						totalPrice : "${dto.totalPrice}"
+					},
+					success: function(result) {
+							console.log('성공');
+						},
+					error: function(a, b, c) {
+						console.log(a, b, c);
+					}
+				});
 			
 		} else {
 			var msg = '결제에 실패하였습니다.';

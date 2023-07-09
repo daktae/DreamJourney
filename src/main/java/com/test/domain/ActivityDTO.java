@@ -24,6 +24,7 @@ public class ActivityDTO {
 	private String review_seq;	//리뷰번호
 	private String nickname;	//닉네임
 	private String rdate;			//리뷰 작성 날짜
+	private String rcount;		//리뷰 개수
 	
 	private String totalPrice;		//총 가격
 	private String totalPeople;	//총 인원

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -42,11 +41,14 @@ public class ActivityController {
 	@GetMapping("/reservation/viewactivity")
 	public String viewactivity(Model model, String activity_seq) {
 		
-		ActivityDTO dto = service.get(activity_seq);
-		List<ActivityDTO> rdto = service.review(activity_seq);
+		ActivityDTO dto = service.get(activity_seq);					//게시글
+		List<ActivityDTO> rdto = service.review(activity_seq);	//리뷰
+		String cdto = service.reviewCount(activity_seq);	//리뷰 수 
 		
 		model.addAttribute("adetail", dto);
 		model.addAttribute("review", rdto);
+		model.addAttribute("reviewCount", cdto);
+		System.out.println(cdto);
 		
 		return "/reservation/viewactivity";
 	}
@@ -79,11 +81,33 @@ public class ActivityController {
 	    System.out.println(activity_seq);
 	    
 	    service.bookmark_on(activity_seq);
-	    //return "/reservation/viewactivity";
 	}
 	
+	//결제성공
+	@PostMapping("/reservation/payok")
+	@ResponseBody
+	public void payok(@RequestParam("totalPrice") String totalPrice) {
+	    System.out.println("성공");
+	    System.out.println(totalPrice);
+	    
+	    service.payok(totalPrice);
+	}
 	
-	
+	//댓글 작성
+	/*
+	@PostMapping("/reservation/viewactivity")
+	@ResponseBody
+	public void review(@RequestParam("content") String content, @RequestParam("score") String score, @RequestParam("pay_seq") String pay_seq, String activity_seq ) {
+		
+		ReviewDTO rdto = new ReviewDTO();
+		rdto.setContent(content);
+		rdto.setScore(score);
+		rdto.setPay_seq(pay_seq);
+		rdto.setActivity_seq(activity_seq);
+		
+		service.addReview(rdto);
+	}
+	*/
 	
 	@GetMapping("/reservation/payok")
 	public String payok() {

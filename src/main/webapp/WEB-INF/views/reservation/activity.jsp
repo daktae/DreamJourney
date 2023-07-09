@@ -36,39 +36,15 @@
 	.thumbnail {
 		width: 250px;
 	}
-	/* .prev, .next {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-	}
-	
-	.prev {
-		left: 10px;
-	}
-	
-	.next {
-		right: 10px;
-	}
-
-	.row {
-		justify-content:center;
-		overflow:hidden;
-		position: relative;
-		width: 100%;
-	}
-	
-	.slide {
-		display: none;
-		flaot:left;
-		width: 25%;		
-	}*/
-	
-	
 
 	.categoryAll {
 		display: inline-block;
 		width: 100%;
-		justify-content:center;
+		text-align:center;
+	}
+	
+	.categoryAll button:hover {
+		box-shadow: 1px 1px 20px #ddd;
 	}
 
 	.category {
@@ -82,9 +58,6 @@
 		font-weight: bold;
 	}
 
-	/* .p1-4, .px-4, .p-4 {
-		padding-left : none;
-	} */
 
 	.text-truncate {
 		font-weight: bold;
@@ -228,12 +201,13 @@
     
     <!-- 카테고리 버튼 -->
     <div class="categoryAll">
-    			<div class="category">카테고리 홈</div>
-    			<div class="category">캠핑</div>
-    			<div class="category">보트투어</div>
-    			<div class="category">스파&마사지</div>
-    			<div class="category">스카이다이빙</div>
-    			<div class="category">일일투어</div>
+    			<button type="button" class="category">서울</button>
+    			<button type="button" class="category">대전</button>
+    			<button type="button" class="category">대구</button>
+    			<button type="button" class="category">부산</button>
+    			<button type="button" class="category">광주</button>
+    			<button type="button" class="category">강릉</button>
+    			<button type="button" class="category">제주</button>
     </div>
     
     
@@ -254,16 +228,12 @@
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate" id="title">${dto.title }</h5>
-                            <div class="m-0" id="content">${dto.content }</div>
+                            <div class="text-truncate" id="title" style="padding: 15px; text-weight: bold; font-size: 20px;">${dto.title }</div>
+                            <div class="m-0" id="content" style="text-align: justify; padding: 0 15px;">${dto.content }</div>
                         </div>
                     </div>
                 </div>
                 </c:forEach>
-                <!-- <div>
-                	<button type="button" class="prev">←</button>
-                	<button type="button" class="next">→</button>
-                </div> -->
             </div>
         </div>
     </div>
@@ -297,53 +267,16 @@
     <script src="/dreamjourney/resources/js/main.js"></script>
 </body>
 <script>
-	var slideIndex = 0;
-	showSlides();
-	
-	function showSlides() {
-		var slide = $(".slide");
-		var prevBtn = $(".prev");
-		var nextBtn = $(".next");
-		
-		//현재 슬라이드 숨김
-		slide.hide();
-		
-		//다음 4개의 슬라이드 표시
-		for (var j = slideIndex; j < slideIndex + 4; j++) {
-			if (slide.eq(j)) {		//slide 객체의 j번째 요소 선택
-				slide.eq(j).show();
+	$(document).ready(function() {
+		$('.m-0').each(function() {
+			var contentDiv = $(this);
+			var contentText = contentDiv.text();
+			if (contentText.length > 50) {
+				var content = contentText.substr(0, 50) + '...';
+				contentDiv.text(content);
 			}
-		}
-
-		//이전 버튼 클릭 시 슬라이드 이동
-		prevBtn.on("click", function() {
-			slideIndex -= 4;
-			
-			if (slideIndex < 0) {
-				slideIndex = slide.length - 4;
-			}
-			showSlides();
-		})
-		
-		//다음 버튼 클릭 시 슬라이드 이동
-		nextBtn.on("click", function() {
-			slideIndex += 4;
-			
-			if (slideIndex >= slide.length) {
-				slideIndex = 0;
-			}
-			showSlides();
-		})
-		
-		
-	}
-	
-	var contentDiv = $('#content');
-	var contentText = contentDiv.text();
-	if (contentText.length > 50) {
-		var content = contentText.substr(0, 50) + '...';
-		contentDiv.text(content);
-	}
+		});
+	});
 
 
 </script>
