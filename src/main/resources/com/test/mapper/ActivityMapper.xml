@@ -18,8 +18,8 @@
 	</select>
 	
 	<!-- 리뷰 개수 -->
-	<select id="reviewCount" resultType="String" parameterType="String">
-		select count(activity_seq) from vwActivityReview where activity_seq=#{activity_seq}
+	<select id="reviewCount" resultType="int" parameterType="String">
+		select count(activity_seq) as rcount from vwActivityReview where activity_seq=#{activity_seq}
 	</select>
 	
 	<!-- 리뷰 작성 -->
