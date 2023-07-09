@@ -33,18 +33,10 @@
 </head>
 <style>
 
-	.thumbnail {
-		width: 250px;
-	}
-
 	.categoryAll {
 		display: inline-block;
 		width: 100%;
-		text-align:center;
-	}
-	
-	.categoryAll button:hover {
-		box-shadow: 1px 1px 20px #ddd;
+		justify-content:center;
 	}
 
 	.category {
@@ -58,6 +50,9 @@
 		font-weight: bold;
 	}
 
+	.p1-4, .px-4, .p-4 {
+		padding-left : none;
+	}
 
 	.text-truncate {
 		font-weight: bold;
@@ -80,9 +75,12 @@
 		text-decoration:none;
 	}
 	
+	.row {
+		justify-content:center;
+	}
 	
 	.team-img {
-		width: 250px;
+		width: 255px;
 		height: 210px;
 	}
 	
@@ -153,7 +151,7 @@
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">액티비티</h3>
+                <h3 class="display-4 text-white text-uppercase">결제완료</h3>
                 
             </div>
         </div>
@@ -161,85 +159,13 @@
     <!-- Header End -->   
     
     
-    <!-- Booking Start 검색 바 -->
-    <div class="container-fluid booking mt-5 pb-5">
-        <div class="container pb-5">
-            <div class="bg-light shadow" style="padding: 30px;">
-                <div class="row align-items-center" style="min-height: 60px;">
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="mb-3 mb-md-0"><span class="sub">여행지</span>
-                                    <input type="text" class="form-control  px-4" style="height: 47px;" placeholder="어디로 떠나시나요?">
-                                </div>
-                            </div>
-                            <div class="col-md-3"><span class="sub">일정</span>
-                                <div class="mb-3 mb-md-0">
-                                    <div class="date" id="date1" data-target-input="nearest">
-                                        <input type="text" class="form-control p-4 datetimepicker-input" placeholder="언제 떠나시나요?" data-target="#date1" data-toggle="datetimepicker"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                 <div class="mb-3 mb-md-0"><span class="sub">액티비티</span>
-                                    <input type="text" class="form-control  px-4" style="height: 47px;" placeholder="어떤 액티비티를 원하시나요?">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">　
-                        <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">검색 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                          </svg></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Booking End -->
-    
-    
-    <!-- 카테고리 버튼 -->
-    <div class="categoryAll">
-    			<button type="button" class="category">서울</button>
-    			<button type="button" class="category">대전</button>
-    			<button type="button" class="category">대구</button>
-    			<button type="button" class="category">부산</button>
-    			<button type="button" class="category">광주</button>
-    			<button type="button" class="category">강릉</button>
-    			<button type="button" class="category">제주</button>
-    </div>
-    
-    
-    
-
-   <!-- 내용쓰는곳 -->
-    <!-- Team Start > 액티비티 -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <div class="row">
-            <c:forEach items="${list }" var="dto">
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${dto.image1 }"alt="">
-                            <div class="team-social">
-                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}">상세보기</a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <div class="text-truncate" id="title" style="padding: 15px; text-weight: bold; font-size: 20px;">${dto.title }</div>
-                            <div class="m-0" id="content" style="text-align: justify; padding: 0 15px;">${dto.content }</div>
-                        </div>
-                    </div>
-                </div>
-                </c:forEach>
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
     
    
+   <!-- 내용 작성 -->
+    <div class="container-fluid py-5" style="height: 100px; border: 1px solid black;">
+       결제가 완료되었습니다.
+   </div>
+                
 
 
     <%@ include file="/resources/inc/footer.jsp"%>
@@ -266,20 +192,7 @@
     <!-- Template Javascript -->
     <script src="/dreamjourney/resources/js/main.js"></script>
 </body>
-<script>
-	$(document).ready(function() {
-		$('.m-0').each(function() {
-			var contentDiv = $(this);
-			var contentText = contentDiv.text();
-			if (contentText.length > 50) {
-				var content = contentText.substr(0, 50) + '...';
-				contentDiv.text(content);
-			}
-		});
-	});
 
-
-</script>
 </html>
 
 

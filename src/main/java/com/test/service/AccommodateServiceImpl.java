@@ -71,6 +71,18 @@ public class AccommodateServiceImpl implements AccommodateService{
 		return mapper.tran_view(tran_seq);
 	}
 
+	@Override
+	public List<AccommodateDTO> review(String acco_seq) {
+
+		return mapper.review(acco_seq);
+	}
+
+	@Override
+	public String reviewCount(String acco_seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	// 게시물 총 갯수
 	/*

@@ -27,6 +27,8 @@ public interface AccommodateMapper {
 	TransportDTO tran_get(String tran_seq);
 
 	List<TrandateDTO> tran_view(String tran_seq);
+
+	List<AccommodateDTO> review(String acco_seq);
 	
 	//Integer count() throws Exception;
 }

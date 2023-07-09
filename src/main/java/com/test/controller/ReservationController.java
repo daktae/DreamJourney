@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.test.domain.AccommodateDTO;
+import com.test.domain.ActivityDTO;
 import com.test.domain.RoomDTO;
 import com.test.domain.TrandateDTO;
 import com.test.domain.TransportDTO;
@@ -71,9 +72,14 @@ public class ReservationController {
 		
 		AccommodateDTO dto = service.get(acco_seq);
 		List<RoomDTO> list = service.view(acco_seq);
+		List<AccommodateDTO> rdto = service.review(acco_seq);	//리뷰
+		String rcount = service.reviewCount(acco_seq);	//리뷰 수 
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("list", list);
+		model.addAttribute("review", rdto);
+		model.addAttribute("reviewCount", rcount);
+		//System.out.println(rcount);
 		
 		return "/reservation/accommodate_detail";
 	}

@@ -182,28 +182,22 @@
 
 					<!-- Comment List Start -->
 					<div class="bg-white" style="padding: 30px; margin-bottom: 30px;">
-						<h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">2
-							Comments</h4>
-						<div class="media mb-4">
-							<span class="material-symbols-outlined"> person </span>
-							<div class="media-body">
-								<h6>
-									<a href="">양진영</a> <small><i>01 Jan 2022</i></small>
-								</h6>
-								<p>소피텔 앰배서더 서울 호텔은 훌륭한 서비스와 아름다운 전망이 인상적이었습니다. 정말로 편안하고 품위
-									있는 숙박을 즐길 수 있었습니다.</p>
-							</div>
-						</div>
-						<div class="media">
-							<span class="material-symbols-outlined"> person </span>
-							<div class="media-body">
-								<h6>
-									<a href="">오소엽</a> <small><i>01 Jan 2023</i></small>
-								</h6>
-								<p>서비스드 레지던스는 넓은 객실과 편리한 시설을 갖춘 곳으로, 장기간의 숙박에 최적입니다. 자유로운
-									생활을 즐기면서도 호텔 수준의 서비스를 받을 수 있어서 만족스러웠습니다.</p>
-							</div>
-						</div>
+						<hr>
+				<h3>위치 안내</h3>
+				<div id="map" style="width: 780px; height: 400px; margin: 20px auto;"></div>
+				<div style="text-align: center;"><span class="material-symbols-outlined">location_on</span> ${adetail.address }</div>
+				<hr>
+				<div>
+					리뷰 (${reviewCount})
+					<hr>
+					<c:forEach items="${review }" var="rdto">
+						<div style="padding: 0 5px; font-weight: bold;">${rdto.nickname }</div>
+						<div style="padding: 5px;"><span class="score">${rdto.score }</span> <small>${rdto.rdate }</small></div>
+						<div style="padding: 5px;">${rdto.content }</div>
+						<hr>
+					</c:forEach>
+				</div>
+
 					</div>
 					<!-- Comment List End -->
 

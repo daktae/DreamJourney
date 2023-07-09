@@ -57,7 +57,15 @@
 		select * from tblTransport where type = '비행기'
 	</select>
 	
+	<!-- 리뷰 보기 -->
+	<select id="review" resultType="com.test.domain.AccommodateDTO" parameterType="String">
+		select * from vwAccommodateReview where acco_seq = #{acco_seq} order by rdate desc
+	</select>
 	
+	<!-- 리뷰 개수 -->
+	<select id="reviewCount" resultType="String" parameterType="String">
+    	select count(acco_seq) as rcount from vwAccommodateReview where acco_seq=#{acco_seq}
+	</select>
 	
 	<!-- 게시물 총 갯수 -->
 	<!-- 

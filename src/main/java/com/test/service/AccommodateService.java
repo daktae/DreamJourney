@@ -30,6 +30,10 @@ public interface AccommodateService {
 	
 	List<TrandateDTO> tran_view(String tran_seq);
 
+	List<AccommodateDTO> review(String acco_seq);
+
+	String reviewCount(String acco_seq);
+
 	//Integer count() throws Exception;
 
 	
