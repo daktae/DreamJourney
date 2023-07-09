@@ -11,6 +11,7 @@ import com.test.domain.TranReserveDTO;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.MemberDTO;
 import com.test.domain.UnbookableReviewDTO;
+import com.test.domain.UnwrittenReviewDTO;
 
 public interface MypageMapper {
 
@@ -67,6 +68,10 @@ public interface MypageMapper {
 	int deletebr(String seq);
 
 	int deleteubr(String seq);
+
+	int setReviewStatus(String seq);
+
+	List<UnwrittenReviewDTO> getUnwrittenAccommodate();
 
 
 }

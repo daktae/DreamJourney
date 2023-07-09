@@ -58,9 +58,20 @@
 	width: auto;
 }
 
+#unwritten-reviews {
+	margin-top: 20px;
+	border: 1px solid #27374D;
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+#unwritten-reviews>table {
+	width: 100%;
+}
+
 #reviews-container {
 	margin-top: 20px;
-	/* Adjust the margin-top value to set the desired vertical spacing */
 }
 
 .review-box {
@@ -82,7 +93,15 @@
 }
 
 .btn-edit {
-	background-color: #5392F9;
+	background-color: #82CD47;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	margin-right: 5px;
+}
+
+.btn-confirm {
+	background-color: #379237;
 	border: none;
 	border-radius: 10px;
 	color: white;
@@ -103,6 +122,13 @@
 	color: white;
 }
 
+#write-review {
+	background-color: #FFBF00;
+	border: none;
+	border-radius: 10px;
+	color: white;
+}
+
 textarea {
 	border: none;
 	resize: none;
@@ -112,27 +138,24 @@ textarea {
 	background-color: #D9D9D9;
 }
 
+.review-button {
+	border: none;
+	border-radius: 20px;
+	color: white;
+}
+
 #btn-accommodate {
 	width: 45px;
 	height: 30px;
-	background-color: #FFBF00;
-	border: none;
-	border-radius: 20px;
-	color: white;
+	background-color: #A1C2F1;
 }
 
 #btn-activity {
-	background-color: #7AB730;
-	border: none;
-	border-radius: 20px;
-	color: white;
+	background-color: #5A96E3;
 }
 
 #btn-restaurant {
-	background-color: #5F8D4E;
-	border: none;
-	border-radius: 20px;
-	color: white;
+	background-color: #0A6EBD;
 }
 
 .table-container {
@@ -169,12 +192,33 @@ textarea {
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
 
-			<div style="margin-top: 15px; margin-left: 15px;">내 리뷰</div>
-
 			<div>
-				<button id="btn-accommodate">숙박</button>
-				<button id="btn-activity">액티비티</button>
-				<button id="btn-restaurant">맛집</button>
+				<button class="review-button" id="btn-accommodate">숙박</button>
+				<button class="review-button" id="btn-activity">액티비티</button>
+				<button class="review-button" id="btn-restaurant">맛집</button>
+			</div>
+
+			<div id="unwritten-reviews">
+
+				<table>
+					<colgroup>
+						<col width="40%">
+						<col width="35%">
+						<col width="15%">
+					</colgroup>
+					<tr>
+						<td colspan="3"><b>1건</b>의 작성되지 않은 리뷰가 있습니다.</td>
+					</tr>
+					<tr>
+						<td>어쩌구게스트하우스</td>
+						<td style="text-align: center;">2023-07-07 ~ 2023-07-09</td>
+						<td style="text-align: right; padding-right: 60px;">
+							<button id="write-review">작성하기</button>
+						</td>
+					</tr>
+				</table>
+
+
 			</div>
 
 			<div id="reviews-container"></div>
@@ -190,6 +234,7 @@ textarea {
 		// default
 		$(document).ready(function() {
 			updateData('accommodate');
+			getUnwritten('accommodate');
 		});
 
 		
@@ -197,12 +242,59 @@ textarea {
 		// 버튼 핸들링
 		$("#btn-accommodate").click(function() {
 			updateData('accommodate');
+			getUnwritten('accommodate');
 		});
 		$("#btn-restaurant").click(function() {
 			updateData('restaurant');
+			getUnwritten('restaurant');
 		});
 		$("#btn-activity").click(function() {
 			updateData('activity');
+		});
+		
+		
+		
+		function getUnwritten(selected) {
+			
+ 			var container = $('#unwritten-reviews');
+			container.empty();
+			
+			$.ajax({
+				url : unwrittenreview,
+				type : 'GET',
+				dataType : 'json',
+				data : {
+					selected : selected
+				},
+				success : function(response) {
+					unwrittenboxhandling(response);
+				},
+				error : function(a, b, c) {
+					console.log(a, b, c);
+				}
+			}); 
+
+			
+		} //getUnwritten()
+		
+		
+		
+		function unwrittenboxhandling(result) {
+			
+			 for (var i = 0; i < result.length; i++) {
+				 
+				 
+				 
+			 }
+			
+		}
+		
+		
+		
+		$("#write-review").click(function() {
+			
+			
+			
 		});
 
 		
@@ -234,13 +326,12 @@ textarea {
 			});
 
 		} // updateData()
- 
 		
 		
 
 		// 리뷰 데이터로 테이블 형성
 		function tablehandling(selected, result) {
-		  // 컨테이너 형성
+	
 		  var container = $('#reviews-container');
 		  container.empty();
 		
@@ -272,9 +363,15 @@ textarea {
 		
 		      var rdate = review.rdate.substring(0, 10);
 		      row.append('<td>' + rdate + '</td>'); //작성일
-		
-		      // 수정, 삭제 버튼 appending
-		      row.append($('<td style="text-align: center;">').append(editButton).append(deleteButton));
+		      
+		  	  // 수정, 삭제 버튼 appending
+		      var buttonCell = $('<td style="text-align: center;">');
+		      buttonCell.append(editButton).append(deleteButton);
+		      row.append(buttonCell);
+
+		      // Set rowspan for the button column
+		      buttonCell.attr('rowspan', '2');
+
 		
 		      tbody.append(row);
 		
@@ -336,7 +433,7 @@ textarea {
 			editButton.hide();
 			deleteButton.hide();
 			
-			var confirmButton = $('<button class="btn-edit">확인</button>');
+			var confirmButton = $('<button class="btn-confirm">확인</button>');
 			var cancelButton = $('<button class="btn-cancel">취소</button>');
 			
 			var buttonCell = editButton.parent();

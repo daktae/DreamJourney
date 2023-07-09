@@ -272,7 +272,16 @@
 		<delete id="deleteubr">
 		delete from tblFoodReview where freview_seq = #{seq}
 	</delete>
-
+	
+	<update id="setReviewStatus">
+		UPDATE tblPay SET review_written = 'n'
+		WHERE (SELECT pay_seq FROM tblReview WHERE review_seq = #{seq})
+	</update>
+	
+<!-- 	<select id="getUnwrittenAccommodate" resultType="com.test.domain.UnwrittenReviewDTO">
+		
+	</select>
+ -->
 </mapper>
 
 

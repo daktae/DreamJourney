@@ -15,6 +15,7 @@ import com.test.domain.MemberDTO;
 import com.test.domain.PayDTO;
 import com.test.domain.TranReserveDTO;
 import com.test.domain.UnbookableReviewDTO;
+import com.test.domain.UnwrittenReviewDTO;
 import com.test.mapper.MypageMapper;
 
 @Service
@@ -196,6 +197,16 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public int deleteubr(String seq) {
 		return mapper.deleteubr(seq);
+	}
+
+	@Override
+	public int setReviewStatus(String seq) {
+		return mapper.setReviewStatus(seq);
+	}
+
+	@Override
+	public List<UnwrittenReviewDTO> getUnwrittenAccommodate() {
+		return mapper.getUnwrittenAccommodate();
 	}
 	
 }
