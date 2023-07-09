@@ -82,18 +82,23 @@ public class MypageController {
 		return "mypage/journey";
 	}
 	
-//	@PostMapping("/mypage/journeydel")
-//	private String journeydel(String trip_seq) {
-//		
-//		String day_seq = service.getDay_seq(trip_seq);
-//		
-//		service.scheduledel(trip_seq);
-//		service.daydel(trip_seq);
-//		service.journeydel(trip_seq);
-//		
-//		return "redirect:/mypage/journey";
-//		
-//	}
+	@PostMapping("/mypage/journeydel")
+	private String journeydel(String trip_seq) {
+		
+		int[] day_seq = service.getDay_seq(trip_seq);
+		
+		
+		for (int i=0; i<=day_seq.length; i++) {
+			service.scheduledel(day_seq[i]);
+		}
+		
+		service.daydel(trip_seq);
+		
+		service.journeydel(trip_seq);
+		
+		return "redirect:/mypage/journey";
+		
+	}
 	
 	@PostMapping("/mypage/journeyshar")
 	private String journeyshar(String trip_seq) {

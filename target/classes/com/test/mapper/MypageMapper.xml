@@ -312,6 +312,23 @@
 	<update id="updatestatus">
 		UPDATE tblPay SET review_written = 'y' WHERE pay_seq = #{seq}
 	</update>
+	
+	<select id="getDay_seq" resultType="int[]">
+		select day_seq from tblDay where trip_seq = #{trip_seq}
+ 	</select> 
+ 	
+ 	<delete id="scheduledel">
+ 		delete from tblSchedule where day_seq = #{day_seq}
+ 	</delete>
+ 	
+ 	<delete id="daydel">
+ 		delete from tblDay where trip_seq = #{trip_seq}
+ 	</delete>
+ 	
+ 	<delete id="journeydel">
+ 		delete from tblTrip where trip_seq = #{trip_seq}
+ 	</delete>
+ 	
  
 </mapper>
 

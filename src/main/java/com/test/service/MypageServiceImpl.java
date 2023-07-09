@@ -236,4 +236,25 @@ public class MypageServiceImpl implements MypageService {
 		
 	}
 	
+	@Override
+	public int[] getDay_seq(String trip_seq) {
+
+		return mapper.getDay_seq(trip_seq);
+	}
+	
+	@Override
+	public void scheduledel(int day_seq) {
+		mapper.scheduledel(day_seq);
+	}
+	
+	@Override
+	public void journeydel(String trip_seq) {
+		mapper.journeydel(trip_seq);
+	}
+	
+	@Override
+	public void daydel(String trip_seq) {
+		mapper.daydel(trip_seq);
+	}
+	
 }
