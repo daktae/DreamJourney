@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,12 @@ import com.test.domain.TripDTO;
 import com.test.domain.UnbookableReviewDTO;
 import com.test.domain.UnwrittenReviewDTO;
 import com.test.service.MypageService;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 
 @Controller
@@ -74,18 +82,18 @@ public class MypageController {
 		return "mypage/journey";
 	}
 	
-	@PostMapping("/mypage/journeydel")
-	private String journeydel(String trip_seq) {
-		
-		String day_seq = service.getDay_seq(trip_seq);
-		
-		service.scheduledel(trip_seq);
-		service.daydel(trip_seq);
-		service.journeydel(trip_seq);
-		
-		return "redirect:/mypage/journey";
-		
-	}
+//	@PostMapping("/mypage/journeydel")
+//	private String journeydel(String trip_seq) {
+//		
+//		String day_seq = service.getDay_seq(trip_seq);
+//		
+//		service.scheduledel(trip_seq);
+//		service.daydel(trip_seq);
+//		service.journeydel(trip_seq);
+//		
+//		return "redirect:/mypage/journey";
+//		
+//	}
 	
 	@PostMapping("/mypage/journeyshar")
 	private String journeyshar(String trip_seq) {
@@ -213,8 +221,8 @@ public class MypageController {
 		List <UnwrittenReviewDTO> list = new ArrayList <UnwrittenReviewDTO>();
 		
 		if(selected.equals("accommodate")) list = service.getUnwrittenAccommodate();
-		//else if(selected.equals("activity")) list = service.getUnwrittenActivity();
-		
+		else if(selected.equals("activity")) list = service.getUnwrittenActivity();
+				
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResponse;
 		
@@ -225,6 +233,23 @@ public class MypageController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	// 리뷰 작성
+	@ResponseBody
+	@RequestMapping(value="/mypage/writereview", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+	private void writereview(String seq, String content, String score) {
+		
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("seq", seq); //pay_seq
+		map.put("content", content);
+		map.put("score", score);
+
+		int result = -1;
+		result = service.updatestatus(seq);
+		result = service.writereview(map);
+		
+		System.out.println("리뷰 작성 결과: " + result);
 		
 	}
 
@@ -296,13 +321,11 @@ public class MypageController {
 		int result = -1;
 		
 		if(selected.equals("accommodate")||selected.equals("activity")) {
-			service.deletebr(seq);
 			result = service.setReviewStatus(seq);
+			result = service.deletebr(seq);
 		}
 		else if(selected.equals("restaurant")) result = service.deleteubr(seq);
-		
-		System.out.println("setReviewStatus: " + result);
-		
+				
 	}
 	
 

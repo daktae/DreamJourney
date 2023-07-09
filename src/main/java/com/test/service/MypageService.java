@@ -1,6 +1,7 @@
 package com.test.service;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Map;
 
 import com.test.domain.AccoReserveDTO;
 import com.test.domain.ActivityReserveDTO;
@@ -74,6 +75,11 @@ public interface MypageService {
 	List<TripDTO> getTrip();
 
 	void journeyshar(String trip_seq);
+	List<UnwrittenReviewDTO> getUnwrittenActivity();
+
+	int writereview(Map<String, String> map);
+
+	int updatestatus(String seq);
 
 
 }

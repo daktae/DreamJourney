@@ -75,6 +75,11 @@ public interface MypageMapper {
 	List<TripDTO> getTrip();
 
 	void journeyshar(String trip_seq);
+	List<UnwrittenReviewDTO> getUnwrittenActivity();
+
+	int writereview(Map<String, String> map);
+
+	int updatestatus(String seq);
 
 
 }
