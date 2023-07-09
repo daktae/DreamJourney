@@ -229,8 +229,11 @@
 						</div>
 					</div>
 					<div class="col-md-2">
-						<button class="btn btn-primary btn-block" type="submit"
-							style="height: 47px; margin-top: -2px;">예약</button>
+						<form action="/dreamjourney/reservation/airplane_detail" method="GET">
+							<input type="hidden" name="tran_seq" value="${dto.tran_seq}">
+							<button class="btn btn-primary btn-block" type="submit"
+								style="height: 47px; margin-top: -2px;">예약</button>
+						</form>
 					</div>
 				</a>
 			</div>

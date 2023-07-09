@@ -89,6 +89,30 @@ public class ReservationController {
 		
 		return "/reservation/transport_detail";
 	}
+	
+	@GetMapping("/reservation/train_detail")
+	private String train_detail(Model model, String tran_seq) {
+		
+		TransportDTO tran_dto = service.tran_get(tran_seq);
+		List<TrandateDTO> tran_list = service.tran_view(tran_seq);
+		
+		model.addAttribute("dto", tran_dto);
+		model.addAttribute("list", tran_list);
+		
+		return "/reservation/train_detail";
+	}
+	
+	@GetMapping("/reservation/airplane_detail")
+	private String airplane_detail(Model model, String tran_seq) {
+		
+		TransportDTO tran_dto = service.tran_get(tran_seq);
+		List<TrandateDTO> tran_list = service.tran_view(tran_seq);
+		
+		model.addAttribute("dto", tran_dto);
+		model.addAttribute("list", tran_list);
+		
+		return "/reservation/airplane_detail";
+	}
 
 	@GetMapping("/reservation/transport")
 	private String transport(Model model) throws Exception {

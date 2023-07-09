@@ -45,14 +45,13 @@
 }
 
 .text {
-	margin-left: 15px;
-	margin-right: 15px;
+	/* margin-left: 15px;
+	margin-right: 15px; */
+	margin: 15px;
+	padding: 5px;
 }
 
-.text2 {
-	margin-left: 15px;
-	margin-right: 15px;
-}
+
 
 </style>
 <body>
@@ -115,7 +114,6 @@
 
 								<a href="single.html" class="dropdown-item">공지사항</a> <a
 									href="single.html" class="dropdown-item">FAQ/문의</a>
-									<div>메롱</div>
 							</div>
 						</div>
 					</div>
@@ -144,73 +142,11 @@
 	<!-- Header End -->
 
 	<!-- 내용쓰는곳 -->
-	<!-- Booking Start 검색 바 -->
-<!-- 	<div class="container-fluid booking mt-5 pb-5">
-		<div class="container pb-5">
-			<div class="bg-light shadow" style="padding: 30px;">
-				<div class="row align-items-center" style="min-height: 60px;">
-					<div class="col-md-10">
-						<div class="row">
-							<div class="col-md-5">
-								<div class="mb-3 mb-md-0">
-									<input type="text" class="form-control  px-4"
-										style="height: 47px;" placeholder="출발지">
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="mb-3 mb-md-0">
-									<input type="text" class="form-control  px-4"
-										style="height: 47px;" placeholder="도착지">
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="mb-3 mb-md-0">
-									<div class="date" id="date1" data-target-input="nearest">
-										<input type="text"
-											class="form-control p-4 datetimepicker-input"
-											placeholder="출발 일" data-target="#date1"
-											data-toggle="datetimepicker" />
-									</div>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="mb-3 mb-md-0">
-									<div class="date" id="date2" data-target-input="nearest">
-										<input type="text"
-											class="form-control p-4 datetimepicker-input"
-											placeholder="도착 일" data-target="#date2"
-											data-toggle="datetimepicker" />
-									</div>
-								</div>
-							</div>
-							<div class="col-md-10">
-								<div class="mb-3 mb-md-0">
-									<input type="text" class="form-control  px-4"
-										style="height: 47px;" placeholder="인원 수"> </input>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-2">
-						<button class="btn btn-primary btn-block" type="submit"
-							style="height: 47px; margin-top: -2px;">
-							검색
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path
-									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                          </svg>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- Booking End -->
+	
 
 	<!-- 내용 작성 -->
 	<div class="container-fluid py-5" style="height: 1000px; width: 80%;">
-		<c:forEach items="${list}" var="dto">
+		<c:forEach items="${list}" var="list">
 			<div>
 				<a
 					class="d-flex align-items-center text-decoration-none bg-white mb-3"
@@ -220,11 +156,13 @@
 					<div style="width: 100%;">
 						<div class="text-center">
 							<h5 class="m-1">
-								<span class="text"></span> <span class="text">>></span>
-								<span class="text"></span>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="text2">운영
-									시간 : 분</span> <span class="text2">정원 :
-									</span> <span class="text2">가격 : </span>
+								<span class="text">${dto.departure}</span> 
+								<span class="text">>></span>
+								<span class="text">${dto.destination}</span>
+								<br><span class="text">출발 날짜 : ${list.tran_date}</span> 
+								<span>출발 시간 : ${list.begin }</span> 
+									<br><span class="text">신청 상황 : ${list.sold }</span> 
+									<span class="text">가격 : ${dto.price}</span>
 							</h5>
 						</div>
 					</div>
