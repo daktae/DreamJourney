@@ -271,13 +271,40 @@
 	
 	<update id="setReviewStatus">
 		UPDATE tblPay SET review_written = 'n'
-		WHERE (SELECT pay_seq FROM tblReview WHERE review_seq = #{seq})
+		WHERE pay_seq = (SELECT pay_seq FROM tblReview WHERE review_seq = #{seq})
 	</update>
 	
-<!-- 	<select id="getUnwrittenAccommodate" resultType="com.test.domain.UnwrittenReviewDTO">
-		
+ 	<select id="getUnwrittenAccommodate" resultType="com.test.domain.UnwrittenReviewDTO">
+		select
+		p.pay_seq,
+		rd.rdate as begindate,
+		a.name
+		from tblPay p
+		inner join tblroomdate rd on p.rdate_seq = rd.rdate_seq
+		inner join tblroom r on rd.room_seq = r.room_seq
+		inner join tblaccommodate a on r.acco_seq = a.acco_seq
+		where p.review_written = 'n' and p.rdate_seq is not null and p.member_seq = 5
 	</select>
- -->
+	
+	<select id="getUnwrittenActivity" resultType="com.test.domain.UnwrittenReviewDTO">
+		select
+		p.pay_seq,
+		ad.adate as begindate,
+		a.title as name
+		from tblPay p
+		inner join tblactivitydate ad on p.adate_seq = ad.adate_seq
+		inner join tblactivity a on ad.activity_seq = a.activity_seq
+		where p.review_written = 'n' and p.adate_seq is not null and p.member_seq = 5
+	</select>
+	
+	<insert id="writereview">
+		INSERT INTO tblReview VALUES (review_seq.nextVal, #{content}, #{score}, 800, 0, #{seq}, sysdate)
+	</insert>
+	
+	<update id="updatestatus">
+		UPDATE tblPay SET review_written = 'y' WHERE pay_seq = #{seq}
+	</update>
+ 
 </mapper>
 
 

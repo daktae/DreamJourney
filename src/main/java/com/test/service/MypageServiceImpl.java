@@ -206,5 +206,20 @@ public class MypageServiceImpl implements MypageService {
 		
 		return mapper.getDaySeq(map);
 	}
+
+	@Override
+	public List<UnwrittenReviewDTO> getUnwrittenActivity() {
+		return mapper.getUnwrittenActivity();
+	}
+
+	@Override
+	public int writereview(Map<String, String> map) {
+		return mapper.writereview(map);
+	}
+
+	@Override
+	public int updatestatus(String seq) {
+		return mapper.updatestatus(seq);
+	}
 	
 }

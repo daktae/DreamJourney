@@ -71,5 +71,11 @@ public interface MypageMapper {
 
 	List<UnwrittenReviewDTO> getUnwrittenAccommodate();
 
+	List<UnwrittenReviewDTO> getUnwrittenActivity();
+
+	int writereview(Map<String, String> map);
+
+	int updatestatus(String seq);
+
 
 }

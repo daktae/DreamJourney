@@ -7,7 +7,7 @@ public class BookableReviewDTO {
 	
 	String review_seq;
 	String content;
-	int score;
+	String score;
 	int thread;
 	int depth;
 	String pay_seq;

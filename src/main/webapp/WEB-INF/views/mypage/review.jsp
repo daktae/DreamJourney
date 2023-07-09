@@ -122,7 +122,7 @@
 	color: white;
 }
 
-#write-review {
+.write-review {
 	background-color: #FFBF00;
 	border: none;
 	border-radius: 10px;
@@ -168,6 +168,15 @@ textarea {
 .review-table {
 	width: 100%;
 }
+
+.rating {
+   width: 180px;
+}
+
+.rating__star {
+   cursor: pointer;
+   color: #dabd18b2;
+}
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -198,28 +207,8 @@ textarea {
 				<button class="review-button" id="btn-restaurant">맛집</button>
 			</div>
 
-			<div id="unwritten-reviews">
 
-				<table>
-					<colgroup>
-						<col width="40%">
-						<col width="35%">
-						<col width="15%">
-					</colgroup>
-					<tr>
-						<td colspan="3"><b>1건</b>의 작성되지 않은 리뷰가 있습니다.</td>
-					</tr>
-					<tr>
-						<td>어쩌구게스트하우스</td>
-						<td style="text-align: center;">2023-07-07 ~ 2023-07-09</td>
-						<td style="text-align: right; padding-right: 60px;">
-							<button id="write-review">작성하기</button>
-						</td>
-					</tr>
-				</table>
-
-
-			</div>
+			<div id="unwritten-container"></div>
 
 			<div id="reviews-container"></div>
 
@@ -237,65 +226,187 @@ textarea {
 			getUnwritten('accommodate');
 		});
 
-		
+	    var uwcontainer = $('#unwritten-container');
+		var rcontainer = $('#reviews-container');
 		
 		// 버튼 핸들링
 		$("#btn-accommodate").click(function() {
+			uwcontainer.empty();
 			updateData('accommodate');
 			getUnwritten('accommodate');
 		});
 		$("#btn-restaurant").click(function() {
+			uwcontainer.empty();
 			updateData('restaurant');
-			getUnwritten('restaurant');
 		});
 		$("#btn-activity").click(function() {
+			uwcontainer.empty();
 			updateData('activity');
+			getUnwritten('activity');
 		});
 		
 		
-		
+		// 미작성 리뷰 리스트 불러오기
 		function getUnwritten(selected) {
 			
- 			var container = $('#unwritten-reviews');
-			container.empty();
-			
+			uwcontainer.empty();
+						
 			$.ajax({
-				url : unwrittenreview,
-				type : 'GET',
-				dataType : 'json',
-				data : {
-					selected : selected
-				},
-				success : function(response) {
-					unwrittenboxhandling(response);
-				},
-				error : function(a, b, c) {
-					console.log(a, b, c);
-				}
-			}); 
+				  url: 'unwrittenreview',
+				  type: 'GET',
+				  dataType: 'json',
+				  data: {
+				    selected: selected
+				  },
+				  success: function(response) {
+				    if (response !== null && Object.keys(response).length > 0) {
+				      unwrittenboxhandling(selected, response);
+				    }
+				  },
+				  error: function(a, b, c) {
+				    console.log(a, b, c);
+				  }
+				});
 
-			
 		} //getUnwritten()
 		
 		
 		
-		function unwrittenboxhandling(result) {
-			
-			 for (var i = 0; i < result.length; i++) {
-				 
-				 
-				 
-			 }
-			
-		}
+		// 미작성 리뷰 리스트 출력
+		function unwrittenboxhandling(selected, result) {
+		
+		    uwcontainer.empty();
+		
+		    var tbldiv = $('<div id="unwritten-reviews">');
+		    var table = $('<table>');
+		
+		    // column 너비 조정
+		    var colgroup = $('<colgroup>');
+		    colgroup.append('<col width="40%">');
+		    colgroup.append('<col width="35%">');
+		    colgroup.append('<col width="15%">');
+		    table.append(colgroup);
+		
+		    var tbody = $('<tbody>');
+		    
+		    var firstRow = $('<tr>');
+		    var length = result.length;
+		    firstRow.append('<div style="margin-bottom: 10px;"><td colspan="3"><b>' + length + '건</b>의 작성되지 않은 리뷰가 있습니다.</td></div>');
+		    tbody.append(firstRow);
+		
+		    for (var i = 0; i < result.length; i++) {
+		
+		        (function () {
+		
+		            var unwri = result[i];
+		            var row = $('<tr>');
+		
+		            row.append('<td>' + unwri.name + '</td>'); //장소명
+		            row.append('<td style="text-align: center;">' + unwri.begindate + '</td>'); //예약일
+		
+		            var writeButton = $('<button class="write-review" style="margin-bottom: 5px;">작성하기</button>');
+		            row.append($('<td style="text-align: right; padding-right: 60px;">').append(writeButton));
+
+		
+		            var seq = unwri.pay_seq;
+		
+		            writeButton.click(function () {
+		                onwrite(seq, selected);
+		            });
+		
+		            tbody.append(row);
+		            
+		        })();
+		
+		    }
+		
+		    table.append(tbody);
+		    tbldiv.append(table);
+		    uwcontainer.append(tbldiv);
+}
 		
 		
-		
-		$("#write-review").click(function() {
+		// 리뷰 작성 버튼 클릭 시 모달창 출력
+		function onwrite(seq, selected) {
+			  var modal = $('<div class="modal" tabindex="-1" role="dialog">');
+			  var modalDialog = $('<div class="modal-dialog modal-dialog-centered" role="document">');
+			  var modalContent = $('<div class="modal-content" style="border-radius: 10px;">');
+			  var modalBody = $('<div class="modal-body" style="margin: 10px 0;">');
+			  var modalTitle = $('<h6 class="modal-title" style="margin-bottom: 10px;">리뷰 작성</h6>');
+			  var ratingStars = $('<div class="rating" style="margin: 10px 0;"></div>');
+			  var textarea = $('<textarea class="form-control" style="margin-bottom: 10px;"></textarea>');
+			  var completeButton = $('<button type="button" class="btn-confirm" style="margin-left: 10px; margin-top: 5px;">확인</button>');
+			  var cancelButton = $('<button type="button" class="btn-cancel" style="margin-left: 10px; margin-top: 5px;">취소</button>');
 			
+			  // Append stars to ratingStars
+			  for (var i = 0; i < 5; i++) {
+			    var star = $('<i class="rating__star far fa-star" style="margin-right: 1px;"></i>');
+			    ratingStars.append(star);
+			  }
 			
+			  textarea.attr('rows', '5');
+			  textarea.css('resize', 'none');
 			
-		});
+			  modalBody.append(modalTitle);
+			  modalBody.append(ratingStars);
+			  modalBody.append(textarea);
+			  modalBody.append(completeButton);
+			  modalBody.append(cancelButton);
+			  modalContent.append(modalBody);
+			  modalDialog.append(modalContent);
+			  modal.append(modalDialog);
+			
+			  modal.modal('show');
+			
+			  executeRating(ratingStars);
+			
+			  // Variables to store the number of colored stars
+			  var score = 0;
+			
+			  // Star click event handler
+			  ratingStars.find('.rating__star').click(function() {
+			    score = $(this).prevAll('.rating__star').length + 1;
+			  });
+			
+			  // 작성 완료 버튼 클릭 시 데이터 전송
+			  completeButton.click(function() {
+			    var content = textarea.val();
+			
+			    $.ajax({
+			      url: 'writereview',
+			      type: 'POST',
+			      data: {
+			        seq: seq,
+			        content: content,
+			        score: score // Include the number of colored stars in the request
+			      },
+			      success: function(response) {
+			        console.log('Write review success');
+			        updateData(selected);
+			        getUnwritten(selected);
+			        modal.modal('hide');
+			      },
+			      error: function(xhr, status, error) {
+			        console.log(xhr.responseText);
+			        console.log(status);
+			        console.log(error);
+			      }
+			    });
+			  });
+			
+			  // 취소 버튼 클릭
+			  cancelButton.click(function() {
+			    modal.modal('hide');
+			  });
+			
+			  // 모달 창 바깥 클릭
+			  modal.on('hidden.bs.modal', function() {
+			    modal.remove();
+			  });
+			}
+
+
+
 
 		
 		
@@ -331,84 +442,90 @@ textarea {
 
 		// 리뷰 데이터로 테이블 형성
 		function tablehandling(selected, result) {
-	
-		  var container = $('#reviews-container');
-		  container.empty();
-		
-		  for (var i = 0; i < result.length; i++) {
-		    (function () {
-		      var review = result[i];
-		
-		      // 테이블 형성
-		      var tableContainer = $('<div class="table-container">'); 
-		      var table = $('<table class="review-table">');
-		      var editButton = $('<button class="btn-edit">수정</button>');
-		      var deleteButton = $('<button class="btn-delete">삭제</button>');
-		
-		      // column 너비 조정
-		      var colgroup = $('<colgroup>');
-		      colgroup.append('<col width="20%">');
-		      colgroup.append('<col width="35%">');
-		      colgroup.append('<col width="20%">');
-		      colgroup.append('<col width="20%">');
-		      table.append(colgroup);
-		
-		      var tbody = $('<tbody>');
-		
-		      var row = $('<tr>');
-		
-		      // 리뷰 정보 appending
-		      row.append('<td>' + review.score + '</td>'); //평점
-		      row.append('<td>' + review.name + '</td>'); //장소명
-		
-		      var rdate = review.rdate.substring(0, 10);
-		      row.append('<td>' + rdate + '</td>'); //작성일
-		      
-		  	  // 수정, 삭제 버튼 appending
-		      var buttonCell = $('<td style="text-align: center;">');
-		      buttonCell.append(editButton).append(deleteButton);
-		      row.append(buttonCell);
-
-		      // Set rowspan for the button column
-		      buttonCell.attr('rowspan', '2');
-
-		
-		      tbody.append(row);
-		
-		      // 리뷰 내용 appending
-		      var contentrow = $('<tr>');
-		      var contentcell = $('<td colspan="3">' + review.content + '</td>');
-		
-		      contentrow.append(contentcell);
-		      tbody.append(contentrow);
-		
-		      table.append(tbody);
-		      tableContainer.append(table); 
-		      container.append(tableContainer); 
-		
-		      var seq = '';
-		
-		      switch (selected) {
-		        case 'accommodate':
-		        case 'activity':
-		          seq = review.review_seq;
-		          break;
-		        case 'restaurant':
-		          seq = review.freview_seq;
-		          break;
-		      }
-		
-		      editButton.click(function () {
-		        onedit(seq, selected, editButton, deleteButton);
-		      });
-		      
-		      deleteButton.click(function() {
-		    	  ondelete(seq, selected);
-		      })
-		      
-		    })();
-		  }
-		} // tablehandling()
+			  rcontainer.empty();
+			
+			  for (var i = 0; i < result.length; i++) {
+			    (function () {
+			      var review = result[i];
+			
+			      // 테이블 형성
+			      var tableContainer = $('<div class="table-container">');
+			      var table = $('<table class="review-table">');
+			      var editButton = $('<button class="btn-edit">수정</button>');
+			      var deleteButton = $('<button class="btn-delete">삭제</button>');
+			
+			      var ratingStars = $('<div class="rating" style="margin: 10px 0;"></div>');
+			
+			      // column 너비 조정
+			      var colgroup = $('<colgroup>');
+			      colgroup.append('<col width="20%">');
+			      colgroup.append('<col width="35%">');
+			      colgroup.append('<col width="20%">');
+			      colgroup.append('<col width="20%">');
+			      table.append(colgroup);
+			
+			      var tbody = $('<tbody>');
+			
+			      var row = $('<tr>');
+			
+			      var score = parseInt(review.score);
+			
+			      for (var j = 0; j < 5; j++) {
+			        var starClass = j <= score ? "rating__star fas fa-star" : "rating__star far fa-star";
+			        var star = $('<i class="' + starClass + '" style="margin-right: 1px;"></i>');
+			        ratingStars.append(star);
+			      }
+			
+			      // 리뷰 정보 appending
+			      row.append($('<td>').append(ratingStars)); // Append the ratingStars to a new <td> element and then append that <td> to the row
+			      row.append('<td>' + review.name + '</td>'); //장소명
+			
+			      var rdate = review.rdate.substring(0, 10);
+			      row.append('<td>' + rdate + '</td>'); //작성일
+			
+			      // 수정, 삭제 버튼 appending
+			      var buttonCell = $('<td style="text-align: center;">');
+			      buttonCell.append(editButton).append(deleteButton);
+			      row.append(buttonCell);
+			
+			      // Set rowspan for the button column
+			      buttonCell.attr('rowspan', '2');
+			      tbody.append(row);
+			
+			      // 리뷰 내용 appending
+			      var contentrow = $('<tr>');
+			      var contentcell = $('<td colspan="3">' + review.content + '</td>');
+			
+			      contentrow.append(contentcell);
+			      tbody.append(contentrow);
+			
+			      table.append(tbody);
+			      tableContainer.append(table);
+			      rcontainer.append(tableContainer);
+			
+			      var seq = '';
+			
+			      switch (selected) {
+			        case 'accommodate':
+			        case 'activity':
+			          seq = review.review_seq;
+			          break;
+			        case 'restaurant':
+			          seq = review.freview_seq;
+			          break;
+			      }
+			
+			      editButton.click(function () {
+			        onedit(seq, selected, editButton, deleteButton);
+			      });
+			
+			      deleteButton.click(function () {
+			        ondelete(seq, selected);
+			      });
+			
+			    })();
+			  }
+			} // tablehandling()
 
 		
 
@@ -526,6 +643,7 @@ textarea {
 						 console.log('delete success');
 					     modal.modal('hide');
 						 updateData(selected);
+						  getUnwritten(selected);
 					 },
 					 error: function (a, b, c) {
 						 console.log(a, b, c);
@@ -533,13 +651,28 @@ textarea {
 					 });
 		    });
 
-		    // Handle modal close event
 		    modal.on('hidden.bs.modal', function() {
-		        // Remove the modal from the DOM
 		        modal.remove();
 		    });
 		}
 		
+		
+		// 별점 주기
+		function executeRating(stars) {
+		  const starClassActive = "rating__star fas fa-star";
+		  const starClassInactive = "rating__star far fa-star";
+		
+		  stars.find('.rating__star').click(function() {
+		    const clickedStarIndex = $(this).index();
+		
+		    // Set all stars before the clicked star to active
+		    stars.find('.rating__star:lt(' + (clickedStarIndex + 1) + ')').removeClass(starClassInactive).addClass(starClassActive);
+		
+		    // Set all stars after the clicked star to inactive
+		    stars.find('.rating__star:gt(' + clickedStarIndex + ')').removeClass(starClassActive).addClass(starClassInactive);
+		  });
+		}
+
 		
 	</script>
 
