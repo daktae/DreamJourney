@@ -1,8 +1,9 @@
 package com.test.controller;
 
-import java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat; 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
 
 @Controller
 public class MypageController {
@@ -81,65 +83,90 @@ public class MypageController {
 	@PostMapping("/mypage/addjourneyok")	
 	private String addjourneyok(Model model,
 								String title,
-								String[] nth,
+								String[] nthValues,
 								String[] placeInputValues,
-	                            String[] memoInputValues) {
+	                            String[] memoInputValues,
+	                            String startdate,
+	                            String enddate) {
 		
 		String[] place = new String[placeInputValues.length];
 	    String[] address = new String[placeInputValues.length];
+	    String[] memo = new String[memoInputValues.length];
+	    String[] nth = new String[memoInputValues.length];
 	    
-	    String begin = "2023-07-07";
-	    String end = "2023-07-08";
+	    String begin = "";
+	    String end = "";
 	    
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date beginDate = dateFormat.parse(begin);
-            Date endDate = dateFormat.parse(end);
+	    SimpleDateFormat inputFormat = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
+	    SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-            long diffInMillies = Math.abs(endDate.getTime() - beginDate.getTime());
-            long diffInDays = (TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)) + 1;
+	    try {
+	        // 문자열을 Date 객체로 변환합니다.
+	        Date beginDate = inputFormat.parse(startdate);
+	        Date endDate = inputFormat.parse(enddate);
 
-            System.out.println("날짜 차이: " + diffInDays + "일");
-        } catch (ParseException e) {
-            e.printStackTrace();
+	        // Date 객체를 원하는 형식의 문자열로 변환합니다.
+	        begin = outputFormat.format(beginDate);
+	        end = outputFormat.format(endDate);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+        
+        int maxNth = Integer.MIN_VALUE;
+        
+        for (int i = 0; i < nthValues.length; i++) {
+            String numberNth = nthValues[i].substring(nthValues[i].length() - 1);
+            int numberNthValue = Integer.parseInt(numberNth);
+
+            if (numberNthValue > maxNth) {
+            	maxNth = numberNthValue;
+            }
         }
         
-        
+	    int tripResult = service.tripInsert(title, begin, end);
 	    
-	    System.out.println("title: " + title);
+	    String trip_seq = service.getTripId();
 	    
-	    //int tripResult = service.tripInsert(title, begin, end);
+	    for (int i=1; i<=maxNth; i++) {
+	    	String strI = String.valueOf(i);
+	    	int dayResult = service.dayInsert(strI, trip_seq);
+	    }
 	    
-	    //String trip_seq = service.getTripId();
-	    
-	    //int dayResult = service.dayInsert(nth, trip_seq);
 		
 	    for (int i = 0; i < placeInputValues.length; i++) {
 	        String[] parts = placeInputValues[i].split("_");  // 쉼표로 분리
+	        String[] dParts = memoInputValues[i].split("_");
 	        
 	        
 	        if (parts.length >= 2) {
 	            place[i] = parts[0].trim();  // place 배열에 저장
 	            address[i] = parts[1].trim();  // placeAddress 배열에 저장
+	            
 	        } else {
 	            // 배열에 저장할 요소가 충분하지 않은 경우 처리
 	            place[i] = placeInputValues[i];
 	            address[i] = "";  // 빈 문자열로 저장하거나 다른 방식으로 처리할 수 있습니다.
 	        }
 	        
+	        if (dParts.length >= 2) {
+	            memo[i] = dParts[0].trim();  // place 배열에 저장
+	            nth[i] = dParts[1].substring(dParts[1].length() - 1);  // placeAddress 배열에 저장
+	        } else {
+	            // 배열에 저장할 요소가 충분하지 않은 경우 처리
+	            memo[i] = placeInputValues[i];
+	            nth[i] = "";  // 빈 문자열로 저장하거나 다른 방식으로 처리할 수 있습니다.
+	        }
+
+	        String day_seq = service.getDaySeq(nth[i], trip_seq); 
 	        
-	        System.out.println("memo: " + memoInputValues[i]);
-	        System.out.println("Place: " + place[i]);
-	        System.out.println("Place Address: " + address[i]);
-	        System.out.println("nth: " + nth[i]);
 	        
-	        //int schResult = service.schInsert(nth, memoInputValues[i], place[i], address[i]);
+	        int schResult = service.schInsert(day_seq, memo[i], place[i], address[i]);
 	        
 	    }
 		
-		
-		
-	    return null;
+	    return "redirect:/mypage/journey";
 	}
 
 	// 내 여행 상세보기
@@ -229,19 +256,19 @@ public class MypageController {
 
 	// 예약 상세
 	@GetMapping("/mypage/mypage_reserve_view")
-	private String mypage_reserve_view(Model model, String treserve_seq, String rreserve_seq, String areserve_seq) {
+	private String mypage_reserve_view(Model model, String trandate_seq, String rdate_seq, String adate_seq) {
 
 		
 		
-		if (treserve_seq != null && treserve_seq != "") {
-			model.addAttribute("tlist", service.treservedetail(treserve_seq));
-			model.addAttribute("list", service.tpay(treserve_seq));
-		} else if (rreserve_seq != null && rreserve_seq != "") {
-			model.addAttribute("rlist", service.rreservedetail(rreserve_seq));
-			model.addAttribute("list", service.rpay(rreserve_seq));
-	    } else if (areserve_seq != null && areserve_seq != "") {
-	    	model.addAttribute("alist", service.areservedetail(areserve_seq));
-	    	model.addAttribute("list", service.apay(areserve_seq));
+		if (trandate_seq != null && trandate_seq != "") {
+			model.addAttribute("tlist", service.treservedetail(trandate_seq));
+			model.addAttribute("list", service.tpay(trandate_seq));
+		} else if (rdate_seq != null && rdate_seq != "") {
+			model.addAttribute("rlist", service.rreservedetail(rdate_seq));
+			model.addAttribute("list", service.rpay(rdate_seq));
+	    } else if (adate_seq != null && adate_seq != "") {
+	    	model.addAttribute("alist", service.areservedetail(adate_seq));
+	    	model.addAttribute("list", service.apay(adate_seq));
 	    }		
 		
 
@@ -250,18 +277,11 @@ public class MypageController {
 	}
 	
 	@PostMapping("/mypage/mypage_reservedelok")
-	private String mypage_reservedelok(Model model, String treserve_seq, String rreserve_seq, String areserve_seq) {
+	private String mypage_reservedelok(Model model, String pay_seq) {
 
 
-		System.out.println(treserve_seq);
 		
-		if (treserve_seq != null && treserve_seq != "") {
-			int result = service.treservedel(treserve_seq);
-		} else if (rreserve_seq != null && rreserve_seq != "") {
-			int result = service.rreservedel(rreserve_seq);
-	    } else if (areserve_seq != null && areserve_seq != "") {
-	    	int result = service.areservedel(areserve_seq);
-	    }		
+			int result = service.payDel(pay_seq);
 		
 
 		

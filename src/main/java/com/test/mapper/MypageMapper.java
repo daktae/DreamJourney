@@ -34,12 +34,6 @@ public interface MypageMapper {
 
 	PayDTO apay(String areserve_seq);
 
-	int treservedel(String treserve_seq);
-
-	int rreservedel(String rreserve_seq);
-
-	int areservedel(String areserve_seq);
-
 	MemberDTO getMemberInfo(int seq);
 
 	void saveMemberInfo(MemberDTO dto);
@@ -63,6 +57,10 @@ public interface MypageMapper {
 	int dayInsert();
 
 	int dayInsert(Map<String, String> map);
+
+	String getDaySeq(Map<String, String> map);
+
+	int payDel(String pay_seq);
 
 
 }

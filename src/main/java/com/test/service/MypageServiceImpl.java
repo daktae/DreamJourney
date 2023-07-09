@@ -131,21 +131,9 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public int treservedel(String treserve_seq) {
+	public int payDel(String pay_seq) {
 
-		return mapper.treservedel(treserve_seq);
-	}
-	
-	@Override
-	public int rreservedel(String rreserve_seq) {
-		
-		return mapper.rreservedel(rreserve_seq);
-	}
-	
-	@Override
-	public int areservedel(String areserve_seq) {
-
-		return mapper.areservedel(areserve_seq);
+		return mapper.payDel(pay_seq);
 	}
 	
 	@Override
@@ -186,6 +174,16 @@ public class MypageServiceImpl implements MypageService {
 		map.put("trip_seq", trip_seq);
 		
 		return mapper.dayInsert(map);
+	}
+	
+	@Override
+	public String getDaySeq(String nth, String trip_seq) {
+
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("nth", nth);
+		map.put("trip_seq", trip_seq);
+		
+		return mapper.getDaySeq(map);
 	}
 	
 }

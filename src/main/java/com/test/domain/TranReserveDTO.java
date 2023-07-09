@@ -14,6 +14,7 @@ public class TranReserveDTO {
 	private String tran_date;
 	private String begin;
 	private String regdate;
+	private String trandate_seq;
 	
 	private String pay_seq;
 	

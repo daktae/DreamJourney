@@ -136,10 +136,8 @@ button {
 
 				<!-- 여행 날짜 지정 -->
 				<tr>
-					<td>여행 시작일<span id="journey-begin"
-						class="clickable material-symbols-outlined">calendar_month</span></td>
-					<td>여행 종료일<span id="journey-end"
-						class="clickable material-symbols-outlined">calendar_month</span></td>
+				    <td id="trip-begin">여행 시작일<span id="journey-begin" class="clickable material-symbols-outlined">calendar_month</span></td>
+				    <td id="trip-end" style="display: none;">여행 종료일<span id="journey-end" class="clickable material-symbols-outlined">calendar_month</span></td>
 				</tr>
 
 				<!-- 지도 영역 -->
@@ -150,29 +148,6 @@ button {
 			</table>
 
 			<div id="new-tables">
-
-				<!-- 	<table class="journey-table">
-
-					nth/날짜 출력 영역
-					<tr>
-						<td class="date-td"><b>DAY <span id="nth">1</span></b>
-							<div class="selected-date">date</div></td>
-						<td></td>
-					</tr>
-
-					일정 추가 영역
-					<tr>
-						<td><input type="text" class="placeInput" placeholder="장소 추가">
-							<button type="button" class="btn-search"
-								onclick="openPopup(this)">
-								검색<span class="material-symbols-outlined"> search </span>
-							</button></td>
-						<td><input type="text" class="memoInput" placeholder="메모 추가">
-							<button type="button" class="btn-add" onclick="addTableRow()">
-								<span class="material-symbols-outlined">add</span>
-							</button></td>
-					</tr>
-				</table> -->
 
 			</div>
 
@@ -194,8 +169,8 @@ button {
 	<%@ include file="/resources/inc/footer.jsp"%>
 
 
-	
-	
+
+
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=015fae8b95c2d0f2c4d727e44d11a138&libraries=services"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -350,7 +325,12 @@ button {
 				    $('.date-td:eq(0) .selected-date').text(selectedDate); // 첫 번째 선택된 날짜를 업데이트하여 출력
 				    createTable(1, selectedDate); // selectedDate를 "yyyy-mm-dd" 형식으로 전달
 				
-				    // 등록하기 버튼 있는 테이블 보여주기
+				    
+				    $('#trip-end').css('display', '');
+				    
+				    $('#journey-begin').off('click');
+				    
+				  // 등록하기 버튼 있는 테이블 보여주기
 				  }).focus(function() {
 				    $(this).blur();
 				  });
@@ -379,6 +359,8 @@ button {
 				      var selectedDate = e.format('yyyy-mm-dd');
 				      enddate = new Date(selectedDate);
 				     	calculateDate();
+				     	
+				     	$('#journey-end').off('click');
 				    }).focus(function() {
 				      $(this).blur();
 				    });
@@ -471,7 +453,13 @@ button {
 				
 				var placeInputValues = []; // Array to store the values
 				var memoInputValues = [];
-				var nthInputValues = [];
+				var firstDivValues = []; // 배열 선언
+				
+
+				$('.date-td').each(function() {
+				    var firstDivValue = $(this).find('div:first').text(); // 각 요소의 첫 번째 div 값 가져오기
+				    firstDivValues.push(firstDivValue); // 배열에 추가
+				});
 
 				placeInputs.each(function() {
 					placeInputValues.push($(this).val()); // Add the value to the array
@@ -479,34 +467,35 @@ button {
 				});
 
 				memoInputs.each(function() {
-					memoInputValues.push($(this).val());
-					console.log($(this).val());
-				});
+					  var memoValue = $(this).val(); // memoInput 필드의 값을 가져옴
+					  var firstDivValue = $(this).closest('.journey-table').find('.date-td div:first').text();
+					  var combinedValue = memoValue + '_' + firstDivValue;
+					  memoInputValues.push(combinedValue); // 값을 배열에 추가
+					  console.log(combinedValue);
+					});
 				
-				$('.my-table').each(function() {
-				    var nth = $(this).find('.date-td > div:first-child').text();
-				    nthInputValues.push(nth);
-				});
 				
 
 				console.log(placeInputValues);
 				console.log(memoInputValues);
-				console.log(nthInputValues);
 
 				// Send the data to the server
-				jQuery.ajax({
+				$.ajax({
 					type : "POST",
 					url : "/dreamjourney/mypage/addjourneyok",
 					traditional : true,
 					data : {
 						placeInputValues : placeInputValues,
 						memoInputValues : memoInputValues,
-						nth: nthInputValues,
-						title : title
+						title : title,
+						nthValues: firstDivValues,
+						startdate: startdate,
+						enddate: enddate
 					},
 					success : function(response) {
 						console.log(response);
 						// Handle the success response here
+						window.location.href = "/dreamjourney/mypage/journey";
 					},
 					error : function(error) {
 						console.log(error);

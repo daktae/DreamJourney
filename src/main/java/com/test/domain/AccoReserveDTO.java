@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class AccoReserveDTO {
 
-	private String rreserve_seq;
+	private String rdate_seq;
 	private String type;
 	private String regdate;
 	private String rdate;

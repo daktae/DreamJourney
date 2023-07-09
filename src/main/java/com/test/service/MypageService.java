@@ -35,12 +35,6 @@ public interface MypageService {
 
 	PayDTO apay(String areserve_seq);
 
-	int treservedel(String treserve_seq);
-
-	int rreservedel(String rreserve_seq);
-
-	int areservedel(String areserve_seq);
-	
 	MemberDTO getMemberInfo(int member_seq);
 
 	void saveMemberInfo(MemberDTO dto);
@@ -62,6 +56,10 @@ public interface MypageService {
 	int dayInsert(String nth, String trip_seq);
 
 	int updateubr(String seq, String newContent);
+
+	String getDaySeq(String nth, String trip_seq);
+
+	int payDel(String pay_seq);
 
 
 }

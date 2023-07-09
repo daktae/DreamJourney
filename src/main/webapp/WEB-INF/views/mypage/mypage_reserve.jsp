@@ -135,14 +135,13 @@ table.reserve_list {
 						class="table table-borderless reserve_list table-height table-transport">
 						<tr>
 							<td style="width: 10%; text-align: center; vertical-align: middle;">
-								<c:if test="${empty tdto.pay_seq}">예약중</c:if>
-						    	<c:if test="${not empty tdto.pay_seq}">예약완료</c:if>
+						    	예약완료
 							</td>
 							<td style="width: 75%;" colspan="3">${tdto.regdate.substring(0, 10)}</td>
 							<td rowspan="3"
 								style="text-align: center; vertical-align: middle; width: 15%"><a
-								href="mypage_reserve_view?treserve_seq=${tdto.treserve_seq}&rreserve_seq=&areserve_seq=" class="btn btn-primary">상세보기</a>
-								<button type="submit" class="btn btn-danger" name="treserve_seq" value="${tdto.treserve_seq}">예매취소</button></td>
+								href="mypage_reserve_view?pay_seq=${tdto.pay_seq}" class="btn btn-primary">상세보기</a>
+								<button type="submit" class="btn btn-danger" name="pay_seq" value="${tdto.pay_seq}">예매취소</button></td>
 						</tr>
 						<tr>
 							<td rowspan="2"
@@ -166,14 +165,13 @@ table.reserve_list {
 						class="table table-borderless reserve_list table-height table-accommodate">
 						<tr>
 							<td style="width: 10%; text-align: center; vertical-align: middle;">
-								<c:if test="${empty adto.pay_seq}">예약중</c:if>
-						    	<c:if test="${not empty adto.pay_seq}">예약완료</c:if>
+						    	예약완료
 							</td>
 							<td colspan="3" style="width: 60%">${adto.regdate.substring(0, 10)}</td>
 							<td rowspan="3"
 								style="text-align: center; vertical-align: middle; width:30%;"><a
-								href="mypage_reserve_view?treserve_seq=&rreserve_seq=${adto.rreserve_seq}&areserve_seq=" class="btn btn-primary">상세보기</a>
-								<button type="submit" class="btn btn-danger" name="rreserve_seq" value="${adto.rreserve_seq}">예매취소</button></td>
+								href="mypage_reserve_view?pay_sqe=${adto.pay_seq}" class="btn btn-primary">상세보기</a>
+								<button type="submit" class="btn btn-danger" name="pay_seq" value="${adto.pay_seq}">예매취소</button></td>
 						</tr>
 						<tr>
 							<td rowspan="2"
@@ -197,14 +195,13 @@ table.reserve_list {
 						class="table table-borderless reserve_list table-height table-activity">
 						<tr>
 							<td style="width: 10%;text-align: center; vertical-align: middle;">
-								<c:if test="${empty acdto.pay_seq}">예약중</c:if>
-						    	<c:if test="${not empty acdto.pay_seq}">예약완료</c:if>
+						    	예약완료
 						    </td>
 							<td style="width: 70%;" colspan="3">${acdto.regdate.substring(0, 10)}</td>
 							<td rowspan="3"
 								style="text-align: center; vertical-align: middle; width:20%;"><a
-								href="mypage_reserve_view?treserve_seq=&rreserve_seq=&areserve_seq=${acdto.areserve_seq}" class="btn btn-primary">상세보기</a>
-								<button type="submit" class="btn btn-danger" name="areserve_seq" value="${acdto.areserve_seq}">예매취소</button></td>
+								href="mypage_reserve_view?pay_seq=${acdto.pay_seq}" class="btn btn-primary">상세보기</a>
+								<button type="submit" class="btn btn-danger" name="pay_seq" value="${acdto.pay_seq}">예매취소</button></td>
 						</tr>
 						<tr>
 							<td rowspan="2"
