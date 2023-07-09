@@ -7,6 +7,7 @@ import com.test.domain.AccoReserveDTO;
 import com.test.domain.ActivityReserveDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.PayDTO;
+import com.test.domain.ScheduleDTO;
 import com.test.domain.TranReserveDTO;
 import com.test.domain.TripDTO;
 import com.test.domain.BookableReviewDTO;
@@ -80,6 +81,12 @@ public interface MypageService {
 	int writereview(Map<String, String> map);
 
 	int updatestatus(String seq);
+
+	TripDTO gettripview(String trip_seq);
+
+	String getDayButtons(String seq);
+
+	List<ScheduleDTO> getSchedule(Map<String, String> map);
 
 
 }

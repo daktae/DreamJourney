@@ -51,7 +51,7 @@
 	height: auto;
 	border-radius: 20px;
 	margin-right: 100px;
-	padding: 30px;
+	padding: 50px;
 }
 
 #content {
@@ -62,15 +62,6 @@
 	width: 800px;
 	margin-right: 20px;
 	margin-left: 20px;
-}
-
-#info {
-	text-align: right;
-	padding-right: 10px;
-}
-
-#info>span {
-	margin-left: 5px;
 }
 
 #visited>div {
@@ -91,7 +82,39 @@
 #category {
 	font-size: 10px;
 }
+
+#info-table {
+	width: 80%;
+	padding: 10px;
+}
+
+#info-table td {
+	padding-bottom: 10px;
+}
+
+.day-buttons {
+	background-color: #7C9070;
+	color: white;
+	border-radius: 20px;
+	border: none;
+}
+
+#schedule-table-container {
+	margin-top: 10px;
+}
+
+.schedule-table {
+	width: 80%;
+	padding: 10px;
+}
+
+.schedule-table td {
+	padding-bottom: 10px;
+}
+
 </style>
+
+
 <body>
 	<!-- Topbar Start -->
 	<%@ include file="/resources/inc/header.jsp"%>
@@ -115,54 +138,188 @@
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
 
-			<h3>내생애 마지막 발리 같은 여수 여행</h3>
-			<hr>
-			<table id="journey">
-				<tr>
-					<td>고슴도치 ・ 2023.06.30</td>
-					<td id="info"><span>조회수 600,000</span> <span>︎♥6</span> <span>★3</span></td>
-				</tr>
-				<tr>
-					<td colspan="2">여행 일자: 2023.06.27 - 2023.06.29</td>
-				</tr>
-				<tr>
-					<td colspan="2"><h6>1일차 06.27</h6></td>
-				</tr>
-				<tr>
-					<td colspan="2"><img src="../resources/img/mypage/map.png" width="480" 
-							height="260"></td>
-				</tr>
+			<table id="info-table">
+				<colgroup>
+					<col width="30%">
+					<col width="40%">
+					<col width="30%">
+				</colgroup>
 				<tr>
 					<td colspan="2">
-						<div id="visited" style="background-color: #F0F0F0;">
-							<div>
-								<span id="order"> 1 </span> <span>아쿠아플래닛 여수</span> <span
-									id=category>테마/체험</span>
-							</div>
-							<div>
-								<span id="order"> 2 </span> <span>아쿠아플래닛 여수</span> <span
-									id=category>테마/체험</span>
-							</div>
-							<div>
-								<span id="order"> 3 </span> <span>아쿠아플래닛 여수</span> <span
-									id=category>테마/체험</span>
-							</div>
-						</div>
+						<h4>${dto.title}
+							<c:if test="${dto.is_shared=='n'}">
+								<span class="material-symbols-outlined"> lock </span>
+							</c:if>
+							<c:if test="${dto.is_shared=='y'}">
+								<span class="material-symbols-outlined"> lock_open </span>
+							</c:if>
+						</h4>
+					</td>
+					<td style="text-align: right;">작성일: ${dto.regdate}</td>
+				</tr>
+				<tr>
+					<td colspan="2">여행 기간: ${dto.begin} ~ ${dto.end}</td>
+					<td style="text-align: right;"><c:if
+							test="${dto.is_shared=='y'}">
+							<span class="material-symbols-outlined"> recommend </span> ${dto.recommend}
+						</c:if></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<div id="map" style="width: 100%; height: 350px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<div id="day-buttons"></div>
 					</td>
 				</tr>
 			</table>
 
+			<div id="schedule-table-container"></div>
+
 		</div>
 	</div>
+
+
+
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-	<scirpt> </scirpt>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=015fae8b95c2d0f2c4d727e44d11a138&libraries=services"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+
+	<script>
+	
+		$(document).ready(function() {
+			$('.day-buttons').eq(0).click();
+		});
+	
+		// 지도 코드
+	
+		var mapContainer = document.getElementById('map'),
+
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도 중심좌표
+			level : 3 // 지도 확대 레벨
+		};
+
+		// 지도 생성   
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+		
+		
+		// 일수에 따른 버튼 생성
+		var tripseq = ${dto.trip_seq};
+		
+		$.ajax({
+			url : 'getdaybuttons',
+			type : 'GET',
+			data : {
+				seq : tripseq
+			},
+			success : function(response) {
+				createButtons(tripseq, response);
+			},
+			error : function(a, b, c) {
+				console.log(a, b, c);
+			}
+		});
+		
+		function createButtons(seq, days) {
+			  var place = $('#day-buttons');
+			  var previousButton = null;
+
+			  for (var i = 1; i <= days; i++) {
+			    (function(day) {
+			      var button = $('<button class="day-buttons" style="margin-right: 10px;">').text('Day ' + day);
+			      place.append(button);
+
+			      button.click(function(){ 
+			        if (previousButton) {
+			          previousButton.css('background-color', '#7C9070'); 
+			        }
+			        
+			        button.css('background-color', '#41644A'); 
+			        previousButton = button; 
+			        
+			        $.ajax({
+			          url: 'getschedule',
+			          type: 'GET',
+			          data: {
+			        	  seq: seq,
+			        	  day: day },
+			          success: function(response) {
+			        	  getScheduleTable(day, response);
+			          },
+			          error: function(a, b, c) {
+			            console.log(a, b, c);
+			          }
+			        });
+			        
+			      });
+			    })(i); // IIFE: i값이 day에 바로 대입됨
+			  }
+			}
+		
+		
+		var begindate = new Date('${dto.begin}');
+		
+		function getScheduleTable(day, response) {
+			
+			var container = ${'#schedule-table-container'};
+			container.empty();
+			
+			var table = $('<table class="schedule-table">');
+			
+			var colgroup = $('<colgroup>');
+			colgroup.append('<col width="20%">');
+			colgroup.append('<col width="40%">');
+			colgroup.append('<col width="40%">');
+			table.append(colgroup);
+			
+			var tbody = $('<tbody>');
+			
+			var dayNumber = parseInt(day, 10);
+			var date = new Date(begindate.getTime() + (dayNumber - 1) * 24 * 60 * 60 * 1000);
+			
+			var firstRow = $('<tr>' + date + '</tr>');
+			tbody.append(firstRow);
+			
+			for (var i = 0; i < response.length; i++) {
+				
+				var sch = response[i];
+				
+				var row = $('<tr>');
+				
+				row.append('<td>' + '<span id="order">' i + '</span>' + '</td>');
+				row.append('<td>' + sch.place+ '</td>');
+				row.append('<td>' + sch.memo+ '</td>');
+				
+				tbody.append(row);
+				
+			}
+			
+			 table.append(tbody);
+			 container.append(table);
+			
+		}
+
+
+
+		
+	</script>
 
 
 </body>
 
 </html>
+
+
 
 
 

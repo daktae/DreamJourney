@@ -15,4 +15,6 @@ public class TripDTO {
 	private String end;
 	private String is_shared;
 	
+	private String nickname;
+	
 }
