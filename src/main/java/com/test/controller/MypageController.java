@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.MemberDTO;
 import com.test.domain.UnbookableReviewDTO;
+import com.test.domain.UnwrittenReviewDTO;
 import com.test.service.MypageService;
 
 import java.text.ParseException;
@@ -181,6 +182,29 @@ public class MypageController {
 
 		return "mypage/review";
 	}
+	
+	// 미작성 리뷰 조회
+	@ResponseBody
+	@RequestMapping(value="/mypage/unwrittenreview", produces="application/json;charset=UTF-8")
+	private String unwrittenreview(String selected) {
+		
+		List <UnwrittenReviewDTO> list = new ArrayList <UnwrittenReviewDTO>();
+		
+		if(selected.equals("accommodate")) list = service.getUnwrittenAccommodate();
+		//else if(selected.equals("activity")) list = service.getUnwrittenActivity();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonResponse;
+		
+		try {
+			jsonResponse = mapper.writeValueAsString(list);
+			return jsonResponse;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 
 	// 내 리뷰 조회 ajax
 	// @GetMapping("/mypage/bookablereview")
@@ -239,9 +263,26 @@ public class MypageController {
 		if(selected.equals("accommodate")||selected.equals("activity")) result = service.updatebr(seq, newContent);
 		else if(selected.equals("restaurant")) result = service.updateubr(seq, newContent);
 		
-		System.out.println("update result: " + result);
+	}
+	
+	
+	// 내 리뷰 삭제
+	@PostMapping("/mypage/deletereview")
+	@ResponseBody
+	private void deletereview(String seq, String selected) {
+		
+		int result = -1;
+		
+		if(selected.equals("accommodate")||selected.equals("activity")) {
+			service.deletebr(seq);
+			result = service.setReviewStatus(seq);
+		}
+		else if(selected.equals("restaurant")) result = service.deleteubr(seq);
+		
+		System.out.println("setReviewStatus: " + result);
 		
 	}
+	
 
 	// 예약 목록
 	@GetMapping("/mypage/mypage_reserve")

@@ -11,6 +11,7 @@ import com.test.domain.BookableReviewDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.MemberDTO;
 import com.test.domain.UnbookableReviewDTO;
+import com.test.domain.UnwrittenReviewDTO;
 
 public interface MypageService {
 
@@ -60,6 +61,14 @@ public interface MypageService {
 	String getDaySeq(String nth, String trip_seq);
 
 	int payDel(String pay_seq);
+	
+	int deletebr(String seq);
+
+	int deleteubr(String seq);
+
+	int setReviewStatus(String seq);
+
+	List<UnwrittenReviewDTO> getUnwrittenAccommodate();
 
 
 }
