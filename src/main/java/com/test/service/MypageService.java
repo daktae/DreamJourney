@@ -81,5 +81,14 @@ public interface MypageService {
 
 	int updatestatus(String seq);
 
+	int[] getDay_seq(String trip_seq);
+
+	void scheduledel(int day_seq);
+
+	void daydel(String trip_seq);
+
+	void journeydel(String trip_seq);
+
+
 
 }
