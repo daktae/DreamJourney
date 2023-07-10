@@ -5,7 +5,30 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>DreamJourney > 자유게시판 > 동행 글쓰기</title>
+<title>Dreamjourney > 자유게시판 > 글쓰기</title>
+<style>
+ #main-board {
+ 	width: 1000px;
+ 	margin: 0 auto;
+ 	margin-top: 50px;
+	justify-content: center;
+	margin-bottom: 80px;
+ }
+
+ .form-control {
+ 	resize: none;
+ }
+ 
+ #board-input-content {
+ 	height: 300px;
+ }
+ 
+  #board-buttons {
+ 	margin-top: 50px;
+ 	margin-bottom: 100px;
+ }
+ 
+</style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="Free HTML Templates" name="keywords">
 <meta content="Free HTML Templates" name="description">
@@ -48,39 +71,37 @@
        <!-- 내용 작성 -->
     <div class="container-fluid py-5" style="height: 100px;">
    </div>
-                
-    
 	
-	<h2>동행 글쓰기</h2>
 	<div id="main-board">
-	<form method="POST" action="/dreamjourney/addBoard">
-		<table>
-			<tr>
-				<th>말머리</th>
-				<td>
-					<select name="category">
-						<option value="리뷰">리뷰</option>
-						<option value="동행">동행</option>
-						<option value="분실">분실</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td><input type="text" name="title" placeholder="제목을 입력하세요." maxlength="65" required></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td><textarea name="content" placeholder="내용을 입력하세요." maxlength="1000" required></textarea></td>			
-			</tr>
-			<tr>
-				<th>첨부파일</th>
-				<td><input type="file" name="fname"></td>			
-			</tr>
-		</table>
-		<button type="submit">등록하기</button>	
-		<button type="button" onclick="location.href='/dreamjourney/board';">목록으로</button>	
-	</form>
+	<form class="row g-2" method="POST" action="/dreamjourney/addBoard">
+	
+  <div class="col-3">
+    <label for="inputState" class="form-label">말머리</label>
+    <select id="inputState" class="form-control" name="category">
+      <option value="리뷰">리뷰</option>
+      <option value="동행">동행</option>
+      <option value="분실">분실</option>
+    </select>
+  </div>
+  
+    <div class="col-9">
+    <label for="board-input-file" class="form-label">첨부파일</label>
+    <input type="file" name="fname" class="form-control" id="board-input-file" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="col-md-12">
+    <label for="board-input-title" class="form-label">제목</label>
+    <input type="text" class="form-control" name="title" id="board-input-title" placeholder="제목을 입력해주세요.">
+  </div>
+  <div class="col-12">
+    <label for="board-input-content" class="form-label">내용</label>
+    <textarea class="form-control" name="content" id="board-input-content" placeholder="내용을 입력해주세요."></textarea>
+    <div id="board-buttons">
+    	<button type="submit" class="btn btn-primary">등록하기</button>	
+		<button type="button"  class="btn btn-primary" onclick="location.href='/dreamjourney/board';">목록으로</button>
+    </div>
+  </div>
+
+</form>
 	</div>
 	
 	<%@ include file="/resources/inc/footer.jsp" %>

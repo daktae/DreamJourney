@@ -23,6 +23,17 @@ public interface BoardMapper {
 
 	void addComment(CommentDTO dto);
 
+	int getCcount(String free_seq);
+
+	void boardReport(String free_seq);
+
+	CommentDTO getComment(String free_seq);
+
+	void delComment(String free_seq);
+
+	void editOkComment(CommentDTO dto);
+
+
 	
 
 

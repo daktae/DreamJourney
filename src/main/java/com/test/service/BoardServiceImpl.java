@@ -57,8 +57,30 @@ public class BoardServiceImpl implements BoardService{
 		mapper.addComment(dto);
 	}
 
+	@Override
+	public CommentDTO getComment(String free_seq) {
+		return mapper.getComment(free_seq);
+	}
 	
+	@Override
+	public void editOkComment(CommentDTO dto) {
+		mapper.editOkComment(dto);
+	}
+	
+	@Override
+	public void delComment(String freply_seq) {
+		mapper.delComment(freply_seq);
+	}
+	
+	@Override
+	public int getCcount(String free_seq) {
+		return mapper.getCcount(free_seq);
+	}
+	
+	@Override
+	public void boardReport(String free_seq) {
+		mapper.boardReport(free_seq);
+	}
 
-	
 	
 }

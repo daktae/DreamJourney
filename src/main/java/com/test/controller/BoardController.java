@@ -1,8 +1,6 @@
 package com.test.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,9 +35,11 @@ public class BoardController {
 		int updateOk = service.updateReadCount(free_seq);
 		BoardDTO dto = service.get(free_seq);
 		List<CommentDTO> cdto = service.getClist(free_seq);
+		int commentCount = service.getCcount(free_seq);
 		
 		model.addAttribute("bdetail", dto);
 		model.addAttribute("clist", cdto);
+		model.addAttribute("commentCount", commentCount);
 		
 		
 		return "/board/boardDetail";
@@ -98,32 +98,53 @@ public class BoardController {
 		
 		return "redirect:board";
 	}
-
-//	@GetMapping("/comment")
-//	public String comment(Model model, String free_seq) {
-//		
-//		// 댓글 목록 보기
-//		model.addAttribute("clist", service.getClist(free_seq));
-//		
-//		return "/board/boardDetail";
-//	}
 	
 	@PostMapping("/addComment")
 	public String addComment(Model model, CommentDTO dto) {
-		
-//		Map<String, Object> map = new HashMap<>();
-		
-		
-//		map.put("content", dto.con);
-//		map.put("free_seq", free_seq);
-		System.out.println(dto);
-		
 		
 		service.addComment(dto);
 		
 		return "redirect:boardDetail?free_seq=" + dto.getFree_seq();
 	}
+
+
+	@GetMapping("/editComment")	// 기존 내용 불러와서 수정하는 화면 
+	public String editComment(Model model, String free_seq) {
+		
+		CommentDTO dto = service.getComment(free_seq);
+		
+		model.addAttribute("cdetail", dto);
+		
+		return "/board/editComment?freply_seq";
+	}
 	
+	@PostMapping("/editOkComment") //최종 수정
+	public String editOkComment(Model model, CommentDTO dto) {
+//		service.editOkComment(dto);
+		System.out.println("일단 오긴 왔음");
+		System.out.println(dto.getFree_seq());
+		return "redirect:boardDetail?free_seq=" + dto.getFree_seq();
+	}
+	
+	
+	@GetMapping("/delComment")
+	public String delComment(Model model, CommentDTO dto) {
+		System.out.println(dto.getFree_seq());
+		System.out.println(dto.getFreply_seq());
+		service.delComment(dto.getFreply_seq());
+		return "redirect:boardDetail?free_seq=" + dto.getFree_seq();
+	}
+	
+	
+	
+	@GetMapping("/boardReport")
+	public String boardReport(Model model, String free_seq) {
+		
+		service.boardReport(free_seq);
+		System.out.println(free_seq);
+		
+		return "redirect:boardDetail?free_seq=" + free_seq;
+	}
 	
 	
 

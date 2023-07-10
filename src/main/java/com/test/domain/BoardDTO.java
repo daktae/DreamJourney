@@ -14,6 +14,7 @@ public class BoardDTO {
 	private String readcount;
 	private String regdate;
 	private String member_seq;
+	private String ccount;
 	
 	// 회원 닉네임
 	private String nickname;

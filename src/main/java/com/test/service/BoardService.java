@@ -21,10 +21,17 @@ public interface BoardService {
 
 	List<CommentDTO> getClist(String free_seq);
 
-
 	void addComment(CommentDTO dto );
 
+	int getCcount(String free_seq);
 
+	void boardReport(String free_seq);
+
+	CommentDTO getComment(String free_seq);
+
+	void delComment(String freply_seq);
+
+	void editOkComment(CommentDTO dto);
 
 
 }

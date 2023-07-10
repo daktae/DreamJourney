@@ -111,19 +111,6 @@
  	font-size: 12px;
  }
  
- #comment-edit {
- 	cursor: pointer;
- }
- 
- #comment-del {
- 	cursor: pointer;
- }
- 
- #comment-edit-cancel {
- 	background-color: #666;
- 	border: 1px solid #666;
- }
- 
 </style>
     <meta charset="utf-8">
     <title>TRAVELER - Free Travel Website Template</title>
@@ -206,7 +193,6 @@
 	
 	
 	<!-- 댓글 목록 출력하는 영역 -->
-	<!-- 댓글 수정/삭제 -->
 	<div id="comment-area">
 	<h3 id="comment-area-title">Comments <span>(${commentCount })</span></h3>
 	<c:if test="${clist.size() == 0 }">
@@ -223,12 +209,8 @@
 	<c:forEach items="${clist}" var="cdto">
 		<tr class="comment-list-tr">
 			<td>${cdto.nickname}</td>
-			<td id="comment-edit-content">${cdto.content }</td>
-			<td>
-				${cdto.regdate }
-				 <span id="comment-edit" onclick="editComment(${cdto.freply_seq});">수정</span> | 
-				 <span id="comment-del" onclick="delComment(${cdto.freply_seq}, ${cdto.free_seq});">삭제</span>  
-			</td>
+			<td>${cdto.content }</td>
+			<td>${cdto.regdate }</td>
 		</tr>
 	</c:forEach>
 	</table>
@@ -260,7 +242,8 @@
 	</form>
 	
 	
-	<!-- 게시글 상세보기 > 하단 버튼 -->
+	
+	
 	<div id="board-buttons" class="d-grid d-md-block">
 	<c:if test="${bdetail.category eq '동행' }">
  		<button class="btn btn-primary" type="button" value="${bdetail.free_seq}" onclick="openChat(${bdetail.free_seq})">채팅하기</button>
@@ -270,14 +253,7 @@
 	  	<button class="btn btn-primary btn-grid" type="button" onclick="location.href='/dreamjourney/board';">목록으로</button>
 	
 	</div>
-
-		<form id="editCommentForm" method="POST"
-			action="/dreamjourney/editOkComment">
-			<input type="hidden" name="free_seq"> 
-			<input type="hidden" name="freply_seq"> 
-			<input type="hidden" name="content">
-		</form>
-
+	
 	</div>
 	
 
@@ -285,55 +261,7 @@
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
-
-	let content;
-	let freplySeq;
-
-	function editComment(freply_seq) {
-		//이전 수정중인 댓글 폼 > 전부 삭제
-		$('.edit-comment').remove();
-		
-		freplySeq = freply_seq;
-		
-		content = $(event.target).closest('tr').children().eq(1).text();
-		
-		// 수정 버튼을 누르면 tr 생성
-		$(event.target).closest('tr').children().eq(1).html(''); 
- 		$(event.target).closest('tr').children().eq(1).append(
- 				`
-					<textarea style="resize:none;" class="form-control" id="editcomment">\${content}</textarea>
-					<button class="btn btn-primary" id="comment-edit-ok" onclick="editOkComment(freplySeq)">등록</button>	
-					<button class="btn btn-primary" id="comment-edit-cancel" onclick="cancelComment(content)">취소</button>	
-				`
-			);
-	}
 	
-	function cancelComment(content) {
- 		$(event.target).closest('tr').children().eq(1).html(
- 			`<td id="comment-edit-content">\${content}</textarea>`
-			);
-
-	}
-	
-	function delComment(freply_seq, free_seq) {
-		
-		location.href='/dreamjourney/delComment?free_seq='+ free_seq +'&freply_seq=' + freply_seq;
-		
-//		location.href=`/dreamjourney/delComment?free_seq=\${free_seq}&freply_seq=\${freply_seq}`;
-		
-		
-	}
-	
-	function editOkComment(freplySeq) {
-		
-		$('#editCommentForm input[name=freply_seq]').val(freplySeq);
-		$('#editCommentForm input[name=content]').val($('#editcomment').val());
-		
-		$('#editCommentForm').submit();
-		
-	}
-
-	// 웹소켓 채팅
 	function openChat(seq) {
 		let free_seq = seq;
 		

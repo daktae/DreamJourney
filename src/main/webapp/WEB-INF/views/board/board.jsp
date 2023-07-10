@@ -28,27 +28,59 @@
     
 <!-- Google Icon -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<!-- BootStrap -->
+
 <style>
  
  #board-list {
  	text-align: center;
  	margin: 0 auto;
- 	margin-top: 50px; 
+ 	margin-top: 30px;
  }
- 
- #add {
- 	position: relative;
- 	left: -100px;
- }
- 
 
  #main-board {
  	width: 1000px;
  	min-height: 500px;
  	margin: 0 auto;
- 	margin-top: 200px;
- 	margin-bottom: 200px; 
+ 	margin-bottom: 150px; 
  }
+ 
+ #main-board-menu {
+ 	margin-top: 80px;
+ }
+ 
+ .form-control {
+ 	display: inline-block;
+    width: 200px;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+ }
+ 
+ #board-button-area {
+ 	margin-top: 30px;
+ 	text-align: right;
+ }
+ 
+ #board-comment-count {
+ 	font-size: 13px;
+ 	font-weight: bold;
+ 	color: #7AB730;
+ }
+ 
+ #board-search {
+ 	align-items: center;
+ 	width: 500px;
+ }
+ 
+ #board-search-input {
+ 	margin-right: 10px;
+ }
+ 
+ #button-search-button {
+ 	background-color: #7AB730;
+ }
+ 
 </style>
  
 </head>
@@ -67,12 +99,20 @@
 	
 	<!-- board.jsp -->
 	<div id="main-board">
-	<select>
-		<option onchange="/dreamjourney/board">말머리</option>
-		<option onchange="/dreamjourney/reviewBoard">리뷰</option>
-		<option>동행</option>
-		<option>분실</option>
-	</select>
+	<div id="main-board-menu">
+
+			<div id="board-search" class="input-group mb-3">
+					<select name="category" class="form-control" >
+			<option onchange="/dreamjourney/board">말머리</option>
+			<option onchange="/dreamjourney/reviewBoard">리뷰</option>
+			<option>동행</option>
+			<option>분실</option>
+		</select>
+				<input type="text" class="form-control" placeholder="검색어를 입력하세요." id="board-search-input">
+				<button class="btn btn-primary" type="button" id="button-search-button">검색</button>
+			</div>
+
+		</div>
 	<table id="board-list" class="table">
 	<tr>
 		<th>번호</th>
@@ -86,15 +126,17 @@
 	<tr onclick="location.href='/dreamjourney/boardDetail?free_seq=${dto.free_seq}';">
 		<td>${dto.free_seq }</td>
 		<td>${dto.category }</td>
-		<td>${dto.title }</td>
+		<td>${dto.title } <span id="board-comment-count"> (${dto.ccount})</span></td>
 		<td>${dto.nickname	 }</td>
 		<td>${dto.regdate }</td>
 		<td>${dto.readcount }</td>
 	</tr>
 </c:forEach>
 	</table>
-	
-	<button type="button" id="add" onclick="location.href='/dreamjourney/addBoard';">글쓰기</button>
+	<div id="board-button-area">
+		<button type="button" id="add" onclick="location.href='/dreamjourney/addBoard';" class="btn btn-primary">글쓰기</button>
+	</div>
+
 	
 	</div>
 	<%@ include file="/resources/inc/footer.jsp" %>
