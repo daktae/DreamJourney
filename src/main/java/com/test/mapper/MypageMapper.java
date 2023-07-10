@@ -1,12 +1,13 @@
 package com.test.mapper;
 
-import java.util.List; 
+import java.util.List;  
 import java.util.Map;
 
 import com.test.domain.AccoReserveDTO;
 import com.test.domain.ActivityReserveDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.PayDTO;
+import com.test.domain.ScheduleDTO;
 import com.test.domain.TranReserveDTO;
 import com.test.domain.TripDTO;
 import com.test.domain.BookableReviewDTO;
@@ -88,6 +89,12 @@ public interface MypageMapper {
 	void daydel(String trip_seq);
 
 	void journeydel(String trip_seq);
+
+	TripDTO gettripview(String trip_seq);
+
+	String getDayButtons(String seq);
+
+	List<ScheduleDTO> getSchedule(Map<String, String> map);
 
 
 }

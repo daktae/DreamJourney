@@ -3,10 +3,10 @@ package com.test.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,16 +21,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.MemberDTO;
+import com.test.domain.ScheduleDTO;
 import com.test.domain.TripDTO;
 import com.test.domain.UnbookableReviewDTO;
 import com.test.domain.UnwrittenReviewDTO;
 import com.test.service.MypageService;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 
 @Controller
@@ -207,8 +202,54 @@ public class MypageController {
 
 	// 내 여행 상세보기
 	@GetMapping("/mypage/viewjourney")
-	private String viewjourney() {
+	private String viewjourney(String trip_seq, Model model) {
+		
+		TripDTO dto = service.gettripview(trip_seq);
+		
+		String begin = dto.getBegin().substring(0, 10);
+		String end = dto.getEnd().substring(0, 10);
+		String regdate = dto.getRegdate().substring(0, 10);
+		
+		dto.setBegin(begin);
+		dto.setEnd(end);
+		dto.setRegdate(regdate);
+		
+		
+		model.addAttribute("dto", dto);
+		
 		return "mypage/viewjourney";
+	}
+	
+	// 여행 일수 계산
+	@ResponseBody
+	@GetMapping("/mypage/getdaybuttons")
+	private String getdaybuttons(String seq) {
+		return service.getDayButtons(seq);
+	}
+	
+	// 일정 출력
+	@ResponseBody
+	@RequestMapping(value="/mypage/getschedule", produces="application/json;charset=UTF-8")
+	private String getschedule(String seq, String day) {
+		
+		Map <String, String> map = new HashMap<String, String>();
+		
+		map.put("seq", seq);
+		map.put("day", day);
+		
+		List <ScheduleDTO> list = service.getSchedule(map);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonResponse;
+		
+		try {
+			jsonResponse = mapper.writeValueAsString(list);
+			return jsonResponse;
+			
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	// 내 리뷰

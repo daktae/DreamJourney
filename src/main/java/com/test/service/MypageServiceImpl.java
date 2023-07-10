@@ -13,6 +13,7 @@ import com.test.domain.BookableReviewDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.MemberDTO;
 import com.test.domain.PayDTO;
+import com.test.domain.ScheduleDTO;
 import com.test.domain.TranReserveDTO;
 import com.test.domain.TripDTO;
 import com.test.domain.UnbookableReviewDTO;
@@ -235,6 +236,22 @@ public class MypageServiceImpl implements MypageService {
 		mapper.journeyshar(trip_seq);
 		
 	}
+
+	@Override
+	public TripDTO gettripview(String trip_seq) {
+		return mapper.gettripview(trip_seq);
+	}
+
+	@Override
+	public String getDayButtons(String seq) {
+		return mapper.getDayButtons(seq);
+	}
+
+	@Override
+	public List<ScheduleDTO> getSchedule(Map<String, String> map) {
+		return mapper.getSchedule(map);
+	}
+
 	
 	@Override
 	public int[] getDay_seq(String trip_seq) {

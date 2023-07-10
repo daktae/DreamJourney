@@ -329,6 +329,25 @@
  		delete from tblTrip where trip_seq = #{trip_seq}
  	</delete>
  	
+	<select id="gettripview" resultType="com.test.domain.TripDTO">
+		SELECT t.*, m.nickname FROM tblTrip t
+		INNER JOIN tblMember m ON t.member_seq = m.member_seq
+		WHERE trip_seq = #{trip_seq}
+	</select>
+	
+	<select id="getDayButtons" resultType="String">
+		SELECT COUNT(*) FROM tblDay
+		WHERE trip_seq = #{seq}
+	</select>
+	
+	<select id="getSchedule" resultType="com.test.domain.ScheduleDTO">
+		SELECT
+ 		   place, address, memo
+		FROM tblSchedule s
+		INNER JOIN tblDay d ON s.day_seq = d.day_seq
+		INNER JOIN tblTrip t ON d.trip_seq = t.trip_seq
+		WHERE t.trip_seq = #{seq} AND d.nth = #{day}
+	</select>
  
 </mapper>
 
