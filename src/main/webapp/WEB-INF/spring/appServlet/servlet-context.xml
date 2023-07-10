@@ -28,6 +28,7 @@
 	<context:component-scan base-package="com.test.persistence" />
 	<context:component-scan base-package="com.test.domain" />
 	<context:component-scan base-package="com.test.mapper" />
+	<context:component-scan base-package="com.test.service" />
 	
 	<security:global-method-security pre-post-annotations="enabled" />
 	
