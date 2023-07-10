@@ -53,7 +53,7 @@
 
     <!-- Back to Top -->
                          
-    <a href="#" class="btn btn-chat btn-lg-square chatcounseling"></a>
+    <a href="#" class="btn btn-chat btn-lg-circle chatcounseling"></a>
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 	</footer>
 
@@ -73,3 +73,5 @@
     <!-- Template Javascript -->
     <script src="/dreamjourney/resources/js/main.js"></script>
     <script src="/dreamjourney/resources/js/wanjin.js"></script>
+       <script src="/dreamjourney/resources/js/wanjinindex.js"></script>
+    
