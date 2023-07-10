@@ -10,6 +10,10 @@
 	<select id="glogin" resultType="com.test.domain.MemberDTO">
 		select * from tblmember where email=#{email} and pw=#{pw}
 	</select>
+	
+	<update id="updatepw">
+		update tblmember set pw = #{pw} where email = #{email}
+	</update>
 
 </mapper>
 

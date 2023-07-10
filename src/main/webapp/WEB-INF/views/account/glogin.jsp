@@ -80,35 +80,39 @@
 	<!-- 내용쓰는곳 -->
  	<div class="container-fluid" style="height: 500px; padding-left: 100px; padding-right: 100px; padding-top: 50px; padding-bottom: 50px;">
 	 	<div>
-		 	<form style="width: 300px; margin: 0 auto;">
+		 	<form style="width: 300px; margin: 0 auto;" method="post" name="form1">
 		 	<p style="margin-bottom: 30px;"><span style="color: #7AB730; font-size: 20px; font-weight: bold;">"꿈"</span>같은 <span style="font-size: 20px; font-weight: bold;">여행</span>을 위해 로그인하세요!</p>
 			  <!-- Email input -->
 			  <div class="form-outline mb-4">
-			    <input type="email" id="email" class="form-control" />
+			    <input type="email" id="email" class="form-control" name="email" />
 			    <label class="form-label" for="form2Example1">이메일</label>
 			  </div>
 			
 			  <!-- Password input -->
 			  <div class="form-outline mb-4">
-			    <input type="password" id="pw" class="form-control" />
+			    <input type="password" id="pw" class="form-control" name="pw" />
 			    <label class="form-label" for="form2Example2">비밀번호</label>
 			  </div>
+			  
 			
 			  <!-- 2 column grid layout for inline styling -->
 			  <div class="row mb-4">
 			
 			    <div class="col">
 			      <!-- Simple link -->
-			      <a href="#!">비밀번호 찾기</a>
+			      <a href="/dreamjourney/findpw">비밀번호 찾기</a>
 			    </div>
 			  </div>
 			
 			  <!-- Submit button -->
-			  <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-			
+			  <button type="submit" class="btn btn-primary btn-block mb-4" id="btnLogin">Sign in</button>
+			  <c:if test="${message != null}">
+				 <div style="color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다.
+				 </div>
+				</c:if>
 			  <!-- Register buttons -->
 			  <div class="text-center">
-			    <p>회원이 아니신가요? <a href="#!">회원가입하기</a></p>
+			    <p>회원이 아니신가요? <a href="/dreamjourney/register">회원가입하기</a></p>
 			  </div>
 			</form>
 				         
@@ -125,7 +129,26 @@
     
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
+	$(function(){
+		$("#btnLogin").click(function(){
+			var email=$("#email").val();
+			var passwd=$("#pw").val(); 
+		 	if(email == ""){
+		  		alert("아이디를 입력하세요");
+		  		$("#email").focus(); //입력포커스 이동
 	
+		  		return; //함수 종료
+			}
+			if(passwd==""){
+				alert("비밀번호를 입력하세요"); 
+				$("#pw").focus();
+				return;
+			}
+		//폼 내부의 데이터를 전송할 주소
+		 	document.form1.action= "${path}/dreamjourney/gloginok";
+		 	document.form1.submit(); //제출
+		 });
+	});
 </script>
 </body>
 

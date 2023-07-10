@@ -11,7 +11,7 @@ public interface IKakaoLoginService {
 
 	HashMap<String, Object> getUserInfo(String access_Token) throws Throwable;
 
-
 	List<MemberDTO> login(MemberDTO dto);
+
 
 }

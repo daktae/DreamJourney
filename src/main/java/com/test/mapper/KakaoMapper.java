@@ -6,4 +6,9 @@ import com.test.domain.MemberDTO;
 
 public interface KakaoMapper {
 	public List<MemberDTO> login(MemberDTO dto);
+
+	public List<MemberDTO> glogin(MemberDTO dto);
+
+	public void updatepw(MemberDTO dto);
+
 }
