@@ -151,7 +151,7 @@ footer {
 		<form method="POST" action="/dreamjourney/reservation/pay" id="form">
 			<div style="width: 780px; float: left; margin-left: 200px; margin-right: 20px;">
 				<div style="text-align: center;">
-					<h1>${adetail.title }</h1>
+					<h1>${adetail.title }</h1>	
 				</div>
 				<div style="text-align: right;">
 					<h4>${adetail.title }(${reviewCount })</h4>

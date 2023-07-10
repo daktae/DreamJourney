@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.domain.ActivityDTO;
+import com.test.domain.RoomDTO;
 import com.test.service.ActivityService;
 
 
@@ -50,19 +51,27 @@ public class ActivityController {
 	
 	//결제하기
 	@PostMapping("/reservation/pay")
-	public String pay(Model model, String activity_seq, ActivityDTO dto) {
+	public String pay(Model model, String acco_seq, String activity_seq, RoomDTO rdto, ActivityDTO dto) {
 		
-		dto.setTotalPeople(dto.getTotalPeople().replace(",",""));
+		if (activity_seq != null) {
+			dto.setTotalPeople(dto.getTotalPeople().replace(",",""));
+			
+			ActivityDTO pdto = service.pay(activity_seq);
+			
+			model.addAttribute("pdetail", pdto);
+			model.addAttribute("dto", dto);
+		} else {
+			RoomDTO rpdto = service.rpay(acco_seq);
+			
+			System.out.println(rpdto.getTotalPeople());
+			System.out.println(rpdto.getDates());
+			System.out.println(rpdto.getTotalPrice());
+			
+			System.out.println(rpdto);
+			model.addAttribute("rdetail", rpdto);
+			model.addAttribute("rdto", rdto);
+		}
 		
-		ActivityDTO pdto = service.pay(activity_seq);
-		
-		System.out.println(dto.getTotalPeople());
-		System.out.println(dto.getDates());
-		System.out.println(dto.getTotalPrice());
-		
-		System.out.println(dto);
-		model.addAttribute("pdetail", pdto);
-		model.addAttribute("dto", dto);
 		return "/reservation/pay";
 	}
 	

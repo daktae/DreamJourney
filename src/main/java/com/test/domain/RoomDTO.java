@@ -13,5 +13,9 @@ public class RoomDTO {
 	private String note;
 	private String room_img;
 	
+	private String totalPrice;		//총 가격
+	private String totalPeople;	//총 인원
+	private String dates;			//선택 날짜	
+	
 	
 }

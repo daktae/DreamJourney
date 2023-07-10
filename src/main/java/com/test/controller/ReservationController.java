@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.domain.AccommodateDTO;
 import com.test.domain.ActivityDTO;
@@ -146,6 +149,17 @@ public class ReservationController {
 		
 		return "/reservation/airplane";
 	}
+	
+	//즐겨찾기
+		@PostMapping("/reservation/accommodate_detail")
+		@ResponseBody
+		public void bookmark_on(@RequestParam("acco_seq") String acco_seq) {
+		    //System.out.println("성공");
+		    //System.out.println(acco_seq);
+		    
+		    service.bookmark_on(acco_seq);
+		}
+	
 	
 	// 게시물 목록 + 페이징 추가
 	/*

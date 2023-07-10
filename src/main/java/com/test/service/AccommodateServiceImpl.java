@@ -79,9 +79,16 @@ public class AccommodateServiceImpl implements AccommodateService{
 
 	@Override
 	public String reviewCount(String acco_seq) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return mapper.reviewCount(acco_seq);
 	}
+
+	//즐겨찾기 추가
+		@Override
+		public void bookmark_on(String acco_seq) {
+			mapper.bookmark_on(acco_seq);
+			//System.out.println(acco_seq);
+		}
 
 	
 	// 게시물 총 갯수

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.test.domain.ActivityDTO;
 import com.test.domain.ReviewDTO;
+import com.test.domain.RoomDTO;
 
 //DAO 데이터를 주고 받으며 비즈니스 로직 수행
 public interface ActivityService {
@@ -23,6 +24,8 @@ public interface ActivityService {
 	void addReview(ReviewDTO rdto);
 
 	void payok(String totalPrice);
+
+	RoomDTO rpay(String acco_seq);
 
 
 

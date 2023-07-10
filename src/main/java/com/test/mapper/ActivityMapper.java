@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.test.domain.ActivityDTO;
 import com.test.domain.ReviewDTO;
+import com.test.domain.RoomDTO;
 
 //DAO 역할 > DB 데이터에 접근
 public interface ActivityMapper {
@@ -23,6 +24,8 @@ public interface ActivityMapper {
 	void addReview(ReviewDTO rdto);
 
 	void payok(String totalPrice);
+
+	RoomDTO rpay(String acco_seq);
 
 }
 

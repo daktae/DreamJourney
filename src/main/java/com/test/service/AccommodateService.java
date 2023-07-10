@@ -34,6 +34,10 @@ public interface AccommodateService {
 
 	String reviewCount(String acco_seq);
 
+	void bookmark_on(String acco_seq);
+	
+	
+
 	//Integer count() throws Exception;
 
 	

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.test.domain.ActivityDTO;
 import com.test.domain.ReviewDTO;
+import com.test.domain.RoomDTO;
 import com.test.mapper.ActivityMapper;
 
 @Service
@@ -46,6 +47,11 @@ public class ActivityServiceImpl implements ActivityService {
 		return mapper.pay(activity_seq);
 	}
 	
+	//결제 
+	@Override
+	public RoomDTO rpay(String acco_seq) {
+		return mapper.rpay(acco_seq);
+	}
 	
 	//즐겨찾기 추가
 	@Override
@@ -67,5 +73,6 @@ public class ActivityServiceImpl implements ActivityService {
 		mapper.payok(totalPrice);
 		System.out.println(totalPrice);
 	}
+
 
 }
