@@ -11,6 +11,7 @@ public class BookmarkDTO {
 	private String member_seq;
 	private String food_seq;
 	private String area_seq;
+	private String Acco_price;
 	
 	private String Accommodate_name;
 	private String Accommodate_address;

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ActivityReserveDTO {
 
-	private String areserve_seq;
+	private String adate_seq;
 	private String title; 
 	private String regdate;
 	private String category;

@@ -1,16 +1,19 @@
 package com.test.service;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Map;
 
 import com.test.domain.AccoReserveDTO;
 import com.test.domain.ActivityReserveDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.PayDTO;
 import com.test.domain.TranReserveDTO;
+import com.test.domain.TripDTO;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.MemberDTO;
 import com.test.domain.UnbookableReviewDTO;
+import com.test.domain.UnwrittenReviewDTO;
 
 public interface MypageService {
 
@@ -35,12 +38,6 @@ public interface MypageService {
 
 	PayDTO apay(String areserve_seq);
 
-	int treservedel(String treserve_seq);
-
-	int rreservedel(String rreserve_seq);
-
-	int areservedel(String areserve_seq);
-	
 	MemberDTO getMemberInfo(int member_seq);
 
 	void saveMemberInfo(MemberDTO dto);
@@ -60,6 +57,38 @@ public interface MypageService {
 	String getTripId();
 
 	int dayInsert(String nth, String trip_seq);
+
+	int updateubr(String seq, String newContent);
+
+	String getDaySeq(String nth, String trip_seq);
+
+	int payDel(String pay_seq);
+	
+	int deletebr(String seq);
+
+	int deleteubr(String seq);
+
+	int setReviewStatus(String seq);
+
+	List<UnwrittenReviewDTO> getUnwrittenAccommodate();
+
+	List<TripDTO> getTrip();
+
+	void journeyshar(String trip_seq);
+	List<UnwrittenReviewDTO> getUnwrittenActivity();
+
+	int writereview(Map<String, String> map);
+
+	int updatestatus(String seq);
+
+	int[] getDay_seq(String trip_seq);
+
+	void scheduledel(int day_seq);
+
+	void daydel(String trip_seq);
+
+	void journeydel(String trip_seq);
+
 
 
 }

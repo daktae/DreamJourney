@@ -14,7 +14,9 @@ import com.test.domain.BookmarkDTO;
 import com.test.domain.MemberDTO;
 import com.test.domain.PayDTO;
 import com.test.domain.TranReserveDTO;
+import com.test.domain.TripDTO;
 import com.test.domain.UnbookableReviewDTO;
+import com.test.domain.UnwrittenReviewDTO;
 import com.test.mapper.MypageMapper;
 
 @Service
@@ -63,6 +65,17 @@ public class MypageServiceImpl implements MypageService {
 		map.put("newContent", newContent);
 		
 		return mapper.updateBookableReview(map);
+	}
+	
+	@Override
+	public int updateubr(String seq, String newContent) {
+		
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("seq", seq);
+		map.put("newContent", newContent);
+		
+		return mapper.updateUnbookableReview(map);
+		
 	}
 	
 	@Override
@@ -120,21 +133,9 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public int treservedel(String treserve_seq) {
+	public int payDel(String pay_seq) {
 
-		return mapper.treservedel(treserve_seq);
-	}
-	
-	@Override
-	public int rreservedel(String rreserve_seq) {
-		
-		return mapper.rreservedel(rreserve_seq);
-	}
-	
-	@Override
-	public int areservedel(String areserve_seq) {
-
-		return mapper.areservedel(areserve_seq);
+		return mapper.payDel(pay_seq);
 	}
 	
 	@Override
@@ -175,6 +176,85 @@ public class MypageServiceImpl implements MypageService {
 		map.put("trip_seq", trip_seq);
 		
 		return mapper.dayInsert(map);
+	}
+
+	@Override
+	public int deletebr(String seq) {
+		return mapper.deletebr(seq);
+	}
+
+	@Override
+	public int deleteubr(String seq) {
+		return mapper.deleteubr(seq);
+	}
+
+	@Override
+	public int setReviewStatus(String seq) {
+		return mapper.setReviewStatus(seq);
+	}
+
+	@Override
+	public List<UnwrittenReviewDTO> getUnwrittenAccommodate() {
+		return mapper.getUnwrittenAccommodate();
+	}
+	
+	@Override
+	public String getDaySeq(String nth, String trip_seq) {
+
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("nth", nth);
+		map.put("trip_seq", trip_seq);
+		
+		return mapper.getDaySeq(map);
+	}
+
+	@Override
+	public List<UnwrittenReviewDTO> getUnwrittenActivity() {
+		return mapper.getUnwrittenActivity();
+	}
+
+	@Override
+	public int writereview(Map<String, String> map) {
+		return mapper.writereview(map);
+	}
+
+	@Override
+	public int updatestatus(String seq) {
+		return mapper.updatestatus(seq);
+	}
+	
+	@Override
+	public List<TripDTO> getTrip() {
+
+		return mapper.getTrip();
+	}
+	
+	@Override
+	public void journeyshar(String trip_seq) {
+
+		mapper.journeyshar(trip_seq);
+		
+	}
+	
+	@Override
+	public int[] getDay_seq(String trip_seq) {
+
+		return mapper.getDay_seq(trip_seq);
+	}
+	
+	@Override
+	public void scheduledel(int day_seq) {
+		mapper.scheduledel(day_seq);
+	}
+	
+	@Override
+	public void journeydel(String trip_seq) {
+		mapper.journeydel(trip_seq);
+	}
+	
+	@Override
+	public void daydel(String trip_seq) {
+		mapper.daydel(trip_seq);
 	}
 	
 }

@@ -2,7 +2,10 @@ package com.test.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +21,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.MemberDTO;
+import com.test.domain.TripDTO;
 import com.test.domain.UnbookableReviewDTO;
+import com.test.domain.UnwrittenReviewDTO;
 import com.test.service.MypageService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+
 
 @Controller
 public class MypageController {
@@ -67,8 +74,39 @@ public class MypageController {
 
 	// 내 여행
 	@GetMapping("/mypage/journey")
-	private String journey() {
+	private String journey(Model model) {
+		
+		//세션 아이디 받아서 넘겨줘야함
+		model.addAttribute("list", service.getTrip());
+		
 		return "mypage/journey";
+	}
+	
+	@PostMapping("/mypage/journeydel")
+	private String journeydel(String trip_seq) {
+		
+		int[] day_seq = service.getDay_seq(trip_seq);
+		
+		
+		for (int i=0; i<=day_seq.length; i++) {
+			service.scheduledel(day_seq[i]);
+		}
+		
+		service.daydel(trip_seq);
+		
+		service.journeydel(trip_seq);
+		
+		return "redirect:/mypage/journey";
+		
+	}
+	
+	@PostMapping("/mypage/journeyshar")
+	private String journeyshar(String trip_seq) {
+		
+		service.journeyshar(trip_seq);
+		
+		return "redirect:/mypage/journey";
+		
 	}
 
 	// 내 여행 등록
@@ -81,64 +119,90 @@ public class MypageController {
 	@PostMapping("/mypage/addjourneyok")	
 	private String addjourneyok(Model model,
 								String title,
-								String nth,
+								String[] nthValues,
 								String[] placeInputValues,
-	                            String[] memoInputValues) {
+	                            String[] memoInputValues,
+	                            String startdate,
+	                            String enddate) {
 		
 		String[] place = new String[placeInputValues.length];
 	    String[] address = new String[placeInputValues.length];
+	    String[] memo = new String[memoInputValues.length];
+	    String[] nth = new String[memoInputValues.length];
 	    
-	    String begin = "2023-07-07";
-	    String end = "2023-07-08";
+	    String begin = "";
+	    String end = "";
 	    
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date beginDate = dateFormat.parse(begin);
-            Date endDate = dateFormat.parse(end);
+	    SimpleDateFormat inputFormat = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
+	    SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-            long diffInMillies = Math.abs(endDate.getTime() - beginDate.getTime());
-            long diffInDays = (TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)) + 1;
+	    try {
+	        // 문자열을 Date 객체로 변환합니다.
+	        Date beginDate = inputFormat.parse(startdate);
+	        Date endDate = inputFormat.parse(enddate);
 
-            System.out.println("날짜 차이: " + diffInDays + "일");
-        } catch (ParseException e) {
-            e.printStackTrace();
+	        // Date 객체를 원하는 형식의 문자열로 변환합니다.
+	        begin = outputFormat.format(beginDate);
+	        end = outputFormat.format(endDate);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+        
+        int maxNth = Integer.MIN_VALUE;
+        
+        for (int i = 0; i < nthValues.length; i++) {
+            String numberNth = nthValues[i].substring(nthValues[i].length() - 1);
+            int numberNthValue = Integer.parseInt(numberNth);
+
+            if (numberNthValue > maxNth) {
+            	maxNth = numberNthValue;
+            }
         }
         
-        
+	    int tripResult = service.tripInsert(title, begin, end);
 	    
-	    System.out.println("title: " + title);
+	    String trip_seq = service.getTripId();
 	    
-	    //int tripResult = service.tripInsert(title, begin, end);
+	    for (int i=1; i<=maxNth; i++) {
+	    	String strI = String.valueOf(i);
+	    	int dayResult = service.dayInsert(strI, trip_seq);
+	    }
 	    
-	    //String trip_seq = service.getTripId();
-	    
-	    //int dayResult = service.dayInsert(nth, trip_seq);
 		
 	    for (int i = 0; i < placeInputValues.length; i++) {
 	        String[] parts = placeInputValues[i].split("_");  // 쉼표로 분리
+	        String[] dParts = memoInputValues[i].split("_");
 	        
 	        
 	        if (parts.length >= 2) {
 	            place[i] = parts[0].trim();  // place 배열에 저장
 	            address[i] = parts[1].trim();  // placeAddress 배열에 저장
+	            
 	        } else {
 	            // 배열에 저장할 요소가 충분하지 않은 경우 처리
 	            place[i] = placeInputValues[i];
 	            address[i] = "";  // 빈 문자열로 저장하거나 다른 방식으로 처리할 수 있습니다.
 	        }
 	        
+	        if (dParts.length >= 2) {
+	            memo[i] = dParts[0].trim();  // place 배열에 저장
+	            nth[i] = dParts[1].substring(dParts[1].length() - 1);  // placeAddress 배열에 저장
+	        } else {
+	            // 배열에 저장할 요소가 충분하지 않은 경우 처리
+	            memo[i] = placeInputValues[i];
+	            nth[i] = "";  // 빈 문자열로 저장하거나 다른 방식으로 처리할 수 있습니다.
+	        }
+
+	        String day_seq = service.getDaySeq(nth[i], trip_seq); 
 	        
-	        System.out.println("memo: " + memoInputValues[i]);
-	        System.out.println("Place: " + place[i]);
-	        System.out.println("Place Address: " + address[i]);
 	        
-	        //int schResult = service.schInsert(nth, memoInputValues[i], place[i], address[i]);
+	        int schResult = service.schInsert(day_seq, memo[i], place[i], address[i]);
 	        
 	    }
 		
-		
-		
-	    return null;
+	    return "redirect:/mypage/journey";
 	}
 
 	// 내 여행 상세보기
@@ -152,6 +216,46 @@ public class MypageController {
 	private String review() {
 
 		return "mypage/review";
+	}
+	
+	// 미작성 리뷰 조회
+	@ResponseBody
+	@RequestMapping(value="/mypage/unwrittenreview", produces="application/json;charset=UTF-8")
+	private String unwrittenreview(String selected) {
+		
+		List <UnwrittenReviewDTO> list = new ArrayList <UnwrittenReviewDTO>();
+		
+		if(selected.equals("accommodate")) list = service.getUnwrittenAccommodate();
+		else if(selected.equals("activity")) list = service.getUnwrittenActivity();
+				
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonResponse;
+		
+		try {
+			jsonResponse = mapper.writeValueAsString(list);
+			return jsonResponse;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	// 리뷰 작성
+	@ResponseBody
+	@RequestMapping(value="/mypage/writereview", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+	private void writereview(String seq, String content, String score) {
+		
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("seq", seq); //pay_seq
+		map.put("content", content);
+		map.put("score", score);
+
+		int result = -1;
+		result = service.updatestatus(seq);
+		result = service.writereview(map);
+		
+		System.out.println("리뷰 작성 결과: " + result);
+		
 	}
 
 	// 내 리뷰 조회 ajax
@@ -170,7 +274,6 @@ public class MypageController {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResponse;
 		try {
-			System.out.println(b.toString());
 			jsonResponse = mapper.writeValueAsString(b);
 			return jsonResponse;
 		} catch (JsonProcessingException e) {
@@ -194,7 +297,6 @@ public class MypageController {
 		try {
 			jsonResponse = mapper.writeValueAsString(ub);
 			
-			System.out.println(jsonResponse);
 			return jsonResponse;
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -208,18 +310,29 @@ public class MypageController {
 	@ResponseBody
 	private void updateBookableReview(String seq, String selected, String newContent) {
 		
-		System.out.println("seq: " + seq);
-		System.out.println("selected: " + selected);
-		//여기까진 잘 넘어오는데 어째서...? new Content not found...?
+		int result = -1;
 		
-		if(selected.equals("accommodate")||selected.equals("activity")) {
-			System.out.println("newContent: " + newContent);
-			int result = service.updatebr(seq, newContent);
-			System.out.println("result: " + result);
-			}
-	//	else if(selected.equals("restaurant")) service.updateubr(seq, newContent);
+		if(selected.equals("accommodate")||selected.equals("activity")) result = service.updatebr(seq, newContent);
+		else if(selected.equals("restaurant")) result = service.updateubr(seq, newContent);
 		
 	}
+	
+	
+	// 내 리뷰 삭제
+	@PostMapping("/mypage/deletereview")
+	@ResponseBody
+	private void deletereview(String seq, String selected) {
+		
+		int result = -1;
+		
+		if(selected.equals("accommodate")||selected.equals("activity")) {
+			result = service.setReviewStatus(seq);
+			result = service.deletebr(seq);
+		}
+		else if(selected.equals("restaurant")) result = service.deleteubr(seq);
+				
+	}
+	
 
 	// 예약 목록
 	@GetMapping("/mypage/mypage_reserve")
@@ -234,20 +347,14 @@ public class MypageController {
 
 	// 예약 상세
 	@GetMapping("/mypage/mypage_reserve_view")
-	private String mypage_reserve_view(Model model, String treserve_seq, String rreserve_seq, String areserve_seq) {
+	private String mypage_reserve_view(Model model, String pay_seq) {
 
 		
 		
-		if (treserve_seq != null && treserve_seq != "") {
-			model.addAttribute("tlist", service.treservedetail(treserve_seq));
-			model.addAttribute("list", service.tpay(treserve_seq));
-		} else if (rreserve_seq != null && rreserve_seq != "") {
-			model.addAttribute("rlist", service.rreservedetail(rreserve_seq));
-			model.addAttribute("list", service.rpay(rreserve_seq));
-	    } else if (areserve_seq != null && areserve_seq != "") {
-	    	model.addAttribute("alist", service.areservedetail(areserve_seq));
-	    	model.addAttribute("list", service.apay(areserve_seq));
-	    }		
+			model.addAttribute("tlist", service.treservedetail(pay_seq));
+			model.addAttribute("rlist", service.rreservedetail(pay_seq));
+	    	model.addAttribute("alist", service.areservedetail(pay_seq));
+	    	model.addAttribute("list", service.rpay(pay_seq));
 		
 
 		
@@ -255,18 +362,11 @@ public class MypageController {
 	}
 	
 	@PostMapping("/mypage/mypage_reservedelok")
-	private String mypage_reservedelok(Model model, String treserve_seq, String rreserve_seq, String areserve_seq) {
+	private String mypage_reservedelok(Model model, String pay_seq) {
 
 
-		System.out.println(treserve_seq);
 		
-		if (treserve_seq != null && treserve_seq != "") {
-			int result = service.treservedel(treserve_seq);
-		} else if (rreserve_seq != null && rreserve_seq != "") {
-			int result = service.rreservedel(rreserve_seq);
-	    } else if (areserve_seq != null && areserve_seq != "") {
-	    	int result = service.areservedel(areserve_seq);
-	    }		
+			int result = service.payDel(pay_seq);
 		
 
 		

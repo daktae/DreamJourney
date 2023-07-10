@@ -148,11 +148,11 @@
 					</tr>
 					<tr>
 						<th>결제일  : ${list.regdate}</th>
-						<td style="text-align:right;">총금액 ₩${list.price}원</td>
+						<td style="text-align:right;">총금액 ₩${list.price}</td>
 					</tr>
 					<tr>
 						<th>결제수단 : ${list.paymethod}</th>
-						<td style="text-align:right;">총 할인금액 -₩0원</td>
+						<td style="text-align:right;">총 할인금액 -₩0</td>
 					</tr>
 					<tr>
 						<th></th>
@@ -165,7 +165,7 @@
 				</table>
 				<table class="table table-borderless">
 					<tr>
-						<td>기타사항</td>
+						<td></td>
 					</tr>
 				</table>
 			</div>
