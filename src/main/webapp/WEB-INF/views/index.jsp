@@ -79,14 +79,12 @@
                             </div>
                             
                             <div class="col-md-3">
-    <input class="form-control p-4" id="startdate" pattern="\d{4}-\d{2}-\d{2}" placeholder="체크인"
-           required  type="text" value="">
+    <input class="form-control p-4" id="startdate" pattern="\d{4}-\d{2}-\d{2}" placeholder="체크인" required  type="text" value="">
 </div>
                             
 
                             <div class="col-md-3">
-    <input class="form-control p-4" id="enddate" pattern="\d{4}-\d{2}-\d{2}" placeholder="체크아웃"
-           required  type="text" value="">
+    <input class="form-control p-4" id="enddate" pattern="\d{4}-\d{2}-\d{2}" placeholder="체크아웃" required  type="text" value="">
 </div>
                             
                             

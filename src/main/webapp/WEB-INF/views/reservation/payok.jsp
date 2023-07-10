@@ -30,6 +30,7 @@
     
     <!-- Google Icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
 </head>
 <style>
 
@@ -84,6 +85,29 @@
 		height: 210px;
 	}
 	
+	.pay-container {
+		display: inline-block;
+		width: 1000px;
+		height: 500px;
+		text-align: center;
+		border: 1px solid #DDD;
+		margin-left: 230px;
+		padding: 50px;
+	}
+	
+	.btn {
+		width: 150px;
+		height: 45px;
+		margin: 0 15px;
+		font-weight: bold;
+		border-radius: 5px;
+	}
+	
+	.btn-secondary {
+		background-color: white;
+		border: 1px solid #7AB730;
+	}
+	
 </style>
 <body>
    <!-- activity.jsp > 액티비티 페이지 -->
@@ -126,7 +150,7 @@
                 <div class="collapse navbar-collapse justify-content-between px-5" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.html" class="nav-item nav-link ">홈</a>
-                        <a href="about.html" class="nav-item nav-link active">예약/예매</a>
+                        <a href="/dreamjourney/reservation" class="nav-item nav-link active">예약/예매</a>
                         <a href="service.html" class="nav-item nav-link">추천 여행지</a>
                         <a href="single.html" class="nav-item nav-link">커뮤니티</a>
                         
@@ -150,7 +174,7 @@
      <!-- 제목 쓰는곳 -->
     <div class="container-fluid page-header">
         <div class="container">
-            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px; text-align: center;">
                 <h3 class="display-4 text-white text-uppercase">결제완료</h3>
                 
             </div>
@@ -161,36 +185,32 @@
     
     
    
-   <!-- 내용 작성 -->
-    <div class="container-fluid py-5" style="height: 100px; border: 1px solid black;">
-       결제가 완료되었습니다.
+   <!-- 본문 -->
+    <div class="container-fluid py-5" style="height: 600px; border: 1px solid black;">
+    	<div class="pay-container">
+    	
+    	<div>
+		<img alt="" src="/dreamjourney/resources/img/reservation/check.png" style="width: 100px;">
+    	<h1 style="font-weight: bold; margin: 30px;">예약완료</h1>
+    	<p>
+    	<div style="font-weight: bold; font-size: 20px;">결제가 성공적으로 완료되었습니다.</div>
+    	<div style="font-size: 17px";>기타 궁금하신 사항은 채팅 또는 전화문의로 연락주시면 성심껏 답변드리겠습니다.</div>
+    	<div style="font-size: 17px";>신청하신 정보는 <span style="font-weight: bold;">예약내역(마이페이지 - 내 예매내역)</span>에서 확인 가능합니다.</div> 
+    	</p>
+    	</div>
+    	<br>
+    	<div>
+    	<button type="button" class="btn btn-secondary" onclick="location.href='/dreamjourney/mypage/mypage_reserve';">결제내역 확인</button>
+    	<button type="button" class="btn btn-primary" onclick="location.href='/dreamjourney/index';">메인으로</button>
+    	</div>
+    	
+    	</div>
+       
    </div>
                 
 
 
     <%@ include file="/resources/inc/footer.jsp"%>
-    
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="/dreamjourney/resources/lib/easing/easing.min.js"></script>
-    <script src="/dreamjourney/resources/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="/dreamjourney/resources/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="/dreamjourney/resources/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="/dreamjourney/resources/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="/dreamjourney/resources/mail/jqBootstrapValidation.min.js"></script>
-    <script src="/dreamjourney/resources/mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="/dreamjourney/resources/js/main.js"></script>
 </body>
 
 </html>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.domain.ActivityDTO;
 import com.test.domain.ReviewDTO;
@@ -29,7 +30,7 @@ public class ActivityServiceImpl implements ActivityService {
 	
 	//리뷰 출력
 	@Override
-	public List<ActivityDTO> review(String activity_seq) {
+	public List<ReviewDTO> review(String activity_seq) {
 		return mapper.review(activity_seq);
 	}
 	
@@ -42,8 +43,8 @@ public class ActivityServiceImpl implements ActivityService {
 
 	//결제 
 	@Override
-	public ActivityDTO pay(String activity_seq) {
-		return mapper.pay(activity_seq);
+	public ActivityDTO pay(ActivityDTO pdto) {
+		return mapper.pay(pdto);
 	}
 	
 	
@@ -61,11 +62,16 @@ public class ActivityServiceImpl implements ActivityService {
 		return mapper.reviewCount(activity_seq);
 	}
 	
+	//결제 날짜(adate_seq 찾기)
+	@Override
+	public String paydate(ActivityDTO dto) {
+		return mapper.paydate(dto);
+	}
+	
 	//결제 성공
 	@Override
-	public void payok(String totalPrice) {
-		mapper.payok(totalPrice);
-		System.out.println(totalPrice);
+	public void payok(ActivityDTO dto) {
+		mapper.payok(dto);
 	}
-
+	
 }

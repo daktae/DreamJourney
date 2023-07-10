@@ -46,6 +46,10 @@
 
 </head>
 <style>
+html{
+	scroll-behavior: smooth;
+}
+
 body {
 	padding-bottom: 50px;
 }
@@ -140,6 +144,11 @@ footer {
 	float: left,
 }
 
+#star:hover {
+	text-decoration:none;
+	
+}
+
 </style>
 <body>
 	<%@ include file="/resources/inc/header.jsp"%>
@@ -151,13 +160,15 @@ footer {
 		<form method="POST" action="/dreamjourney/reservation/pay" id="form">
 			<div style="width: 780px; float: left; margin-left: 200px; margin-right: 20px;">
 				<div style="text-align: center;">
-					<h1>${adetail.title }</h1>
+					<h5>${adetail.category }</h5>
+					<h1>[${address}] ${adetail.title }</h1>
 				</div>
 				<div style="text-align: right;">
-					<h4>${adetail.title }(댓글)</h4>
 				</div>
 				<hr>
-				<div>${adetail.address }<div id="price" style="float: right;">
+				<div><a href="#review" id="star">
+				<img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
+				후기(${reviewCount }) > </a><div id="price" style="float: right;">
 						1인
 						<fmt:formatNumber value="${adetail.price }" pattern="#,###" />
 						원
@@ -170,7 +181,7 @@ footer {
 					<img class="img" src="/dreamjourney/resources/img/reservation/${adetail.image3 }" alt="">
 					<div style="margin: 20px;">${adetail.content }</div>
 				</div>
-				<button id="showbtn">상품 설명 더 보기 <span class="material-symbols-outlined">stat_minus_2</span></button>
+				<button id="showbtn" type="button">상품 설명 더 보기 <span class="material-symbols-outlined">stat_minus_2</span></button>
 				
 
 				<hr>
@@ -178,12 +189,12 @@ footer {
 				<div id="map" style="width: 780px; height: 400px; margin: 20px auto;"></div>
 				<div style="text-align: center;"><span class="material-symbols-outlined">location_on</span> ${adetail.address }</div>
 				<hr>
-				<div>
-					리뷰 (${reviewCount.rcount })
+				<div id="review">
+					<span style="font-weight: bold;">리뷰 (${reviewCount})</span>
 					<hr>
 					<c:forEach items="${review }" var="rdto">
-						<div style="padding: 0 5px; font-weight: bold;">${rdto.nickname }</div>
-						<div style="padding: 5px;"><span class="score">${rdto.score }</span> <small>${rdto.rdate }</small></div>
+						<div style="padding: 0 5px; font-weight: bold;">${rdto.nickname }
+						<span class="score">${rdto.score }</span> <small style="float:right; padding-right: 10px;">${rdto.rdate }</small></div>
 						<div style="padding: 5px;">${rdto.content }</div>
 						<hr>
 					</c:forEach>
@@ -217,7 +228,6 @@ footer {
 			</div>
 			<input type="hidden" name="totalPrice"> 
 			<input type="hidden" name="totalPeople"> 
-			<%-- <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"> --%>	<!-- 인증 토큰 -->
 		</form>
 	</div>
 
@@ -239,7 +249,7 @@ footer {
 	/* 즐겨찾기 */
 	$('#bookmark').click(function() {
 		$.ajax({
-			url: "/dreamjourney/reservation/viewactivity",		//url 이슈 > 왜 /reservation/viewactivity가 아니라 그냥 viewactivity 하니까 됐음(연우 덕)
+			url: "/dreamjourney/reservation/viewactivity",		
 			type: "POST",
 			dataType: "json",
 			data: {
@@ -247,6 +257,7 @@ footer {
 			},
 			success: function(result) {
 					console.log('성공');
+					location.href="/dreamjourney/reservation/payok";
 				},
 			error: function(a, b, c) {
 				console.log(a, b, c);
@@ -267,9 +278,17 @@ footer {
 
 
 	/* 캘린더 */
+	//선택 가능 날짜
+	var availDates=["2023-07-09", "2023-07-13", "2023-07-19"];
+	
+	/* String[] list = new String[];	//값을 저장하고 > jsp로 해서 forEach로 돌려서
+	list = 받아온 데이터 > jsp에서 forEach */
+	
+	
 	$(function(){
+	
 	$('#datepicker').datepicker({
-		dateFormat : 'yy-mm-dd',
+	    dateFormat : 'yy-mm-dd',
 		prevText: '이전 달',
         nextText: '다음 달',
         monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -279,7 +298,8 @@ footer {
         dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
         showMonthAfterYear: true,
         yearSuffix: '년',
-        minDate: 0
+        minDate: 0,
+        
 		});
 });
 	

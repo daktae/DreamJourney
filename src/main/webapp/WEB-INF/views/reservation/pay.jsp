@@ -46,6 +46,7 @@
 <style>
 img {
 	width: 250px;
+	overflow: hidden;
 	float: left;
 	margin-right: 20px;
 }
@@ -224,15 +225,18 @@ a:hover {
 		<div class="pay_container">
 			<div style="height: 270px;">
 			<h3>상품정보</h3>
-			<hr>
+			<button type="submit" id="test">test</button>
+			<hr> 
+			<div style="height: 200px; overflow: hidden; display: inline-block; float: left;">
 			<img src="/dreamjourney/resources/img/reservation/${pdetail.image1 }" >
+			</div>
 			<div style="font-weight: bold; font-size: 18px;" id="title" class="info">${pdetail.title}</div>
 			<div class="info"><span class="material-symbols-outlined">location_on</span> ${pdetail.address}</div>
 			<div class="info"><span class="material-symbols-outlined">calendar_month</span> ${dto.dates }</div>
 			<div class="info"><span class="material-symbols-outlined">person</span> ${dto.totalPeople}명</div>
 			</div>
 			<div style="height: 200px;">
-			<h3 style="margin-top: 30px;">예약자</h3>
+			<h3 style="margin-top: 80px;">예약자</h3>
 			<hr>
 			<div style="background-color: #DDD; padding: 15px;">
 				<div>예약자 이름 :</div>
@@ -329,6 +333,28 @@ a:hover {
 </body>
 <script>
 
+$('#test').click(function() {
+	
+$.ajax({
+	url: "/dreamjourney/reservation/payok",
+	type: "POST",
+	dataType: "text",
+	data: {
+		"totalPrice" : "${dto.totalPrice}",
+		"dates" : "${dto.dates}",
+		"activity_seq" : "${dto.activity_seq}"
+	},
+	success: function(result) {
+			console.log('성공');
+			location.href='/dreamjourney/reservation/payok';
+		},
+	error: function(a, b, c) {
+		console.log(a, b, c);
+	}
+});
+
+});
+
 var allcheck = document.querySelector('#allcheck');
 var checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#allcheck)');
 
@@ -387,20 +413,23 @@ $('#check_module').click(function() {
 			msg += '결제 금액 : ' + rsp.paid_amount;
 			msg += '카드 승인번호 : ' + rsp.apply_num;  
 			
-				$.ajax({
-					url: "/dreamjourney/reservation/payok",
-					type: "POST",
-					dataType: "json",
-					data: {
-						totalPrice : "${dto.totalPrice}"
+			$.ajax({
+				url: "/dreamjourney/reservation/payok",
+				type: "POST",
+				dataType: "text",
+				data: {
+					"totalPrice" : "${dto.totalPrice}",
+					"dates" : "${dto.dates}",
+					"activity_seq" : "${dto.activity_seq}"
+				},
+				success: function(result) {
+						console.log('성공');
+						location.href='/dreamjourney/reservation/payok';
 					},
-					success: function(result) {
-							console.log('성공');
-						},
-					error: function(a, b, c) {
-						console.log(a, b, c);
-					}
-				});
+				error: function(a, b, c) {
+					console.log(a, b, c);
+				}
+			});
 			
 		} else {
 			var msg = '결제에 실패하였습니다.';

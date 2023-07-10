@@ -12,9 +12,9 @@ public interface ActivityService {
 
 	ActivityDTO get(String activity_seq);
 
-	List<ActivityDTO> review(String activity_seq);
+	List<ReviewDTO> review(String activity_seq);
 
-	ActivityDTO pay(String activity_seq);
+	ActivityDTO pay(ActivityDTO pdto);
 
 	void bookmark_on(String activity_seq);
 
@@ -22,7 +22,12 @@ public interface ActivityService {
 
 	void addReview(ReviewDTO rdto);
 
-	void payok(String totalPrice);
+	String paydate(ActivityDTO dto);
+
+	void payok(ActivityDTO dto);
+
+
+
 
 
 

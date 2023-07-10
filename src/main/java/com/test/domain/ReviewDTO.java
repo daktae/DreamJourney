@@ -13,4 +13,5 @@ public class ReviewDTO {
 	private String thread;			//쓰레드
 	private String depth;				//뎁스
 	private String rdate;				//리뷰 작성 날짜
+	private String nickname;		//닉네임
 }
