@@ -105,6 +105,8 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.html" class="nav-item nav-link ">홈</a>
                         <a href="about.html" class="nav-item nav-link active">예약/예매</a>
+                        <a href="/dreamjourney/index" class="nav-item nav-link ">홈</a>
+                        <a href="/dreamjourney/reservation" class="nav-item nav-link active">예약/예매</a>
                         <a href="service.html" class="nav-item nav-link">추천 여행지</a>
                         <a href="single.html" class="nav-item nav-link">커뮤니티</a>
                         
@@ -150,6 +152,7 @@
                             <img src="/dreamjourney/resources/img/reservation/비행기.png">
                            <div class="team-social">
                                 <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
+                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/airplane">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -163,6 +166,7 @@
                             <img src="/dreamjourney/resources/img/reservation/기차.jpg">
                             <div class="team-social">
                                 <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
+                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/train">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -182,6 +186,11 @@
                             <div class="text-truncate"><span class="material-symbols-outlined">
 directions_bus
 </span> 고속버스</div>
+                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/transport">예약하기</a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <div class="text-truncate"><span class="material-symbols-outlined">directions_bus</span> 고속버스</div>
                         </div>
                     </div>
                 </div>
@@ -393,6 +402,7 @@ directions_bus
             
         </div>
     </div>
+    <%@ include file="/resources/inc/footer.jsp"%>
     
 
 

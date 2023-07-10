@@ -210,6 +210,7 @@
             
         </div>
     </div>
+    <%@ include file="/resources/inc/footer.jsp"%>
     
 
 

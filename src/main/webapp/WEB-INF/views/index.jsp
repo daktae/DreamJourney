@@ -1082,10 +1082,6 @@ a:hover {
          </div>
       </div>
    </div>
-   </div>
-   </div>
-   </div>
-   </div>
 
 <form method="post" action="/dreamjourney/unresi">
   <input type="hidden" name="email" value="${param.email}">

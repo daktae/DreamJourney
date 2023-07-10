@@ -17,4 +17,5 @@ public class TrandateDTO {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date tran_date;
+	
 }

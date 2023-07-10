@@ -279,7 +279,6 @@
 
 
 
-
 	<!-- Footer Start -->
 	<div class="container-fluid bg-dark text-white-50 px-sm-3   px-lg-5">
 		<div class="row pt-5">

@@ -234,6 +234,8 @@
 							<button class="btn btn-primary btn-block" type="submit"
 								style="height: 47px; margin-top: -2px;">예약</button>
 						</form>
+						<button class="btn btn-primary btn-block" type="submit"
+							style="height: 47px; margin-top: -2px;">예약</button>
 					</div>
 				</a>
 			</div>
@@ -275,6 +277,11 @@
     <h5 style="margin-bottom:30px; text-align:center;">검색 결과가 없습니다.</h5>
 </c:if>
 	</div>
+
+
+	</div>
+
+
 
 
 	<!-- Footer Start -->

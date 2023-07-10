@@ -67,6 +67,7 @@
     	select count(acco_seq) as rcount from vwAccommodateReview where acco_seq=#{acco_seq}
 	</select>
 	
+	
 	<!-- 게시물 총 갯수 -->
 	<!-- 
 <select id="count" resultType="int">
@@ -87,5 +88,6 @@
  -->
 
 </mapper>
+
 
 

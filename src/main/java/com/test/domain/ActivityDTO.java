@@ -20,7 +20,7 @@ public class ActivityDTO {
 	private String image3;		//이미지
 	
 	private String score;			//평점
-	private String riviewContent;	//리뷰
+	private String reviewContent;	//리뷰
 	private String review_seq;	//리뷰번호
 	private String nickname;	//닉네임
 	private String rdate;			//리뷰 작성 날짜

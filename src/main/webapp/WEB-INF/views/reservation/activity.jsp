@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,6 +130,8 @@
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.html" class="nav-item nav-link ">홈</a>
                         <a href="about.html" class="nav-item nav-link active">예약/예매</a>
+                        <a href="/dreamjourney/index class="nav-item nav-link ">홈</a>
+                        <a href="/dreamjourney/reservation" class="nav-item nav-link active">예약/예매</a>
                         <a href="service.html" class="nav-item nav-link">추천 여행지</a>
                         <a href="single.html" class="nav-item nav-link">커뮤니티</a>
                         
