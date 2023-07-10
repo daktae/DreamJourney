@@ -1,184 +1,384 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> <!-- 천단위 콤마 라이브러리 -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>TRAVELER - Free Travel Website Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+<meta charset="utf-8">
+<title>DreamJourney > 예약/예매 > 액티비티 > 상세보기</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="Free HTML Templates" name="keywords">
+<meta content="Free HTML Templates" name="description">
 
-    <!-- Favicon -->
-    <link href="../asset/img/favicon.ico" rel="icon">
+<!-- datePicker -->
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<!-- Favicon -->
+<link href="../asset/img/favicon.ico" rel="icon">
 
-    <!-- Libraries Stylesheet -->
-    <link href="/dreamjourney/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="/dreamjourney/resources/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+	rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="/dreamjourney/resources/css/style.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"	rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link	href="/dreamjourney/resources/lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link	href="/dreamjourney/resources/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+	rel="stylesheet" />
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="/dreamjourney/resources/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+<!-- Google Icon -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+
 </head>
+<style>
+body {
+	padding-bottom: 50px;
+}
 
+.img-container {
+	max-height: 500px;
+	overflow: hidden;
+}
+
+#showbtn {
+	width: 300px;
+	height: 60px;
+	background-color: white;
+	border: 1px solid #AAA;
+	margin: 20px auto;
+	font-weight: bold;
+	font-size: 20px;
+	border-radius: 3px;
+	color: #656565;
+	display: flex;
+	align-items: center;
+	padding-left: 60px;
+}
+
+#showbtn:hover {
+box-shadow: 1px 1px 20px #ddd;
+}
+
+#addReview {
+	border: 1px solid #AAA;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+#comment {
+	width: 100%;
+	margin: 30px auto;
+	padding: 100px;
+}
+
+.comment {
+	background-color: #DFDFDF;
+	font-weight: bold;
+	border: none;
+	height: 40px;
+	width: 100px;
+	border-radius: 10%;
+	
+}
+
+#regicom {
+	width: 150px;
+	padding: auto 10px;
+}
+
+#eotrmf {
+	width: 100px;
+	font-weight: bold;
+	background-color: #DDD;
+	border-right: 1px solid #AAA;
+}
+
+.full {
+	float: left;
+	width: 90%;
+	height: 40px;
+	margin: 10px;
+	border: 1px solid #AAA;
+	padding-left: 10px;
+	outline: none;
+}
+
+.btn {
+	width: 200px;
+	margin: 5px 30px;
+}
+
+.img {
+	width: 800px;
+}
+
+footer {
+	margin: 0;
+	width: 100%:
+}
+
+#bookmark {
+	width: 150px; 
+	margin-left: 200px;
+	float: left,
+}
+
+</style>
 <body>
-   
-   
-    
+	<%@ include file="/resources/inc/header.jsp"%>
+	<!-- 본문 -->
+	<div style="height: 3000px; margin-top: 100px;">
+	<div>
+	<button type="submit" class="btn btn-primary" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
+	</div>
+		<form method="POST" action="/dreamjourney/reservation/pay" id="form">
+			<div style="width: 780px; float: left; margin-left: 200px; margin-right: 20px;">
+				<div style="text-align: center;">
+					<h1>${adetail.title }</h1>
+				</div>
+				<div style="text-align: right;">
+					<h4>${adetail.title }(댓글)</h4>
+				</div>
+				<hr>
+				<div>${adetail.address }<div id="price" style="float: right;">
+						1인
+						<fmt:formatNumber value="${adetail.price }" pattern="#,###" />
+						원
+					</div>
+				</div>
+				<hr>
+				<div class="img-container">
+					<img class="img" src="/dreamjourney/resources/img/reservation/${adetail.image1 }" alt="">
+					<img class="img" src="/dreamjourney/resources/img/reservation/${adetail.image2 }" alt="">
+					<img class="img" src="/dreamjourney/resources/img/reservation/${adetail.image3 }" alt="">
+					<div style="margin: 20px;">${adetail.content }</div>
+				</div>
+				<button id="showbtn">상품 설명 더 보기 <span class="material-symbols-outlined">stat_minus_2</span></button>
+				
 
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                       
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <p><a href="*">로그인</a></p>
-                        <p class="text-body px-3">|</p>
-                        <p><a href="*">회원가입</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-    
+				<hr>
+				<h3>위치 안내</h3>
+				<div id="map" style="width: 780px; height: 400px; margin: 20px auto;"></div>
+				<div style="text-align: center;"><span class="material-symbols-outlined">location_on</span> ${adetail.address }</div>
+				<hr>
+				<div>
+					리뷰 (${reviewCount.rcount })
+					<hr>
+					<c:forEach items="${review }" var="rdto">
+						<div style="padding: 0 5px; font-weight: bold;">${rdto.nickname }</div>
+						<div style="padding: 5px;"><span class="score">${rdto.score }</span> <small>${rdto.rdate }</small></div>
+						<div style="padding: 5px;">${rdto.content }</div>
+						<hr>
+					</c:forEach>
+				</div>
 
+			</div>
 
-    <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-primary"><span class="text-dark">Dream</span>Journey</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between px-5" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">홈</a>
-                        <a href="about.html" class="nav-item nav-link">예약/예매</a>
-                        <a href="service.html" class="nav-item nav-link">추천 여행지</a>
-                        <a href="single.html" class="nav-item nav-link">커뮤니티</a>
-                        
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Contact</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                
-                                <a href="single.html" class="dropdown-item">공지사항</a>
-                                <a href="single.html" class="dropdown-item">FAQ/문의</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-    <!-- Navbar End -->
-    
-     <!-- Header Start -->
-    <div class="container-fluid page-header">
-        <div class="container">
-            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">제목</h3>
-                
-            </div>
-        </div>
-    </div>
-    <!-- Header End -->   
-
-    <div class="container-fluid py-5" style="height: 1000px;">
-       
-   </div>
-                
-
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 px-sm-3   px-lg-5" >
-        <div class="row pt-5">
-            <div class="col-lg-3 col-md-6 mb-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">Dream</span>Journey</h1>
-                </a>
-                <p style="margin-bottom: 0px; font-weight: bold;">고객지원실 운영안내</p>
-                <p style="margin-bottom: 0px;">02-3482-4632</p>
-                <p style="margin-bottom: 0px;">전화 상담: 09:00 ~ 18:00</p>
-                <p style="margin-bottom: 0px;">채팅 상담: 09:00 ~ 20:00</p>
-
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
-                <div class="d-flex justify-content-start">
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >소개</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>회사소개</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>채용</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >제휴 업체</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>늘봄 실버타운</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>늘봄 요양원</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>쌍용교육센터</a>
-                    
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >지원</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>자주 묻는 질문</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>최저가 보장제</a>
-                    
-                </div>
-            </div>
-            
-        </div>
-    </div>
-    
+			<div
+				style="border: 1px solid #DDD; background-color: #FFF;display: inline-block; width: 300px; padding: 20px; text-align: center; margin: 0 10px; position: fixed;">
+				<div>티켓 선택 날짜
+					<input type="date" name="dates" id="datepicker">
+				</div>
+				<div>
+					인원 선택<input type="number" id="numberInput" min="1"
+						max="${adetail.limit }" oninput="displayNumber()" value="1" name="totalPeople">
+				</div>
+				<div style="font-weight: bold; margin-bottom: 10px;">
+					총 가격 <span id="totalPrice" name="totalPrice"><fmt:formatNumber value="${adetail.price }" pattern="#,###" /></span>원
+				</div>
+				<div>
+					(
+					<fmt:formatNumber value="${adetail.price }" pattern="#,###" />
+					원 * <span id="numberDisplay">1 명</span>)
+				</div>
+				<br>
+				<div>
+					<button type="submit" class="btn btn-primary reservation" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
+					<input type="hidden" value="${adetail.activity_seq }" name="activity_seq">
+					
+				</div>
+			</div>
+			<input type="hidden" name="totalPrice"> 
+			<input type="hidden" name="totalPeople"> 
+			<%-- <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"> --%>	<!-- 인증 토큰 -->
+		</form>
+	</div>
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="/dreamjourney/resources/lib/easing/easing.min.js"></script>
-    <script src="/dreamjourney/resources/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="/dreamjourney/resources/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="/dreamjourney/resources/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="/dreamjourney/resources/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="/dreamjourney/resources/mail/jqBootstrapValidation.min.js"></script>
-    <script src="/dreamjourney/resources/mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="/dreamjourney/resources/js/main.js"></script>
+	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=399d3a29656e06f5e50372ac6e9c718a&libraries=services,clusterer,drawing"></script>
+	<!-- 카카오맵.api -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=399d3a29656e06f5e50372ac6e9c718a"></script>
+	
 </body>
+<footer> 	<%@ include file="/resources/inc/footer.jsp"%>		</footer>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<script>
+
+	/* 즐겨찾기 */
+	$('#bookmark').click(function() {
+		$.ajax({
+			url: "/dreamjourney/reservation/viewactivity",		//url 이슈 > 왜 /reservation/viewactivity가 아니라 그냥 viewactivity 하니까 됐음(연우 덕)
+			type: "POST",
+			dataType: "json",
+			data: {
+				activity_seq : "${adetail.activity_seq}"
+			},
+			success: function(result) {
+					console.log('성공');
+				},
+			error: function(a, b, c) {
+				console.log(a, b, c);
+			}
+		});
+	});
+	
+	/* 리뷰 */
+	$(document).ready(function() {
+		  $('.score').each(function() {	//each로 각각의 score마다 이벤트 설정해야 함
+		    var score = $(this).text();
+		    $(this).empty();					//기존 값은 숨기기
+		    for (var i = 1; i <= score; i++) {
+		      $(this).append("<img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>");
+		    }
+		  });
+		});
+
+
+	/* 캘린더 */
+	$(function(){
+	$('#datepicker').datepicker({
+		dateFormat : 'yy-mm-dd',
+		prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        showMonthAfterYear: true,
+        yearSuffix: '년',
+        minDate: 0
+		});
+});
+	
+	document.querySelector("input[name=totalPrice]").value = ${adetail.price};
+	document.querySelector("input[name=totalPeople]").value = 1;
+
+	/* 인원 수 */
+	function displayNumber() {
+		var input = document.getElementById("numberInput");
+		var display = document.getElementById("numberDisplay");
+
+		var number = event.target.value;
+		display.textContent = number + "명";
+
+		/* 총 가격 */
+		var price = ${adetail.price};
+		var totalPrice = price * number;
+		
+		document.getElementById("totalPrice").innerText = totalPrice;
+		
+		document.querySelector("input[name=totalPrice]").value = totalPrice;
+		//document.querySelector("input[name=totalPeople]").value = number;
+	}
+
+	/* Kakao Maps API & 지오코딩 */
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch("${adetail.address }", function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">"${adetail.title}"</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});  
+	
+	/* 이미지 더보기 */
+	$(document).ready(function() {
+		
+		var container = $('.img-container');
+		var button = $('#showbtn');
+		
+		button.click(function() {
+			container.css('max-height', 'none');	//최대 높이 해제
+			button.hide();
+		});
+	});
+	
+	
+
+	/* 버튼 활성화 */
+	$(document).ready(function() {
+		$('.reservation').prop('disabled', true);
+
+		$('#datepicker').change(function() {
+			var checked = true; //인풋 상태 확인 전에 초기화
+			if ($(this).val() == 0) { //체크박스가 체크 안된게 있으면
+				checked = false;
+				return false; //반복문 종료
+			}
+		if(checked) {		//모두 체크됐으면
+			$('.reservation').prop('disabled', false);	//버튼 활성화
+		} else {
+			$('.reservation').prop('disabled', true);
+		}
+		});
+	});
+	
+	
+	
+	
+</script>
 </html>
-
 
 
 

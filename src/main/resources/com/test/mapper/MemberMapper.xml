@@ -21,9 +21,14 @@ select count(nickname) from tblmember where nickname = #{nick}
 	
 <!-- 회원가입 -->
 	<insert id = "addMember">
-		 insert into tblmember (member_seq, name, email, pw, nickname, tel)
-        values (member_seq.nextval, #{name}, #{email}, #{pw}, #{nickname}, #{tel})
+  INSERT INTO tblmember (member_seq, name, email, pw, nickname, tel, unresi)
+  VALUES (member_seq.nextval, #{name}, #{email}, #{pw}, #{nickname}, #{tel}, 'n')
 	</insert>
+	
+<!-- 회원탈퇴 -->
+<update id="unMember">
+update tblmember set name = '　', email = '　', pw = '　', nickname = '　', tel = '　', unresi = 'y' where email = #{email}
+</update>
 	
 <!-- 숙소 검색결과 -->
 <select id="searchAcc" resultType="com.test.domain.AccommodateDTO">
@@ -34,10 +39,46 @@ select count(nickname) from tblmember where nickname = #{nick}
   ]]>
 </select>
 
+<!-- 항공 검색결과 -->
 <select id="searchAirplane" resultType="com.test.domain.AccommodateDTO">
   <![CDATA[
-    select * from vwairplane where departure like '%${departure}%' and destination like '%${destination}%' and limit >= #{limit} and tran_date >= #{tran_date}
+    select * from vwairplanewj where departure like '%${departure}%' and destination like '%${destination}%' and limit >= #{limit} and tran_date >= #{tran_date}
   ]]>
+</select>
+
+<!-- 버스 검색결과 -->
+<select id="searchBus" resultType="com.test.domain.AccommodateDTO">
+  <![CDATA[
+    select * from vwbuswj where departure like '%${departure}%' and destination like '%${destination}%' and limit >= #{limit} and tran_date >= #{tran_date}
+  ]]>
+</select>
+
+<!-- 기차 검색결과 -->
+<select id="searchTrain" resultType="com.test.domain.AccommodateDTO">
+  <![CDATA[
+    select * from vwtrainwj where departure like '%${departure}%' and destination like '%${destination}%' and limit >= #{limit} and tran_date >= #{tran_date}
+  ]]>
+</select>
+
+<!-- 액티비티 검색 주소로만 -->
+<select id="searchActadr" resultType="com.test.domain.ActivityDTO">
+  <![CDATA[
+select * from vwactivity where address like '%${address}%'
+]]>
+</select>
+
+<!-- 액티비티 검색 액티비티명 으로만 -->
+<select id="searchActtitle" resultType="com.test.domain.ActivityDTO">
+  <![CDATA[
+select * from vwactivity where title like '%${title}%'
+]]>
+</select>
+
+<!-- 액티비티 검색 액티비티명 & 도시둘다 -->
+<select id="searchAct" resultType="com.test.domain.ActivityDTO">
+  <![CDATA[
+select * from vwactivity where address like '%${address}%' and title like '%${title}%'
+]]>
 </select>
 
 </mapper>

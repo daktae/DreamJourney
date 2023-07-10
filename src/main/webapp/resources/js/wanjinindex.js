@@ -19,14 +19,22 @@ flatpickr(document.getElementById("checkout"), {
     	"locale": "ko", 
     	dateFormat: "Y-m-d",
     	minDate: "today"
-    });    
+    });
     
-    flatpickr(document.getElementById("enddate"), {
+        var fp = flatpickr(document.getElementById("startdate3"), {
     	'monthSelectorType' : 'dropdown',
-    	"locale": "ko",
+    	"locale": "ko", 
     	dateFormat: "Y-m-d",
     	minDate: "today"
-    });
+    });     
+    
+         var fp = flatpickr(document.getElementById("startdate4"), {
+    	'monthSelectorType' : 'dropdown',
+    	"locale": "ko", 
+    	dateFormat: "Y-m-d",
+    	minDate: "today"
+    });     
+    
     
 // 자동 슬라이드 기능 중지
 $("#packageSlider").carousel({

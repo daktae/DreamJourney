@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.test.domain.AccommodateDTO;
+import com.test.domain.ActivityDTO;
 import com.test.domain.RoomDTO;
+import com.test.domain.TrandateDTO;
+import com.test.domain.TransportDTO;
 import com.test.service.AccommodateService;
 
 @Controller
@@ -37,6 +41,7 @@ public class ReservationController {
 		
 		model.addAttribute("list", service.accommodatelist());
 
+		return "/reservation/accommodate";
 		
 		/* API
 		 * StringBuffer result = new StringBuffer(); String strResult = ""; try {
@@ -60,7 +65,6 @@ public class ReservationController {
 		 * model.addAttribute("result", strResult);
 		 */
 
-		return "/reservation/accommodate";
 	}
 
 	@GetMapping("/reservation/accommodate_detail")
@@ -68,17 +72,87 @@ public class ReservationController {
 		
 		AccommodateDTO dto = service.get(acco_seq);
 		List<RoomDTO> list = service.view(acco_seq);
+		List<AccommodateDTO> rdto = service.review(acco_seq);	//리뷰
+		String rcount = service.reviewCount(acco_seq);	//리뷰 수 
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("list", list);
+		model.addAttribute("review", rdto);
+		model.addAttribute("reviewCount", rcount);
+		//System.out.println(rcount);
 		
 		return "/reservation/accommodate_detail";
 	}
+	
+	@GetMapping("/reservation/transport_detail")
+	private String transport_detail(Model model, String tran_seq) {
+		
+		TransportDTO tran_dto = service.tran_get(tran_seq);
+		List<TrandateDTO> tran_list = service.tran_view(tran_seq);
+		
+		model.addAttribute("dto", tran_dto);
+		model.addAttribute("list", tran_list);
+		
+		return "/reservation/transport_detail";
+	}
+	
+	@GetMapping("/reservation/train_detail")
+	private String train_detail(Model model, String tran_seq) {
+		
+		TransportDTO tran_dto = service.tran_get(tran_seq);
+		List<TrandateDTO> tran_list = service.tran_view(tran_seq);
+		
+		model.addAttribute("dto", tran_dto);
+		model.addAttribute("list", tran_list);
+		
+		return "/reservation/train_detail";
+	}
+	
+	@GetMapping("/reservation/airplane_detail")
+	private String airplane_detail(Model model, String tran_seq) {
+		
+		TransportDTO tran_dto = service.tran_get(tran_seq);
+		List<TrandateDTO> tran_list = service.tran_view(tran_seq);
+		
+		model.addAttribute("dto", tran_dto);
+		model.addAttribute("list", tran_list);
+		
+		return "/reservation/airplane_detail";
+	}
 
 	@GetMapping("/reservation/transport")
-	private String transport() {
+	private String transport(Model model) throws Exception {
 
+		//Integer cnt = service.count();
+		
+		model.addAttribute("list", service.transportlist());
+		
 		return "/reservation/transport";
 	}
 
+
+	@GetMapping("/reservation/train")
+	private String train(Model model) {
+
+		model.addAttribute("list", service.trainlist());
+		
+		return "/reservation/train";
+	}
+	
+	@GetMapping("/reservation/airplane")
+	private String airplane(Model model) {
+		
+		model.addAttribute("list", service.airplanelist());
+		
+		return "/reservation/airplane";
+	}
+	
+	// 게시물 목록 + 페이징 추가
+	/*
+	 * public void getListPage(Model model) throws Exception {
+	 * 
+	 * List list = null; list = service.list(); model.addAttribute("list", list); }
+	 */
+	
+	
 }

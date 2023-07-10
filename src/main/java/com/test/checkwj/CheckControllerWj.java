@@ -25,6 +25,7 @@ import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.test.domain.AccommodateDTO;
+import com.test.domain.ActivityDTO;
 import com.test.domain.MemberDTO;
 import com.test.emailwj.IamportClient;
 import com.test.mapper.MemberMapper;
@@ -41,6 +42,18 @@ public class CheckControllerWj {
 	private String add(MemberDTO dto) {
 	    // 회원 정보 추가
 		memberService.addMember(dto);
+	    return "index";
+	}
+	
+	//회원탈퇴 되면 메인으로
+	@PostMapping("/unresi")
+	private String unresi(MemberDTO dto) {
+	    // 회원 정보 추가
+		System.out.println("회원탈퇴중");
+		System.out.println(dto);	
+		memberService.unMember(dto);
+		System.out.println("탈퇴완료");
+		System.out.println(dto);
 	    return "index";
 	}
 	
@@ -161,11 +174,87 @@ public class CheckControllerWj {
 			model.addAttribute("airplaneResult", airplaneResult);
 			
 			// 검색 결과를 표시할 View 이름을 반환
-			return "index";
+			return "reservation/airplane";
 		}
 		
-		
+		//기차 검색하면 예약 페이지로
+		@GetMapping("/searchtrain")
+		public String searchtrain(AccommodateDTO dto, Model model) {
+			// 매개변수 처리 및 필요한 로직 수행
+			// ...
 			
+			System.out.println(dto.getDeparture());
+			System.out.println(dto.getDestination());
+			System.out.println(dto.getTran_date());
+			System.out.println(dto.getLimit());
+			
+			List<AccommodateDTO> trainResult = memberService.searchTrain(dto);
+			System.out.println(trainResult);
+			
+			// 검색 결과를 모델에 추가
+			model.addAttribute("trainResult", trainResult);
+			
+			// 검색 결과를 표시할 View 이름을 반환
+			return "reservation/train";
+		}
+			
+		//버스 검색하면 예약 페이지로
+		@GetMapping("/searchbus")
+		public String searchbus(AccommodateDTO dto, Model model) {
+			// 매개변수 처리 및 필요한 로직 수행
+			// ...
+			
+			System.out.println(dto.getDeparture());
+			System.out.println(dto.getDestination());
+			System.out.println(dto.getTran_date());
+			System.out.println(dto.getLimit());
+			
+			List<AccommodateDTO> busResult = memberService.searchBus(dto);
+			System.out.println(busResult);
+			
+			// 검색 결과를 모델에 추가
+			model.addAttribute("busResult", busResult);
+			
+			// 검색 결과를 표시할 View 이름을 반환
+			return "reservation/transport";
+		}
+		
+		//액티비티 검색
+		@GetMapping("/activitywj")
+		public String searchactivity(ActivityDTO dto, Model model) {
+			//둘다 포함해서 검색
+			if(dto.getAddress() != null && !dto.getAddress().isEmpty() && dto.getTitle() != null && !dto.getTitle().isEmpty()){
+//				System.out.println("둘다");
+				List<ActivityDTO> actResult = memberService.searchAct(dto);
+				System.out.println(actResult);
+				model.addAttribute("actResult", actResult);
+			}
+			
+			//주소로만 검색
+			else if(dto.getAddress() != null && !dto.getAddress().isEmpty()) {
+//				System.out.println("주소만");
+				List<ActivityDTO> actResultadr = memberService.searchActadr(dto);
+				System.out.println(actResultadr);
+				model.addAttribute("actResultadr", actResultadr);
+				
+				
+			
+			}
+			
+			//액티비티 명으로만 검색
+			else if(dto.getTitle() != null && !dto.getTitle().isEmpty()) {
+//				System.out.println("제목만");
+				List<ActivityDTO> actResulttitle = memberService.searchActtitle(dto);
+				System.out.println(actResulttitle);
+				model.addAttribute("actResulttitle", actResulttitle);
+			}
+			
+			
+			
+			// 검색 결과를 표시할 View 이름을 반환
+			return "reservation/activity";
+		}
+		
 	
 }
 

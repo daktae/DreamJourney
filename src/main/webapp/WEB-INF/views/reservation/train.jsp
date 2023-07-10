@@ -53,6 +53,7 @@
 	margin-left: 15px;
 	margin-right: 15px;
 }
+
 </style>
 <body>
 
@@ -131,7 +132,7 @@
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">버스</h3>
+				<h3 class="display-4 text-white text-uppercase">기차</h3>
 
 			</div>
 		</div>
@@ -215,7 +216,7 @@
 					class="d-flex align-items-center text-decoration-none bg-white mb-3"
 					style="padding: 10px;" href=""> <img class="img-fluid"
 					style="width: 80px;"
-					src="/dreamjourney/resources/img/reservation/bus.jpeg" alt="123">
+					src="/dreamjourney/resources/img/reservation/train.png" alt="123">
 					<div style="width: 100%;">
 						<div class="text-center">
 							<h5 class="m-1">
@@ -228,25 +229,25 @@
 						</div>
 					</div>
 					<div class="col-md-2">
-						<form action="/dreamjourney/reservation/transport_detail" method="GET">
+						<form action="/dreamjourney/reservation/train_detail" method="GET">
 							<input type="hidden" name="tran_seq" value="${dto.tran_seq}">
 							<button class="btn btn-primary btn-block" type="submit"
 								style="height: 47px; margin-top: -2px;">예약</button>
 						</form>
 					</div>
-
 				</a>
 			</div>
 		</c:forEach>
-		<!-- 버스 데이터 존재시 div태그 생성 -->		
-<c:if test="${not empty busResult}">
- <c:forEach items="${busResult}" var="result">
- 			<div>
+		
+<!-- 검색 기차데이터 존재시 div태그 생성 및 데이터 생성 -->
+<c:if test="${not empty trainResult}">
+		<c:forEach items="${trainResult}" var="result">
+			<div>
 				<a
 					class="d-flex align-items-center text-decoration-none bg-white mb-3"
 					style="padding: 10px;" href=""> <img class="img-fluid"
 					style="width: 80px;"
-					src="/dreamjourney/resources/img/reservation/bus.jpeg" alt="123">
+					src="/dreamjourney/resources/img/reservation/train.png" alt="123">
 					<div style="width: 100%;">
 						<div class="text-center">
 							<h5 class="m-1">
@@ -259,25 +260,21 @@
 						</div>
 					</div>
 					<div class="col-md-2">
-						<form action="/dreamjourney/reservation/transport_detail" method="GET">
+						<form action="/dreamjourney/reservation/train_detail" method="GET">
 							<input type="hidden" name="tran_seq" value="${result.tran_seq}">
 							<button class="btn btn-primary btn-block" type="submit"
 								style="height: 47px; margin-top: -2px;">예약</button>
 						</form>
 					</div>
-
 				</a>
 			</div>
- </c:forEach>
+		</c:forEach>
 </c:if>
-<c:if test="${empty busResult}">
+<c:if test="${empty trainResult}">
     <!-- 검색 결과가 없는 경우 -->
     <h5 style="margin-bottom:30px; text-align:center;">검색 결과가 없습니다.</h5>
 </c:if>
 	</div>
-
-
-
 
 
 	<!-- Footer Start -->
@@ -370,7 +367,7 @@
 	<!-- Template Javascript -->
 	<script src="/dreamjourney/resources/js/main.js"></script>
 
-
+	
 </body>
 </html>
 

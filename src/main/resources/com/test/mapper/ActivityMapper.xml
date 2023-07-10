@@ -2,6 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.mapper.ActivityMapper">
 
-	<select id="time" resultType="String">select sysdate from dual</select>
-
+	<!-- 액티비티 전체 목록 -->
+	<select id="activitylist" resultType="com.test.domain.ActivityDTO">
+		select * from vwActivity order by adate desc
+	</select>
+	
+	<!-- 액티비티 상세보기 -->
+	<select id="get" resultType="com.test.domain.ActivityDTO" parameterType="String">
+		select * from vwActivity where activity_seq = #{activity_seq}
+	</select>
+	
+	<!-- 리뷰 보기 -->
+	<select id="review" resultType="com.test.domain.ActivityDTO" parameterType="String">
+		select * from vwActivityReview where activity_seq = #{activity_seq} order by rdate desc
+	</select>
+	
+	<!-- 리뷰 개수 -->
+	<select id="reviewCount" resultType="com.test.domain.ActivityDTO" parameterType="String">
+		select count(activity_seq) as rcount from vwActivityReview where activity_seq=#{activity_seq}
+	</select>
+	
+	<!-- 리뷰 작성 -->
+	<!-- <insert id="addReview">
+		insert into tblReview (review_seq, content, score, thread, depth, pay_seq, rdate)
+			values ((select max(review_seq) + 1 from tblReview), #{content}, #{score}, (select max(thread) + 100 from tblReview), default, #{pay_seq}, default);
+	</insert> -->
+	
+	<!-- 결제 가져오기 -->
+	<select id="pay" resultType="com.test.domain.ActivityDTO" parameterType="String">
+		select * from vwActivity where activity_seq = #{activity_seq}
+	</select>
+	
+	<!-- 결제하기 -->
+	<insert id="payok">
+		insert into tblPay values ((select max(pay_seq) + 1 from tblPay), default, '신용카드', #{totalPrice}, 5, 1, null, null, default)
+	</insert>
+	
+	<!-- 즐겨찾기 추가 -->
+	<insert id="bookmark_on">
+		insert into tblBookmark values((select * from (select max(bookmark_seq) + 1 from tblBookmark)), null, #{activity_seq}, 1, null, null)
+	</insert>
+	
+	<!-- 즐겨찾기 삭제 -->
+	<delete id="bookmark_off">
+		delete from tblBookmark where activity_seq = #{activity_seq} and member_seq=#{member_seq}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

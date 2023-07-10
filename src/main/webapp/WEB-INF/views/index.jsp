@@ -53,6 +53,8 @@ a:hover {
 <body>
 	<%@ include file="/resources/inc/header.jsp"%>
 	<!-- Carousel Start -->
+
+	
 	<div class="container-fluid p-0">
 		<div id="header-carousel" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
@@ -97,6 +99,7 @@ a:hover {
 
 
 	<!-- Booking Start -->
+<!-- 전체 검색바 시작 -->
 	<div class="container-fluid booking mt-5 pb-5">
 		<div class="container pb-5">
 			<div class="bg-light shadow"
@@ -141,6 +144,7 @@ a:hover {
 				</div>
 			</div>
 			
+<!-- 숙소검색 검색바 -->
 			<form action="/dreamjourney/search" method="GET">
 				<div class="bg-light shadow" id="searchbar1" style="padding: 30px;">
 					<div class="row align-items-center" style="min-height: 60px;">
@@ -178,6 +182,8 @@ a:hover {
 								</div>
 							</div>
 						</div>
+
+
 						<div class="col-md-2">
 							<button class="btn btn-primary btn-block" type="submit"
 								id="searchsubmit" style="height: 47px; margin-top: -2px;">
@@ -192,7 +198,9 @@ a:hover {
 					</div>
 				</div>
 			</form>
-			
+<!-- 숙소검색 검색바 끝 -->
+<!-- 액티비티 검색바 -->			
+			<form method="get" action="/dreamjourney/activitywj" onsubmit="return checkInputs(event);">
 			<div class="bg-light shadow" id="searchbar5"
 				style="padding: 30px; display: none;">
 				<div class="row align-items-center" style="min-height: 60px;">
@@ -200,8 +208,10 @@ a:hover {
 						<div class="row" style="width: 60rem;">
 							<div class="col-md" style="width: 70%;">
 
-								<input class="form-control p-4" style="width: 50em;" type="text" required
-									placeholder="도시/액티비티 검색">
+								<input class="form-control p-4" style="width: 50em;" type="text"
+									placeholder="도시 검색" id="searchcity" name="address">
+									<input class="form-control p-4" style="width: 50em;" type="text"
+									placeholder="액티비티 검색" id="searchactivity" name="title">
 
 							</div>
 
@@ -221,7 +231,9 @@ a:hover {
 					</div>
 				</div>
 			</div>
-			
+			</form>
+<!-- 액티비티 검색바 끝 -->	
+<!-- 항공권 검색바 -->	
 						<form action="/dreamjourney/searchairplane" method="GET">
 			<div class="bg-light shadow" id="searchbar2"
 				style="padding: 30px; width:100%; display: none;">
@@ -240,7 +252,7 @@ a:hover {
 							</div>
 
 							<div class="col-md-4">
-								<input class="form-control p-4" id="startdate" id="startdate"
+								<input class="form-control p-4" id="startdate"
 									pattern="\d{4}-\d{2}-\d{2}" placeholder="출발일" required
 									type="text" value="" name="tran_date"> 
 							</div>
@@ -267,7 +279,8 @@ a:hover {
 				</div>
 			</div>
 			</form>
-			
+<!-- 항공권 검색바 끝-->		
+<!-- 버스 검색바 -->	
 			<form action="/dreamjourney/searchbus" method="GET">
 			<div class="bg-light shadow" id="searchbar3"
 				style="padding: 30px; width:100%; display: none;">
@@ -286,21 +299,21 @@ a:hover {
 							</div>
 
 							<div class="col-md-4">
-								<input class="form-control p-4" id="startdate"
+								<input class="form-control p-4" id="startdate3" 
 									pattern="\d{4}-\d{2}-\d{2}" placeholder="출발일" required
-									type="text" value="" name="startdate"> 
+									type="text" value="" name="tran_date"> 
 							</div>
 
 
 							<div class="col-md-2">
 								<div class="mb-3 mb-md-0">
-									<input class="form-control p-4" type="text" placeholder="인원 수">
+									<input class="form-control p-4" type="text" placeholder="인원 수" name="limit">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-2">
-						<button class="btn btn-primary btn-block searchtrans" type="submit"
+						<button class="btn btn-primary btn-block searchtrans3" type="submit"
 							style="height: 47px; margin-top: -2px;">
 							검색
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -313,7 +326,8 @@ a:hover {
 				</div>
 			</div>
 			</form>
-			
+<!-- 버스 검색바 끝-->				
+<!-- 기차 검색바 -->	
 			<form action="/dreamjourney/searchtrain" method="GET">
 			<div class="bg-light shadow" id="searchbar4"
 				style="padding: 30px; width:100%; display: none;">
@@ -332,21 +346,21 @@ a:hover {
 							</div>
 
 							<div class="col-md-4">
-								<input class="form-control p-4" id="startdate"
+								<input class="form-control p-4" id="startdate4"
 									pattern="\d{4}-\d{2}-\d{2}" placeholder="출발일" required
-									type="text" value="" name="startdate"> 
+									type="text" value="" name="tran_date"> 
 							</div>
 
 
 							<div class="col-md-2">
 								<div class="mb-3 mb-md-0">
-									<input class="form-control p-4" type="text" placeholder="인원 수">
+									<input class="form-control p-4" type="text" placeholder="인원 수" name="limit">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-2">
-						<button class="btn btn-primary btn-block searchtrans" type="submit"
+						<button class="btn btn-primary btn-block searchtrans4" type="submit"
 							style="height: 47px; margin-top: -2px;">
 							검색
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -359,9 +373,10 @@ a:hover {
 				</div>
 			</div>
 			</form>
-			
+<!-- 기차 검색바 끝-->			
 		</div>
 	</div>
+<!-- 전체 검색바 끝 -->
 	<!-- Booking End -->
 
 
@@ -1072,6 +1087,10 @@ a:hover {
 	</div>
 	</div>
 
+<form method="post" action="/dreamjourney/unresi">
+  <input type="hidden" name="email" value="${param.email}">
+  <button type="submit">회원탈퇴</button>
+</form>
 
 	<!-- Blog End -->
 	<%@ include file="/resources/inc/footer.jsp"%>
@@ -1091,16 +1110,33 @@ a:hover {
 			}
 		});
 		
-	/* 출발일 확인 */
+	/* 항공 출발일 확인 */
 		$('.searchtrans').click(function() {
 			if ($('#startdate').val() == '') {
 				alert('출발 날짜를 입력하세요');
 				$('#startdate').val('');
 				return false;
-
+			}
+		});
+	
+	/* 버스 출발일 확인 */
+		$('.searchtrans2').click(function() {
+			if ($('#startdate2').val() == '') {
+				alert('출발 날짜를 입력하세요');
+				$('#startdate2').val('');
+				return false;
 			}
 		});
 		
+	/* 기차 출발일 확인 */
+		$('.searchtrans3').click(function() {
+			if ($('#startdate3').val() == '') {
+				alert('출발 날짜를 입력하세요');
+				$('#startdate3').val('');
+				return false;
+			}
+		});
+	
 
 		/* 숙박검색 */
 		function searchLod(element) {
@@ -1130,10 +1166,10 @@ a:hover {
 		function searchLod3(element) {
 			event.preventDefault();
 			$("#searchbar1").css("display", "none");
-			$("#searchbar3").css("display", "none");
+			$("#searchbar3").css("display", "inline-block");
 			$("#searchbar4").css("display", "none");
 			$("#searchbar5").css("display", "none");
-			$("#searchbar2").css("display", "inline-block");
+			$("#searchbar2").css("display", "none");
 			$("a").removeClass("active");
 			$(element).addClass("active");
 		}
@@ -1143,9 +1179,9 @@ a:hover {
 			event.preventDefault();
 			$("#searchbar1").css("display", "none");
 			$("#searchbar3").css("display", "none");
-			$("#searchbar4").css("display", "none");
+			$("#searchbar4").css("display", "inline-block");
 			$("#searchbar5").css("display", "none");
-			$("#searchbar2").css("display", "inline-block");
+			$("#searchbar2").css("display", "none");
 			$("a").removeClass("active");
 			$(element).addClass("active");
 		}
@@ -1160,6 +1196,17 @@ a:hover {
 			$("#searchbar5").css("display", "inline-block");
 			$("a").removeClass("active");
 			$(element).addClass("active");
+		}
+		
+		function checkInputs(event) {
+		    var searchCityValue = document.querySelector('#searchcity').value;
+		    var searchActivityValue = document.querySelector('#searchactivity').value;
+
+		    if (!searchCityValue && !searchActivityValue) {
+		        alert("검색할 도시 또는 액티비티를 입력하세요.");
+		        event.preventDefault(); // submit 이벤트 중지
+		        return false;
+		    }
 		}
 	</script>
 </body>

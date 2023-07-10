@@ -33,10 +33,18 @@
 </head>
 <style>
 
+	.thumbnail {
+		width: 250px;
+	}
+
 	.categoryAll {
 		display: inline-block;
 		width: 100%;
-		justify-content:center;
+		text-align:center;
+	}
+	
+	.categoryAll button:hover {
+		box-shadow: 1px 1px 20px #ddd;
 	}
 
 	.category {
@@ -50,9 +58,6 @@
 		font-weight: bold;
 	}
 
-	.p1-4, .px-4, .p-4 {
-		padding-left : none;
-	}
 
 	.text-truncate {
 		font-weight: bold;
@@ -75,12 +80,9 @@
 		text-decoration:none;
 	}
 	
-	.row {
-		justify-content:center;
-	}
 	
 	.team-img {
-		width: 255px;
+		width: 250px;
 		height: 210px;
 	}
 	
@@ -199,236 +201,126 @@
     
     <!-- 카테고리 버튼 -->
     <div class="categoryAll">
-    			<div class="category">카테고리 홈</div>
-    			<div class="category">캠핑</div>
-    			<div class="category">보트투어</div>
-    			<div class="category">스파&마사지</div>
-    			<div class="category">스카이다이빙</div>
-    			<div class="category">일일투어</div>
-    
-    
+    			<button type="button" class="category">서울</button>
+    			<button type="button" class="category">대전</button>
+    			<button type="button" class="category">대구</button>
+    			<button type="button" class="category">부산</button>
+    			<button type="button" class="category">광주</button>
+    			<button type="button" class="category">강릉</button>
+    			<button type="button" class="category">제주</button>
     </div>
     
     
     
 
    <!-- 내용쓰는곳 -->
-   
-    
-    <!-- Team Start > 숙소 -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <div class="text-center mb-3 pb-3">
-                <h1><a href="#">숙소</a></h1>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-4.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                <div style="float:right; font-size: 20px; font-weight: bold;"> 
-					<a href="">더보기 →</a>					                
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
-    
-    
     <!-- Team Start > 액티비티 -->
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
-            <div class="text-center mb-3 pb-3">
-                <h1><a href="#">액티비티</a></h1>
-            </div>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
+            <c:forEach items="${list }" var="dto">
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
+                            <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${dto.image1 }"alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}">상세보기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
+                            <div class="text-truncate" id="title" style="padding: 15px; text-weight: bold; font-size: 20px;">${dto.title }</div>
+                            <div class="m-0" id="content" style="text-align: justify; padding: 0 15px;">${dto.content }</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-4.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                    <div style="float:right; font-size: 20px; font-weight: bold;"> 
-					<a href="">더보기 →</a>					                
-                </div>
-                </div>
+                </c:forEach>
                 
+                <!-- 주소만 검색 -->
+<c:if test="${not empty actResultadr}">
+                <c:forEach items="${actResultadr }" var="result">
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide">
+                    <div class="team-item bg-white mb-4">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${result.image1 }"alt="">
+                            <div class="team-social">
+                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${result.activity_seq}">상세보기</a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <div class="text-truncate" id="title" style="padding: 15px; text-weight: bold; font-size: 20px;">${result.title }</div>
+                            <div class="m-0" id="content" style="text-align: justify; padding: 0 15px;">${result.content }</div>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+        		</c:if>
+        		<!-- (주소로만)검색결과가 없는경우 -->
+        		<c:if test="${actResultadr!=null && empty actResultadr}}">
+    <!-- 검색 결과가 없는 경우 -->
+    <h5 style="margin-bottom:30px;">검색 결과가 없습니다.</h5>
+</c:if>
+
+<!-- 액티비티 명으로만 검색 -->
+<c:if test="${not empty actResulttitle}">
+                <c:forEach items="${actResulttitle }" var="result">
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide">
+                    <div class="team-item bg-white mb-4">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${result.image1 }"alt="">
+                            <div class="team-social">
+                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${result.activity_seq}">상세보기</a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <div class="text-truncate" id="title" style="padding: 15px; text-weight: bold; font-size: 20px;">${result.title }</div>
+                            <div class="m-0" id="content" style="text-align: justify; padding: 0 15px;">${result.content }</div>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+        		</c:if>
+        		<!-- (주소로만)검색결과가 없는경우 -->
+<c:if test="${actResulttitle != null && empty actResulttitle}">
+    <!-- 검색 결과가 없는 경우 -->
+    <h5 style="margin-bottom:30px;">검색 결과가 없습니다.</h5>
+</c:if>
+
+
+<!-- 둘다 검색 -->
+<c:if test="${not empty actResult}">
+                <c:forEach items="${actResult }" var="result">
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide">
+                    <div class="team-item bg-white mb-4">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${result.image1 }"alt="">
+                            <div class="team-social">
+                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${result.activity_seq}">상세보기</a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <div class="text-truncate" id="title" style="padding: 15px; text-weight: bold; font-size: 20px;">${result.title }</div>
+                            <div class="m-0" id="content" style="text-align: justify; padding: 0 15px;">${result.content }</div>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+        		</c:if>
+        		<!-- (주소로만)검색결과가 없는경우
+        		<!-- c:if test는 참일때만 실행하는데, actResult는 존재하므로 거짓이기 떄문에 "검색 결과가 없습니다." 라는 문구가 등장하지 않는다, empty 조건은 무조건적으로 실행한다, 또한 값이 존재하지 않거나 비어있을때 실행해야 한다. -->
+<c:if test="${actResult != null && empty actResult}">
+    <!-- 검색 결과가 없는 경우 -->
+    <h5 style="margin-bottom:30px;">검색 결과가 없습니다.</h5>
+</c:if>
+
             </div>
         </div>
     </div>
     <!-- Team End -->
+    
    
-   
-   <!-- 내용 작성 -->
-    <div class="container-fluid py-5" style="height: 100px;">
-       
-   </div>
-                
 
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 px-sm-3   px-lg-5" >
-        <div class="row pt-5">
-            <div class="col-lg-3 col-md-6 mb-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">Dream</span>Journey</h1>
-                </a>
-                <p style="margin-bottom: 0px; font-weight: bold;">고객지원실 운영안내</p>
-                <p style="margin-bottom: 0px;">02-3482-4632</p>
-                <p style="margin-bottom: 0px;">전화 상담: 09:00 ~ 18:00</p>
-                <p style="margin-bottom: 0px;">채팅 상담: 09:00 ~ 20:00</p>
-
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
-                <div class="d-flex justify-content-start">
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >소개</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>회사소개</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>채용</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >제휴 업체</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>늘봄 실버타운</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>늘봄 요양원</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>쌍용교육센터</a>
-                    
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >지원</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>자주 묻는 질문</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>최저가 보장제</a>
-                    
-                </div>
-            </div>
-            
-        </div>
-    </div>
+    <%@ include file="/resources/inc/footer.jsp"%>
     
 
 
@@ -452,9 +344,21 @@
     <!-- Template Javascript -->
     <script src="/dreamjourney/resources/js/main.js"></script>
 </body>
+<script>
+	$(document).ready(function() {
+		$('.m-0').each(function() {
+			var contentDiv = $(this);
+			var contentText = contentDiv.text();
+			if (contentText.length > 50) {
+				var content = contentText.substr(0, 50) + '...';
+				contentDiv.text(content);
+			}
+		});
+	});
 
+
+</script>
 </html>
-
 
 
 
