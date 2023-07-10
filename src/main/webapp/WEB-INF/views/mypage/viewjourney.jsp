@@ -111,7 +111,6 @@
 .schedule-table td {
 	padding-bottom: 10px;
 }
-
 </style>
 
 
@@ -196,123 +195,211 @@
 
 	<script>
 	
-		$(document).ready(function() {
-			$('.day-buttons').eq(0).click();
-		});
-	
-		// 지도 코드
-	
-		var mapContainer = document.getElementById('map'),
+  $(document).ready(function () {
+    (async function () {
+      try {
+        const tripseq = ${dto.trip_seq};
+        const response = await $.ajax({
+          url: 'getdaybuttons',
+          type: 'GET',
+          data: {
+            seq: tripseq
+          }
+        });
 
-		mapOption = {
-			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도 중심좌표
-			level : 3 // 지도 확대 레벨
-		};
+        createButtons(tripseq, response);
+        await new Promise(resolve => setTimeout(resolve, 300));
+        $('#day-buttons > button:nth-child(1)').click();
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  });
 
-		// 지도 생성   
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-		
-		
-		// 일수에 따른 버튼 생성
-		var tripseq = ${dto.trip_seq};
-		
-		$.ajax({
-			url : 'getdaybuttons',
-			type : 'GET',
-			data : {
-				seq : tripseq
-			},
-			success : function(response) {
-				createButtons(tripseq, response);
-			},
-			error : function(a, b, c) {
-				console.log(a, b, c);
-			}
-		});
-		
-		function createButtons(seq, days) {
-			  var place = $('#day-buttons');
-			  var previousButton = null;
+  var mapContainer = document.getElementById('map');
+  var mapOption = {
+    center: new kakao.maps.LatLng(33.450701, 126.570667),
+    level: 3
+  };
 
-			  for (var i = 1; i <= days; i++) {
-			    (function(day) {
-			      var button = $('<button class="day-buttons" style="margin-right: 10px;">').text('Day ' + day);
-			      place.append(button);
+  var map = new kakao.maps.Map(mapContainer, mapOption);
 
-			      button.click(function(){ 
-			        if (previousButton) {
-			          previousButton.css('background-color', '#7C9070'); 
-			        }
-			        
-			        button.css('background-color', '#41644A'); 
-			        previousButton = button; 
-			        
-			        $.ajax({
-			          url: 'getschedule',
-			          type: 'GET',
-			          data: {
-			        	  seq: seq,
-			        	  day: day },
-			          success: function(response) {
-			        	  getScheduleTable(day, response);
-			          },
-			          error: function(a, b, c) {
-			            console.log(a, b, c);
-			          }
-			        });
-			        
-			      });
-			    })(i); // IIFE: i값이 day에 바로 대입됨
-			  }
-			}
-		
-		
-		var begindate = new Date('${dto.begin}');
-		
-		function getScheduleTable(day, response) {
-			
-			var container = ${'#schedule-table-container'};
-			container.empty();
-			
-			var table = $('<table class="schedule-table">');
-			
-			var colgroup = $('<colgroup>');
-			colgroup.append('<col width="20%">');
-			colgroup.append('<col width="40%">');
-			colgroup.append('<col width="40%">');
-			table.append(colgroup);
-			
-			var tbody = $('<tbody>');
-			
-			var dayNumber = parseInt(day, 10);
-			var date = new Date(begindate.getTime() + (dayNumber - 1) * 24 * 60 * 60 * 1000);
-			
-			var firstRow = $('<tr>' + date + '</tr>');
-			tbody.append(firstRow);
-			
-			for (var i = 0; i < response.length; i++) {
-				
-				var sch = response[i];
-				
-				var row = $('<tr>');
-				
-				row.append('<td>' + '<span id="order">' i + '</span>' + '</td>');
-				row.append('<td>' + sch.place+ '</td>');
-				row.append('<td>' + sch.memo+ '</td>');
-				
-				tbody.append(row);
-				
-			}
-			
-			 table.append(tbody);
-			 container.append(table);
-			
-		}
+  var markers = [];
+  var lines = [];
+
+  function clearMarkers() {
+	  
+	  console.log('clear');
+	  
+	  for (var i = 0; i < markers.length; i++) {
+	    markers[i].setMap(null);
+	  }
+	  markers = [];
+
+	  for (var i = 0; i < lines.length; i++) {
+	    lines[i].setMap(null);
+	  }
+	  lines = [];
+	  
+	  
+	   mapContainer = document.getElementById('map');
+	   mapOption = {
+	    center: new kakao.maps.LatLng(33.450701, 126.570667),
+	    level: 3
+	  };
+
+	   map = new kakao.maps.Map(mapContainer, mapOption);
+  }
 
 
+  function createButtons(seq, days) {
+    var place = $('#day-buttons');
+    var previousButton = null;
 
-		
-	</script>
+    for (var i = 1; i <= days; i++) {
+      (function (day) {
+        var button = $('<button class="day-buttons" style="margin-right: 10px;">').text('Day ' + day);
+        place.append(button);
+
+        button.click(function () {
+          if (previousButton) {
+            previousButton.css('background-color', '#7C9070');
+          }
+
+          button.css('background-color', '#41644A');
+          previousButton = button;
+          
+          //clearMarkers();
+
+          (async function () {
+            try {
+              const response = await $.ajax({
+                url: 'getschedule',
+                type: 'GET',
+                data: {
+                  seq: seq,
+                  day: day
+                }
+              });
+
+              getScheduleTable(day, response);
+            } catch (error) {
+              console.log(error);
+            }
+          })();
+        });
+      })(i);
+    }
+  }
+
+  var begindate = new Date('${dto.begin}');
+
+  function getScheduleTable(day, response) {
+    clearMarkers();
+    
+    console.log(markers.length);
+
+    var container = $('#schedule-table-container');
+    container.empty();
+
+    var table = $('<table class="schedule-table">');
+
+    var colgroup = $('<colgroup>');
+    colgroup.append('<col width="20%">');
+    colgroup.append('<col width="40%">');
+    colgroup.append('<col width="40%">');
+    table.append(colgroup);
+
+    var tbody = $('<tbody>');
+
+    var dayNumber = parseInt(day, 10);
+    var date = new Date(begindate.getTime() + (dayNumber - 1) * 24 * 60 * 60 * 1000);
+    var formattedDate = date.toISOString().substring(0, 10);
+
+    var firstRow = $('<tr>');
+    var dateCell = $('<td colspan="3">').text(formattedDate);
+    firstRow.append(dateCell);
+    tbody.append(firstRow);
+
+
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    function geocodeAddress(address, place) {
+      return new Promise((resolve, reject) => {
+        geocoder.addressSearch(address, function (result, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            var marker = new kakao.maps.Marker({
+              map: map,
+              position: coords
+            });
+
+            createMarkerAndLine(coords, place);
+
+            var infowindow = new kakao.maps.InfoWindow({
+              content: '<div style="width:150px;text-align:center;padding:6px 0;">' + place + '</div>'
+            });
+            infowindow.open(map, marker);
+
+            map.setCenter(coords);
+            resolve();
+          } else {
+            reject(new Error('Geocoder failed: ' + status));
+          }
+        });
+      });
+    }
+
+    function createMarkerAndLine(position, title) {
+      var marker = new kakao.maps.Marker({
+        position: position,
+        map: map
+      });
+
+      var linePath = [position];
+
+      if (markers.length > 0) {
+        var prevMarker = markers[markers.length - 1];
+        var prevPosition = prevMarker.getPosition();
+        linePath.unshift(prevPosition);
+
+        var line = new kakao.maps.Polyline({
+          path: linePath,
+          strokeWeight: 3,
+          strokeColor: '#ff0000',
+          strokeOpacity: 0.7,
+          strokeStyle: 'solid'
+        });
+
+        line.setMap(map);
+        lines.push(line);
+      }
+
+      markers.push(marker);
+    }
+
+    (async function () {
+      try {
+        for (var i = 0; i < response.length; i++) {
+          var sch = response[i];
+          await geocodeAddress(sch.address, sch.place);
+
+          var row = $('<tr>');
+          row.append('<td>' + '<span id="order">' + (i + 1) + '</span>' + '</td>');
+          row.append('<td>' + sch.place + '</td>');
+          row.append('<td>' + sch.memo + '</td>');
+
+          tbody.append(row);
+        }
+
+        table.append(tbody);
+        container.append(table);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }
+</script>
 
 
 </body>

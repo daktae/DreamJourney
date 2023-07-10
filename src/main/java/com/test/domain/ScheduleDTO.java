@@ -5,8 +5,9 @@ import lombok.Data;
 @Data
 public class ScheduleDTO {
 
-	String place;
-	String address;
-	String memo;
+	private String place;
+	private String address;
+	private String memo;
+	private String schedule_seq;
 	
 }

@@ -241,7 +241,8 @@
 	</update>
 
 	<insert id="tripInsert">
-		insert into tblTrip values (trip_seq.nextVal, 5, #{title}, 0, sysdate, #{begin}, #{end}, 'n')
+		INSERT INTO tblTrip
+VALUES (trip_seq.nextVal, 5, #{title}, 0, sysdate, TO_DATE(#{begin}, 'YYYY-MM-DD'), TO_DATE(#{end}, 'YYYY-MM-DD'), 'n')
 	</insert>
 	
 	<insert id="schInsert">
@@ -342,11 +343,12 @@
 	
 	<select id="getSchedule" resultType="com.test.domain.ScheduleDTO">
 		SELECT
- 		   place, address, memo
+ 		   place, address, memo, s.schedule_seq
 		FROM tblSchedule s
 		INNER JOIN tblDay d ON s.day_seq = d.day_seq
 		INNER JOIN tblTrip t ON d.trip_seq = t.trip_seq
 		WHERE t.trip_seq = #{seq} AND d.nth = #{day}
+		ORDER BY s.schedule_seq ASC
 	</select>
  
 </mapper>
