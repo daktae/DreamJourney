@@ -103,6 +103,8 @@ public class MypageController {
 		return "redirect:/mypage/journey";
 		
 	}
+	
+	
 
 	// 내 여행 등록
 	@GetMapping("/mypage/addjourney")
