@@ -197,7 +197,6 @@ button {
 
 	<%@ include file="/resources/inc/footer.jsp"%>
 
-<<<<<<< HEAD
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=015fae8b95c2d0f2c4d727e44d11a138&libraries=services"></script>
 	<script
