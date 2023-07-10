@@ -5,16 +5,16 @@ import lombok.Data;
 @Data
 public class BookableReviewDTO {
 	
-	String review_seq;
-	String content;
-	String score;
-	int thread;
-	int depth;
-	String pay_seq;
-	String rreserve_seq;
-	String areserve_seq;
-	String rdate;
+	private String review_seq;
+	private String content;
+	private String score;
+	private int thread;
+	private int depth;
+	private String pay_seq;
+	private String rreserve_seq;
+	private String areserve_seq;
+	private String rdate;
 	
-	String name;
+	private String name;
 
 }

@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class UnwrittenReviewDTO {
 	
-	String pay_seq;
-	String name;
-	String begindate;
+	private String pay_seq;
+	private String name;
+	private String begindate;
 	
 	public void setBegindate(String begindate) {
 		

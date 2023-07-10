@@ -365,12 +365,13 @@ textarea {
 			
 			  // Star click event handler
 			  ratingStars.find('.rating__star').click(function() {
-			    score = $(this).prevAll('.rating__star').length + 1;
+			    score = $(this).prevAll('.rating__star').length;
 			  });
 			
 			  // 작성 완료 버튼 클릭 시 데이터 전송
 			  completeButton.click(function() {
 			    var content = textarea.val();
+			    var score = ratingStars.find('.rating__star.fas').length;
 			
 			    $.ajax({
 			      url: 'writereview',
@@ -470,7 +471,7 @@ textarea {
 			
 			      var score = parseInt(review.score);
 			
-			      for (var j = 0; j < 5; j++) {
+			      for (var j = 1; j <= 5; j++) {
 			        var starClass = j <= score ? "rating__star fas fa-star" : "rating__star far fa-star";
 			        var star = $('<i class="' + starClass + '" style="margin-right: 1px;"></i>');
 			        ratingStars.append(star);

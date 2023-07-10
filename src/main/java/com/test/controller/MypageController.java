@@ -241,6 +241,8 @@ public class MypageController {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResponse;
 		
+		System.out.println(list);
+		
 		try {
 			jsonResponse = mapper.writeValueAsString(list);
 			return jsonResponse;

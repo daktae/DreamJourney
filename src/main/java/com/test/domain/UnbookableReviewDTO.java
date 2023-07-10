@@ -5,13 +5,13 @@ import lombok.Data;
 @Data
 public class UnbookableReviewDTO {
 	
-	String freview_seq;
-	String content;
-	String score;
-	String thread;
-	String depth;
-	String rdate;
+	private String freview_seq;
+	private String content;
+	private String score;
+	private String thread;
+	private String depth;
+	private String rdate;
 	
-	String name;
+	private String name;
 
 }
