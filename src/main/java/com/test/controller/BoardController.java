@@ -120,10 +120,11 @@ public class BoardController {
 	
 	@PostMapping("/editOkComment") //최종 수정
 	public String editOkComment(Model model, CommentDTO dto) {
-//		service.editOkComment(dto);
-		System.out.println("일단 오긴 왔음");
-		System.out.println(dto.getFree_seq());
-		return "redirect:boardDetail?free_seq=" + dto.getFree_seq();
+		service.editOkComment(dto);
+		
+		String free_seq = dto.getFree_seq().replace(",", "");
+		
+		return "redirect:boardDetail?free_seq=" + free_seq;
 	}
 	
 	

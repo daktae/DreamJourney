@@ -226,8 +226,14 @@
 			<td id="comment-edit-content">${cdto.content }</td>
 			<td>
 				${cdto.regdate }
-				 <span id="comment-edit" onclick="editComment(${cdto.freply_seq});">수정</span> | 
+				 <span id="comment-edit" onclick="editComment(${cdto.freply_seq}, ${cdto.free_seq });">수정</span> | 
 				 <span id="comment-del" onclick="delComment(${cdto.freply_seq}, ${cdto.free_seq});">삭제</span>  
+		<form id="editCommentForm" method="POST"
+			action="/dreamjourney/editOkComment?free_seq=${cdto.free_seq }">
+			<input type="hidden" name="free_seq"> 
+			<input type="hidden" name="freply_seq"> 
+			<input type="hidden" name="content">
+		</form>
 			</td>
 		</tr>
 	</c:forEach>
@@ -271,12 +277,6 @@
 	
 	</div>
 
-		<form id="editCommentForm" method="POST"
-			action="/dreamjourney/editOkComment">
-			<input type="hidden" name="free_seq"> 
-			<input type="hidden" name="freply_seq"> 
-			<input type="hidden" name="content">
-		</form>
 
 	</div>
 	
@@ -285,15 +285,16 @@
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
-
+	let freeSeq;
 	let content;
 	let freplySeq;
 
-	function editComment(freply_seq) {
+	function editComment(freply_seq, free_seq) {
 		//이전 수정중인 댓글 폼 > 전부 삭제
 		$('.edit-comment').remove();
 		
 		freplySeq = freply_seq;
+		freeSeq = free_seq;
 		
 		content = $(event.target).closest('tr').children().eq(1).text();
 		
@@ -324,9 +325,13 @@
 		
 	}
 	
-	function editOkComment(freplySeq) {
+	function editOkComment(freplySeq, freeSeq) {
+	// 값 불러와짐		
+	
 		
-		$('#editCommentForm input[name=freply_seq]').val(freplySeq);
+		$('#editCommentForm input[name=freply_seq').val(freplySeq);
+		
+		$('#editCommentForm input[name=free_seq').val(freeSeq);
 		$('#editCommentForm input[name=content]').val($('#editcomment').val());
 		
 		$('#editCommentForm').submit();

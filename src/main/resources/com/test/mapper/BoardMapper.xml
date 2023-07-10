@@ -50,7 +50,8 @@
 		    fr.content, 
 		    m.nickname,
 		    fr.regdate,
-		    fr.free_seq
+		    fr.free_seq,
+		    fr.member_seq
 		from tblFreeReply fr
 		 inner join tblMember m
 		    on fr.member_seq = m.member_seq
