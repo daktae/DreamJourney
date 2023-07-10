@@ -1,7 +1,10 @@
 package com.test.checkwj;
 
+<<<<<<< HEAD
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
+=======
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +13,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+<<<<<<< HEAD
 import java.util.Locale;
 import java.util.Map;
 
@@ -17,11 +21,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+=======
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.naming.directory.SearchResult;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
 import com.siot.IamportRestClient.response.IamportResponse;
+<<<<<<< HEAD
+=======
+import com.test.domain.AccommodateDTO;
+import com.test.domain.ActivityDTO;
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 import com.test.domain.MemberDTO;
 import com.test.emailwj.IamportClient;
 import com.test.mapper.MemberMapper;
@@ -41,6 +63,21 @@ public class CheckControllerWj {
 	    return "index";
 	}
 	
+<<<<<<< HEAD
+=======
+	//회원탈퇴 되면 메인으로
+	@PostMapping("/unresi")
+	private String unresi(MemberDTO dto) {
+	    // 회원 정보 추가
+		System.out.println("회원탈퇴중");
+		System.out.println(dto);	
+		memberService.unMember(dto);
+		System.out.println("탈퇴완료");
+		System.out.println(dto);
+	    return "index";
+	}
+	
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 	//전화번호 중복체크
 	@PostMapping("/telCheck2")
 	@ResponseBody
@@ -119,5 +156,131 @@ public class CheckControllerWj {
 		   return response;
 	}
 	
+<<<<<<< HEAD
 	
 }
+=======
+	//숙소 검색하면 예약 페이지로
+		@GetMapping("/search")
+		public String search(AccommodateDTO dto, Model model) {
+		    // 매개변수 처리 및 필요한 로직 수행
+		    // ...
+			
+			System.out.println(dto.getAddress());
+			System.out.println(dto.getLimit());
+			
+		    List<AccommodateDTO> accResult = memberService.searchAcc(dto); // 검색 결과를 받아옴
+
+		    
+		    // 검색 결과를 모델에 추가
+		    model.addAttribute("accResult", accResult);
+		    
+		    System.out.println(accResult);
+		    
+		    // 검색 결과를 표시할 View 이름을 반환
+		    return "reservation/accommodate";
+		}
+		
+		//항공 검색하면 예약 페이지로
+		@GetMapping("/searchairplane")
+		public String searchairplane(AccommodateDTO dto, Model model) {
+			// 매개변수 처리 및 필요한 로직 수행
+			// ...
+			
+			System.out.println(dto.getDeparture());
+			System.out.println(dto.getDestination());
+			System.out.println(dto.getTran_date());
+			System.out.println(dto.getLimit());
+			
+			List<AccommodateDTO> airplaneResult = memberService.searchAirplane(dto);
+			System.out.println(airplaneResult);
+			
+			// 검색 결과를 모델에 추가
+			model.addAttribute("airplaneResult", airplaneResult);
+			
+			// 검색 결과를 표시할 View 이름을 반환
+			return "reservation/airplane";
+		}
+		
+		//기차 검색하면 예약 페이지로
+		@GetMapping("/searchtrain")
+		public String searchtrain(AccommodateDTO dto, Model model) {
+			// 매개변수 처리 및 필요한 로직 수행
+			// ...
+			
+			System.out.println(dto.getDeparture());
+			System.out.println(dto.getDestination());
+			System.out.println(dto.getTran_date());
+			System.out.println(dto.getLimit());
+			
+			List<AccommodateDTO> trainResult = memberService.searchTrain(dto);
+			System.out.println(trainResult);
+			
+			// 검색 결과를 모델에 추가
+			model.addAttribute("trainResult", trainResult);
+			
+			// 검색 결과를 표시할 View 이름을 반환
+			return "reservation/train";
+		}
+			
+		//버스 검색하면 예약 페이지로
+		@GetMapping("/searchbus")
+		public String searchbus(AccommodateDTO dto, Model model) {
+			// 매개변수 처리 및 필요한 로직 수행
+			// ...
+			
+			System.out.println(dto.getDeparture());
+			System.out.println(dto.getDestination());
+			System.out.println(dto.getTran_date());
+			System.out.println(dto.getLimit());
+			
+			List<AccommodateDTO> busResult = memberService.searchBus(dto);
+			System.out.println(busResult);
+			
+			// 검색 결과를 모델에 추가
+			model.addAttribute("busResult", busResult);
+			
+			// 검색 결과를 표시할 View 이름을 반환
+			return "reservation/transport";
+		}
+		
+		//액티비티 검색
+		@GetMapping("/activitywj")
+		public String searchactivity(ActivityDTO dto, Model model) {
+			//둘다 포함해서 검색
+			if(dto.getAddress() != null && !dto.getAddress().isEmpty() && dto.getTitle() != null && !dto.getTitle().isEmpty()){
+//				System.out.println("둘다");
+				List<ActivityDTO> actResult = memberService.searchAct(dto);
+				System.out.println(actResult);
+				model.addAttribute("actResult", actResult);
+			}
+			
+			//주소로만 검색
+			else if(dto.getAddress() != null && !dto.getAddress().isEmpty()) {
+//				System.out.println("주소만");
+				List<ActivityDTO> actResultadr = memberService.searchActadr(dto);
+				System.out.println(actResultadr);
+				model.addAttribute("actResultadr", actResultadr);
+				
+				
+			
+			}
+			
+			//액티비티 명으로만 검색
+			else if(dto.getTitle() != null && !dto.getTitle().isEmpty()) {
+//				System.out.println("제목만");
+				List<ActivityDTO> actResulttitle = memberService.searchActtitle(dto);
+				System.out.println(actResulttitle);
+				model.addAttribute("actResulttitle", actResulttitle);
+			}
+			
+			
+			
+			// 검색 결과를 표시할 View 이름을 반환
+			return "reservation/activity";
+		}
+		
+	
+}
+
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183

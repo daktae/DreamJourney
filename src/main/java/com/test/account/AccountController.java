@@ -3,18 +3,27 @@ package com.test.account;
 import java.util.HashMap;
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 
+=======
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.domain.MemberDTO;
 import com.test.emailwj.MailSendService;
+=======
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.test.domain.MemberDTO;
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 
 @Controller
 public class AccountController {
@@ -22,12 +31,15 @@ public class AccountController {
 	@Autowired
 	private IKakaoLoginService iKakaoS;
 	
+<<<<<<< HEAD
 	@Autowired
 	private LoginService gLoginS;
 	
 	@Autowired
 	private FindPwEmailService mailService;
 
+=======
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 	
 	@GetMapping("/login")
 	private String login() {
@@ -35,7 +47,11 @@ public class AccountController {
 		return "/account/login";
 	}
 	@GetMapping("/kakao")
+<<<<<<< HEAD
 	private String kakao(Model model, @RequestParam("code") String code, HttpSession session) {
+=======
+	private String kakao(Model model, @RequestParam("code") String code) {
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 		String name="";
 		String email="";
 		String access_Token;
@@ -60,11 +76,16 @@ public class AccountController {
 		    
 		    if(list.isEmpty()) {
 		    	
+<<<<<<< HEAD
+=======
+		    	
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 		    	model.addAttribute("name", name);
 		    	model.addAttribute("email", email);
 		    	return "redirect:/register";
 		    	
 		    } else {
+<<<<<<< HEAD
 		    	session.setAttribute("name", list.get(0).getName());
 		    	session.setAttribute("nickname", list.get(0).getNickname());
 		    	session.setAttribute("email", list.get(0).getEmail());
@@ -74,6 +95,12 @@ public class AccountController {
 		    	model.addAttribute("name", list.get(0).getName());
 		    	model.addAttribute("email", list.get(0).getEmail());
 		    	model.addAttribute("nickname", list.get(0).getNickname());
+=======
+		    	
+		    	System.out.println(list);
+		    	model.addAttribute("name", list.get(0).getName());
+		    	model.addAttribute("email", list.get(0).getEmail());
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 		    	return "redirect:/index";
 		    	
 		    }
@@ -81,6 +108,10 @@ public class AccountController {
 			
 			
 		} catch (Throwable e) {
+<<<<<<< HEAD
+=======
+			// TODO Auto-generated catch block
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 			e.printStackTrace();
 		}
 		
@@ -88,6 +119,7 @@ public class AccountController {
 		
 	}
 	
+<<<<<<< HEAD
 	@GetMapping("/glogin")
 	private String gLogin() {
 		
@@ -147,10 +179,16 @@ public class AccountController {
 		gLoginS.updatepw(dto);
 		return "/account/updatepwok";
 	}
+=======
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 	
 	@GetMapping("/register")
 	private String register() {
 		
 		return "/account/register";
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 }

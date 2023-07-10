@@ -49,8 +49,11 @@
 </head>
 <body>
 	<%@ include file="/resources/inc/header.jsp"%>
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 			<form id="regForm" action="/dreamjourney/add" method="POST">
 	<div class="container-fluid page-header">
 		<div class="container">
@@ -70,8 +73,13 @@
 					<div class="mb-3" style="margin: 0 auto;">
 						<label for="exampleFormControlInput1" class="form-label">이름</label>
 						<input type="text" class="form-control" id="name" required name="name"
+<<<<<<< HEAD
 							placeholder="이름" style="width: 90%;"
 							onkeyup="checkReg(event)" maxlength="8">
+=======
+							placeholder="이름" value="${param.name}" style="width: 90%;"
+							onkeyup="checkReg(event)" maxlength="8"> 
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 					</div>
 					<div class="mb-3" style="margin: 0 auto;">
 						<label for="exampleFormControlInput1" class="form-label">닉네임</label><span style="margin-left: 10px;" class="nick_ok">사용 가능한
@@ -89,8 +97,13 @@
 						<span style="margin-left: 10px;" class="email_ok">사용 가능한
 							이메일입니다.</span> <span style="margin-left: 10px;" class="email_already">중복된
 							이메일 입니다.</span> <input type="email" class="form-control" id="email" required
+<<<<<<< HEAD
 							placeholder="example001@naver.com" style="width: 90%;"
 							name="email" oninput="checkEmail()">
+=======
+       placeholder="example001@naver.com" style="width: 90%;"
+       value="${param.email}" name="email" oninput="checkEmail()">
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 								<div class="mailChk-box">
 <input class="form-control mailChkInput"  required style="width:90%;" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
 </div>

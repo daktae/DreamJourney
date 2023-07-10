@@ -6,6 +6,7 @@
 	<select id="login" resultType="com.test.domain.MemberDTO">
 		select * from tblmember where name=#{name} and email=#{email}
 	</select>
+<<<<<<< HEAD
 	
 	<select id="glogin" resultType="com.test.domain.MemberDTO">
 		select * from tblmember where email=#{email} and pw=#{pw}
@@ -14,6 +15,8 @@
 	<update id="updatepw">
 		update tblmember set pw = #{pw} where email = #{email}
 	</update>
+=======
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 
 </mapper>
 

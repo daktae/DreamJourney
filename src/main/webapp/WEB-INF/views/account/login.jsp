@@ -91,9 +91,12 @@
 				<img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
 					    alt="카카오 로그인 버튼" />
 				</a>
+<<<<<<< HEAD
 				<div style="margin-top: 10px;">
 					<a href="/dreamjourney/glogin">아이디로 로그인하기</a>
 				</div>
+=======
+>>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 		     </div> 
 		         
 	</div>
