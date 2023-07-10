@@ -45,7 +45,7 @@
                         <a href="about.html" class="nav-item nav-link">예약/예매</a>
                         <a href="/dreamjourney/reservation" class="nav-item nav-link">예약/예매</a>
                         <a href="service.html" class="nav-item nav-link">추천 여행지</a>
-                        <a href="single.html" class="nav-item nav-link">커뮤니티</a>
+                        <div onclick="location.href='/dreamjourney/board';" class="nav-item nav-link">커뮤니티</div>
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Contact</a>
