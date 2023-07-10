@@ -274,4 +274,10 @@ public class MypageServiceImpl implements MypageService {
 		mapper.daydel(trip_seq);
 	}
 	
+	@Override
+	public List<TripDTO> tripList() {
+
+		return mapper.tripList();
+	}
+	
 }

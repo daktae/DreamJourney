@@ -96,5 +96,7 @@ public interface MypageMapper {
 
 	List<ScheduleDTO> getSchedule(Map<String, String> map);
 
+	List<TripDTO> tripList();
+
 
 }

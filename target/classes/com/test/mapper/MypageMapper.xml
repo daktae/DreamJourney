@@ -350,6 +350,35 @@ VALUES (trip_seq.nextVal, 5, #{title}, 0, sysdate, TO_DATE(#{begin}, 'YYYY-MM-DD
 		WHERE t.trip_seq = #{seq} AND d.nth = #{day}
 		ORDER BY s.schedule_seq ASC
 	</select>
+	
+	<select id="tripList" resultType="com.test.domain.TripDTO">
+		select
+		    a.trip_seq,
+		    a.member_seq,
+		    a.title,
+		    a.recommend,
+		    a.regdate,
+		    a.begin,
+		    a.end,
+		    a.is_shared,
+		    a.name,
+		    rownum
+		from
+		(select
+		    t.trip_seq,
+		    t.member_seq,
+		    t.title,
+		    t.recommend,
+		    t.regdate,
+		    t.begin,
+		    t.end,
+		    t.is_shared,
+		    m.name
+		from tblTrip t
+		inner join tblMember m on t.member_seq = m.member_seq
+		where t.is_shared = 'y'
+		order by t.regdate desc) a
+	</select>
  
 </mapper>
 

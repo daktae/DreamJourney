@@ -121,15 +121,15 @@
       <th>작성날짜</th>
       <th>추천수</th>
    </tr>
-<%--    <c:forEach items="${blist}" var="dto"> --%>
-   <tr onclick="location.href='/dreamjourney/boardDetail?">
-      <td>1</td>
-      <td>제주 1박2일 여행!</td>
-      <td>이동재</td>
-      <td>2023-06-29</td>
-      <td>0</td>
-   </tr>
-<%-- </c:forEach> --%>
+   	<c:forEach items="${list}" var="dto">
+   	<tr onclick="location.href='/dreamjourney/boardDetail?">
+      <td>${dto.rownum}</td>
+      <td>${dto.title}</td>
+      <td>${dto.name}</td>
+      <td>${dto.regdate.substring(0, 10)}</td>
+      <td>${dto.recommend}</td>
+   	</tr>
+	</c:forEach>
    </table>
    <div id="board-button-area">
       <button type="button" id="add" onclick="location.href='/dreamjourney/addBoard';" class="btn btn-primary">글쓰기</button>
