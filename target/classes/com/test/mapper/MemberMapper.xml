@@ -3,49 +3,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.test.mapper.MemberMapper">
-<<<<<<< HEAD
-=======
 <!-- 이메일 중복체크 -->
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
-	<select id="emailCheck" parameterType="String" resultType="int">
-		SELECT COUNT(email) FROM tblmember WHERE email= #{email}
-	</select>
-	
-<<<<<<< HEAD
-	
-=======
+   <select id="emailCheck" parameterType="String" resultType="int">
+      SELECT COUNT(email) FROM tblmember WHERE email= #{email}
+   </select>
+   
 <!-- 전화번호 중복체크 -->
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
-			<select id="telCheck2" parameterType="String" resultType="int">
+         <select id="telCheck2" parameterType="String" resultType="int">
 select count(tel) from tblmember where tel = #{tel}
 
-	</select>
-	
-<<<<<<< HEAD
-=======
+   </select>
+   
 <!-- 닉네임 중복체크 -->
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
-				<select id="nickCheck" parameterType="String" resultType="int">
+            <select id="nickCheck" parameterType="String" resultType="int">
 select count(nickname) from tblmember where nickname = #{nick}
-	</select>
-	
-<<<<<<< HEAD
-	<insert id = "addMember">
-		 insert into tblmember (member_seq, name, email, pw, nickname, tel)
-        values (member_seq.nextval, #{name}, #{email}, #{pw}, #{nickname}, #{tel})
-	</insert>
-=======
+   </select>
+   
 <!-- 회원가입 -->
-	<insert id = "addMember">
+   <insert id = "addMember">
   INSERT INTO tblmember (member_seq, name, email, pw, nickname, tel, unresi)
   VALUES (member_seq.nextval, #{name}, #{email}, #{pw}, #{nickname}, #{tel}, 'n')
-	</insert>
-	
+   </insert>
+   
 <!-- 회원탈퇴 -->
 <update id="unMember">
 update tblmember set name = '　', email = '　', pw = '　', nickname = '　', tel = '　', unresi = 'y' where email = #{email}
 </update>
-	
+   
 <!-- 숙소 검색결과 -->
 <select id="searchAcc" resultType="com.test.domain.AccommodateDTO">
   <![CDATA[
@@ -96,9 +80,7 @@ select * from vwactivity where title like '%${title}%'
 select * from vwactivity where address like '%${address}%' and title like '%${title}%'
 ]]>
 </select>
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 
 </mapper>
-
 
 

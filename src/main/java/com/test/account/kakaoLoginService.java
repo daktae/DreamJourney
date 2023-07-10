@@ -141,10 +141,7 @@ public class kakaoLoginService implements IKakaoLoginService {
 
 	@Override
 	public List<MemberDTO> login(MemberDTO dto) {
-<<<<<<< HEAD
 		
-=======
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 		List<MemberDTO> list = mapper.login(dto);
 		
 		return list;

@@ -1,10 +1,5 @@
 package com.test.checkwj;
 
-<<<<<<< HEAD
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
-=======
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,37 +8,22 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
-<<<<<<< HEAD
-import java.util.Locale;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-=======
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import javax.naming.directory.SearchResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
 import com.siot.IamportRestClient.response.IamportResponse;
-<<<<<<< HEAD
-=======
 import com.test.domain.AccommodateDTO;
 import com.test.domain.ActivityDTO;
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 import com.test.domain.MemberDTO;
 import com.test.emailwj.IamportClient;
 import com.test.mapper.MemberMapper;
@@ -63,8 +43,6 @@ public class CheckControllerWj {
 	    return "index";
 	}
 	
-<<<<<<< HEAD
-=======
 	//회원탈퇴 되면 메인으로
 	@PostMapping("/unresi")
 	private String unresi(MemberDTO dto) {
@@ -77,7 +55,6 @@ public class CheckControllerWj {
 	    return "index";
 	}
 	
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
 	//전화번호 중복체크
 	@PostMapping("/telCheck2")
 	@ResponseBody
@@ -156,10 +133,7 @@ public class CheckControllerWj {
 		   return response;
 	}
 	
-<<<<<<< HEAD
 	
-}
-=======
 	//숙소 검색하면 예약 페이지로
 		@GetMapping("/search")
 		public String search(AccommodateDTO dto, Model model) {
@@ -283,4 +257,3 @@ public class CheckControllerWj {
 	
 }
 
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183

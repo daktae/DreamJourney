@@ -1,51 +1,40 @@
 $(document).ready(function() {
     /* 체크인, 체크아웃 날짜 캘린더 선택 */
     var fp = flatpickr(document.getElementById("checkin"), {
-    	'monthSelectorType' : 'dropdown',
-    	"locale": "ko", 
-    	dateFormat: "Y-m-d",
-    	minDate: "today"
+       'monthSelectorType' : 'dropdown',
+       "locale": "ko", 
+       dateFormat: "Y-m-d",
+       minDate: "today"
     });
     
 flatpickr(document.getElementById("checkout"), {
-    	'monthSelectorType' : 'dropdown',
-    	"locale": "ko",
-    	dateFormat: "Y-m-d",
-    	minDate: "today"
+       'monthSelectorType' : 'dropdown',
+       "locale": "ko",
+       dateFormat: "Y-m-d",
+       minDate: "today"
     });
 
     var fp = flatpickr(document.getElementById("startdate"), {
-    	'monthSelectorType' : 'dropdown',
-    	"locale": "ko", 
-    	dateFormat: "Y-m-d",
-    	minDate: "today"
-<<<<<<< HEAD
-    });    
-    
-    flatpickr(document.getElementById("enddate"), {
-    	'monthSelectorType' : 'dropdown',
-    	"locale": "ko",
-    	dateFormat: "Y-m-d",
-    	minDate: "today"
-    });
-=======
+       'monthSelectorType' : 'dropdown',
+       "locale": "ko", 
+       dateFormat: "Y-m-d",
+       minDate: "today"
     });
     
         var fp = flatpickr(document.getElementById("startdate3"), {
-    	'monthSelectorType' : 'dropdown',
-    	"locale": "ko", 
-    	dateFormat: "Y-m-d",
-    	minDate: "today"
+       'monthSelectorType' : 'dropdown',
+       "locale": "ko", 
+       dateFormat: "Y-m-d",
+       minDate: "today"
     });     
     
          var fp = flatpickr(document.getElementById("startdate4"), {
-    	'monthSelectorType' : 'dropdown',
-    	"locale": "ko", 
-    	dateFormat: "Y-m-d",
-    	minDate: "today"
+       'monthSelectorType' : 'dropdown',
+       "locale": "ko", 
+       dateFormat: "Y-m-d",
+       minDate: "today"
     });     
     
->>>>>>> d220c106aa61afbc62d00ea25ff1b2f301afe183
     
 // 자동 슬라이드 기능 중지
 $("#packageSlider").carousel({
