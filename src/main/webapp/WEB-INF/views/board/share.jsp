@@ -124,7 +124,7 @@
    	<c:forEach items="${list}" var="dto">
    	<tr onclick="location.href='/dreamjourney/boardDetail?">
       <td>${dto.rownum}</td>
-      <td>${dto.title}</td>
+      <td onclick="location.href='/dreamjourney/board/shareview?trip_seq=${dto.trip_seq}'">${dto.title}</td>
       <td>${dto.name}</td>
       <td>${dto.regdate.substring(0, 10)}</td>
       <td>${dto.recommend}</td>
