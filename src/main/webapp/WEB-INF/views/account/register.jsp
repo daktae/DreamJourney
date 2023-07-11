@@ -72,8 +72,6 @@
 						<input type="text" class="form-control" id="name" required name="name"
 							placeholder="이름" style="width: 90%;"
 							onkeyup="checkReg(event)" maxlength="8">
-							placeholder="이름" value="${param.name}" style="width: 90%;"
-							onkeyup="checkReg(event)" maxlength="8"> 
 					</div>
 					<div class="mb-3" style="margin: 0 auto;">
 						<label for="exampleFormControlInput1" class="form-label">닉네임</label><span style="margin-left: 10px;" class="nick_ok">사용 가능한

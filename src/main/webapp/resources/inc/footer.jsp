@@ -13,7 +13,7 @@
                 <p style="margin-bottom: 0px;">전화 상담: 09:00 ~ 18:00</p>
                 <p style="margin-bottom: 0px;">채팅 상담: 09:00 ~ 20:00</p>
 
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
+                <p class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</p>
                 <div class="d-flex justify-content-start">
                     <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
@@ -55,7 +55,7 @@
                          
     <a href="#" class="btn btn-chat btn-lg-circle chatcounseling"></a>
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-	</footer>
+   </footer>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

@@ -50,10 +50,10 @@ html{
    scroll-behavior: smooth;
 }
 
-body {
+/* body {
    padding-bottom: 50px;
 }
-
+ */
 .img-container {
    max-height: 500px;
    overflow: hidden;
@@ -124,10 +124,6 @@ box-shadow: 1px 1px 20px #ddd;
    outline: none;
 }
 
-.btn {
-   width: 200px;
-   margin: 5px 30px;
-}
 
 .img {
    width: 800px;
@@ -140,8 +136,6 @@ footer {
 
 #bookmark {
    width: 150px; 
-   margin-left: 200px;
-   float: left,
 }
 
 #star:hover {
@@ -153,12 +147,13 @@ footer {
 <body>
    <%@ include file="/resources/inc/header.jsp"%>
    <!-- 본문 -->
-   <div style="height: 3000px; margin-top: 100px;">
+<div style="display:flex;justify-content: center;">
+   <div style="margin-top: 100px; margin-bottom:100px;">
    <div>
    <button type="submit" class="btn btn-primary" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
    </div>
       <form method="POST" action="/dreamjourney/reservation/pay" id="form">
-         <div style="width: 780px; float: left; margin-left: 200px; margin-right: 20px;">
+         <div style="width: 780px; margin-right: 20px;">
             <div style="text-align: center;">
                <h5>${adetail.category }</h5>
                <h1>[${address}] ${adetail.title }</h1>
@@ -201,9 +196,9 @@ footer {
             </div>
 
          </div>
-
-         <div
-            style="border: 1px solid #DDD; background-color: #FFF;display: inline-block; width: 300px; padding: 20px; text-align: center; margin: 0 10px; position: fixed;">
+</div>
+<!-- 티켓 -->
+<div id="myDiv" style="border: 1px solid #DDD; background-color: #FFF; display: inline-block; width: 300px; padding: 20px; text-align: center; margin: 0 10px; position: absolute; top: 500px; left: 75%;">
             <div>티켓 선택 날짜
                <input type="date" name="dates" id="datepicker">
             </div>
@@ -220,11 +215,13 @@ footer {
                원 * <span id="numberDisplay">1 명</span>)
             </div>
             <br>
+            
             <div>
-               <button type="submit" class="btn btn-primary reservation" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
+               <button type="submit" class="btn btn-primary reservation" style="width: 200px; margin: 5px 30px;" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
                <input type="hidden" value="${adetail.activity_seq }" name="activity_seq">
                
             </div>
+            
          </div>
          <input type="hidden" name="totalPrice"> 
          <input type="hidden" name="totalPeople"> 
@@ -394,8 +391,23 @@ footer {
       });
    });
    
-   
-   
+
+   window.addEventListener("scroll", function() {
+	   var myDiv = document.getElementById("myDiv");
+	   var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+	   var screenWidth = window.innerWidth || document.documentElement.clientWidth;
+
+	   
+	   var targetPosition = 1000; // 고정할 스크롤 위치
+
+	   if (scrollPosition >= targetPosition) {
+	     myDiv.style.position = "fixed";
+	     myDiv.style.top = targetPosition + "px";
+	   } else {
+	     myDiv.style.position = "absolute";
+	     myDiv.style.top = (500 + scrollPosition) + "px";
+	   }
+	 });
    
 </script>
 </html>
