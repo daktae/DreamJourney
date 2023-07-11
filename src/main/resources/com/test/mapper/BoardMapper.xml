@@ -68,7 +68,7 @@
 	<!-- 게시판 등록, 수정, 삭제 -->
 	<!-- 등록 -->
 	<insert id="add" parameterType="com.test.domain.BoardDTO">
-		insert into tblFree values(free_seq.nextVal, #{title}, #{content}, #{category}, #{fname}, default, default, default, default, 3, default)
+		insert into tblFree values(free_seq.nextVal, #{title}, #{content}, #{category}, #{fname}, default, default, default, default, #{session_member_seq}, default)
 	</insert>
 	
 	<update id="edit" parameterType="com.test.domain.BoardDTO" >
@@ -82,7 +82,7 @@
 	
 	<!-- 댓글 등록/수정/삭제 -->
 	<insert id="addComment" parameterType="com.test.domain.CommentDTO">
-	insert into tblFreeReply values(freply_seq.nextVal, #{content}, default, #{free_seq}, 3)
+	insert into tblFreeReply values(freply_seq.nextVal, #{content}, default, #{free_seq}, #{session_member_seq})
 	</insert>
 	
 	<select id="getComment" parameterType="String">

@@ -177,7 +177,6 @@
  }
   
  #comment-list > tbody > tr > td:first-child {
- 	text-align: center;
  	font-weight: bold;
  }
   
@@ -387,8 +386,10 @@
 			</td>
 			<td>
 				${cdto.regdate }
+				<c:if test="${seq == cdto.member_seq }">
 				 <span id="comment-edit" onclick="editComment(${cdto.freply_seq}, ${cdto.free_seq });">수정</span> | 
 				 <span id="comment-del" onclick="delComment(${cdto.freply_seq}, ${cdto.free_seq});">삭제</span>  
+				 </c:if>
 		<form id="editCommentForm" method="POST"
 			action="/dreamjourney/editOkComment?free_seq=${cdto.free_seq }">
 			<input type="hidden" name="free_seq"> 
@@ -430,10 +431,12 @@
 	<!-- 게시글 상세보기 > 하단 버튼 -->
 	<div id="board-buttons" class="d-grid d-md-block">
 	<c:if test="${bdetail.category eq '동행' }">
- 		<button class="btn btn-primary" type="button" value="${bdetail.free_seq}" onclick="openChat(${bdetail.free_seq})">채팅하기</button>
+ 		<button class="btn btn-primary" type="button" value="${bdetail.free_seq}" onclick="openChat(${bdetail.free_seq}, '${nickname}' )">채팅하기</button>
 	</c:if>
+	<c:if test="${seq == bdetail.member_seq }">
 	  	<button class="btn btn-primary btn-grid" type="button" onclick="location.href='/dreamjourney/editBoard?free_seq=${bdetail.free_seq}';">수정하기</button>
 	  	<button class="btn btn-primary btn-grid" type="button" onclick="location.href='/dreamjourney/delBoard?free_seq=${bdetail.free_seq }';">삭제하기</button>
+	 </c:if>
 	  	<button class="btn btn-primary btn-grid" type="button" onclick="location.href='/dreamjourney/board';">목록으로</button>
 	
 	</div>
@@ -500,10 +503,11 @@
 	}
 
 	// 웹소켓 채팅
-	function openChat(seq) {
+	function openChat(seq, nickname) {
 		let free_seq = seq;
+		let name = nickname;
 		
-		let child = window.open(`/dreamjourney/chat?free_seq=\${free_seq}`, 'chat', 'width=560 height=650');
+		let child = window.open(`/dreamjourney/chat?free_seq=\${free_seq}&sender=\${name}`, 'chat', 'width=560 height=650');
 		
 		
 		$('.in').prop('disabled', true);

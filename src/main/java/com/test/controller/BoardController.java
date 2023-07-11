@@ -2,6 +2,7 @@ package com.test.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,19 +21,22 @@ public class BoardController {
 	private BoardService service;
 
 	@GetMapping("/board")
-	public String board(Model model) {
+	public String board(Model model, HttpSession session) {
 		// 말머리 '동행'인 게시판
 		//- 글목록 가져오기 (N행 N열)
 		//- select * from tblFree where category = '동행'
 		
+		
 		model.addAttribute("blist", service.getBlist());
+		model.addAttribute("nickname",session.getAttribute("nickname"));
+		model.addAttribute("seq",session.getAttribute("seq"));
+		
 		
 		return "/board/board";
 	}
 	
 	@GetMapping("/boardDetail")
-	public String boardDetail(Model model, String free_seq) {
-		
+	public String boardDetail(Model model, String free_seq, HttpSession session) {
 		int updateOk = service.updateReadCount(free_seq);
 		BoardDTO dto = service.get(free_seq);
 		List<CommentDTO> cdto = service.getClist(free_seq);
@@ -45,6 +49,10 @@ public class BoardController {
 		dto.setContent(dto.getContent().replace("\r\n", "<br>"));
 		
 		
+		model.addAttribute("nickname",session.getAttribute("nickname"));
+		model.addAttribute("seq",session.getAttribute("seq"));
+		
+		
 		model.addAttribute("bdetail", dto);
 		model.addAttribute("clist", cdto);
 		model.addAttribute("commentCount", commentCount);
@@ -54,7 +62,11 @@ public class BoardController {
 	}
 	
 	@GetMapping("/chat")
-	public String chat(Model model, String free_seq) {
+	public String chat(Model model, String free_seq, HttpSession session) {
+		
+		model.addAttribute("nickname",session.getAttribute("nickname"));
+		model.addAttribute("seq",session.getAttribute("seq"));
+		
 		// boardDetail.jsp 에서 자식창으로 chat.jsp 열기
 		BoardDTO dto = service.get(free_seq);
 		
@@ -72,8 +84,9 @@ public class BoardController {
 	}
 
 	@PostMapping("/addBoard")	// 최종 등록
-	public String addBoard(Model model, BoardDTO dto) {
+	public String addBoard(Model model, BoardDTO dto, HttpSession session) {
 		
+		dto.setSession_member_seq(session.getAttribute("seq").toString());
 		service.add(dto);
 		
 		return "redirect:board";
@@ -108,8 +121,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("/addComment")
-	public String addComment(Model model, CommentDTO dto) {
+	public String addComment(Model model, CommentDTO dto, HttpSession session) {
 		
+		dto.setSession_member_seq(session.getAttribute("seq").toString());
 		service.addComment(dto);
 		
 		return "redirect:boardDetail?free_seq=" + dto.getFree_seq();

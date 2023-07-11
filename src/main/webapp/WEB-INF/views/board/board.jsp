@@ -165,11 +165,11 @@
 			<div id="board-search" class="input-group mb-3">
 					<select name="category" class="form-control" >
 			<option onchange="/dreamjourney/board">말머리</option>
-			<option onchange="/dreamjourney/reviewBoard">리뷰</option>
-			<option>동행</option>
-			<option>분실</option>
+			<option onchange="/dreamjourney/reviewBoard" value="리뷰">리뷰</option>
+			<option value="동행">동행</option>
+			<option value="분실">분실</option>
 		</select>
-				<input type="text" class="form-control" placeholder="검색어를 입력하세요." id="board-search-input">
+				<input type="text" name="word" class="form-control" placeholder="검색어를 입력하세요." id="board-search-input">
 				<button class="btn btn-primary" type="button" id="button-search-button">검색</button>
 			</div>
 
@@ -222,7 +222,9 @@
 </c:forEach>
 	</table>
 	<div id="board-button-area">
+	<c:if test="${seq != null }">
 		<button type="button" id="add" onclick="location.href='/dreamjourney/addBoard';" class="btn btn-primary">글쓰기</button>
+	</c:if>
 	</div>
 
 	</div>

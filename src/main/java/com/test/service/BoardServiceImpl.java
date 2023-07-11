@@ -33,10 +33,13 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public void add(BoardDTO dto) {
-		mapper.add(dto);
+		mapper.add(dto);		
 	}
 	
-	
+	/*
+	 * @Override public void add(BoardDTO dto) { mapper.add(dto); }
+	 * 
+	 */
 	@Override
 	public void edit(BoardDTO dto) {
 		mapper.edit(dto);

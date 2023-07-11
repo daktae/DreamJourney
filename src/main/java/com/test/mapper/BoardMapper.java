@@ -36,6 +36,7 @@ public interface BoardMapper {
 	void boardRecommend(String free_seq);
 
 
+
 	
 
 
