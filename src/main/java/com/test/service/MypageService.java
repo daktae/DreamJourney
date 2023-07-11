@@ -19,41 +19,38 @@ import com.test.domain.UnwrittenReviewDTO;
 public interface MypageService {
 
 	// 즐겨찾기 목록
-	List<BookmarkDTO> bookmarkList();
+	List<BookmarkDTO> bookmarkList(String seq);
 
-	List<TranReserveDTO> transList();
+	List<TranReserveDTO> transList(String seq);
 
-	List<AccoReserveDTO> accommodateList();
+	List<AccoReserveDTO> accommodateList(String seq);
 
-	List<ActivityReserveDTO> activityList();
+	List<ActivityReserveDTO> activityList(String seq);
 
-	TranReserveDTO treservedetail(String treserve_seq);
+	TranReserveDTO treservedetail(String pay_seq, String seq);
 
-	PayDTO tpay(String treserve_seq);
+	AccoReserveDTO rreservedetail(String pay_seq, String seq);
 
-	AccoReserveDTO rreservedetail(String rreserve_seq);
+	PayDTO rpay(String pay_seq);
 
-	PayDTO rpay(String rreserve_seq);
+	ActivityReserveDTO areservedetail(String pay_seq, String seq);
 
-	ActivityReserveDTO areservedetail(String areserve_seq);
 
-	PayDTO apay(String areserve_seq);
-
-	MemberDTO getMemberInfo(int member_seq);
+	MemberDTO getMemberInfo(String seq);
 
 	void saveMemberInfo(MemberDTO dto);
 
-	List<BookableReviewDTO> getAccommodateReview();
+	List<BookableReviewDTO> getAccommodateReview(String seq);
 
-	List<BookableReviewDTO> getActivityReview();
+	List<BookableReviewDTO> getActivityReview(String seq);
 
-	List<UnbookableReviewDTO> getFoodReview();
+	List<UnbookableReviewDTO> getFoodReview(String seq);
 
 	int updatebr(String seq, String newContent);
 
 	int schInsert(String nth, String string, String string2, String string3);
 
-	int tripInsert(String title, String begin, String end);
+	int tripInsert(String title, String begin, String end, String seq);
 
 	String getTripId();
 
@@ -71,12 +68,12 @@ public interface MypageService {
 
 	int setReviewStatus(String seq);
 
-	List<UnwrittenReviewDTO> getUnwrittenAccommodate();
+	List<UnwrittenReviewDTO> getUnwrittenAccommodate(String seq);
 
-	List<TripDTO> getTrip();
+	List<TripDTO> getTrip(String seq);
 
 	void journeyshar(String trip_seq);
-	List<UnwrittenReviewDTO> getUnwrittenActivity();
+	List<UnwrittenReviewDTO> getUnwrittenActivity(String seq);
 
 	int writereview(Map<String, String> map);
 
