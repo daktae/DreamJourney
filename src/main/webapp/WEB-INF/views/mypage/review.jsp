@@ -188,7 +188,7 @@ textarea {
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">마이페이지</h3>
+				<h3 class="display-4 text-white text-uppercase">내 리뷰</h3>
 
 			</div>
 		</div>
@@ -202,9 +202,9 @@ textarea {
 		<div id="mypage_content">
 
 			<div>
-				<button class="review-button" id="btn-accommodate">숙박</button>
-				<button class="review-button" id="btn-activity">액티비티</button>
-				<button class="review-button" id="btn-restaurant">맛집</button>
+				<button class="review-button m-2" id="btn-accommodate">숙박</button>
+				<button class="review-button m-2" id="btn-activity">액티비티</button>
+				<button class="review-button m-2" id="btn-restaurant">맛집</button>
 			</div>
 
 

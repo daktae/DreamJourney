@@ -68,6 +68,22 @@
 	border-radius: 20px;
 	box-shadow: 0 0 0 1px #CCC;
 }
+
+#btn-edit {	
+background-color: #82CD47;
+	border: none;
+	border-radius: 20px;
+	color: white;
+	margin-right: 15px;
+}
+
+#btn-delete{
+	background-color: #dc3545;
+	border: none;
+	border-radius: 20px;
+	color: white;
+}
+
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -79,7 +95,7 @@
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">제목</h3>
+				<h3 class="display-4 text-white text-uppercase">내 작성글</h3>
 
 			</div>
 		</div>
@@ -100,27 +116,27 @@
 			</div>
 
 			<div class="container-fluid mt-5 mb-5">
-				<table class="table m-1 write">
+			
+			<c:forEach items="${list}" var="dto">
+			
+			
+				<table class="table m-1 write" style="margin-right: 10px;">
 					<tr>
-						<td style="width: 10%;">추천 여행</td>
-						<td style="width: 40%; text-align:left;">1박2일 제주도 여행기</td>
-						<td style="width: 10%;">2023-07-02</td>
-						<td style="width: 10%;"><span class="material-symbols-outlined">favorite</span>36</td>
-						<td style="width: 10%;"><a href="#" class="btn btn-primary">수정하기</a></td>
-						<td style="width: 10%;"><a href="#" class="btn btn-danger">삭제하기</a></td>
+						<td style="width: 10%;">${dto.category }</td>
+						<td style="width: 40%; text-align:left;">${dto.title }</td>
+						<td style="width: 10%;">${dto.regdate.substring(0,10)}</td>
+						<td style="width: 10%;"><span class="material-symbols-outlined">favorite</span>${dto.recommend }</td>
+						<td style="width: 20%;">
+							<button type="button" id="btn-edit" onclick="location.href='#'">수정</button>
+							<button type="button" id="btn-delete" onclick="location.href='#'">삭제</button>
+						</td>
 					</tr>
 				</table>
+				
+			</c:forEach>
+				
+				
 			</div>
-
-			<!-- <nav aria-label="Page navigation example">
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
-				</ul>
-			</nav> -->
 
 		</div>
 

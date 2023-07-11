@@ -15,6 +15,8 @@ public class TripDTO {
 	private String end;
 	private String is_shared;
 	
+	private String rownum;
+	private String name;
 	private String nickname;
 	
 }

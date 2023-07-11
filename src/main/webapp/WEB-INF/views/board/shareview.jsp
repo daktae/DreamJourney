@@ -41,8 +41,10 @@
 </head>
 <style>
 .mypagecontainer {
+	/* flex-direction: row; */
 	display: flex;
-	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 #mypage_content {
@@ -50,8 +52,8 @@
 	width: 75%;
 	height: auto;
 	border-radius: 20px;
-	margin-right: 100px;
 	padding: 50px;
+	position: relative;
 }
 
 #content {
@@ -84,7 +86,7 @@
 }
 
 #info-table {
-	width: 80%;
+	width: 100%;
 	padding: 10px;
 }
 
@@ -104,12 +106,35 @@
 }
 
 .schedule-table {
-	width: 80%;
+	width: 100%;
 	padding: 10px;
 }
 
 .schedule-table td {
 	padding-bottom: 10px;
+}
+
+#buttons {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+
+#btn-recommend {
+	background-color: #FFBF00;
+	color: white;
+	border-radius: 20px;
+	border: none;
+	margin-right: 10px;
+}
+
+#btn-back {
+	background-color: #B5B5B5;
+	color: white;
+	border-radius: 20px;
+	border: none;
 }
 </style>
 
@@ -124,7 +149,7 @@
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">내 여행</h3>
+				<h3 class="display-4 text-white text-uppercase">추천 여행지</h3>
 
 			</div>
 		</div>
@@ -134,7 +159,7 @@
 	<!-- Blog Start -->
 
 	<div class="container-fluid py-5 mypagecontainer">
-		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
+
 		<div id="mypage_content">
 
 			<table id="info-table">
@@ -145,23 +170,15 @@
 				</colgroup>
 				<tr>
 					<td colspan="2">
-						<h4>${dto.title}
-							<c:if test="${dto.is_shared=='n'}">
-								<span class="material-symbols-outlined"> lock </span>
-							</c:if>
-							<c:if test="${dto.is_shared=='y'}">
-								<span class="material-symbols-outlined"> lock_open </span>
-							</c:if>
-						</h4>
+						<h4>${dto.title}</h4>
 					</td>
 					<td style="text-align: right;">작성일: ${dto.regdate}</td>
 				</tr>
 				<tr>
 					<td colspan="2">여행 기간: ${dto.begin} ~ ${dto.end}</td>
-					<td style="text-align: right;"><c:if
-							test="${dto.is_shared=='y'}">
-							<span class="material-symbols-outlined"> recommend </span> ${dto.recommend}
-						</c:if></td>
+					<td style="text-align: right;"><span
+						class="material-symbols-outlined"> recommend </span>
+						 <span id="recommend-value">${dto.recommend}</span></td>
 				</tr>
 				<tr>
 					<td colspan="3">
@@ -175,11 +192,20 @@
 				</tr>
 			</table>
 
+
 			<div id="schedule-table-container"></div>
+
+			<div id="buttons">
+
+				<button type="button" id="btn-recommend" onclick="plusrecommend(${dto.trip_seq})">추천하기</button>
+				<button type="button" id="btn-back" onclick="window.location.href='/dreamjourney/board/share';">돌아가기</button>
+
+
+
+			</div>
 
 		</div>
 	</div>
-
 
 
 	<!-- Blog End -->
@@ -195,6 +221,26 @@
 
 	<script>
 	
+	function plusrecommend(seq) {
+		
+		$.ajax({
+			  url: 'plusrecommend',
+			  type: 'POST',
+			  data: {
+			    seq: seq
+			  },
+			  success: function(response) {
+				  var btn = document.getElementById("btn-recommend");
+				  btn.disabled = true;
+				  btn.style.backgroundColor = "#CED4DA";
+				    $('#recommend-value').text(response);
+			  },
+			  error: function(a, b, c) {
+			    console.log(a, b, c);
+			  }
+			});
+	}
+
   $(document).ready(function () {
     (async function () {
       try {

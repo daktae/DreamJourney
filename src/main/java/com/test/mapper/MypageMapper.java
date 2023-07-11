@@ -12,40 +12,37 @@ import com.test.domain.TranReserveDTO;
 import com.test.domain.TripDTO;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.MemberDTO;
+import com.test.domain.MyWriteDTO;
 import com.test.domain.UnbookableReviewDTO;
 import com.test.domain.UnwrittenReviewDTO;
 
 public interface MypageMapper {
 
-	List<BookmarkDTO> bookmarkList();
+	List<BookmarkDTO> bookmarkList(String seq);
 
-	List<TranReserveDTO> transList();
+	List<TranReserveDTO> transList(String seq);
 
-	List<AccoReserveDTO> accommodateList();
+	List<AccoReserveDTO> accommodateList(String seq);
 
-	List<ActivityReserveDTO> activityList();
+	List<ActivityReserveDTO> activityList(String seq);
 
-	TranReserveDTO treservedetail(String treserve_seq);
+	TranReserveDTO treservedetail(Map<String, String> map);
 
-	PayDTO tpay(String treserve_seq);
-
-	AccoReserveDTO rreservedetail(String rreserve_seq);
+	AccoReserveDTO rreservedetail(Map<String, String> map);
 
 	PayDTO rpay(String rreserve_seq);
 
-	ActivityReserveDTO areservedetail(String areserve_seq);
+	ActivityReserveDTO areservedetail(Map<String, String> map);
 
-	PayDTO apay(String areserve_seq);
-
-	MemberDTO getMemberInfo(int seq);
+	MemberDTO getMemberInfo(String seq);
 
 	void saveMemberInfo(MemberDTO dto);
 
-	List<BookableReviewDTO> getAccommodateReview();
+	List<BookableReviewDTO> getAccommodateReview(String seq);
 
-	List<BookableReviewDTO> getActivityReview();
+	List<BookableReviewDTO> getActivityReview(String seq);
 
-	List<UnbookableReviewDTO> getFoodReview();
+	List<UnbookableReviewDTO> getFoodReview(String seq);
 
 	int updateBookableReview(Map<String, String> map);
 	
@@ -71,12 +68,12 @@ public interface MypageMapper {
 
 	int setReviewStatus(String seq);
 
-	List<UnwrittenReviewDTO> getUnwrittenAccommodate();
+	List<UnwrittenReviewDTO> getUnwrittenAccommodate(String seq);
 
-	List<TripDTO> getTrip();
+	List<TripDTO> getTrip(String seq);
 
 	void journeyshar(String trip_seq);
-	List<UnwrittenReviewDTO> getUnwrittenActivity();
+	List<UnwrittenReviewDTO> getUnwrittenActivity(String seq);
 
 	int writereview(Map<String, String> map);
 
@@ -95,6 +92,12 @@ public interface MypageMapper {
 	String getDayButtons(String seq);
 
 	List<ScheduleDTO> getSchedule(Map<String, String> map);
+
+	List<TripDTO> tripList();
+
+	int plusrecommend(String seq);
+
+	List<MyWriteDTO> getmywrite(String seq);
 
 
 }
