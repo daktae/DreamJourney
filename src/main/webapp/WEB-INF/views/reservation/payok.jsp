@@ -120,14 +120,19 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                       
+
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <p><a href="*">로그인</a></p>
-                        <p class="text-body px-3">|</p>
-                        <p><a href="*">회원가입</a></p>
+                    	<c:if test="${param.name != null }">
+                    		<p>${param.name }(${param.nickname })님 환영합니다</p>
+                    	</c:if>
+                    	<c:if test="${param.name == null }"> 
+	                        <p><a href="/dreamjourney/login">로그인</a></p>
+        	                <p class="text-body px-3">|</p>
+    	                    <p><a href="/dreamjourney/register">회원가입</a></p>
+                    	</c:if>
                     </div>
                 </div>
             </div>

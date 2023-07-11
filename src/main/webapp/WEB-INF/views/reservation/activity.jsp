@@ -31,6 +31,7 @@
     
     <!-- Google Icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <style>
 
@@ -81,10 +82,18 @@
 		text-decoration:none;
 	}
 	
-	
 	.team-img {
 		width: 250px;
 		height: 210px;
+	}
+	
+	.team-item {
+		width: 250px;
+		height: 400px;
+	}
+	
+	.team-item:hover {
+		cursor: pointer;
 	}
 	
 </style>
@@ -93,20 +102,25 @@
    
     
 
-    <!-- Topbar Start -->
+   <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                       
+
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <p><a href="*">로그인</a></p>
-                        <p class="text-body px-3">|</p>
-                        <p><a href="*">회원가입</a></p>
+                    	<c:if test="${param.name != null }">
+                    		<p>${param.name }(${param.nickname })님 환영합니다</p>
+                    	</c:if>
+                    	<c:if test="${param.name == null }"> 
+	                        <p><a href="/dreamjourney/login">로그인</a></p>
+        	                <p class="text-body px-3">|</p>
+    	                    <p><a href="/dreamjourney/register">회원가입</a></p>
+                    	</c:if>
                     </div>
                 </div>
             </div>
@@ -128,9 +142,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-5" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link ">홈</a>
-                        <a href="about.html" class="nav-item nav-link active">예약/예매</a>
-                        <a href="/dreamjourney/index class="nav-item nav-link ">홈</a>
+                        <a href="/dreamjourney/index" class="nav-item nav-link ">홈</a>
                         <a href="/dreamjourney/reservation" class="nav-item nav-link active">예약/예매</a>
                         <a href="service.html" class="nav-item nav-link">추천 여행지</a>
                         <a href="single.html" class="nav-item nav-link">커뮤니티</a>
@@ -223,7 +235,7 @@
             <div class="row">
             <c:forEach items="${list }" var="dto">
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide">
-                    <div class="team-item bg-white mb-4">
+                    <div class="team-item bg-white mb-4" onclick="location.href='/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}';">
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${dto.image1 }"alt="">
                             <div class="team-social">
@@ -252,6 +264,7 @@
                         <div class="text-center py-4">
                             <div class="text-truncate" id="title" style="padding: 15px; text-weight: bold; font-size: 20px;">${result.title }</div>
                             <div class="m-0" id="content" style="text-align: justify; padding: 0 15px;">${result.content }</div>
+                            <div><span class="material-symbols-outlined">comment</span></div>
                         </div>
                     </div>
                 </div>

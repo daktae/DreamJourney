@@ -25,6 +25,7 @@ public class LoginService implements LoginServiceImpl {
 			session.setAttribute("email", dto.getEmail());
 			session.setAttribute("pw", dto.getPw());
 			session.setAttribute("seq", name);
+			session.setAttribute("tel", dto.getTel());
 		}
 		
 		

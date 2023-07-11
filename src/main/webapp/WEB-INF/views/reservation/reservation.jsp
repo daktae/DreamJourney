@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,101 +31,42 @@
     <!-- Google Icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
-<%@ include file="/resources/inc/asset.jsp"%>
 <style>
-	.text-truncate {
-		font-weight: bold;
-		font-size: 25px;
-	}
-	
-	.btn-square {
-		width: 100px;
-	}
-	
-	.text-truncate {
-		font-weight: bold;
-	}
-	
-	img {
-		width: 500px;
-	}
-	
-	a:hover {
-		text-decoration:none;
-	}
-	
-	.row {
-		justify-content:center;
-	}
-	
-	.team-img {
-		width: 255px;
-		height: 210px;
-	}
-	
+   .text-truncate {
+      font-weight: bold;
+      font-size: 25px;
+   }
+   
+   .btn-square {
+      width: 100px;
+   }
+   
+   .text-truncate {
+      font-weight: bold;
+   }
+   
+   img {
+      width: 500px;
+   }
+   
+   a:hover {
+      text-decoration:none;
+   }
+   
+   .row {
+      justify-content:center;
+   }
+   
+   .team-img {
+      width: 255px;
+      height: 210px;
+   }
+   
 </style>
 <body>
    <!-- reservation.jsp > 예약/예매 페이지 -->
    
-    
-
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                       
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <p><a href="*">로그인</a></p>
-                        <p class="text-body px-3">|</p>
-                        <p><a href="*">회원가입</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-    
-
-
-    <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-primary"><span class="text-dark">Dream</span>Journey</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between px-5" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="/dreamjourney/index" class="nav-item nav-link ">홈</a>
-                        <a href="/dreamjourney/reservation" class="nav-item nav-link active">예약/예매</a>
-                        <a href="service.html" class="nav-item nav-link">추천 여행지</a>
-                        <a href="single.html" class="nav-item nav-link">커뮤니티</a>
-                        
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Contact</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                
-                                <a href="single.html" class="dropdown-item">공지사항</a>
-                                <a href="single.html" class="dropdown-item">FAQ/문의</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-    <!-- Navbar End -->
-    
-
-    
+   <%@ include file="/resources/inc/header.jsp"%>
      <!-- 제목 쓰는곳 -->
     <div class="container-fluid page-header">
         <div class="container">
@@ -185,12 +126,11 @@ directions_bus
 </span> 고속버스</div>
                             </div>
                         </div>
-                        <div class="text-center py-4">
-                        </div>
                     </div>
                 </div>
-            </div>	<!-- row -->
+            </div>   <!-- row -->
         </div>
+    </div>
     <!-- Team End -->
     
     
@@ -204,63 +144,60 @@ directions_bus
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
+                            <img class="img-fluid w-100 h-100" src="/dreamjourney/resources/img/accommodate/a-2.jpg" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/accommodate_detail?acco_seq=3">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
+                            <h5 class="text-truncate">오노마 오토그래프 컬렉션</h5>
+                            <p class="m-0">대전 유성구 엑스포로 1 호텔 오노마 대전</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
+                            <img class="img-fluid w-100 h-100" src="/dreamjourney/resources/img/accommodate/a-1.jpg" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
+                               <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/accommodate_detail?acco_seq=1">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
+                            <h5 class="text-truncate">제주 미소 게스트하우스</h5>
+                            <p class="m-0">제주특별자치도 제주시 관덕로 41 (일도1동)</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
+                            <img class="img-fluid w-100 h-100" src="/dreamjourney/resources/img/accommodate/a-9.jpg" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/accommodate_detail?acco_seq=9">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
+                            <h5 class="text-truncate">소피텔 앰배서더 서울 호텔 </h5>
+                            <p class="m-0">서울 송파구 잠실로 209</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-4.jpg" alt="">
+                            <img class="img-fluid w-100 h-100" src="/dreamjourney/resources/img/accommodate/a-8.jpg" alt="">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-linkedin-in"></i></a>
+                               <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/accommodate_detail?acco_seq=8">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
+                            <h5 class="text-truncate">기장빌라드히멜</h5>
+                            <p class="m-0">부산광역시 기장군 일광읍 장곡길 89-10</p>
                         </div>
                     </div>
                 <div style="float:right; font-size: 20px; font-weight: bold;"> 
-					<a href="/dreamjourney/reservation/accommodate">더보기 →</a>					                
+               <a href="/dreamjourney/reservation/accommodate">더보기 →</a>                               
                 </div>
                 </div>
             </div>
@@ -332,7 +269,7 @@ directions_bus
                         </div>
                     </div>
                     <div style="float:right; font-size: 20px; font-weight: bold;"> 
-					<a href="/dreamjourney/reservation/activity">더보기 →</a>					                
+               <a href="/dreamjourney/reservation/activity">더보기 →</a>                               
                 </div>
                 </div>
                 
@@ -346,8 +283,15 @@ directions_bus
     <div class="container-fluid py-5" style="height: 100px;">
        
    </div>
+                
+
+
     <%@ include file="/resources/inc/footer.jsp"%>
     
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
     <!-- JavaScript Libraries -->
@@ -366,9 +310,10 @@ directions_bus
     <!-- Template Javascript -->
     <script src="/dreamjourney/resources/js/main.js"></script>
 </body>
-
+<footer>
+   <%@ include file="/resources/inc/footer.jsp"%>
+</footer>
 </html>
-
 
 
 

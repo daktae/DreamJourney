@@ -10,40 +10,40 @@ import com.test.domain.TransportDTO;
 
 public interface AccommodateService {
 
-   List<AccommodateDTO> accommodatelist();
+	List<AccommodateDTO> accommodatelist();
 
-   AccommodateDTO get(String acco_seq);
+	AccommodateDTO get(String acco_seq);
 
-   List<RoomDTO> view(String acco_seq);
-   
+	List<RoomDTO> view(String acco_seq);
+	
 
-   List<TransportDTO> transportlist();
+	List<TransportDTO> transportlist();
 
-   List<TransportDTO> trainlist();
+	List<TransportDTO> trainlist();
 
-   List<TransportDTO> airplanelist();
+	List<TransportDTO> airplanelist();
 
-   List<TrandateDTO> tranlist();
-   
-   
-   TransportDTO tran_get(String tran_seq);
-   
-   List<TrandateDTO> tran_view(String tran_seq);
+	List<TrandateDTO> tranlist();
+	
+	
+	TransportDTO tran_get(String tran_seq);
+	
+	List<TrandateDTO> tran_view(String tran_seq);
 
-   List<AccommodateDTO> review(String acco_seq);
+	List<AccommodateDTO> review(String acco_seq);
 
-   String reviewCount(String acco_seq);
+	String reviewCount(String acco_seq);
 
-   void bookmark_on(String acco_seq);
-   
-   
+	void bookmark_on(String acco_seq);
+	
+	
 
-   //Integer count() throws Exception;
+	//Integer count() throws Exception;
 
-   
-   //게시물 목록 + 페이징
-   //public List listPage(int displayPost, int postNum) throws Exception;
+	
+	//게시물 목록 + 페이징
+	//public List listPage(int displayPost, int postNum) throws Exception;
 
-   
-   
+	
+	
 }

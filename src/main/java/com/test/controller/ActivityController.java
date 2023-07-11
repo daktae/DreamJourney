@@ -1,6 +1,9 @@
 package com.test.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.domain.ActivityDTO;
+import com.test.domain.MemberDTO;
 import com.test.domain.ReviewDTO;
 import com.test.service.ActivityService;
 
@@ -24,8 +28,7 @@ public class ActivityController {
    
    //액티비티 글 리스트
    @GetMapping("/reservation/activity")
-   public String activity(Model model) {
-      
+   public String activity(Model model, HttpSession session) {
       model.addAttribute("list", service.activitylist());
       
       return "/reservation/activity";
@@ -36,15 +39,25 @@ public class ActivityController {
    @GetMapping("/reservation/viewactivity")
    public String viewactivity(Model model, String activity_seq) {
       
-      ActivityDTO dto = service.get(activity_seq);               //게시글
-      List<ReviewDTO> rdto = service.review(activity_seq);   //리뷰
-      String rcount = service.reviewCount(activity_seq);      //리뷰 수 
-      String address = dto.getAddress().substring(0, 2);         //타이틀에 넣을 주소 2글자
+      ActivityDTO dto = service.get(activity_seq);               	//게시글
+      List<ReviewDTO> rdto = service.review(activity_seq);  	//리뷰
+      String rcount = service.reviewCount(activity_seq);      	//리뷰 수 
+      String address = dto.getAddress().substring(0, 2);         	//타이틀에 넣을 주소 2글자
       
+      List<String> cal = new ArrayList<String>();
+      cal = service.cal(activity_seq);
+
+      for (int i=0; i<cal.size(); i++) {
+    	  String value = cal.get(i);
+    	  cal.set(i,  "\"" + value + "\"");
+      }
+      System.out.println(cal);
+
       model.addAttribute("adetail", dto);
       model.addAttribute("review", rdto);
       model.addAttribute("reviewCount", rcount);
       model.addAttribute("address", address);
+      model.addAttribute("cal", cal);
       
       return "/reservation/viewactivity";
    }
@@ -52,9 +65,17 @@ public class ActivityController {
    
    //결제하기
    @PostMapping("/reservation/pay")
-   public String pay(Model model, String activity_seq, String dates, ActivityDTO dto) {
+   public String pay(Model model, String activity_seq, String dates, ActivityDTO dto, HttpSession session) {
       
       dto.setTotalPeople(dto.getTotalPeople().replace(",",""));
+      
+      MemberDTO mdto = new MemberDTO();
+      
+      mdto.setMember_seq(session.getAttribute("seq").toString());
+      mdto.setName(session.getAttribute("name").toString());
+      mdto.setEmail(session.getAttribute("email").toString());
+      mdto.setNickname(session.getAttribute("nickname").toString());
+      mdto.setTel(session.getAttribute("tel").toString());
       
       ActivityDTO pdto = new ActivityDTO();
       pdto.setActivity_seq(activity_seq);
@@ -64,6 +85,27 @@ public class ActivityController {
       
       model.addAttribute("pdetail", pdto2);
       model.addAttribute("dto", dto);
+      model.addAttribute("mdto", mdto);
+      
+      
+//      if (activity_seq != null) {
+//			dto.setTotalPeople(dto.getTotalPeople().replace(",",""));
+//			
+//			ActivityDTO pdto = service.pay(activity_seq);
+//			
+//			model.addAttribute("pdetail", pdto);
+//			model.addAttribute("dto", dto);
+//		} else {
+//			RoomDTO rpdto = service.rpay(acco_seq);
+//			
+//			System.out.println(rpdto.getTotalPeople());
+//			System.out.println(rpdto.getDates());
+//			System.out.println(rpdto.getTotalPrice());
+//			
+//			System.out.println(rpdto);
+//			model.addAttribute("rdetail", rpdto);
+//			model.addAttribute("rdto", rdto);
+//		}
       
       return "/reservation/pay";
    }
@@ -91,8 +133,6 @@ public class ActivityController {
    @PostMapping("/reservation/viewactivity")
    @ResponseBody
    public void bookmark_on(@RequestParam("activity_seq") String activity_seq) {
-       System.out.println("성공");
-       System.out.println(activity_seq);
        
        service.bookmark_on(activity_seq);
    }
@@ -103,8 +143,5 @@ public class ActivityController {
       return "/reservation/payok";
    }
    
-   
-   
-   //Controller에서 Controller를 호출할 때 redirect를 요청
    
 }

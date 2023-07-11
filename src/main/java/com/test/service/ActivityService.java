@@ -26,6 +26,9 @@ public interface ActivityService {
 
    void payok(ActivityDTO dto);
 
+List<String> cal(String activity_seq);
+
+//RoomDTO rpay(RoomDTO rdto);
 
 
 

@@ -216,7 +216,6 @@ a:hover {
       <div class="pay_container">
          <div style="height: 270px;">
          <h3>상품정보</h3>
-         <button type="submit" id="test">test</button>
          <hr> 
          <div style="height: 200px; overflow: hidden; display: inline-block; float: left;">
          <img src="/dreamjourney/resources/img/reservation/${pdetail.image1 }" >
@@ -238,17 +237,8 @@ a:hover {
          <div style="height: 230px;">
             <h3 style="margin-top: 30px;">결제 방법</h3>
             <hr>
-            <input type="radio" name="pay_radio" value="card" id="card"> 신용카드 <select
-               style="width: 200px;" class="pay_way">
-               <option value>카드를 선택해주세요</option>
-               <option value="samsung">삼성카드</option>
-               <option value="shinhan">신한카드</option>
-               <option value="hyundai">현대카드</option>
-               <option value="lotte">롯데카드</option>
-               <option value="woori">우리카드</option>
-               <option value="hana">하나카드</option>
-               <option value="bc">비씨카드</option>
-            </select> <br> <input type="radio" name="pay_radio" value="kakao"
+            <input type="radio" name="pay_radio" value="card" id="card"> 신용카드 
+             <br> <input type="radio" name="pay_radio" value="kakao"
                class="pay_way"> 카카오페이 <br> <input type="radio"
                name="pay_radio" value="naver" class="pay_way"> 네이버페이 <br>
             <input type="radio" name="pay_radio" value="bank" class="pay_way">
@@ -381,28 +371,24 @@ $(document).ready(function() {
 /* 결제 API */
 $('#check_module').click(function() {
    var IMP = window.IMP;   //생략 가능
+   var method = $('#')
+   
    IMP.init('imp44006286');   //가맹점 식별코드
    IMP.request_pay({
        pg : 'html5_inicis',      //pg사 선택 시 결제할 곳
        pay_method : 'card',      //지불 수단
        merchant_uid: 'merchant_' + new Date().getTime(), //상점에서 생성한 고유 주문번호
        name : "${pdetail.title}",         //상품명
-       amount : 100,      //가격
+       amount : "${dto.totalPrice}",      //가격
        
-       buyer_email : 'iamport@siot.do',   //구매자 이메일
-       buyer_name : '구매자이름',         //구매자 이름
-       buyer_tel : '010-1234-5678',      //구매자 전화번호
-       buyer_addr : '서울특별시 강남구 삼성동',   //구매자 주소
-       buyer_postcode : '123-456',         //구매자 우편번호
-       m_redirect_url : 'http://www.naver.com' // 모바일에서 결제 완료 후 리디렉션 될 URL
+       buyer_email : "${mdto.email}",   //구매자 이메일
+       buyer_name : "${mdto.name}",         //구매자 이름
+       buyer_tel : "${mdto.tel}",      //구매자 전화번호
+       m_redirect_url : 'http://localhost/dreamjourney/payok' // 모바일에서 결제 완료 후 리디렉션 될 URL
    }, function(rsp) {      //결제 후 호출되는 callback 함수
       console.log(rsp);
       if (rsp.success) {
          var msg = '결제가 완료되었습니다.';
-         msg += '고유ID :    ' + rsp.imp_uid;
-         msg += '상점 거래 ID : ' + rsp.merchant_uid;
-         msg += '결제 금액 : ' + rsp.paid_amount;
-         msg += '카드 승인번호 : ' + rsp.apply_num;  
          
          $.ajax({
             url: "/dreamjourney/reservation/payok",
