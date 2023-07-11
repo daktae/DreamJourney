@@ -14,7 +14,7 @@ import javax.websocket.server.ServerEndpoint;
 import com.google.gson.Gson;
 import com.test.domain.ChatDTO;
 
-@ServerEndpoint("/dreamjourney/chattingserver.do")
+@ServerEndpoint("/chattingserver.do")
 public class ChattingServer {
 
 	private static List<Session> sessionList;
