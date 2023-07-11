@@ -32,12 +32,18 @@ public class BoardController {
 	
 	@GetMapping("/boardDetail")
 	public String boardDetail(Model model, String free_seq) {
-		// 게시판 '동행' 글 상세보기 했다고 가정
 		
 		int updateOk = service.updateReadCount(free_seq);
 		BoardDTO dto = service.get(free_seq);
 		List<CommentDTO> cdto = service.getClist(free_seq);
 		int commentCount = service.getCcount(free_seq);
+		
+		for (CommentDTO comment : cdto) {
+		    comment.setContent(comment.getContent().replace("\r\n", "<br>"));
+		}
+		
+		dto.setContent(dto.getContent().replace("\r\n", "<br>"));
+		
 		
 		model.addAttribute("bdetail", dto);
 		model.addAttribute("clist", cdto);

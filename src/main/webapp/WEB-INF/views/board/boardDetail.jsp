@@ -22,7 +22,7 @@
  #board-content-title {
  	font-weight: bold;
  	font-size: 28px;
- 	padding: 30px 0;
+ 	padding: 20px;
  }
  
  
