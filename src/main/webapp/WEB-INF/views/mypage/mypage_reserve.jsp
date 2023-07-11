@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>TRAVELER - Free Travel Website Template</title>
+<title>Dream Journey</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="Free HTML Templates" name="keywords">
 <meta content="Free HTML Templates" name="description">
@@ -89,6 +89,41 @@ table.reserve_list {
 .table.reserve_list td, .table.reserve_list td {
 	padding: 0.3rem;
 }
+
+.review-button {
+	border: none;
+	border-radius: 20px;
+	color: white;
+}
+
+#btn-transport {
+	height: 30px;
+	background-color: #A1C2F1;
+}
+
+#btn-accommodate {
+	background-color: #5A96E3;
+}
+
+#btn-activity {
+	background-color: #0A6EBD;
+}
+
+#btn-detail {
+	background-color: #82CD47;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	margin-right: 5px;
+}
+
+.btn-delete {
+	background-color: #dc3545;
+	border: none;
+	border-radius: 10px;
+	color: white;
+}
+
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -100,7 +135,7 @@ table.reserve_list {
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">제목</h3>
+				<h3 class="display-4 text-white text-uppercase">내 예매내역</h3>
 
 			</div>
 		</div>
@@ -120,11 +155,11 @@ table.reserve_list {
 
 
 			<div id="mypage_reserve_search">
-				<button type="button" class="btn btn-primary btn-lg m-3"
+				<button type="button" class="review-button m-2"
 					id="btn-transport">교통</button>
-				<button type="button" class="btn btn-primary btn-lg m-3"
+				<button type="button" class="review-button m-2"
 					id="btn-accommodate">숙소</button>
-				<button type="button" class="btn btn-primary btn-lg m-3"
+				<button type="button" class="review-button m-2"
 					id="btn-activity">액티비티</button>
 			</div>
 
@@ -139,9 +174,9 @@ table.reserve_list {
 							</td>
 							<td style="width: 75%;" colspan="3">${tdto.regdate.substring(0, 10)}</td>
 							<td rowspan="3"
-								style="text-align: center; vertical-align: middle; width: 15%"><a
-								href="mypage_reserve_view?pay_seq=${tdto.pay_seq}" class="btn btn-primary">상세보기</a>
-								<button type="submit" class="btn btn-danger" name="pay_seq" value="${tdto.pay_seq}">예매취소</button></td>
+								style="text-align: center; vertical-align: middle; width: 15%">
+								<button type="button" id="btn-detail" onclick="location.href='mypage_reserve_view?pay_seq=${tdto.pay_seq}'">상세보기</button>
+								<button type="submit" class="btn-delete" name="pay_seq" value="${tdto.pay_seq}">예매취소</button></td>
 						</tr>
 						<tr>
 							<td rowspan="2"
@@ -168,9 +203,9 @@ table.reserve_list {
 							</td>
 							<td colspan="3" style="width: 60%">${adto.regdate.substring(0, 10)}</td>
 							<td rowspan="3"
-								style="text-align: center; vertical-align: middle; width:30%;"><a
-								href="mypage_reserve_view?pay_seq=${adto.pay_seq}" class="btn btn-primary">상세보기</a>
-								<button type="submit" class="btn btn-danger" name="pay_seq" value="${adto.pay_seq}">예매취소</button></td>
+								style="text-align: center; vertical-align: middle; width:30%;">
+								<button type="button" id="btn-detail" onclick="location.href='mypage_reserve_view?pay_seq=${adto.pay_seq}'">상세보기</button>
+								<button type="submit" class="btn-delete" name="pay_seq" value="${adto.pay_seq}">예매취소</button></td>
 						</tr>
 						<tr>
 							<td rowspan="2"
@@ -189,7 +224,7 @@ table.reserve_list {
 				</form>
 				</c:forEach>
 				<c:forEach items="${aclist}" var="acdto">
-				<form method="POST" action="/mypage/mypage_reservedelok">
+				<form method="POST" action="/dreamjourney/mypage/mypage_reservedelok">
 					<table
 						class="table table-borderless reserve_list table-height table-activity">
 						<tr>
@@ -197,9 +232,9 @@ table.reserve_list {
 						    	<h4 class="text-primary">예약완료</h4>
 							<td style="width: 70%;" colspan="3">${acdto.regdate.substring(0, 10)}</td>
 							<td rowspan="3"
-								style="text-align: center; vertical-align: middle; width:20%;"><a
-								href="mypage_reserve_view?pay_seq=${acdto.pay_seq}" class="btn btn-primary">상세보기</a>
-								<button type="submit" class="btn btn-danger" name="pay_seq" value="${acdto.pay_seq}">예매취소</button></td>
+								style="text-align: center; vertical-align: middle; width:20%;">
+<button type="button" id="btn-detail" onclick="location.href='mypage_reserve_view?pay_seq=${acdto.pay_seq}'">상세보기</button>
+								<button type="submit" class="btn-delete" name="pay_seq" value="${acdto.pay_seq}">예매취소</button></td>
 						</tr>
 						<tr>
 							<td rowspan="2"

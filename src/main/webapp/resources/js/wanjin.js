@@ -10,3 +10,13 @@ window.addEventListener('scroll', function() {
     chatcounseling.classList.remove('show');
   }
 });
+
+var allcheck = document.querySelector('#allcheck');
+var checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#allcheck)');
+
+allcheck.addEventListener('change', function() {
+  checkboxes.forEach(function(checkbox) {
+    checkbox.checked = allcheck.checked;
+  });
+});
+

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,10 +62,15 @@
 	width: auto;
 }
 
+#card-area {
+	display: flex; /* Added */
+	flex-wrap: wrap; /* Added */
+	justify-content: flex-start; /* 수정된 부분 */
+}
+
 .card {
-	height: 230px;
 	height: 250px;
-	width: 280px;
+	width: 300px;
 	border-radius: 15px;
 	display: inline-block;
 	margin-top: 30px;
@@ -136,7 +141,7 @@ text-align: center;
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">제목</h3>
+				<h3 class="display-4 text-white text-uppercase">내 여행</h3>
 
 			</div>
 		</div>
@@ -152,10 +157,10 @@ text-align: center;
 			<div id="card-area">
 
 				<c:forEach items="${list}" var="dto">
-				<div class="card">
+				<div class="card m-3 pr-2">
 					<table>
 						<tr>
-							<td id="image-cell"><img src="../resources/img/mypage/mypage_gwangan.jpg"></td>
+							<td id="image-cell" style="margin-bottom: 10px;"><img src="../resources/img/mypage/mypage_gwangan.jpg"></td>
 						</tr>
 						<tr>
 							<td>${dto.title}</td>

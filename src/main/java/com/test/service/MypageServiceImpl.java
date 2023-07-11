@@ -12,7 +12,9 @@ import com.test.domain.ActivityReserveDTO;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.MemberDTO;
+import com.test.domain.MyWriteDTO;
 import com.test.domain.PayDTO;
+import com.test.domain.ScheduleDTO;
 import com.test.domain.TranReserveDTO;
 import com.test.domain.TripDTO;
 import com.test.domain.UnbookableReviewDTO;
@@ -26,14 +28,14 @@ public class MypageServiceImpl implements MypageService {
 	private MypageMapper mapper;
 	
 	@Override
-	public List<BookmarkDTO> bookmarkList() {
+	public List<BookmarkDTO> bookmarkList(String seq) {
 
 		
-		return mapper.bookmarkList();
+		return mapper.bookmarkList(seq);
 	}
 
 	@Override
-	public MemberDTO getMemberInfo(int seq) {
+	public MemberDTO getMemberInfo(String seq) {
 		return mapper.getMemberInfo(seq);
 	}
 
@@ -43,18 +45,18 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<BookableReviewDTO> getAccommodateReview() {
-		return mapper.getAccommodateReview();
+	public List<BookableReviewDTO> getAccommodateReview(String seq) {
+		return mapper.getAccommodateReview(seq);
 	}
 
 	@Override
-	public List<BookableReviewDTO> getActivityReview() {
-		return mapper.getActivityReview();
+	public List<BookableReviewDTO> getActivityReview(String seq) {
+		return mapper.getActivityReview(seq);
 	}
 
 	@Override
-	public List<UnbookableReviewDTO> getFoodReview() {
-		return mapper.getFoodReview();
+	public List<UnbookableReviewDTO> getFoodReview(String seq) {
+		return mapper.getFoodReview(seq);
 	}
 
 	@Override
@@ -79,57 +81,58 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public List<TranReserveDTO> transList() {
+	public List<TranReserveDTO> transList(String seq) {
 
-		return mapper.transList();
+		return mapper.transList(seq);
 	}
 	
 	@Override
-	public List<AccoReserveDTO> accommodateList() {
+	public List<AccoReserveDTO> accommodateList(String seq) {
 
-		return mapper.accommodateList();
+		return mapper.accommodateList(seq);
 	}
 	
 	@Override
-	public List<ActivityReserveDTO> activityList() {
+	public List<ActivityReserveDTO> activityList(String seq) {
 
-		return mapper.activityList();
+		return mapper.activityList(seq);
 	}
 	
 	@Override
-	public TranReserveDTO treservedetail(String treserve_seq) {
+	public TranReserveDTO treservedetail(String pay_seq, String seq) {
 
-		return mapper.treservedetail(treserve_seq);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("pay_seq", pay_seq);
+		map.put("member_seq", seq);
+		
+		return mapper.treservedetail(map);
+	}
+	
+	
+	@Override
+	public AccoReserveDTO rreservedetail(String pay_seq, String seq) {
+
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("pay_seq", pay_seq);
+		map.put("member_seq", seq);
+		
+		return mapper.rreservedetail(map);
 	}
 	
 	@Override
-	public PayDTO tpay(String treserve_seq) {
+	public PayDTO rpay(String pay_seq) {
 
-		return mapper.tpay(treserve_seq);
+		return mapper.rpay(pay_seq);
 	}
 	
 	@Override
-	public AccoReserveDTO rreservedetail(String rreserve_seq) {
+	public ActivityReserveDTO areservedetail(String pay_seq, String seq) {
 
-		return mapper.rreservedetail(rreserve_seq);
-	}
-	
-	@Override
-	public PayDTO rpay(String rreserve_seq) {
-
-		return mapper.rpay(rreserve_seq);
-	}
-	
-	@Override
-	public ActivityReserveDTO areservedetail(String areserve_seq) {
-
-		return mapper.areservedetail(areserve_seq);
-	}
-	
-	@Override
-	public PayDTO apay(String areserve_seq) {
-
-		return mapper.apay(areserve_seq);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("pay_seq", pay_seq);
+		map.put("member_seq", seq);
+		
+		return mapper.areservedetail(map);
 	}
 	
 	@Override
@@ -151,12 +154,13 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public int tripInsert(String title, String begin, String end) {
+	public int tripInsert(String title, String begin, String end, String seq) {
 		
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("title", title);
 		map.put("begin", begin);
 		map.put("end", end);
+		map.put("member_seq", seq);
 		
 		
 		return mapper.tripInsert(map);
@@ -194,8 +198,8 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<UnwrittenReviewDTO> getUnwrittenAccommodate() {
-		return mapper.getUnwrittenAccommodate();
+	public List<UnwrittenReviewDTO> getUnwrittenAccommodate(String seq) {
+		return mapper.getUnwrittenAccommodate(seq);
 	}
 	
 	@Override
@@ -209,8 +213,8 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<UnwrittenReviewDTO> getUnwrittenActivity() {
-		return mapper.getUnwrittenActivity();
+	public List<UnwrittenReviewDTO> getUnwrittenActivity(String seq) {
+		return mapper.getUnwrittenActivity(seq);
 	}
 
 	@Override
@@ -224,9 +228,9 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	@Override
-	public List<TripDTO> getTrip() {
+	public List<TripDTO> getTrip(String seq) {
 
-		return mapper.getTrip();
+		return mapper.getTrip(seq);
 	}
 	
 	@Override
@@ -235,6 +239,22 @@ public class MypageServiceImpl implements MypageService {
 		mapper.journeyshar(trip_seq);
 		
 	}
+
+	@Override
+	public TripDTO gettripview(String trip_seq) {
+		return mapper.gettripview(trip_seq);
+	}
+
+	@Override
+	public String getDayButtons(String seq) {
+		return mapper.getDayButtons(seq);
+	}
+
+	@Override
+	public List<ScheduleDTO> getSchedule(Map<String, String> map) {
+		return mapper.getSchedule(map);
+	}
+
 	
 	@Override
 	public int[] getDay_seq(String trip_seq) {
@@ -256,5 +276,22 @@ public class MypageServiceImpl implements MypageService {
 	public void daydel(String trip_seq) {
 		mapper.daydel(trip_seq);
 	}
+	
+	@Override
+	public List<TripDTO> tripList() {
+
+		return mapper.tripList();
+	}
+
+	@Override
+	public int plusrecommend(String seq) {
+		return mapper.plusrecommend(seq);
+	}
+
+	@Override
+	public List<MyWriteDTO> getmywrite(String seq) {
+		return mapper.getmywrite(seq);
+	}
+	
 	
 }

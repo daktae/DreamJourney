@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>TRAVELER - Free Travel Website Template</title>
+    <title>Dream Journey</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -89,7 +89,7 @@
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">제목</h3>
+                <h3 class="display-4 text-white text-uppercase">내 예매내역</h3>
                 
             </div>
         </div>
@@ -112,9 +112,7 @@
 				<h2>예약 상세</h2>
 			</div>
 			<div id="mypage_reserve_view" class="container-fluid">
-				<div>
-					<div><a href="mypage_reserve.do" class="btn btn-secondary">돌아가기</a></div>
-				</div>
+				
 				<table class="table table-borderless">
 					<tr>
 						<td>예약 상세</td>
@@ -124,9 +122,9 @@
 				<table class="table reserve_view">
 					<tr>
 						<th>예약일</th>
-						<td>${tlist.regdate}${rlist.regdate}${alist.regdate}</td>
+						<td>${tlist.regdate.substring(0, 10)}${rlist.regdate.substring(0, 10)}${alist.regdate.substring(0, 10)}</td>
 						<th>이용일</th>
-						<td>${tlist.begin}${rlist.rdate}${alist.adate}</td>
+						<td>${tlist.tran_date.substring(0, 10)}${rlist.rdate.substring(0, 10)}${alist.adate.substring(0, 10)}</td>
 					</tr>
 					<tr>
 						<th>여행자</th>
@@ -136,10 +134,6 @@
 						<th>주문정보</th>
 						<td colspan="3">${tlist.type}${rlist.name}${alist.title}</td>
 					</tr>
-					<tr>
-						<th>여행컨셉</th>
-						<td colspan="3">없음</td>
-					</tr>
 				</table>
 				<table class="table table-borderless reserve_view">
 					<tr>
@@ -147,7 +141,7 @@
 						<td>영수증</td>
 					</tr>
 					<tr>
-						<th>결제일  : ${list.regdate}</th>
+						<th>결제일  : ${list.regdate.substring(0, 10)}</th>
 						<td style="text-align:right;">총금액 ₩${list.price}</td>
 					</tr>
 					<tr>
@@ -163,11 +157,9 @@
 						<td style="text-align:right;">결제금액 ₩${list.price}</td>
 					</tr>
 				</table>
-				<table class="table table-borderless">
-					<tr>
-						<td></td>
-					</tr>
-				</table>
+				<div>
+					<div><a href="mypage_reserve.do" class="btn btn-primary" style="border-radius: 10px; float: right; margin-top: 100px;">돌아가기</a></div>
+				</div>
 			</div>
 		</div>
         
