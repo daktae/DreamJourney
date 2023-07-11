@@ -88,6 +88,26 @@ public class ActivityController {
       model.addAttribute("dto", dto);
       model.addAttribute("mdto", mdto);
       
+      
+//      if (activity_seq != null) {
+//			dto.setTotalPeople(dto.getTotalPeople().replace(",",""));
+//			
+//			ActivityDTO pdto = service.pay(activity_seq);
+//			
+//			model.addAttribute("pdetail", pdto);
+//			model.addAttribute("dto", dto);
+//		} else {
+//			RoomDTO rpdto = service.rpay(acco_seq);
+//			
+//			System.out.println(rpdto.getTotalPeople());
+//			System.out.println(rpdto.getDates());
+//			System.out.println(rpdto.getTotalPrice());
+//			
+//			System.out.println(rpdto);
+//			model.addAttribute("rdetail", rpdto);
+//			model.addAttribute("rdto", rdto);
+//		}
+      
       return "/reservation/pay";
    }
    

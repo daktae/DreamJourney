@@ -28,5 +28,7 @@ public interface ActivityMapper {
 
 List<String> cal(String activity_seq);
 
+// RoomDTO rpay(RoomDTO rdto);
+
 
 }

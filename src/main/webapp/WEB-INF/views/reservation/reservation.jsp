@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,25 +68,20 @@
    
     
 
-<!-- Topbar Start -->
+    <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-
+                       
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                    	<c:if test="${param.name != null }">
-                    		<p>${param.name }(${param.nickname })님 환영합니다</p>
-                    	</c:if>
-                    	<c:if test="${param.name == null }"> 
-	                        <p><a href="/dreamjourney/login">로그인</a></p>
-        	                <p class="text-body px-3">|</p>
-    	                    <p><a href="/dreamjourney/register">회원가입</a></p>
-                    	</c:if>
+                        <p><a href="*">로그인</a></p>
+                        <p class="text-body px-3">|</p>
+                        <p><a href="*">회원가입</a></p>
                     </div>
                 </div>
             </div>
@@ -108,8 +103,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-5" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="/dreamjourney/index" class="nav-item nav-link ">홈</a>
-                        <a href="/dreamjourney/reservation" class="nav-item nav-link active">예약/예매</a>
+                        <a href="index.html" class="nav-item nav-link ">홈</a>
+                        <a href="about.html" class="nav-item nav-link active">예약/예매</a>
                         <a href="service.html" class="nav-item nav-link">추천 여행지</a>
                         <a href="single.html" class="nav-item nav-link">커뮤니티</a>
                         
@@ -154,7 +149,6 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img src="/dreamjourney/resources/img/reservation/비행기.png">
                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
                                 <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/airplane">예약하기</a>
                             </div>
                         </div>
@@ -168,7 +162,6 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img src="/dreamjourney/resources/img/reservation/기차.jpg">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
                                 <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/train">예약하기</a>
                             </div>
                         </div>
@@ -182,11 +175,6 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img src="/dreamjourney/resources/img/reservation/고속버스.jpg">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <div class="text-truncate"><span class="material-symbols-outlined">directions_bus</span> 고속버스</div>
                                 <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/transport">예약하기</a>
                             </div>
                         </div>
@@ -354,6 +342,8 @@
        
    </div>
                 
+
+
     <%@ include file="/resources/inc/footer.jsp"%>
     
 

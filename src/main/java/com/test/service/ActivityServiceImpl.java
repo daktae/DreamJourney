@@ -79,4 +79,10 @@ public class ActivityServiceImpl implements ActivityService {
 		return mapper.cal(activity_seq);
 	}
    
+//   @Override
+//   public RoomDTO rpay(RoomDTO rdto) {
+//
+//      return mapper.rpay(rdto);
+//   }
+   
 }

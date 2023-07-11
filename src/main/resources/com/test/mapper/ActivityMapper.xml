@@ -53,7 +53,10 @@
    	select to_char(adate, 'yyyy-mm-dd') as adate from tblActivityDate where activity_seq = #{activity_seq}
    </select>
    
-   
+    <!-- 결제 가져오기 -->
+   <!-- <select id="rpay" resultType="com.test.domain.RoomDTO" parameterType="String">
+      select * from vwAccommodate where room_seq = #{room_seq} and rdate = #{dates}
+   </select> -->
    
    
    
