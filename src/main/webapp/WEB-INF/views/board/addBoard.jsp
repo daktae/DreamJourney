@@ -19,6 +19,26 @@
  	resize: none;
  }
  
+  .hr-sect {
+ 	display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    margin: 80px 0px;
+ }
+ 
+ .hr-sect::before,
+ .hr-sect::after {
+ 	content: "";
+ 	flex-grow: 1;
+ 	background: rgba(0, 0, 0, 0.35);
+ 	height: 1px;
+ 	font-size: 0px;
+ 	line-height: 0px;
+ 	margin: 0px 16px;
+ }
+ 
  #board-input-content {
  	height: 300px;
  }
@@ -73,6 +93,11 @@
    </div>
 	
 	<div id="main-board">
+	<div class="hr-sect">
+		<a href="/dreamjourney/board">커뮤니티</a>
+		 &nbsp;&nbsp;/&nbsp;&nbsp; 
+		<a href="/dreamjourney/addBoard">글쓰기</a>
+	</div>
 	<form class="row g-2" method="POST" action="/dreamjourney/addBoard">
 	
   <div class="col-3">

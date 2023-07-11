@@ -13,7 +13,8 @@
 			m.nickname,
 			f.regdate,
 			f.readcount,
-			f.ccount
+			f.ccount, 
+			f.recommend
 		from vwFree f
 			inner join tblMember m
 				on f.member_seq = m.member_seq
@@ -28,6 +29,7 @@
 			f.title,
 			f.content,
 			m.nickname,
+			m.member_seq,
 			f.regdate,
 			f.readcount,
 			f.report,
@@ -66,7 +68,7 @@
 	<!-- 게시판 등록, 수정, 삭제 -->
 	<!-- 등록 -->
 	<insert id="add" parameterType="com.test.domain.BoardDTO">
-		insert into tblFree values(free_seq.nextVal, #{title}, #{content}, #{category}, #{fname}, default, default, default, default, 3, default)
+		insert into tblFree values(free_seq.nextVal, #{title}, #{content}, #{category}, #{fname}, default, default, default, default, #{session_member_seq}, default)
 	</insert>
 	
 	<update id="edit" parameterType="com.test.domain.BoardDTO" >
@@ -80,7 +82,7 @@
 	
 	<!-- 댓글 등록/수정/삭제 -->
 	<insert id="addComment" parameterType="com.test.domain.CommentDTO">
-	insert into tblFreeReply values(freply_seq.nextVal, #{content}, default, #{free_seq}, 3)
+	insert into tblFreeReply values(freply_seq.nextVal, #{content}, default, #{free_seq}, #{session_member_seq})
 	</insert>
 	
 	<select id="getComment" parameterType="String">
@@ -98,6 +100,10 @@
 
 	<update id="boardReport" parameterType="String">
 	update tblFree set report = report + 1 where free_seq = #{free_seq}
+	</update>
+	
+	<update id="boardRecommend" parameterType="String">
+	update tblFree set recommend = recommend + 1 where free_seq = #{free_seq}
 	</update>
 
 </mapper>

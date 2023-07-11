@@ -33,5 +33,7 @@ public interface BoardService {
 
 	void editOkComment(CommentDTO dto);
 
+	void boardRecommend(String free_seq);
+
 
 }

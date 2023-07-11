@@ -23,4 +23,7 @@ public class BoardDTO {
 	private String freply_seq;
 	private String freply_content;
 	private String freply_regdate;
+
+	// 세션 
+	private String session_member_seq;
 }

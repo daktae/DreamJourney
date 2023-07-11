@@ -11,4 +11,6 @@ public class CommentDTO {
 	private String member_seq;
 	
 	private String nickname;
+	// 세션
+	private String session_member_seq;
 }
