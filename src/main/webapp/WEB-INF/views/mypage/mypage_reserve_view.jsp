@@ -124,7 +124,7 @@
 						<th>예약일</th>
 						<td>${tlist.regdate.substring(0, 10)}${rlist.regdate.substring(0, 10)}${alist.regdate.substring(0, 10)}</td>
 						<th>이용일</th>
-						<td>${tlist.begin}${rlist.rdate}${alist.adate}</td>
+						<td>${tlist.tran_date.substring(0, 10)}${rlist.rdate.substring(0, 10)}${alist.adate.substring(0, 10)}</td>
 					</tr>
 					<tr>
 						<th>여행자</th>

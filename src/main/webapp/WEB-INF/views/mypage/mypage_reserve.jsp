@@ -204,7 +204,7 @@ table.reserve_list {
 							<td colspan="3" style="width: 60%">${adto.regdate.substring(0, 10)}</td>
 							<td rowspan="3"
 								style="text-align: center; vertical-align: middle; width:30%;">
-								<button type="button" id="btn-detail" onclick="location.href='mypage_reserve_view?pay_seq=${tdto.pay_seq}'">상세보기</button>
+								<button type="button" id="btn-detail" onclick="location.href='mypage_reserve_view?pay_seq=${adto.pay_seq}'">상세보기</button>
 								<button type="submit" class="btn-delete" name="pay_seq" value="${adto.pay_seq}">예매취소</button></td>
 						</tr>
 						<tr>
@@ -224,7 +224,7 @@ table.reserve_list {
 				</form>
 				</c:forEach>
 				<c:forEach items="${aclist}" var="acdto">
-				<form method="POST" action="/mypage/mypage_reservedelok">
+				<form method="POST" action="/dreamjourney/mypage/mypage_reservedelok">
 					<table
 						class="table table-borderless reserve_list table-height table-activity">
 						<tr>
@@ -233,7 +233,7 @@ table.reserve_list {
 							<td style="width: 70%;" colspan="3">${acdto.regdate.substring(0, 10)}</td>
 							<td rowspan="3"
 								style="text-align: center; vertical-align: middle; width:20%;">
-<button type="button" id="btn-detail" onclick="location.href='mypage_reserve_view?pay_seq=${tdto.pay_seq}'">상세보기</button>
+<button type="button" id="btn-detail" onclick="location.href='mypage_reserve_view?pay_seq=${acdto.pay_seq}'">상세보기</button>
 								<button type="submit" class="btn-delete" name="pay_seq" value="${acdto.pay_seq}">예매취소</button></td>
 						</tr>
 						<tr>

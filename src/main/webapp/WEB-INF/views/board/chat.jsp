@@ -230,7 +230,7 @@ hr {
 	};
 	
 	// 채팅 준비
-	const url = 'ws://localhost/dreamjourney/chattingserver.do';
+	const url = 'ws://192.168.10.67/dreamjourney/chattingserver.do';
 	
 	let ws; // 웹소켓
 	
