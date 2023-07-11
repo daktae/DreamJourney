@@ -36,15 +36,13 @@
  #board-list {
  	margin: 0 auto;
  	margin-top: 30px;
+ 	cursor: pointer;
  }
  
  #board-list > tbody > tr > th {
  	text-align: center;
  }
- 
- #board-list > tr {
- 	cursor: pointer;
- }
+
 
  #main-board {
  	width: 1000px;
@@ -142,6 +140,14 @@
  	margin-right: 5px;
  }
  
+ #board-pagination {
+	text-align: center;
+ }
+ 
+ #board-pagination > a {
+ 	font-size: 18px;
+ }
+ 
 </style>
  
 </head>
@@ -174,7 +180,7 @@
 			</div>
 
 		</div>
-	<table id="board-list" class="table">
+	<table id="board-list" class="table table-hover">
 	<tr>
 		<th>번호</th>
 		<th>말머리</th>
@@ -225,6 +231,20 @@
 	<c:if test="${seq != null }">
 		<button type="button" id="add" onclick="location.href='/dreamjourney/addBoard';" class="btn btn-primary">글쓰기</button>
 	</c:if>
+	</div>
+	<div id="board-pagination" class="w3-bar">
+	  <a href="#" class="w3-button">&laquo;</a>
+	  <a href="#" class="w3-button">1</a>
+	  <a href="#" class="w3-button">2</a>
+	  <a href="#" class="w3-button">3</a>
+	  <a href="#" class="w3-button">4</a>
+	  <a href="#" class="w3-button">5</a>
+	  <a href="#" class="w3-button">6</a>
+	  <a href="#" class="w3-button">7</a>
+	  <a href="#" class="w3-button">8</a>
+	  <a href="#" class="w3-button">9</a>
+	  <a href="#" class="w3-button">10</a>
+	  <a href="#" class="w3-button">&raquo;</a>
 	</div>
 
 	</div>
