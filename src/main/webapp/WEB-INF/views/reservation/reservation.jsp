@@ -31,6 +31,7 @@
     <!-- Google Icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+<%@ include file="/resources/inc/asset.jsp"%>
 <style>
 	.text-truncate {
 		font-weight: bold;
@@ -103,8 +104,6 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-5" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link ">홈</a>
-                        <a href="about.html" class="nav-item nav-link active">예약/예매</a>
                         <a href="/dreamjourney/index" class="nav-item nav-link ">홈</a>
                         <a href="/dreamjourney/reservation" class="nav-item nav-link active">예약/예매</a>
                         <a href="service.html" class="nav-item nav-link">추천 여행지</a>
@@ -151,7 +150,6 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img src="/dreamjourney/resources/img/reservation/비행기.png">
                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
                                 <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/airplane">예약하기</a>
                             </div>
                         </div>
@@ -165,7 +163,6 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img src="/dreamjourney/resources/img/reservation/기차.jpg">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
                                 <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/train">예약하기</a>
                             </div>
                         </div>
@@ -179,24 +176,21 @@
                         <div class="team-img position-relative overflow-hidden">
                             <img src="/dreamjourney/resources/img/reservation/고속버스.jpg">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">예약하기</a>
+                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/transport">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
                             <div class="text-truncate"><span class="material-symbols-outlined">
 directions_bus
 </span> 고속버스</div>
-                                <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/transport">예약하기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <div class="text-truncate"><span class="material-symbols-outlined">directions_bus</span> 고속버스</div>
                         </div>
                     </div>
                 </div>
             </div>	<!-- row -->
         </div>
-    </div>
     <!-- Team End -->
     
     
@@ -352,62 +346,8 @@ directions_bus
     <div class="container-fluid py-5" style="height: 100px;">
        
    </div>
-                
-
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 px-sm-3   px-lg-5" >
-        <div class="row pt-5">
-            <div class="col-lg-3 col-md-6 mb-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">Dream</span>Journey</h1>
-                </a>
-                <p style="margin-bottom: 0px; font-weight: bold;">고객지원실 운영안내</p>
-                <p style="margin-bottom: 0px;">02-3482-4632</p>
-                <p style="margin-bottom: 0px;">전화 상담: 09:00 ~ 18:00</p>
-                <p style="margin-bottom: 0px;">채팅 상담: 09:00 ~ 20:00</p>
-
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
-                <div class="d-flex justify-content-start">
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >소개</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>회사소개</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>채용</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >제휴 업체</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>늘봄 실버타운</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>늘봄 요양원</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>쌍용교육센터</a>
-                    
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" >지원</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>자주 묻는 질문</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>최저가 보장제</a>
-                    
-                </div>
-            </div>
-            
-        </div>
-    </div>
     <%@ include file="/resources/inc/footer.jsp"%>
     
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
     <!-- JavaScript Libraries -->

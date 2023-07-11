@@ -98,6 +98,21 @@ a:hover {
 	width: 255px;
 	height: 210px;
 }
+
+/* 페이징 사전작업 */
+/* 이미지 돌리기 */
+.img {animation: rotate_image 6s linear infinite;transform-origin: 50% 50%;
+	}
+
+@keyframes rotate_image{
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.back-drop {
+      display: none !important; /* 기본적으로 숨김 처리 */
+}
 </style>
 <body>
 	<!-- accommodate.jsp > 액티비티 페이지 -->
@@ -341,29 +356,10 @@ a:hover {
 							</div>     
     </c:forEach>
 </c:if>
-<c:if test="${empty accResult}">
+<c:if test="${empty accResult && accResult != null}">
     <!-- 검색 결과가 없는 경우 -->
     <h5 style="margin-bottom:30px;">검색 결과가 없습니다.</h5>
 </c:if>
-						<div class="col-12">
-							<nav aria-label="Page navigation">
-								<ul
-									class="pagination pagination-lg justify-content-center bg-white mb-0"
-									style="padding: 30px;">
-									<li class="page-item disabled"><a class="page-link"
-										href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											<span class="sr-only">Previous</span>
-									</a></li>
-									<li class="page-item active"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											<span class="sr-only">Next</span>
-									</a></li>
-								</ul>
-							</nav>
-						</div>
 					</div>
 				</div>
 
@@ -411,7 +407,10 @@ a:hover {
 
 
 	<!-- 내용 작성 -->
-	<div class="container-fluid py-5" style="height: 100px;"></div>
+<div class="back-drop" style="display:flex; margin-bottom:50px;">
+    <!-- cpath/ 에서 '/'는 webapp을 의미한다. 웹앱 폴더의 svg폴더 안에 spinner-solid.svg가 들어있다.  -->
+    <img class="img" style="width:70px; margin:0 auto; height:70px;" src="/dreamjourney/resources/svg/spinner.svg"/> 
+</div>
 
 
 
@@ -541,6 +540,7 @@ a:hover {
 		 });
 		 
 		 $('.row.pb-3').html(temp); */
+
 	</script>
 </body>
 

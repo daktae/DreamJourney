@@ -176,7 +176,7 @@ a:hover {
                         <div class="col-md-2">
                            <div class="mb-3 mb-md-0">
                               <input class="form-control p-4" type="text" required
-                                 placeholder="인원 수" name="limit"
+                                 placeholder="인원수" name="limit"
                                  oninput="this.value = this.value.replace(/\D/g, '')">
                            </div>
                         </div>
@@ -260,7 +260,7 @@ a:hover {
 
                      <div class="col-md-2">
                         <div class="mb-3 mb-md-0">
-                           <input class="form-control p-4" type="text" placeholder="인원 수" name="limit">
+                           <input class="form-control p-4" type="text" placeholder="인원수" name="limit" oninput="this.value = this.value.replace(/\D/g, '')">
                         </div>
                      </div>
                   </div>
@@ -307,7 +307,7 @@ a:hover {
 
                      <div class="col-md-2">
                         <div class="mb-3 mb-md-0">
-                           <input class="form-control p-4" type="text" placeholder="인원 수" name="limit">
+                           <input class="form-control p-4" type="text" placeholder="인원수" name="limit" oninput="this.value = this.value.replace(/\D/g, '')">
                         </div>
                      </div>
                   </div>
@@ -354,7 +354,7 @@ a:hover {
 
                      <div class="col-md-2">
                         <div class="mb-3 mb-md-0">
-                           <input class="form-control p-4" type="text" placeholder="인원 수" name="limit">
+                           <input class="form-control p-4" type="text" placeholder="인원수" name="limit" oninput="this.value = this.value.replace(/\D/g, '')">
                         </div>
                      </div>
                   </div>
@@ -384,7 +384,7 @@ a:hover {
    <div class="container-fluid py-5">
       <div class="container pt-5 pb-3">
          <div class="text-center mb-3 pb-3">
-            <h1>추천 투어 패키지</h1>
+            <h1>베스트 숙소</h1>
          </div>
          <div id="packageSlider" class="carousel slide" data-ride="false">
             <div class="carousel-inner">
@@ -571,86 +571,6 @@ a:hover {
 
 
    <!-- Package End -->
-
-
-   <!-- Destination Start -->
-   <div class="container-fluid py-5">
-      <div class="container pt-5 pb-3">
-         <div class="text-center mb-3 pb-3">
-            <h1>베스트 여행지</h1>
-         </div>
-         <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
-               <div
-                  class="destination-item position-relative overflow-hidden mb-2">
-                  <img class="img-fluid"
-                     src="/dreamjourney/resources/img/destination-1.jpg" alt="">
-                  <a class="destination-overlay text-white text-decoration-none"
-                     href="">
-                     <h5 class="text-white">서울</h5> <span>SEOUL</span>
-                  </a>
-               </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-               <div
-                  class="destination-item position-relative overflow-hidden mb-2">
-                  <img class="img-fluid"
-                     src="/dreamjourney/resources/img/destination-2.jpg" alt="">
-                  <a class="destination-overlay text-white text-decoration-none"
-                     href="">
-                     <h5 class="text-white">부산</h5> <span>BUSAN</span>
-                  </a>
-               </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-               <div
-                  class="destination-item position-relative overflow-hidden mb-2">
-                  <img class="img-fluid"
-                     src="/dreamjourney/resources/img/destination-3.jpg" alt="">
-                  <a class="destination-overlay text-white text-decoration-none"
-                     href="">
-                     <h5 class="text-white">성심당</h5> <span>BAKERY</span>
-                  </a>
-               </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-               <div
-                  class="destination-item position-relative overflow-hidden mb-2">
-                  <img class="img-fluid"
-                     src="/dreamjourney/resources/img/destination-4.jpg" alt="">
-                  <a class="destination-overlay text-white text-decoration-none"
-                     href="">
-                     <h5 class="text-white">제주</h5> <span>JEJU</span>
-                  </a>
-               </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-               <div
-                  class="destination-item position-relative overflow-hidden mb-2">
-                  <img class="img-fluid"
-                     src="/dreamjourney/resources/img/destination-5.jpg" alt="">
-                  <a class="destination-overlay text-white text-decoration-none"
-                     href="">
-                     <h5 class="text-white">여수</h5> <span>YEOSU</span>
-                  </a>
-               </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-               <div
-                  class="destination-item position-relative overflow-hidden mb-2">
-                  <img class="img-fluid"
-                     src="/dreamjourney/resources/img/destination-6.jpg" alt="">
-                  <a class="destination-overlay text-white text-decoration-none"
-                     href="">
-                     <h5 class="text-white">강릉</h5> <span>KANGLEUNG</span>
-                  </a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Destination Start -->
-
    <!-- Packages Start -->
    <div class="container-fluid py-5">
       <div class="container pt-5 pb-3">
@@ -839,67 +759,6 @@ a:hover {
       </div>
    </div>
    <!-- Packages End -->
-
-   <!-- Team Start -->
-
-
-
-   <!-- Testimonial Start -->
-   <div class="container-fluid py-5">
-      <div class="container py-5">
-         <div class="text-center mb-3 pb-3">
-            <h1>전국 여행객의 생생 이용후기</h1>
-         </div>
-         <div class="owl-carousel testimonial-carousel">
-            <div class="text-center pb-4">
-               <img class="img-fluid mx-auto"
-                  src="/dreamjourney/resources/img/testimonial-1.jpg"
-                  style="width: 100px; height: 100px;">
-               <div class="testimonial-text bg-white p-4 mt-n5">
-                  <p class="mt-5">Dolor et eos labore, stet justo sed est sed.
-                     Diam sed sed dolor stet amet eirmod eos labore diam</p>
-                  <h5 class="text-truncate">Client Name</h5>
-                  <span>Profession</span>
-               </div>
-            </div>
-            <div class="text-center">
-               <img class="img-fluid mx-auto"
-                  src="/dreamjourney/resources/img/testimonial-2.jpg"
-                  style="width: 100px; height: 100px;">
-               <div class="testimonial-text bg-white p-4 mt-n5">
-                  <p class="mt-5">Dolor et eos labore, stet justo sed est sed.
-                     Diam sed sed dolor stet amet eirmod eos labore diam</p>
-                  <h5 class="text-truncate">Client Name</h5>
-                  <span>Profession</span>
-               </div>
-            </div>
-            <div class="text-center">
-               <img class="img-fluid mx-auto"
-                  src="/dreamjourney/resources/img/testimonial-3.jpg"
-                  style="width: 100px; height: 100px;">
-               <div class="testimonial-text bg-white p-4 mt-n5">
-                  <p class="mt-5">Dolor et eos labore, stet justo sed est sed.
-                     Diam sed sed dolor stet amet eirmod eos labore diam</p>
-                  <h5 class="text-truncate">Client Name</h5>
-                  <span>Profession</span>
-               </div>
-            </div>
-            <div class="text-center">
-               <img class="img-fluid mx-auto"
-                  src="/dreamjourney/resources/img/testimonial-4.jpg"
-                  style="width: 100px; height: 100px;">
-               <div class="testimonial-text bg-white p-4 mt-n5">
-                  <p class="mt-5">Dolor et eos labore, stet justo sed est sed.
-                     Diam sed sed dolor stet amet eirmod eos labore diam</p>
-                  <h5 class="text-truncate">Client Name</h5>
-                  <span>Profession</span>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Testimonial End -->
-
 
    <!-- Blog Start -->
    <div class="container-fluid py-5">

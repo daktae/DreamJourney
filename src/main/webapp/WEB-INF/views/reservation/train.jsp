@@ -209,7 +209,7 @@
 	<!-- Booking End -->
 
 	<!-- 내용 작성 -->
-	<div class="container-fluid py-5" style="height: 1000px; width: 80%;">
+	<div class="container-fluid py-5" style="width: 80%;">
 		<c:forEach items="${list}" var="dto">
 			<div>
 				<a
@@ -272,7 +272,7 @@
 			</div>
 		</c:forEach>
 </c:if>
-<c:if test="${empty trainResult}">
+<c:if test="${empty trainResult && trainResult != null}">
     <!-- 검색 결과가 없는 경우 -->
     <h5 style="margin-bottom:30px; text-align:center;">검색 결과가 없습니다.</h5>
 </c:if>

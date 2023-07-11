@@ -209,7 +209,7 @@
 	<!-- Booking End -->
 
 	<!-- 내용 작성 -->
-	<div class="container-fluid py-5" style="height: 1000px; width: 80%;">
+	<div class="container-fluid py-5" style="width: 80%;">
 		<c:forEach items="${list}" var="dto">
 			<div>
 				<a
@@ -234,8 +234,6 @@
 							<button class="btn btn-primary btn-block" type="submit"
 								style="height: 47px; margin-top: -2px;">예약</button>
 						</form>
-						<button class="btn btn-primary btn-block" type="submit"
-							style="height: 47px; margin-top: -2px;">예약</button>
 					</div>
 				</a>
 			</div>
@@ -271,7 +269,7 @@
 			</div>
  </c:forEach>
 </c:if>
-<c:if test="${empty airplaneResult}">
+<c:if test="${empty airplaneResult && airplaneResult != null}">
     <!-- 검색 결과가 없는 경우 -->
     <h5 style="margin-bottom:30px; text-align:center;">검색 결과가 없습니다.</h5>
 </c:if>
