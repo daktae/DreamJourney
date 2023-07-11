@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,22 +41,27 @@ public class MypageController {
 	private String mypage() {
 		return "mypage/mypage";
 	}
+	
+	
 
 	// 회원정보
 	@GetMapping("/mypage/info")
-	private String info(Model model) {
+	private String info(Model model, HttpSession session) {
 
-		MemberDTO dto = service.getMemberInfo(5);
-		model.addAttribute("dto", dto);
+		String seq = (String) session.getAttribute("seq");
+		
+		model.addAttribute("dto", service.getMemberInfo(seq));
 
 		return "mypage/info";
 	}
 
 	// 회원정보 수정
 	@GetMapping("/mypage/editinfo")
-	private String editinfo(Model model) {
+	private String editinfo(Model model, HttpSession session) {
 
-		MemberDTO dto = service.getMemberInfo(5);
+		String seq = (String) session.getAttribute("seq");
+		
+		MemberDTO dto = service.getMemberInfo(seq);
 		model.addAttribute("dto", dto);
 
 		return "mypage/editinfo";
@@ -62,17 +69,19 @@ public class MypageController {
 
 	// 수정 완료
 	@PostMapping("/mypage/saveinfo")
-	private String saveinfo(MemberDTO dto) {
+	private String saveinfo(MemberDTO dto, HttpSession session) {
 		service.saveMemberInfo(dto);
 		return "redirect:/mypage/info";
 	}
 
 	// 내 여행
 	@GetMapping("/mypage/journey")
-	private String journey(Model model) {
+	private String journey(Model model, HttpSession session) {
+		
+		String seq = (String) session.getAttribute("seq");
 		
 		//세션 아이디 받아서 넘겨줘야함
-		model.addAttribute("list", service.getTrip());
+		model.addAttribute("list", service.getTrip(seq));
 		
 		return "mypage/journey";
 	}
@@ -120,7 +129,10 @@ public class MypageController {
 								String[] placeInputValues,
 	                            String[] memoInputValues,
 	                            String startdate,
-	                            String enddate) {
+	                            String enddate,
+	                            HttpSession session) {
+		
+		String seq = (String) session.getAttribute("seq");
 		
 		String[] place = new String[placeInputValues.length];
 	    String[] address = new String[placeInputValues.length];
@@ -158,7 +170,7 @@ public class MypageController {
             }
         }
         
-	    int tripResult = service.tripInsert(title, begin, end);
+	    int tripResult = service.tripInsert(title, begin, end, seq);
 	    
 	    String trip_seq = service.getTripId();
 	    
@@ -266,12 +278,14 @@ public class MypageController {
 	// 미작성 리뷰 조회
 	@ResponseBody
 	@RequestMapping(value="/mypage/unwrittenreview", produces="application/json;charset=UTF-8")
-	private String unwrittenreview(String selected) {
+	private String unwrittenreview(String selected, HttpSession session) {
+		
+		String seq = (String) session.getAttribute("seq");
 		
 		List <UnwrittenReviewDTO> list = new ArrayList <UnwrittenReviewDTO>();
 		
-		if(selected.equals("accommodate")) list = service.getUnwrittenAccommodate();
-		else if(selected.equals("activity")) list = service.getUnwrittenActivity();
+		if(selected.equals("accommodate")) list = service.getUnwrittenAccommodate(seq);
+		else if(selected.equals("activity")) list = service.getUnwrittenActivity(seq);
 				
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResponse;
@@ -307,14 +321,16 @@ public class MypageController {
 	// @GetMapping("/mypage/bookablereview")
 	@RequestMapping(value="/mypage/bookablereview", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	private String requestReview(String selected) {
+	private String requestReview(String selected, HttpSession session) {
 
+		String seq = (String) session.getAttribute("seq");
+		
 		List<BookableReviewDTO> b = new ArrayList<BookableReviewDTO>();
 
 		if (selected.equals("accommodate"))
-			b = service.getAccommodateReview();
+			b = service.getAccommodateReview(seq);
 		else if (selected.equals("activity"))
-			b = service.getActivityReview();
+			b = service.getActivityReview(seq);
 
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResponse;
@@ -332,10 +348,12 @@ public class MypageController {
 	//@GetMapping("/mypage/unbookablereview")
 	@RequestMapping(value="/mypage/unbookablereview", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	private String requestReviewUB(String selected) {
+	private String requestReviewUB(String selected, HttpSession session) {
 
+		String seq = (String) session.getAttribute("seq");
+		
 		List<UnbookableReviewDTO> ub = new ArrayList<UnbookableReviewDTO>(); // 맛집 리뷰
-		ub = service.getFoodReview();
+		ub = service.getFoodReview(seq);
 
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResponse;
@@ -381,25 +399,27 @@ public class MypageController {
 
 	// 예약 목록
 	@GetMapping("/mypage/mypage_reserve")
-	private String mypage_reserve(Model model) {
+	private String mypage_reserve(Model model, HttpSession session) {
 
-		model.addAttribute("tlist", service.transList());
-		model.addAttribute("alist", service.accommodateList());
-		model.addAttribute("aclist", service.activityList());
+		String seq = (String) session.getAttribute("seq");
+		
+		model.addAttribute("tlist", service.transList(seq));
+		model.addAttribute("alist", service.accommodateList(seq));
+		model.addAttribute("aclist", service.activityList(seq));
 		
 		return "mypage/mypage_reserve";
 	}
 
 	// 예약 상세
 	@GetMapping("/mypage/mypage_reserve_view")
-	private String mypage_reserve_view(Model model, String pay_seq) {
+	private String mypage_reserve_view(Model model, String pay_seq, HttpSession session) {
 
+		String seq = (String) session.getAttribute("seq");
 		
-		
-			model.addAttribute("tlist", service.treservedetail(pay_seq));
-			model.addAttribute("rlist", service.rreservedetail(pay_seq));
-	    	model.addAttribute("alist", service.areservedetail(pay_seq));
-	    	model.addAttribute("list", service.rpay(pay_seq));
+		model.addAttribute("tlist", service.treservedetail(pay_seq, seq));
+		model.addAttribute("rlist", service.rreservedetail(pay_seq, seq));
+    	model.addAttribute("alist", service.areservedetail(pay_seq, seq));
+    	model.addAttribute("list", service.rpay(pay_seq));
 		
 
 		
@@ -421,9 +441,11 @@ public class MypageController {
 
 	// 즐겨찾기
 	@GetMapping("/mypage/mypage_bookmark")
-	private String mypage_bookmark(Model model) {
+	private String mypage_bookmark(Model model, HttpSession session) {
 
-		model.addAttribute("list", service.bookmarkList());
+		String seq = (String) session.getAttribute("seq");
+		
+		model.addAttribute("list", service.bookmarkList(seq));
 
 		return "mypage/mypage_bookmark";
 	}
