@@ -279,5 +279,10 @@ public class MypageServiceImpl implements MypageService {
 
 		return mapper.tripList();
 	}
+
+	@Override
+	public int plusrecommend(String seq) {
+		return mapper.plusrecommend(seq);
+	}
 	
 }

@@ -362,7 +362,8 @@ VALUES (trip_seq.nextVal, 5, #{title}, 0, sysdate, TO_DATE(#{begin}, 'YYYY-MM-DD
 		    a.end,
 		    a.is_shared,
 		    a.name,
-		    rownum
+		    rownum,
+		    a.nickname
 		from
 		(select
 		    t.trip_seq,
@@ -373,12 +374,19 @@ VALUES (trip_seq.nextVal, 5, #{title}, 0, sysdate, TO_DATE(#{begin}, 'YYYY-MM-DD
 		    t.begin,
 		    t.end,
 		    t.is_shared,
-		    m.name
+		    m.name,
+		    m.nickname
 		from tblTrip t
 		inner join tblMember m on t.member_seq = m.member_seq
 		where t.is_shared = 'y'
 		order by t.regdate desc) a
 	</select>
+	
+	<update id="plusrecommend">
+		UPDATE tbltrip
+			SET recommend = recommend + 1
+		WHERE trip_seq = #{seq}
+	</update>
  
 </mapper>
 

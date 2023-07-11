@@ -98,5 +98,7 @@ public interface MypageService {
 
 	List<TripDTO> tripList();
 
+	int plusrecommend(String seq);
+
 
 }

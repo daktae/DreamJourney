@@ -125,7 +125,7 @@
    	<tr onclick="location.href='/dreamjourney/boardDetail?">
       <td>${dto.rownum}</td>
       <td onclick="location.href='/dreamjourney/board/shareview?trip_seq=${dto.trip_seq}'">${dto.title}</td>
-      <td>${dto.name}</td>
+      <td>${dto.nickname}</td>
       <td>${dto.regdate.substring(0, 10)}</td>
       <td>${dto.recommend}</td>
    	</tr>

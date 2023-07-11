@@ -98,5 +98,7 @@ public interface MypageMapper {
 
 	List<TripDTO> tripList();
 
+	int plusrecommend(String seq);
+
 
 }
