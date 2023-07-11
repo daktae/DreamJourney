@@ -202,9 +202,9 @@ textarea {
 		<div id="mypage_content">
 
 			<div>
-				<button class="review-button" id="btn-accommodate">숙박</button>
-				<button class="review-button" id="btn-activity">액티비티</button>
-				<button class="review-button" id="btn-restaurant">맛집</button>
+				<button class="review-button m-2" id="btn-accommodate">숙박</button>
+				<button class="review-button m-2" id="btn-activity">액티비티</button>
+				<button class="review-button m-2" id="btn-restaurant">맛집</button>
 			</div>
 
 

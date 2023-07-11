@@ -387,6 +387,10 @@ VALUES (trip_seq.nextVal, #{member_seq}, #{title}, 0, sysdate, TO_DATE(#{begin},
 			SET recommend = recommend + 1
 		WHERE trip_seq = #{seq}
 	</update>
+	
+	<select id="getmywrite" resultType="com.test.domain.MyWriteDTO">
+		SELECT * FROM tblFree WHERE member_seq = #{seq}
+	</select>
  
 </mapper>
 

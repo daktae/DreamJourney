@@ -12,6 +12,7 @@ import com.test.domain.TranReserveDTO;
 import com.test.domain.TripDTO;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.MemberDTO;
+import com.test.domain.MyWriteDTO;
 import com.test.domain.UnbookableReviewDTO;
 import com.test.domain.UnwrittenReviewDTO;
 
@@ -95,6 +96,8 @@ public interface MypageMapper {
 	List<TripDTO> tripList();
 
 	int plusrecommend(String seq);
+
+	List<MyWriteDTO> getmywrite(String seq);
 
 
 }

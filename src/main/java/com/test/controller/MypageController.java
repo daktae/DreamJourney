@@ -452,11 +452,15 @@ public class MypageController {
 
 	// 내 작성글
 	@GetMapping("/mypage/mypage_write")
-	private String mypage_write() {
-
+	private String mypage_write(Model model, HttpSession session) {
+		
+		String seq = (String) session.getAttribute("seq");
+		model.addAttribute("list", service.getmywrite(seq));
+		
 		return "mypage/mypage_write";
 
 	}
+	
 
 	// 테스트
 	@GetMapping("/mypage/mapmap")
@@ -473,6 +477,8 @@ public class MypageController {
 		return "redirect:/mypage/journey";
 		
 	}
+	
+	
 
 
 	

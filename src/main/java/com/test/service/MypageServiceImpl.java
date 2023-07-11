@@ -12,6 +12,7 @@ import com.test.domain.ActivityReserveDTO;
 import com.test.domain.BookableReviewDTO;
 import com.test.domain.BookmarkDTO;
 import com.test.domain.MemberDTO;
+import com.test.domain.MyWriteDTO;
 import com.test.domain.PayDTO;
 import com.test.domain.ScheduleDTO;
 import com.test.domain.TranReserveDTO;
@@ -285,6 +286,11 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public int plusrecommend(String seq) {
 		return mapper.plusrecommend(seq);
+	}
+
+	@Override
+	public List<MyWriteDTO> getmywrite(String seq) {
+		return mapper.getmywrite(seq);
 	}
 	
 }

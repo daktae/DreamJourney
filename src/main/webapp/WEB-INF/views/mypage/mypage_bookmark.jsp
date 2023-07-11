@@ -102,6 +102,39 @@ table.reserve_list {
 .table.bookmark td, .table.bookmark th {
 	padding: 0.3rem;
 }
+
+#btn-all {
+	background-color: #B1D0E0;
+	border: none;
+	border-radius: 10px;
+	color: white;
+}
+#btn-food {
+	background-color: #6998AB;
+	border: none;
+	border-radius: 10px;
+	color: white;
+}
+#btn-accommodate {
+	background-color: #406882;
+	border: none;
+	border-radius: 10px;
+	color: white;
+}
+#btn-activity {
+	background-color: #22577E;
+border: none;
+	border-radius: 10px;
+	color: white;
+}
+
+#btn-area {
+	background-color: #1A374D;
+	border: none;
+	border-radius: 10px;
+	color: white;
+}
+
 </style>
 <body>
 	<!-- Topbar Start -->
@@ -126,12 +159,14 @@ table.reserve_list {
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
 
+
+
 			<div id="mypage_reserve_search">
-				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-all">전체</button>
-				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-food">맛집</button>
-				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-accommodate">숙소</button>
-				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-activity">액티비티</button>
-				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-area">관광지</button>
+				<button type="button" class="m-2" id="btn-all">전체</button>
+				<button type="button" class="m-2" id="btn-food">맛집</button>
+				<button type="button" class="m-2" id="btn-accommodate">숙소</button>
+				<button type="button" class="m-2" id="btn-activity">액티비티</button>
+				<button type="button" class="m-2" id="btn-area">관광지</button>
 			</div>
 
 			<div class="table-container">

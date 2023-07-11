@@ -24,10 +24,24 @@
   cursor: pointer;
 }
 
+#temp {
+position: relative;
+height: 100%;
+}
+
+#unregister {
+	position: absolute;
+	bottom: 10px;
+	right: 0;
+	opacity: 0.4;
+	font-size: small;
+}
+
 
 
 </style>
 <div id="menucontainer">
+<div id="temp">
 	<table id="sidemenu">
 		<tr style="height: 30%; text-align: center">
 			<td><img src="../resources/img/마이페이지유저.png" style="max-width: 100%; max-height: 100%;"></td>
@@ -55,6 +69,8 @@
 		<tr style="height: 55%;">
 		</tr>
 	</table>
+	<div id="unregister">회원 탈퇴</div>
+	</div>
 </div>
 
 

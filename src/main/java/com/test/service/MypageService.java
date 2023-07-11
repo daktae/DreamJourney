@@ -5,14 +5,14 @@ import java.util.Map;
 
 import com.test.domain.AccoReserveDTO;
 import com.test.domain.ActivityReserveDTO;
+import com.test.domain.BookableReviewDTO;
 import com.test.domain.BookmarkDTO;
+import com.test.domain.MemberDTO;
+import com.test.domain.MyWriteDTO;
 import com.test.domain.PayDTO;
 import com.test.domain.ScheduleDTO;
 import com.test.domain.TranReserveDTO;
 import com.test.domain.TripDTO;
-import com.test.domain.BookableReviewDTO;
-import com.test.domain.BookmarkDTO;
-import com.test.domain.MemberDTO;
 import com.test.domain.UnbookableReviewDTO;
 import com.test.domain.UnwrittenReviewDTO;
 
@@ -96,6 +96,9 @@ public interface MypageService {
 	List<TripDTO> tripList();
 
 	int plusrecommend(String seq);
+
+	List<MyWriteDTO> getmywrite(String seq);
+
 
 
 }
