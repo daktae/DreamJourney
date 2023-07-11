@@ -2,18 +2,17 @@ package com.test.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.domain.AccommodateDTO;
-import com.test.domain.ActivityDTO;
 import com.test.domain.RoomDTO;
 import com.test.domain.TrandateDTO;
 import com.test.domain.TransportDTO;
@@ -29,8 +28,10 @@ public class ReservationController {
 
 
    @GetMapping("/reservation")
-   private String reservation() {
+   private String reservation(Model model, HttpSession session) {
 
+	   System.out.println(session.getAttribute("seq"));
+	   model.addAttribute("param", session);
       return "/reservation/reservation";
    }
 
@@ -45,29 +46,6 @@ public class ReservationController {
       model.addAttribute("list", service.accommodatelist());
 
       return "/reservation/accommodate";
-      
-      /* API
-       * StringBuffer result = new StringBuffer(); String strResult = ""; try {
-       * 
-       * URL url = new URL(
-       * "https://apis.data.go.kr/6300000/openapi2022/tourroms/gettourroms?serviceKey=pJ3ffQfY7vj1VYW3G87Bv0c3fVedzE6G1zCpeaLtR%2BVpfyahW9Bjj8jsaEK%2BO5scs2DWSVc11NswaX3pJeqZTg%3D%3D&pageNo=8&numOfRows=8"
-       * ); HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-       * 
-       * // Request 형식 설정 conn.setRequestMethod("GET");
-       * conn.setRequestProperty("Content-Type", "application/json");
-       * 
-       * // 응답 데이터 받아오기 BufferedReader rd; if (conn.getResponseCode() >= 200 &
-       * conn.getResponseCode() <= 300) { rd = new BufferedReader(new
-       * InputStreamReader(conn.getInputStream(), "UTF-8")); } else { rd = new
-       * BufferedReader(new InputStreamReader(conn.getErrorStream())); }
-       * 
-       * String line; while ((line = rd.readLine()) != null) { result.append(line); }
-       * rd.close(); conn.disconnect(); strResult = result.toString(); } catch
-       * (Exception e) { e.printStackTrace(); }
-       * 
-       * model.addAttribute("result", strResult);
-       */
-
    }
 
    @GetMapping("/reservation/accommodate_detail")

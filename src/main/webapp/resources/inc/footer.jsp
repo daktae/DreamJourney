@@ -52,9 +52,6 @@
 
 
     <!-- Back to Top -->
-                         
-    <a href="#" class="btn btn-chat btn-lg-circle chatcounseling"></a>
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 	</footer>
 
     <!-- JavaScript Libraries -->

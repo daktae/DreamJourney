@@ -48,8 +48,10 @@
       delete from tblBookmark where activity_seq = #{activity_seq} and member_seq=#{member_seq}
    </delete>
    
-   
-   
+   <!-- 액티비티 가능 날짜 -->
+   <select id="cal" resultType="String" parameterType="String">
+   	select to_char(adate, 'yyyy-mm-dd') as adate from tblActivityDate where activity_seq = #{activity_seq}
+   </select>
    
    
    

@@ -26,5 +26,7 @@ public interface ActivityMapper {
 
    void payok(ActivityDTO dto);
 
+List<String> cal(String activity_seq);
+
 
 }

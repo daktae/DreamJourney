@@ -74,4 +74,9 @@ public class ActivityServiceImpl implements ActivityService {
       mapper.payok(dto);
    }
    
+   @Override
+	public List<String> cal(String activity_seq) {
+		return mapper.cal(activity_seq);
+	}
+   
 }

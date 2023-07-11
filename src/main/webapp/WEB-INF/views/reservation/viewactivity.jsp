@@ -50,10 +50,10 @@ html{
    scroll-behavior: smooth;
 }
 
-body {
+/* body {
    padding-bottom: 50px;
 }
-
+ */
 .img-container {
    max-height: 500px;
    overflow: hidden;
@@ -124,10 +124,6 @@ box-shadow: 1px 1px 20px #ddd;
    outline: none;
 }
 
-.btn {
-   width: 200px;
-   margin: 5px 30px;
-}
 
 .img {
    width: 800px;
@@ -140,8 +136,6 @@ footer {
 
 #bookmark {
    width: 150px; 
-   margin-left: 200px;
-   float: left,
 }
 
 #star:hover {
@@ -153,12 +147,13 @@ footer {
 <body>
    <%@ include file="/resources/inc/header.jsp"%>
    <!-- 본문 -->
-   <div style="height: 3000px; margin-top: 100px;">
+<div style="display:flex;justify-content: center;">
+      <form method="POST" action="/dreamjourney/reservation/pay" id="form">
+   <div style="margin-top: 100px; margin-bottom:100px;">
    <div>
    <button type="submit" class="btn btn-primary" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
    </div>
-      <form method="POST" action="/dreamjourney/reservation/pay" id="form">
-         <div style="width: 780px; float: left; margin-left: 200px; margin-right: 20px;">
+         <div style="width: 780px; margin-right: 20px;">
             <div style="text-align: center;">
                <h5>${adetail.category }</h5>
                <h1>[${address}] ${adetail.title }</h1>
@@ -201,15 +196,16 @@ footer {
             </div>
 
          </div>
-
-         <div
-            style="border: 1px solid #DDD; background-color: #FFF;display: inline-block; width: 300px; padding: 20px; text-align: center; margin: 0 10px; position: fixed;">
+</div>
+<!-- 티켓 -->
+         <div id="myDiv"
+            style="border: 1px solid #DDD; background-color: #FFF;display: inline-block; width: 300px; padding: 20px; text-align: center; margin: 0 10px; position: absolute; top:500px; left:75%;">
             <div>티켓 선택 날짜
-               <input type="date" name="dates" id="datepicker">
+               <input type="text" name="dates" id="datepicker" style="text-align : center;">
             </div>
             <div>
                인원 선택<input type="number" id="numberInput" min="1"
-                  max="${adetail.limit }" oninput="displayNumber()" value="1" name="totalPeople">
+                  max="${adetail.limit }" oninput="displayNumber()" value="1" name="totalPeople" style="text-align: center;">
             </div>
             <div style="font-weight: bold; margin-bottom: 10px;">
                총 가격 <span id="totalPrice" name="totalPrice"><fmt:formatNumber value="${adetail.price }" pattern="#,###" /></span>원
@@ -220,11 +216,13 @@ footer {
                원 * <span id="numberDisplay">1 명</span>)
             </div>
             <br>
+            
             <div>
-               <button type="submit" class="btn btn-primary reservation" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
+               <button type="submit" class="btn btn-primary reservation" style="width: 200px; margin: 5px 30px;" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
                <input type="hidden" value="${adetail.activity_seq }" name="activity_seq">
                
             </div>
+            
          </div>
          <input type="hidden" name="totalPrice"> 
          <input type="hidden" name="totalPeople"> 
@@ -240,8 +238,8 @@ footer {
    <!-- 카카오맵.api -->
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=399d3a29656e06f5e50372ac6e9c718a"></script>
    
+<%@ include file="/resources/inc/footer.jsp"%>
 </body>
-<footer>    <%@ include file="/resources/inc/footer.jsp"%>      </footer>
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
@@ -279,29 +277,50 @@ footer {
 
    /* 캘린더 */
    //선택 가능 날짜
-   var availDates=["2023-07-09", "2023-07-13", "2023-07-19"];
+  $('#datepicker').datepicker({
+    dateFormat: 'yy-mm-dd',
+    prevText: '이전 달',
+    nextText: '다음 달',
+    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    showMonthAfterYear: true,
+    yearSuffix: '년',
+    minDate: 0,
+    beforeShowDay: disableSomeDay
+  });
+	//제외할 날짜
+   var disabledDays = ${cal};
    
-   /* String[] list = new String[];   //값을 저장하고 > jsp로 해서 forEach로 돌려서
-   list = 받아온 데이터 > jsp에서 forEach */
-   
-   
-   $(function(){
-   
-   $('#datepicker').datepicker({
-       dateFormat : 'yy-mm-dd',
-      prevText: '이전 달',
-        nextText: '다음 달',
-        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-        showMonthAfterYear: true,
-        yearSuffix: '년',
-        minDate: 0,
-        
-      });
-});
+	//날짜 나타내기 전에 (beforeShowDay) 실행할 함수
+	function disableSomeDay(date) {
+		
+		var month = date.getMonth() + 1;
+		var dates = date.getDate();
+		var year = date.getFullYear();
+		
+		//console.log(month, dates, year);
+		
+		//배열에 해당하는 날짜는 0번째 index에 false를 담아 리턴해준다.
+		for (i=0; i<disabledDays.length; i++) {
+			/* if ($.inArray(year + '-' + (month + 1) + '-' + dates, disabledDays) != -1) {
+				console.log(($.inArray(year + '-' + (month + 1) + '-' + dates, disabledDays) != -1));
+				return [false];
+			} */
+			let temp = disabledDays[i].split('-');
+			//console.log('temp',  year ,parseInt(temp[0]) , month , parseInt(temp[1]) , dates , parseInt(temp[2]));
+			if (year == parseInt(temp[0]) && month == parseInt(temp[1]) && dates == parseInt(temp[2])) {
+				//console.log(year, month, dates);
+				return [true];
+			}
+			
+		}
+		//해당하지 않는 날짜는 활성화
+		return [false];
+	}
+
    
    document.querySelector("input[name=totalPrice]").value = ${adetail.price};
    document.querySelector("input[name=totalPeople]").value = 1;
@@ -394,12 +413,23 @@ footer {
       });
    });
    
-   
-   
+
+   window.addEventListener("scroll", function() {
+      var myDiv = document.getElementById("myDiv");
+      var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      var targetPosition = 1000; // 고정할 스크롤 위치
+
+      if (scrollPosition >= targetPosition) {
+        myDiv.style.position = "fixed";
+        myDiv.style.top = targetPosition + "px";
+      } else {
+        myDiv.style.position = "absolute";
+        myDiv.style.top = (500 + scrollPosition) + "px";
+      }
+    });
    
 </script>
 </html>
-
 
 
 

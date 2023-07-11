@@ -68,7 +68,7 @@ public class AccountController {
 		    	session.setAttribute("nickname", list.get(0).getNickname());
 		    	session.setAttribute("email", list.get(0).getEmail());
 		    	session.setAttribute("seq", list.get(0).getMember_seq());
-		    	
+		    	session.setAttribute("tel", list.get(0).getTel());
 		    	
 		    	model.addAttribute("name", list.get(0).getName());
 		    	model.addAttribute("email", list.get(0).getEmail());
@@ -76,6 +76,7 @@ public class AccountController {
 		    	System.out.println(list);
 		    	model.addAttribute("name", list.get(0).getName());
 		    	model.addAttribute("email", list.get(0).getEmail());
+		    	model.addAttribute("tel", list.get(0).getTel());
 		    	return "redirect:/index";
 		    	
 		    }
@@ -106,10 +107,12 @@ public class AccountController {
 			session.setAttribute("nickname", name.get(0).getNickname());
 			session.setAttribute("email", name.get(0).getEmail());
 			session.setAttribute("seq", name.get(0).getMember_seq());
-			
+			session.setAttribute("tel", name.get(0).getTel());
+
 			model.addAttribute("name", name.get(0).getName());
 			model.addAttribute("nickname", name.get(0).getNickname());
 			model.addAttribute("email", name.get(0).getEmail());
+			model.addAttribute("tel", name.get(0).getTel());
 			return "redirect:/index";
 		} else {
 			model.addAttribute("message", "에러");
