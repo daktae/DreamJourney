@@ -15,7 +15,7 @@
 		update tblmember set pw = #{pw} where email = #{email}
 	</update>
 	
-	<select id="idCheck" parameterType="String" resultType="com.test.domain.MemberDTO">
+	<select id="idCheck" resultType="com.test.domain.MemberDTO">
       	SELECT * FROM tblmember WHERE tel= #{tel}
    	</select>
 	
