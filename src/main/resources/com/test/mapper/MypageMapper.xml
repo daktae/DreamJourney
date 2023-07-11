@@ -392,6 +392,10 @@ VALUES (trip_seq.nextVal, #{member_seq}, #{title}, 0, sysdate, TO_DATE(#{begin},
 	<select id="getmywrite" resultType="com.test.domain.MyWriteDTO">
 		SELECT * FROM tblFree WHERE member_seq = #{seq}
 	</select>
+	
+	<delete id="unregi">
+		update tblmember set name = '　', email = '　', pw = '　', nickname = '　', tel = '　', unresi = 'y' where member_seq = #{member_seq}
+	</delete>
  
 </mapper>
 

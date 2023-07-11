@@ -69,7 +69,9 @@ height: 100%;
 		<tr style="height: 55%;">
 		</tr>
 	</table>
-	<div id="unregister">회원 탈퇴</div>
+	<form method="POST" action="/dreamjourney/mypage/unregi">
+	<button type="submit" id="unregister" name="member_seq" value="${sessionScope.seq}">회원 탈퇴</button>
+	</form>
 	</div>
 </div>
 

@@ -99,5 +99,7 @@ public interface MypageService {
 
 	List<MyWriteDTO> getmywrite(String seq);
 
+	void unregi(String member_seq);
+
 
 }

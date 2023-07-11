@@ -182,92 +182,93 @@ button {
 	<script>
 	
 	
-		// 지도 관련 코드
+// 지도 관련 코드
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+
+mapOption = {
+	center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	level : 3
+// 지도의 확대 레벨
+};
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption);
+
+// 마커와 선을 담을 배열
+var markers = [];
+var lines = [];
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+function createMarkerAndLine(position, title) {
+ 		var marker = new kakao.maps.Marker({
+    	position: position,
+    	map: map
+});
+	 	
+var linePath = [position];
+		
+// 이전 마커가 있을 경우 이전 마커와 현재 마커 사이에 선을 생성합니다
+if (markers.length > 0) {
+	    var prevMarker = markers[markers.length - 1];
+	    var prevPosition = prevMarker.getPosition();
+	    linePath.unshift(prevPosition);
+
+	    var line = new kakao.maps.Polyline({
+	      path: linePath,
+	      strokeWeight: 3,
+	      strokeColor: '#ff0000',
+	      strokeOpacity: 0.7,
+	      strokeStyle: 'solid'
+	    });
+
+	    line.setMap(map);
+	    lines.push(line);
+	  }
+
+	  markers.push(marker);
+}
+
+
+//클릭 이벤트로 map팝업을 열어서 장소 선택
+function openPopup(button) {
+	window.open("mapmap.do", "Map Popup", "width=800,height=500");
+
+	// 클릭한 값을 가져온다.
+	window.clickedButton = button;
+}
+
+function receiveValues(placeName, address) {
+	var placeInput = window.clickedButton.parentElement.getElementsByClassName('placeInput')[0];
+	placeInput.value = placeName + '_' + address;
 	
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		
-		mapOption = {
-			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(address, function(result, status) {
+	    // 정상적으로 검색이 완료됐으면 
+	    if (status === kakao.maps.services.Status.OK) {
+	      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-		
-		// 마커와 선을 담을 배열
-		var markers = [];
-		var lines = [];
+	      // 결과값으로 받은 위치를 마커로 표시합니다
+	      var marker = new kakao.maps.Marker({
+	        map: map,
+	        position: coords
+	    });
 
-		// 주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-		
-		function createMarkerAndLine(position, title) {
-			 	var marker = new kakao.maps.Marker({
-			    	position: position,
-			    	map: map
-			  	});
-			 	
-				var linePath = [position];
-				
-				  // 이전 마커가 있을 경우 이전 마커와 현재 마커 사이에 선을 생성합니다
-				  if (markers.length > 0) {
-				    var prevMarker = markers[markers.length - 1];
-				    var prevPosition = prevMarker.getPosition();
-				    linePath.unshift(prevPosition);
+	    createMarkerAndLine(coords, placeName);
+	      
+	    // 인포윈도우로 장소에 대한 설명을 표시합니다
+	    var infowindow = new kakao.maps.InfoWindow({
+	        content: '<div style="width:150px;text-align:center;padding:6px 0;">' + placeName + '</div>'
+	    });
+	    infowindow.open(map, marker);
 
-				    var line = new kakao.maps.Polyline({
-				      path: linePath,
-				      strokeWeight: 3,
-				      strokeColor: '#ff0000',
-				      strokeOpacity: 0.7,
-				      strokeStyle: 'solid'
-				    });
-
-				    line.setMap(map);
-				    lines.push(line);
-				  }
-
-				  markers.push(marker);
-				}
-	
-			
-		function openPopup(button) {
-			window.open("mapmap.do", "Map Popup", "width=800,height=500");
-
-			// Store the clicked button element in a global variable
-			window.clickedButton = button;
-		}
-
-		function receiveValues(placeName, address) {
-			var placeInput = window.clickedButton.parentElement.getElementsByClassName('placeInput')[0];
-			placeInput.value = placeName + '_' + address;
-			
-			// 주소로 좌표를 검색합니다
-			  geocoder.addressSearch(address, function(result, status) {
-			    // 정상적으로 검색이 완료됐으면 
-			    if (status === kakao.maps.services.Status.OK) {
-			      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-			      // 결과값으로 받은 위치를 마커로 표시합니다
-			      var marker = new kakao.maps.Marker({
-			        map: map,
-			        position: coords
-			      });
-
-			      createMarkerAndLine(coords, placeName);
-			      
-			      // 인포윈도우로 장소에 대한 설명을 표시합니다
-			      var infowindow = new kakao.maps.InfoWindow({
-			        content: '<div style="width:150px;text-align:center;padding:6px 0;">' + placeName + '</div>'
-			      });
-			      infowindow.open(map, marker);
-
-			      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-			      map.setCenter(coords);
-			    }
-			  });
-		}
+	      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	      map.setCenter(coords);
+	    }
+	  });
+}
 		
 		
 		// '+' 버튼 클릭 시 새 열 삽입
