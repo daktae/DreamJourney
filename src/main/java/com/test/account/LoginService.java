@@ -36,6 +36,11 @@ public class LoginService implements LoginServiceImpl {
 		mapper.updatepw(dto);
 	}
 
+	public List<MemberDTO> idCheck(String tel) {
+		List<MemberDTO> list = mapper.idCheck(tel);
+		return list;
+	}
+
 	
 
 	

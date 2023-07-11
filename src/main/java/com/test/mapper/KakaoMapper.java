@@ -11,4 +11,6 @@ public interface KakaoMapper {
 
 	public void updatepw(MemberDTO dto);
 
+	public List<MemberDTO> idCheck(String tel);
+
 }

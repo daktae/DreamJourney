@@ -56,15 +56,15 @@
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">회원가입</h3>
+				<h3 class="display-4 text-white text-uppercase">비밀번호 찾기</h3>
 			</div>
 		</div>
 	</div>
 
 	<div class="container_wj">
 		<div class="container_regi">
-			<h2 style="text-align: center; padding-top: 30px;">회원가입</h2>
-			<div style="max-width: 100%; height: 65vh; display: flex;">
+			<h2 style="text-align: center; padding-top: 30px;">이메일 인증</h2>
+			<div style="max-width: 100%; height: 30vh; display: flex;">
 				<div class="regicon_wj">
 					<div class="mb-3" style="margin: 0 auto;">
 						<form action="/dreamjourney/updatepw" method="get">

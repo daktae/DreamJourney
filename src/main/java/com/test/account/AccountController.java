@@ -69,6 +69,7 @@ public class AccountController {
 		    	session.setAttribute("email", list.get(0).getEmail());
 		    	session.setAttribute("seq", list.get(0).getMember_seq());
 		    	
+		    	System.out.println(session.getAttribute("name"));
 		    	
 		    	model.addAttribute("name", list.get(0).getName());
 		    	model.addAttribute("email", list.get(0).getEmail());
@@ -118,7 +119,6 @@ public class AccountController {
 	}
 	
 	
-	
 	// 이메일 인증
 	@GetMapping("/findpwcheck")
 	@ResponseBody
@@ -148,6 +148,30 @@ public class AccountController {
 		System.out.println(dto.getPw());
 		gLoginS.updatepw(dto);
 		return "/account/updatepwok";
+	}
+	
+	
+	@GetMapping("/findid")
+	private String findid() {
+		
+		return"/account/findid";
+	}
+	
+	@GetMapping("/findidok")
+	private String findidok(@RequestParam("tel") String tel) {
+		
+		List<MemberDTO> list = gLoginS.idCheck(tel);
+		
+		if(!list.isEmpty()) {
+			System.out.println("아이디 존재");
+			System.out.println(list.get(0).getEmail());
+			
+			return "redirect:/account/findidres";
+		} else {
+			System.out.println("아이디 존재X");
+			return "/account/findidresx";
+		}
+		
 	}
 	
 	@GetMapping("/register")

@@ -100,6 +100,7 @@
 			
 			    <div class="col">
 			      <!-- Simple link -->
+			      <a href="/dreamjourney/findid">아이디 찾기</a>
 			      <a href="/dreamjourney/findpw">비밀번호 찾기</a>
 			    </div>
 			  </div>
