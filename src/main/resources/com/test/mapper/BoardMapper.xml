@@ -13,7 +13,8 @@
 			m.nickname,
 			f.regdate,
 			f.readcount,
-			f.ccount
+			f.ccount, 
+			f.recommend
 		from vwFree f
 			inner join tblMember m
 				on f.member_seq = m.member_seq
@@ -28,6 +29,7 @@
 			f.title,
 			f.content,
 			m.nickname,
+			m.member_seq,
 			f.regdate,
 			f.readcount,
 			f.report,
@@ -98,6 +100,10 @@
 
 	<update id="boardReport" parameterType="String">
 	update tblFree set report = report + 1 where free_seq = #{free_seq}
+	</update>
+	
+	<update id="boardRecommend" parameterType="String">
+	update tblFree set recommend = recommend + 1 where free_seq = #{free_seq}
 	</update>
 
 </mapper>

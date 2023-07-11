@@ -83,4 +83,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	
+	@Override
+	public void boardRecommend(String free_seq) {
+		mapper.boardRecommend(free_seq);
+	}
+	
 }

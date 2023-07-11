@@ -33,6 +33,8 @@ public interface BoardMapper {
 
 	void editOkComment(CommentDTO dto);
 
+	void boardRecommend(String free_seq);
+
 
 	
 

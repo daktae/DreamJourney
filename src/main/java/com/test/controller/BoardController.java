@@ -149,6 +149,13 @@ public class BoardController {
 		return "redirect:boardDetail?free_seq=" + free_seq;
 	}
 	
+	@GetMapping("/boardRecommend") 
+	public String boardRecommend(Model model, String free_seq) {
+		
+		service.boardRecommend(free_seq);
+		
+		return "redirect:boardDetail?free_seq=" + free_seq;
+	}
 	
 
 }

@@ -34,9 +34,16 @@
 <style>
  
  #board-list {
- 	text-align: center;
  	margin: 0 auto;
  	margin-top: 30px;
+ }
+ 
+ #board-list > tbody > tr > th {
+ 	text-align: center;
+ }
+ 
+ #board-list > tr {
+ 	cursor: pointer;
  }
 
  #main-board {
@@ -55,6 +62,19 @@
     width: 200px;
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0.375rem 0.75rem;
+ }
+ 
+  
+ #board-content-user1 {
+ 	width: 18px;
+ }
+
+ #board-content-user2 {
+ 	width: 18px;
+ }
+
+ #board-content-user3 {
+ 	width: 18px;
  }
  
  #board-button-area {
@@ -79,6 +99,47 @@
  
  #button-search-button {
  	background-color: #7AB730;
+ }
+ 
+ #board-category-together {
+ 	dispaly: inline-block;
+ 	width: 37px;
+ 	border: 1px solid cornflowerblue;
+ 	border-radius: 2px;
+ 	color: cornflowerblue;
+ 	text-align: center;
+ 	font-weight: bold;
+ 	font-size: 13px;
+ }
+ 
+ 
+ #board-category-review {
+ 	dispaly: inline-block;
+ 	width: 37px;
+ 	border: 1px solid #7AB730;
+ 	border-radius: 2px;
+ 	color: #7AB730;
+ 	text-align: center;
+ 	font-weight: bold;
+ 	font-size: 13px;
+ 
+ }
+ 
+ #board-category-lost {
+ 	dispaly: inline-block;
+ 	width: 37px;
+ 	border: 1px solid tomato;
+ 	border-radius: 2px;
+ 	color: tomato;
+ 	text-align: center;
+ 	font-weight: bold;
+ 	font-size: 13px;
+ }
+ 
+ #board-like {
+ 	cursor: pointer;
+ 	width: 15px;
+ 	margin-right: 5px;
  }
  
 </style>
@@ -120,16 +181,43 @@
 		<th>제목</th>
 		<th>글쓴이</th>
 		<th>작성날짜</th>
-		<th>조회수</th>
+		<th>조회</th>
+		<th>추천</th>
 	</tr>
 	<c:forEach items="${blist}" var="dto">
 	<tr onclick="location.href='/dreamjourney/boardDetail?free_seq=${dto.free_seq}';">
 		<td>${dto.free_seq }</td>
-		<td>${dto.category }</td>
+		<c:if test="${dto.category == '동행'}">
+		<td>
+			<div id="board-category-together">동행</div>
+		</td>
+		</c:if>
+		<c:if test="${dto.category == '리뷰'}">
+		<td>
+			<div id="board-category-review">리뷰</div>
+		</td>
+		</c:if>
+		<c:if test="${dto.category == '분실'}">
+		<td>
+			<div id="board-category-lost">분실</div>
+		</td>
+		</c:if>
 		<td>${dto.title } <span id="board-comment-count"> (${dto.ccount})</span></td>
-		<td>${dto.nickname	 }</td>
-		<td>${dto.regdate }</td>
+		<td>
+			<c:if test="${dto.member_seq % 3 == 0 }">
+				<img id="board-content-user1" src="resources/img/board/user1.png">
+			</c:if>
+			<c:if test="${dto.member_seq % 3 == 1 }">
+				<img id="board-content-user1" src="resources/img/board/user2.png">
+			</c:if>
+			<c:if test="${dto.member_seq % 3 == 2 }">
+				<img id="board-content-user1" src="resources/img/board/user3.png">
+			</c:if>
+			${dto.nickname	 }
+		</td>
+		<td style="color: #777;">${dto.regdate }</td>
 		<td>${dto.readcount }</td>
+		<td><img id="board-like" src="resources/img/board/heart.png">${dto.recommend }</td>
 	</tr>
 </c:forEach>
 	</table>
@@ -137,7 +225,6 @@
 		<button type="button" id="add" onclick="location.href='/dreamjourney/addBoard';" class="btn btn-primary">글쓰기</button>
 	</div>
 
-	
 	</div>
 	<%@ include file="/resources/inc/footer.jsp" %>
 	

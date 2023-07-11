@@ -19,10 +19,122 @@
  
  }
  
+ #board-content-title {
+ 	font-weight: bold;
+ 	font-size: 28px;
+ 	padding: 30px 0;
+ }
+ 
+ 
+ .hr-sect {
+ 	display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    margin: 80px 0px;
+ }
+ 
+ .hr-sect::before,
+ .hr-sect::after {
+ 	content: "";
+ 	flex-grow: 1;
+ 	background: rgba(0, 0, 0, 0.35);
+ 	height: 1px;
+ 	font-size: 0px;
+ 	line-height: 0px;
+ 	margin: 0px 16px;
+ }
+ 
+ #board-content-user1 {
+ 	width: 27px;
+ }
+
+ #board-content-user2 {
+ 	width: 27px;
+ }
+
+ #board-content-user3 {
+ 	width: 27px;
+ }
+ 
+ #board-content-nickname {
+ 	margin-right: 20px;
+ }
+ 
+ #board-content-seq {
+ 	text-align: right;	
+ }
+ 
+ #board-content-info-user {
+ 	display: inline-block;
+ 	width: 400px;
+ 
+ }
+ 
+ #board-content-info-feedback {
+ 	display: inline-block;
+ 	width: 550px;
+ 	text-align: right;
+ }
+ 
+ #board-content-regdate {
+ 	font-size: 13px;
+ 	color: #888;
+ 	text-align: right;
+ }
+ 
+ #board-content-content {
+ 	width: 950px;
+ 	padding: 30px;
+ 	font-size: 17px;
+ 	color: #333;
+ }
+  
+ #board-category-together {
+ 	dispaly: inline-block;
+ 	width: 37px;
+ 	border: 1px solid cornflowerblue;
+ 	border-radius: 2px;
+ 	color: cornflowerblue;
+ 	text-align: center;
+ 	font-weight: bold;
+ 	font-size: 13px;
+ }
+ 
+ 
+ #board-category-review {
+ 	dispaly: inline-block;
+ 	width: 37px;
+ 	border: 1px solid #7AB730;
+ 	border-radius: 2px;
+ 	color: #7AB730;
+ 	text-align: center;
+ 	font-weight: bold;
+ 	font-size: 13px;
+ 
+ }
+ 
+ #board-category-lost {
+ 	dispaly: inline-block;
+ 	width: 37px;
+ 	border: 1px solid tomato;
+ 	border-radius: 2px;
+ 	color: tomato;
+ 	text-align: center;
+ 	font-weight: bold;
+ 	font-size: 13px;
+ }
+ 
+ 
+ 
  #board-comment-input {
  	width: 1000px;
  	min-height: 50px;
  }
+
+
+
 
  #comment-area-title > span {
  	font-weight: none;
@@ -78,6 +190,22 @@
  	font-size: 12px;
  }
  
+ #board-comment-user {
+ 	width: 20px;
+ 	margin-right: 10px;
+ }
+ 
+ #board-writer-comment {
+ 	dispaly: inline-block;
+ 	width: 37px;
+ 	border: 1px solid tomato;
+ 	border-radius: 2px;
+ 	color: tomato;
+ 	text-align: center;
+ 	font-weight: bold;
+ 	font-size: 10px;
+ 	margin-bottom: 7px;
+ }
 
  
  #board-buttons {
@@ -87,11 +215,17 @@
  
  #board-feedback {
  	text-align: right;
+ 	
+ 	margin-bottom: 150px;
  }
  
+ #board-like-div {
+ 	display: inline-block;
+ 	width: 100px;
+ } 
  #board-like {
  	cursor: pointer;
- 	width: 30px;
+ 	width: 20px;
  }
  
  #board-siren {
@@ -99,15 +233,19 @@
  	width: 27px;
  }
  
- #board-feedback > div:nth-child(2) {
+ #board-readcount {
+ 	width: 27px;
+ }
+ 
+ #board-feedback > div:nth-child(1) {
  	cursor: pointer;
  }
  
- #board-feedback > div:nth-child(2):hover {
+ #board-feedback > div:nth-child(1):hover {
  	text-decoration: underline;
  }
  
- #board-feedback > div:nth-child(2) > span {
+ #board-feedback > div:nth-child(1) > span {
  	font-size: 12px;
  }
  
@@ -160,47 +298,54 @@
     </div>
 	<div id="main-board">
 	<div id="board-content">
-	<h3>Board</h3>
-	<table id="board-content-list" class="table">
+	<div class="hr-sect">
+		<a href="/dreamjourney/board">커뮤니티</a>
+		 &nbsp;&nbsp;/&nbsp;&nbsp; 
+		<a href="/dreamjourney/board">${bdetail.category}</a>
+	</div>
+	
+	<!-- 글 내용 영역 -->
+ 	<table id="board-content-list" class="table">
 		<tr>
-			<th>제목</th>
-			<td>${bdetail.title }</td>
+ 			<td id="board-content-title">${bdetail.title }</td>
+		</tr>
+
+		<tr>
+			<!-- <th>글쓴이</th> -->
+			<td>
+				<div id="board-content-info-user">
+					<c:if test="${bdetail.member_seq % 3 == 0 }">
+						<img id="board-content-user1" src="resources/img/board/user1.png">
+					</c:if>
+					<c:if test="${bdetail.member_seq % 3 == 1 }">
+						<img id="board-content-user1" src="resources/img/board/user2.png">
+					</c:if>
+					<c:if test="${bdetail.member_seq % 3 == 2 }">
+						<img id="board-content-user1" src="resources/img/board/user3.png">
+					</c:if>
+						<span id="board-content-nickname">${bdetail.nickname }</span> 
+				</div>
+				
+				<div id="board-content-info-feedback">
+					<img id="board-like" src="resources/img/board/heart.png" onclick="location.href='/dreamjourney/boardRecommend?free_seq=${bdetail.free_seq}'"><span style="margin-right: 20px; margin-left: 5px;">${bdetail.recommend }</span>
+					<img id="board-readcount" src="resources/img/board/eye.png">
+					<span id="board-content-readcount" style="margin-left: 5px;">${bdetail.readcount }</span>
+				</div>
 		</tr>
 		<tr>
-			<th>말머리</th>
-			<td>${bdetail.category }</td>
-		</tr>
-		<tr>
-			<th>번호</th>
-			<td>${bdetail.free_seq }</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>${bdetail.content}</td>
-		</tr>
-		<tr>
-			<th>글쓴이</th>
-			<td>${bdetail.nickname }</td>
-		</tr>
-		<tr>
-			<th>작성날짜</th>
-			<td>${bdetail.regdate}</td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td>${bdetail.readcount}</td>
+			<!-- <th>내용</th> -->
+			<td>
+				<div id="board-content-regdate">${bdetail.regdate }</div> 
+				<div id="board-content-content"> ${bdetail.content} </div>
+			</td>
 		</tr>
 	</table>
 	</div>
 	
 	<div id="board-feedback">
-		<div>
-			<img id="board-like" src="resources/img/board_like.png">
-			<span>${bdetail.recommend }</span>
-		</div>
 		<div onclick="location.href='/dreamjourney/boardReport?free_seq=${bdetail.free_seq}'">
 			<span>규칙을 위반한 글인가요? [신고하기]</span>
-			<img id="board-siren" src="resources/img/siren.png">
+			<img id="board-siren" src="resources/img/board/siren.png">
 		</div>
 	</div>
 	
@@ -208,7 +353,7 @@
 	<!-- 댓글 목록 출력하는 영역 -->
 	<!-- 댓글 수정/삭제 -->
 	<div id="comment-area">
-	<h3 id="comment-area-title">Comments <span>(${commentCount })</span></h3>
+	<h3 id="comment-area-title">댓글 <span>(${commentCount })</span></h3>
 	<c:if test="${clist.size() == 0 }">
 		<div id="comment-list-null">댓글이 없습니다.</div>	
 	</c:if>
@@ -222,8 +367,24 @@
 
 	<c:forEach items="${clist}" var="cdto">
 		<tr class="comment-list-tr">
-			<td>${cdto.nickname}</td>
-			<td id="comment-edit-content">${cdto.content }</td>
+			<td>
+				<c:if test="${cdto.member_seq % 3 == 0 }">
+					<img id="board-content-user1" src="resources/img/board/user1.png">
+				</c:if>
+				<c:if test="${cdto.member_seq % 3 == 1 }">
+					<img id="board-content-user1" src="resources/img/board/user2.png">
+				</c:if>
+				<c:if test="${cdto.member_seq % 3 == 2 }">
+					<img id="board-content-user1" src="resources/img/board/user3.png">
+				</c:if>
+				${cdto.nickname}
+			</td>
+			<td id="comment-edit-content">
+				<c:if test="${bdetail.member_seq == cdto.member_seq }">
+					<div id="board-writer-comment">글쓴이</div>
+				</c:if>
+				${cdto.content }
+			</td>
 			<td>
 				${cdto.regdate }
 				 <span id="comment-edit" onclick="editComment(${cdto.freply_seq}, ${cdto.free_seq });">수정</span> | 
