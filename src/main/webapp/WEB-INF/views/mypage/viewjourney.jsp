@@ -124,7 +124,7 @@
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">마이페이지</h3>
+				<h3 class="display-4 text-white text-uppercase">내 여행</h3>
 
 			</div>
 		</div>

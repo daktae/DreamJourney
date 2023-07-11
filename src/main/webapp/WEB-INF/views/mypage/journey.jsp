@@ -141,7 +141,7 @@ text-align: center;
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">제목</h3>
+				<h3 class="display-4 text-white text-uppercase">내 여행</h3>
 
 			</div>
 		</div>

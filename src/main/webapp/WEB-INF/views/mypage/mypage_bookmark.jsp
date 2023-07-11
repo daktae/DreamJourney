@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>TRAVELER - Free Travel Website Template</title>
+<title>Dream Journey</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="Free HTML Templates" name="keywords">
 <meta content="Free HTML Templates" name="description">
@@ -113,7 +113,7 @@ table.reserve_list {
 			<div
 				class="d-flex flex-column align-items-center justify-content-center"
 				style="min-height: 400px">
-				<h3 class="display-4 text-white text-uppercase">제목</h3>
+				<h3 class="display-4 text-white text-uppercase">즐겨찾기</h3>
 
 			</div>
 		</div>
@@ -125,12 +125,6 @@ table.reserve_list {
 	<div class="container-fluid py-5 mypagecontainer">
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
-
-
-
-
-
-
 
 			<div id="mypage_reserve_search">
 				<button type="button" class="btn btn-primary btn-lg m-3" id="btn-all">전체</button>
