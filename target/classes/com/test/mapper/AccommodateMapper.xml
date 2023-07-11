@@ -67,6 +67,17 @@
     	select count(acco_seq) as rcount from vwAccommodateReview where acco_seq=#{acco_seq}
 	</select>
 	
+	<!-- 즐겨찾기 추가 -->
+	<insert id="bookmark_on">
+		insert into tblBookmark values((select * from (select max(bookmark_seq) + 1 from tblBookmark)), #{acco_seq}, null, 1, null, null)
+	</insert>
+	
+	<!-- 즐겨찾기 삭제 -->
+	<delete id="bookmark_off">
+		delete from tblBookmark where activity_seq = #{acco_seq} and member_seq=#{member_seq}
+	</delete>
+	
+	
 	
 	<!-- 게시물 총 갯수 -->
 	<!-- 

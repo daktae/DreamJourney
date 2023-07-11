@@ -57,10 +57,20 @@
       justify-content:center;
    }
    
-   .team-img {
-      width: 255px;
-      height: 210px;
-   }
+	.team-img {
+		width: 250px;
+		height: 170px;
+	}
+	
+	.team-item {
+		width: 250px;
+		height: 300px;
+	}
+	
+	.py-5 {
+		padding-bottom: 0 !important;
+		padding-top: 0 !important;
+	}
    
 </style>
 <body>
@@ -80,7 +90,7 @@
 
    <!-- 내용쓰는곳 -->
     <!-- Team Start > 교통 -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-5" style="margin: 10px;">
         <div class="container pt-5 pb-3">
             <div class="text-center mb-3 pb-3">
                 <h1>교통편</h1>
@@ -89,7 +99,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-2 box">
                     <div class="team-item bg-white mb-4">
                         <div class="team-img position-relative overflow-hidden">
-                            <img src="/dreamjourney/resources/img/reservation/비행기.png">
+                            <img src="/dreamjourney/resources/img/reservation/비행기.png" style="height: 200px;">
                            <div class="team-social">
                                 <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/airplane">예약하기</a>
                             </div>
@@ -209,71 +219,28 @@ directions_bus
     <!-- Team Start > 액티비티 -->
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
-            <div class="text-center mb-3 pb-3">
-                <h1><a href="#">액티비티</a></h1>
+         <div class="text-center mb-3 pb-3">
+                <h1><a href="/dreamjourney/reservation/activity">액티비티</a></h1>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
+            <c:forEach items="${list }" var="dto" begin="0" end="3">
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-2 slide">
+                    <div class="team-item bg-white mb-4" onclick="location.href='/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}';">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
+                            <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${dto.thumbnail }" style="height: 160px;">
                             <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">상세보기</a>
+                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}">상세보기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
+                            <div class="text-truncate" id="title" style="padding: 15px; text-weight: bold; font-size: 20px;">${dto.title }</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">상세보기</a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">상세보기</a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 pb-2">
-                    <div class="team-item bg-white mb-4">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-4.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-outline-primary btn-square" href="#">상세보기</a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h5 class="text-truncate">Guide Name</h5>
-                            <p class="m-0">Designation</p>
-                        </div>
-                    </div>
-                    <div style="float:right; font-size: 20px; font-weight: bold;"> 
-               <a href="/dreamjourney/reservation/activity">더보기 →</a>                               
-                </div>
-                </div>
+                    </c:forEach>
                 
             </div>
+               <a href="/dreamjourney/reservation/activity" style="float: right; font-weight: bold; font-size: 20px;">더보기 →</a>                               
         </div>
     </div>
     <!-- Team End -->

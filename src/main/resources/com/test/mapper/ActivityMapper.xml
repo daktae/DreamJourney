@@ -58,6 +58,10 @@
       select * from vwAccommodate where room_seq = #{room_seq} and rdate = #{dates}
    </select> -->
    
+   <!-- 평점 평균 -->
+   <select id="avgScore" resultType="String" parameterType="String">
+   		select round(avg(score) , 1) as avgscore from vwAvg where activity_seq = #{activity_seq}
+   </select>
    
    
 </mapper>

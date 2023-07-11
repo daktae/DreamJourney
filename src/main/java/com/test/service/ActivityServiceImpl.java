@@ -79,6 +79,12 @@ public class ActivityServiceImpl implements ActivityService {
 		return mapper.cal(activity_seq);
 	}
    
+   @Override
+	public String avgScore(String activity_seq) {
+
+	   return mapper.avgScore(activity_seq);
+	}
+   
 //   @Override
 //   public RoomDTO rpay(RoomDTO rdto) {
 //
