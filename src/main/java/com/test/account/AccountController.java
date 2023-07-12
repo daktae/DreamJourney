@@ -70,7 +70,6 @@ public class AccountController {
 		    	session.setAttribute("seq", list.get(0).getMember_seq());
 		    	
 		    	System.out.println(session.getAttribute("name"));
-		    	session.setAttribute("tel", list.get(0).getTel());
 		    	
 		    	model.addAttribute("name", list.get(0).getName());
 		    	model.addAttribute("email", list.get(0).getEmail());
@@ -78,7 +77,6 @@ public class AccountController {
 		    	System.out.println(list);
 		    	model.addAttribute("name", list.get(0).getName());
 		    	model.addAttribute("email", list.get(0).getEmail());
-		    	model.addAttribute("tel", list.get(0).getTel());
 		    	return "redirect:/index";
 		    	
 		    }
@@ -109,12 +107,10 @@ public class AccountController {
 			session.setAttribute("nickname", name.get(0).getNickname());
 			session.setAttribute("email", name.get(0).getEmail());
 			session.setAttribute("seq", name.get(0).getMember_seq());
-			session.setAttribute("tel", name.get(0).getTel());
-
+			
 			model.addAttribute("name", name.get(0).getName());
 			model.addAttribute("nickname", name.get(0).getNickname());
 			model.addAttribute("email", name.get(0).getEmail());
-			model.addAttribute("tel", name.get(0).getTel());
 			return "redirect:/index";
 		} else {
 			model.addAttribute("message", "에러");
@@ -162,15 +158,18 @@ public class AccountController {
 	}
 	
 	@GetMapping("/findidok")
-	private String findidok(@RequestParam("tel") String tel) {
+	private String findidok(@RequestParam("tel") String tel, Model model) {
 		
 		List<MemberDTO> list = gLoginS.idCheck(tel);
+		System.out.println(tel);
 		
 		if(!list.isEmpty()) {
 			System.out.println("아이디 존재");
 			System.out.println(list.get(0).getEmail());
+			model.addAttribute("name", list.get(0).getName());
+			model.addAttribute("email", list.get(0).getEmail());
 			
-			return "redirect:/account/findidres";
+			return "redirect:/findidres";
 		} else {
 			System.out.println("아이디 존재X");
 			return "/account/findidresx";
@@ -178,6 +177,16 @@ public class AccountController {
 		
 	}
 	
+	@GetMapping("/findidres")
+	private String findidres() {
+		
+		return "/account/findidres";
+	}
+	@GetMapping("/findidresx")
+	private String findidresx() {
+		
+		return "/account/findidresx";
+	}
 	@GetMapping("/register")
 	private String register() {
 		
