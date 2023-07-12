@@ -15,7 +15,10 @@
                     <div class="d-inline-flex align-items-center">
                     	<c:if test="${sessionScope.name != null }">
                     		<p>${sessionScope.name}(${sessionScope.nickname })님 환영합니다</p>
+                    		<p class="text-body px-3">|</p>
                     		<p><a href="/dreamjourney/mypage/info">마이 페이지</a></p>
+                    		<p class="text-body px-3">|</p>
+                    		<p><a href="/dreamjourney/glogout">로그아웃</a></p>
                     	</c:if>
                     	<c:if test="${sessionScope.name == null }"> 
 	                        <p><a href="/dreamjourney/login">로그인</a></p>

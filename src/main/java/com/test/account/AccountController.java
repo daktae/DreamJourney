@@ -118,6 +118,14 @@ public class AccountController {
 		}
 	}
 	
+	@GetMapping("/glogout")
+	private String gLogoutok(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/index";
+	}
+	
 	
 	// 이메일 인증
 	@GetMapping("/findpwcheck")
