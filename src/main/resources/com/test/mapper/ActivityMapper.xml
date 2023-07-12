@@ -35,12 +35,12 @@
    
    <!-- 결제하기 -->
    <insert id="payok">
-      insert into tblPay values ((select max(pay_seq) + 1 from tblPay), default, '신용카드', #{totalPrice}, 3, #{adate_seq}, null, null, default)
+      insert into tblPay values ((select max(pay_seq) + 1 from tblPay), default, '신용카드', #{totalPrice}, #{member_seq}, #{adate_seq}, null, null, default)
    </insert>
    
    <!-- 즐겨찾기 추가 -->
    <insert id="bookmark_on">
-      insert into tblBookmark values((select * from (select max(bookmark_seq) + 1 from tblBookmark)), null, #{activity_seq}, 1, null, null)
+      insert into tblBookmark values((select * from (select max(bookmark_seq) + 1 from tblBookmark)), null, #{activity_seq}, #{member_seq}, null, null)
    </insert>
    
    <!-- 즐겨찾기 삭제 -->

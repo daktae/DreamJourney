@@ -16,7 +16,7 @@ public interface ActivityService {
 
    ActivityDTO pay(ActivityDTO pdto);
 
-   void bookmark_on(String activity_seq);
+   void bookmark_on(String activity_seq, String member_seq);
 
    String reviewCount(String activity_seq);
 

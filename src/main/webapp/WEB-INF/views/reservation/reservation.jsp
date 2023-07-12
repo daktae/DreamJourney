@@ -253,7 +253,6 @@ directions_bus
                 
 
 
-    <%@ include file="/resources/inc/footer.jsp"%>
     
 
 

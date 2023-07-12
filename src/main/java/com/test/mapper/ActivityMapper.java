@@ -1,6 +1,7 @@
 package com.test.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.test.domain.ActivityDTO;
 import com.test.domain.ReviewDTO;
@@ -16,7 +17,7 @@ public interface ActivityMapper {
 
    ActivityDTO pay(ActivityDTO pdto);
 
-   void bookmark_on(String activity_seq);
+   void bookmark_on(Map<String, String> map);
 
    String reviewCount(String activity_seq);
 

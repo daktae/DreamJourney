@@ -173,9 +173,9 @@ footer {
     }
     
     .select:hover {
-    	cursor:pointer;
-    	outline: 1px solid #AAA;
-    	box-shadow: 1px 1px 20px #ddd;
+       cursor:pointer;
+       outline: 1px solid #AAA;
+       box-shadow: 1px 1px 20px #ddd;
     }
     
     .selectors{
@@ -242,7 +242,12 @@ footer {
             <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
             <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
             <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
+             <c:if test="${!empty avgScore }">
              ${avgScore }
+             </c:if>
+             <c:if test="${empty avgScore }">
+             0
+             </c:if>
             <a href="#review" id="star" style="margin-left: 10px;">후기(${reviewCount }) > </a>
             <div id="price" style="float: right;">
                   ${adetail.category }
@@ -257,10 +262,10 @@ footer {
             </div>
             <button id="showbtn" type="button">상품 설명 더 보기 <span class="material-symbols-outlined">stat_minus_2</span></button>
             <hr>
-			<h3>옵션 선택</h3>
-			<div class="selectors">
+         <h3>옵션 선택</h3>
+         <div class="selectors">
                <span class="btn1 btn-primary">날짜</span> <input type="text" name="dates" id="datepicker" class="select" style="margin-right: 20px; width: 300px;" placeholder="날짜를 선택해주세요";>
-				<span class="btn1 btn-primary">인원</span> <input type="number" id="numberInput" class="select" min="1" max="${adetail.limit }" oninput="displayNumber()" name="totalPeople" style="text-align: center;">
+            <span class="btn1 btn-primary">인원</span> <input type="number" id="numberInput" class="select" min="1" max="${adetail.limit }" oninput="displayNumber()" name="totalPeople" style="text-align: center;">
             </div>
             <hr>
             <h3>위치 안내</h3>
@@ -296,7 +301,7 @@ footer {
             
             <div>
                <button type="submit" class="btn btn-primary reservation" style="width: 200px; font-weight: bold; margin: 5px 30px;" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
-			   <button type="submit" class="btn btn-secondary" style="width: 200px; color: #656565; font-weight: bold; margin: 5px 30px; border: 1px solid #7AB730;" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
+            <button type="button" class="btn btn-secondary" style="width: 200px; color: #656565; font-weight: bold; margin: 5px 30px; border: 1px solid #7AB730;" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
                
                <input type="hidden" value="${adetail.activity_seq }" name="activity_seq">
                
@@ -368,7 +373,7 @@ footer {
     minDate: 0,
     beforeShowDay: disableSomeDay
   });
-	//선택 가능 날짜
+   //선택 가능 날짜
    var disabledDays = ${cal};
    
    //날짜 나타내기 전에 (beforeShowDay) 실행할 함수
@@ -498,5 +503,4 @@ footer {
    
 </script>
 </html>
-
 

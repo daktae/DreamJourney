@@ -61,6 +61,8 @@ public class AccountController {
 		    	
 		    	model.addAttribute("name", name);
 		    	model.addAttribute("email", email);
+		    	
+		    	session.invalidate();
 		    	return "redirect:/register";
 		    	
 		    } else {
@@ -68,6 +70,7 @@ public class AccountController {
 		    	session.setAttribute("nickname", list.get(0).getNickname());
 		    	session.setAttribute("email", list.get(0).getEmail());
 		    	session.setAttribute("seq", list.get(0).getMember_seq());
+		    	session.setAttribute("tel", list.get(0).getTel());
 		    	
 		    	System.out.println(session.getAttribute("name"));
 		    	
@@ -107,6 +110,7 @@ public class AccountController {
 			session.setAttribute("nickname", name.get(0).getNickname());
 			session.setAttribute("email", name.get(0).getEmail());
 			session.setAttribute("seq", name.get(0).getMember_seq());
+			session.setAttribute("tel", name.get(0).getTel());
 			
 			model.addAttribute("name", name.get(0).getName());
 			model.addAttribute("nickname", name.get(0).getNickname());

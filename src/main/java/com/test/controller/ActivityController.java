@@ -80,11 +80,14 @@ public class ActivityController {
       mdto.setName(session.getAttribute("name").toString());
       mdto.setEmail(session.getAttribute("email").toString());
       mdto.setTel(session.getAttribute("tel").toString());
-      
+      	
       ActivityDTO pdto = new ActivityDTO();		//결제 정보 가져오기
       pdto.setActivity_seq(activity_seq);
       pdto.setDates(dates);
-            
+      pdto.setMember_seq(session.getAttribute("seq").toString());
+      
+      System.out.println(pdto);
+      
       ActivityDTO pdetail = service.pay(pdto);
       
       model.addAttribute("pdetail", pdetail);
@@ -148,9 +151,11 @@ public class ActivityController {
    //즐겨찾기
    @PostMapping("/reservation/viewactivity")
    @ResponseBody
-   public void bookmark_on(@RequestParam("activity_seq") String activity_seq) {
+   public void bookmark_on(@RequestParam("activity_seq") String activity_seq, HttpSession session) {
        
-       service.bookmark_on(activity_seq);
+	   String member_seq = (String) session.getAttribute("seq");
+	   
+       service.bookmark_on(activity_seq, member_seq);
    }
    
    @GetMapping("/reservation/payok")

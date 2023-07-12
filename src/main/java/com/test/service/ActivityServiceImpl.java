@@ -1,6 +1,8 @@
 package com.test.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,9 +52,14 @@ public class ActivityServiceImpl implements ActivityService {
    
    //즐겨찾기 추가
    @Override
-   public void bookmark_on(String activity_seq) {
-      mapper.bookmark_on(activity_seq);
-      System.out.println(activity_seq);
+   public void bookmark_on(String activity_seq, String member_seq) {
+
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("member_seq", member_seq);
+		map.put("activity_seq", activity_seq);
+		
+		mapper.bookmark_on(map);
+		
    }
    
    //댓글 개수
