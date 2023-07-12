@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +18,11 @@
 
 .pb-5, .py-5 {
    padding-bottom: 0px !important;
+}
+
+.p-w {
+	height: 209px;
+	padding: 1.5rem !important;
 }
 
 .padleft {
@@ -48,6 +55,8 @@ a:hover {
 .active {
    color: #7AB730 !important;
 }
+
+
 </style>
 
 <body>
@@ -381,192 +390,62 @@ a:hover {
 
 
    <!-- Package Start -->
-   <div class="container-fluid py-5">
-      <div class="container pt-5 pb-3">
-         <div class="text-center mb-3 pb-3">
-            <h1>베스트 숙소</h1>
-         </div>
-         <div id="packageSlider" class="carousel slide" data-ride="false">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="row">
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
+
+   
+<div class="container-fluid py-5">
+   <div class="container pt-5 pb-3">
+      <div class="text-center mb-3 pb-3">
+         <h1>베스트 숙소</h1>
+      </div>
+      <div id="packageSlider" class="carousel slide" data-ride="false" style="overflow: hidden;">
+         <div class="carousel-inner">
+            <c:forEach items="${aclist}" var="aclist" varStatus="loop">
+               <c:if test="${loop.index % 3 == 0}">
+                  <div class="carousel-item ${loop.index == 0 ? 'active' : ''}">
+                     <div class="row">
+               </c:if>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                           <div class="package-item bg-white mb-2">
+      <div style="position: relative; overflow: hidden;">
+         <img class="img-fluid" src="/dreamjourney/resources/img/accommodate/${aclist.acco_img}.jpg" style="height:233px; width:349.98px; object-fit: cover;" alt="">
+      </div>
+                              <div class="p-w">
+                                 <div class="d-flex justify-content-between mb-3">
+                                    <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${aclist.address }</small>
+                                    
+                                 </div>
+                                 <a class="h5 text-decoration-none" href="">${aclist.name }</a>
+                                 <div class="border-top mt-4 pt-4">
+                                    <div class="d-flex justify-content-between">
+                                       <h6 class="m-0">
+                                       </h6>
+                                    </div>
                                  </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+               <c:if test="${(loop.index + 1) % 3 == 0 || loop.last}">
                      </div>
                   </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="row">
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <a class="btn btn-dark carousel-control-prev" href="#packageSlider"
-               role="button" data-slide="prev"
-               style="width: 45px; height: 45px; margin-top: 95px; margin-left: 10px;">
-               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-               <span class="sr-only">이전</span>
-            </a> <a class="btn btn-dark carousel-control-next" href="#packageSlider"
-               role="button" data-slide="next"
-               style="width: 45px; height: 45px; margin-top: 95px; margin-right: 10px;">
-               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-               <span class="sr-only">다음</span>
-            </a>
+               </c:if>
+            </c:forEach>
          </div>
+         <a class="btn btn-dark carousel-control-prev" href="#packageSlider" role="button" data-slide="prev"
+            style="width: 45px; height: 45px; margin-top: 95px; margin-left: 10px;">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">이전</span>
+         </a>
+         <a class="btn btn-dark carousel-control-next" href="#packageSlider" role="button" data-slide="next"
+            style="width: 45px; height: 45px; margin-top: 95px; margin-right: 10px;">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">다음</span>
+         </a>
       </div>
    </div>
+</div>
+
+
+
 
 
 
@@ -577,172 +456,39 @@ a:hover {
          <div class="text-center mb-3 pb-3">
             <h1>베스트 액티비티</h1>
          </div>
-         <div id="activitySlider" class="carousel slide" data-ride="false">
+         <div id="activitySlider" class="carousel slide" data-ride="false" style="overflow: hidden;">
             <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="row">
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
+               <c:forEach items="${actlist}" var="actlist" varStatus="loop">
+               <c:if test="${loop.index % 3 == 0}">
+                  <div class="carousel-item ${loop.index == 0 ? 'active' : ''}">
+                     <div class="row">
+               </c:if>
+                        <div class="col-lg-4 col-md-6 mb-4">
+                           <div class="package-item bg-white mb-2">
+      <div style="position: relative; overflow: hidden;">
+         <img class="img-fluid" src="/dreamjourney/resources/img/reservation/${actlist.thumbnail}" style="height:233px; width:349.98px; object-fit: cover;" alt="">
+      </div>
+                              <div class="p-w">
+                                 <div class="d-flex justify-content-between mb-3">
+                                    <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${actlist.address }</small>
+                                    
+                                 </div>
+                                 <a class="h5 text-decoration-none" href="">${actlist.title}</a>
+                                 <div class="border-top mt-4 pt-4">
+                                    <div class="d-flex justify-content-between">
+                                       <h6 class="m-0">
+                                       </h6>
+                   <h5><fmt:formatNumber value="${actlist.price }" pattern="#,###" />원</h5>
+                                    </div>
                                  </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+               <c:if test="${(loop.index + 1) % 3 == 0 || loop.last}">
                      </div>
                   </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="row">
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="package-item bg-white mb-2">
-                           <img class="img-fluid"
-                              src="/dreamjourney/resources/img/package-1.jpg" alt="">
-                           <div class="p-4">
-                              <div class="d-flex justify-content-between mb-3">
-                                 <small class="m-0"><i
-                                    class="fa fa-map-marker-alt text-primary mr-2"></i>Thailand</small>
-                                 <small class="m-0"><i
-                                    class="fa fa-calendar-alt text-primary mr-2"></i>3 days</small> <small
-                                    class="m-0"><i class="fa fa-user text-primary mr-2"></i>2
-                                    Person</small>
-                              </div>
-                              <a class="h5 text-decoration-none" href="">Discover
-                                 amazing places of the world with us</a>
-                              <div class="border-top mt-4 pt-4">
-                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0">
-                                       <i class="fa fa-star text-primary mr-2"></i>4.5 <small>(250)</small>
-                                    </h6>
-                                    <h5 class="m-0">$350</h5>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+               </c:if>
+            </c:forEach>
             </div>
             <a class="btn btn-dark carousel-control-prev" href="#activitySlider"
                role="button" data-slide="prev"
@@ -758,194 +504,67 @@ a:hover {
          </div>
       </div>
    </div>
+   
    <!-- Packages End -->
 
    <!-- Blog Start -->
-   <div class="container-fluid py-5">
-      <div class="container pt-5 pb-3">
-         <div class="text-center mb-3 pb-3">
-            <h1>드림저니 인기 여행기</h1>
+  <div class="container-fluid py-5">
+   <div class="container pt-5 pb-3">
+      <div class="text-center mb-3 pb-3">
+         <h1>드림저니 인기 여행기</h1>
+      </div>
+      <div id="travelSlider" class="carousel slide" data-ride="false">
+         <div class="carousel-inner">
+            <c:forEach items="${tlist}" var="tlist" varStatus="loop">
+               <c:if test="${loop.index % 3 == 0}">
+                  <div class="carousel-item ${loop.index == 0 ? 'active' : ''}">
+                     <div class="row">
+               </c:if>
+                        <div class="col-lg-4 col-md-6 mb-4 pb-2">
+                           <div class="blog-item">
+                              <div class="position-relative">
+                              <img src="/dreamjourney/resources/img/hearttttt.png" style="width:30px; height:30px; position:absolute; top:38px; left:280px;">
+
+                              <span style="position:absolute; top:30px; font-size:30px; left:320px; color:#ffffff">${tlist.recommend }</span>
+                                 <img class="img-fluid w-100"
+                                    src="/dreamjourney/resources/img/destination-${loop.index + 1}.jpg" alt="">
+                              </div>
+                              <div class="bg-white p-4 padleft">
+                                 <div class="d-flex mb-2">
+                                    <div style="width: 50px;">
+                                       <img src="/dreamjourney/resources/img/buruk.png"
+                                          style="width: 50px; border-radius: 100px; object-fit: cover;">
+                                    </div>
+                                    <div style="margin-top: 3px; margin-left: 30px;">
+                                       <a style="color: #939393 !important;"
+                                          class="text-primary text-uppercase text-decoration-none"
+                                          href="">${tlist.nickname }</a> <br> <a class="h5 text-primary text-uppercase text-decoration-none" href="">${tlist.title }</a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+               <c:if test="${(loop.index + 1) % 3 == 0 || loop.last}">
+                     </div>
+                  </div>
+               </c:if>
+            </c:forEach>
          </div>
-         <div id="travelSlider" class="carousel slide" data-ride="false">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="row">
-                     <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog-item">
-                           <div class="position-relative">
-                              <img class="img-fluid w-100"
-                                 src="/dreamjourney/resources/img/blog-1.jpg" alt="">
-                           </div>
-                           <div class="bg-white p-4 padleft">
-                              <div class="d-flex mb-2">
-                                 <div style="width: 50px;">
-                                    <img src="/dreamjourney/resources/img/team-1.jpg"
-                                       style="width: 50px; border-radius: 100px; object-fit: cover;">
-                                 </div>
-                                 <div style="margin-top: 3px; margin-left: 10px;">
-                                    <a style="color: #939393 !important;"
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">이동재</a> <br> <a
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">걸어서 속초 속으로</a>
-                                 </div>
-                              </div>
-                              <a class="h5 m-0 text-decoration-none" href="">내용요약 내용요약
-                                 내용요약 내용요약 ...</a>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog-item">
-                           <div class="position-relative">
-                              <img class="img-fluid w-100"
-                                 src="/dreamjourney/resources/img/blog-1.jpg" alt="">
-                           </div>
-                           <div class="bg-white p-4 padleft">
-                              <div class="d-flex mb-2">
-                                 <div style="width: 50px;">
-                                    <img src="/dreamjourney/resources/img/user.jpg"
-                                       style="width: 50px; border-radius: 100px; object-fit: cover;">
-                                 </div>
-                                 <div style="margin-top: 3px; margin-left: 10px;">
-                                    <a style="color: #939393 !important;"
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">이동재</a> <br> <a
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">걸어서 속초 속으로</a>
-                                 </div>
-                              </div>
-                              <a class="h5 m-0 text-decoration-none" href="">내용요약 내용요약
-                                 내용요약 내용요약 ...</a>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog-item">
-                           <div class="position-relative">
-                              <img class="img-fluid w-100"
-                                 src="/dreamjourney/resources/img/blog-1.jpg" alt="">
-                           </div>
-                           <div class="bg-white p-4 padleft">
-                              <div class="d-flex mb-2">
-                                 <div style="width: 50px;">
-                                    <img src="/dreamjourney/resources/img/user.jpg"
-                                       style="width: 50px; border-radius: 100px; object-fit: cover;">
-                                 </div>
-                                 <div style="margin-top: 3px; margin-left: 10px;">
-                                    <a style="color: #939393 !important;"
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">이동재</a> <br> <a
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">걸어서 속초 속으로</a>
-                                 </div>
-                              </div>
-                              <a class="h5 m-0 text-decoration-none" href="">내용요약 내용요약
-                                 내용요약 내용요약 ...</a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="row">
-                     <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog-item">
-                           <div class="position-relative">
-                              <img class="img-fluid w-100"
-                                 src="/dreamjourney/resources/img/blog-1.jpg" alt="">
-                           </div>
-                           <div class="bg-white p-4 padleft">
-                              <div class="d-flex mb-2">
-                                 <div style="width: 50px;">
-                                    <img src="/dreamjourney/resources/img/user.jpg"
-                                       style="width: 50px; border-radius: 100px; object-fit: cover;">
-                                 </div>
-                                 <div style="margin-top: 3px; margin-left: 10px;">
-                                    <a style="color: #939393 !important;"
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">이동재</a> <br> <a
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">걸어서 속초 속으로</a>
-                                 </div>
-                              </div>
-                              <a class="h5 m-0 text-decoration-none" href="">내용요약 내용요약
-                                 내용요약 내용요약 ...</a>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog-item">
-                           <div class="position-relative">
-                              <img class="img-fluid w-100"
-                                 src="/dreamjourney/resources/img/blog-1.jpg" alt="">
-                           </div>
-                           <div class="bg-white p-4 padleft">
-                              <div class="d-flex mb-2">
-                                 <div style="width: 50px;">
-                                    <img src="/dreamjourney/resources/img/user.jpg"
-                                       style="width: 50px; border-radius: 100px; object-fit: cover;">
-                                 </div>
-                                 <div style="margin-top: 3px; margin-left: 10px;">
-                                    <a style="color: #939393 !important;"
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">이동재</a> <br> <a
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">걸어서 속초 속으로</a>
-                                 </div>
-                              </div>
-                              <a class="h5 m-0 text-decoration-none" href="">내용요약 내용요약
-                                 내용요약 내용요약 ...</a>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-4 col-md-6 mb-4 pb-2">
-                        <div class="blog-item">
-                           <div class="position-relative">
-                              <img class="img-fluid w-100"
-                                 src="/dreamjourney/resources/img/blog-1.jpg" alt="">
-                           </div>
-                           <div class="bg-white p-4 padleft">
-                              <div class="d-flex mb-2">
-                                 <div style="width: 50px;">
-                                    <img src="/dreamjourney/resources/img/user.jpg"
-                                       style="width: 50px; border-radius: 100px; object-fit: cover;">
-                                 </div>
-                                 <div style="margin-top: 3px; margin-left: 10px;">
-                                    <a style="color: #939393 !important;"
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">이동재</a> <br> <a
-                                       class="text-primary text-uppercase text-decoration-none"
-                                       href="">걸어서 속초 속으로</a>
-                                 </div>
-                              </div>
-                              <a class="h5 m-0 text-decoration-none" href="">내용요약 내용요약
-                                 내용요약 내용요약 ...</a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
             <a class="btn btn-dark carousel-control-prev" href="#travelSlider"
                role="button" data-slide="prev"
-               style="width: 45px; height: 45px; margin-top: 200px; margin-left: 10px;">
+               style="width: 45px; height: 45px; margin-top: 95px; margin-left: 10px;">
                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                <span class="sr-only">이전</span>
-            </a> <a class="btn btn-dark carousel-control-next" href="#travelSlider"
-               role="button" data-slide="next"
-               style="width: 45px; height: 45px; margin-top: 200px; margin-right: 10px;">
+            </a> <a class="btn btn-dark carousel-control-next"
+               href="#travelSlider" role="button" data-slide="next"
+               style="width: 45px; height: 45px; margin-top: 95px; margin-right: 10px;">
                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                <span class="sr-only">다음</span>
             </a>
-         </div>
       </div>
    </div>
+</div>
 
-<form method="post" action="/dreamjourney/unresi">
-  <input type="hidden" name="email" value="${param.email}">
-  <button type="submit">회원탈퇴</button>
-</form>
 
    <!-- Blog End -->
    <%@ include file="/resources/inc/footer.jsp"%>

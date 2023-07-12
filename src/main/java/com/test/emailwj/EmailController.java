@@ -19,12 +19,10 @@ public class EmailController {
 
 	// 이메일 인증
 	@GetMapping("/mailCheck")
+	//(Ajax로 get방식으로 전송된 email을 joinEmail메서드로 전달
 	@ResponseBody
 	public String mailCheck(String email) {
-		System.out.println("이메일 인증 요청이 들어옴!");
-		System.out.println("이메일 인증 이메일 : " + email);
 		return mailService.joinEmail(email);
-
 	}
 
 	// 아이디 중복체크

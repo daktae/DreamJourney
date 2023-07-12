@@ -68,6 +68,13 @@ desc tblmember;
 select * from vwactivity where address like '%서울%';
 select * from vwactivity where title like '%카약%';
 select * from vwactivity where address like '%서울%' and title like '%카약%';
+select * from tblroom;
+select * from tblaccommodate;
+
+from tbltransport
+inner join tbltrandate on tbltransport.tran_seq = tbltrandate.tran_seq where type='기차';
+
+select * from vwactivity;
 
 select * from tbltrip;
 

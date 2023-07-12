@@ -84,7 +84,7 @@ public class CheckControllerWj {
 					e.printStackTrace();
 				}
 
-//============================================
+//================================================================
 //	       yyyy-mm-dd로 성인여부 판단
 	         // 문자열을 LocalDate 객체로 변환
 	            LocalDate date = LocalDate.parse(strDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -103,7 +103,6 @@ public class CheckControllerWj {
 	            // 결과 출력
 	            if (isAdult) {
 	                response.put("isAdult", true);
-	                response.put("testMessage", "성인이당!");
 	            } else {
 	                System.out.println("미성년자입니다.");
 	                response.put("isAdult", false);

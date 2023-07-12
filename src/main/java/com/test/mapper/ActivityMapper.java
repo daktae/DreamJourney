@@ -10,6 +10,8 @@ import com.test.domain.ReviewDTO;
 public interface ActivityMapper {
 
    List<ActivityDTO> activitylist();
+   
+   List<ActivityDTO> activitylist2();
 
    ActivityDTO get(String activity_seq);
 
@@ -32,6 +34,8 @@ List<String> cal(String activity_seq);
 String avgScore(String activity_seq);
 
 // RoomDTO rpay(RoomDTO rdto);
+
+
 
 
 }

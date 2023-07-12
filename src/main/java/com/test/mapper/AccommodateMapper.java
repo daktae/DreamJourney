@@ -33,6 +33,8 @@ public interface AccommodateMapper {
    String reviewCount(String acco_seq);
 
    void bookmark_on(String acco_seq);
+
+   List<AccommodateDTO> accommodatelist2();
    
    //Integer count() throws Exception;
 }

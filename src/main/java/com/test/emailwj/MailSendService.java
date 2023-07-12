@@ -13,20 +13,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class MailSendService {
 	@Autowired
-	private JavaMailSenderImpl mailSender;
+	private JavaMailSenderImpl mailSender; //인증번호를 전송해주는 이메일 설정 매핑
 	private int authNumber; 
 		public void makeRandomNumber() {
-			// 난수의 범위 111111 ~ 999999 (6자리 난수)
+			//이메일 인증번호(난수) 생성메서드
 			Random r = new Random();
 			int checkNum = r.nextInt(888888) + 111111;
-			System.out.println("인증번호 : " + checkNum);
 			authNumber = checkNum;
 		}
 		
 		
 				//이메일 보낼 양식
-		public String joinEmail(String email) {
-			makeRandomNumber();
+		public String joinEmail(String email) {	
+			makeRandomNumber(); //이메일 인증번호(난수) 생성
 			String setFrom = ".com"; // email-config에 설정한 자신의 이메일 주소를 입력 
 			String toMail = email;
 			String title = "DreamJourney 회원 가입 인증 이메일 입니다."; // 이메일 제목 

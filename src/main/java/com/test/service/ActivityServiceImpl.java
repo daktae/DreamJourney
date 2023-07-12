@@ -24,6 +24,13 @@ public class ActivityServiceImpl implements ActivityService {
       return mapper.activitylist();
    }
    
+   //액티비티 전체 목록2
+   @Override
+   public List<ActivityDTO> activitylist2() {
+      return mapper.activitylist2();
+   }
+   
+   
    //상세보기
    @Override
    public ActivityDTO get(String activity_seq) {

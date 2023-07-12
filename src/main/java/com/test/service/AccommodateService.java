@@ -11,6 +11,8 @@ import com.test.domain.TransportDTO;
 public interface AccommodateService {
 
 	List<AccommodateDTO> accommodatelist();
+   
+   List<AccommodateDTO> accommodatelist2();
 
 	AccommodateDTO get(String acco_seq);
 

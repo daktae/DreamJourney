@@ -397,6 +397,12 @@ VALUES (trip_seq.nextVal, #{member_seq}, #{title}, 0, sysdate, TO_DATE(#{begin},
 		update tblmember set name = '　', email = '　', pw = '　', nickname = '　', tel = '　', unresi = 'y' where member_seq = #{member_seq}
 	</delete>
  
+ <!-- 내여행기 전체보기 -->
+ 	<select id="getTripAll" resultType="com.test.domain.TripDTO">
+		select * 
+from tblmember
+inner join tbltrip on tblmember.member_seq = tbltrip.member_seq
+	</select>
 </mapper>
 
 

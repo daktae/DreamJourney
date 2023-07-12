@@ -7,6 +7,11 @@
       select * from tblActivity
    </select>
    
+   <!-- 액티비티 전체 목록2 -->
+      <select id="activitylist2" resultType="com.test.domain.ActivityDTO">
+     select * from vwactivity
+   </select>
+   
    <!-- 액티비티 상세보기 -->
    <select id="get" resultType="com.test.domain.ActivityDTO" parameterType="String">
       select * from tblActivity where activity_seq = #{activity_seq}

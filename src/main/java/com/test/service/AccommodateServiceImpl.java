@@ -102,4 +102,21 @@ public class AccommodateServiceImpl implements AccommodateService{
 	
 	//DAO 데이터를 주고 받으며 비즈니스 로직 수행
 	
+	@Override
+	public List<AccommodateDTO> accommodatelist2() {
+		 return mapper.accommodatelist2();
+	}
+
+   
+   // 게시물 총 갯수
+   /*
+   @Override
+   public Integer count() throws Exception {
+    return mapper.count(); 
+   }
+   */
+   
+   
+   //DAO 데이터를 주고 받으며 비즈니스 로직 수행
+   
 }

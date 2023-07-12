@@ -11,6 +11,13 @@
 		select * from tblAccommodate
 	</select>
 	
+	<!-- 숙소 리스트2 -->
+	<!-- 가격 조회 실패 -->
+	<select id="accommodatelist2"
+		resultType="com.test.domain.AccommodateDTO">
+		select * from tblAccommodate
+	</select>
+	
 <!-- 하다가 만거 -->
 	<select id="accomodatecategorycount"
 		resultType="com.test.domain.AccommodateDTO">
