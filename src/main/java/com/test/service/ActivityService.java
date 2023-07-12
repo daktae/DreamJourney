@@ -9,6 +9,8 @@ import com.test.domain.ReviewDTO;
 public interface ActivityService {
 
    List<ActivityDTO> activitylist();
+   
+   List<ActivityDTO> activitylist2();
 
    ActivityDTO get(String activity_seq);
 

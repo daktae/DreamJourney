@@ -351,6 +351,12 @@ VALUES (trip_seq.nextVal, 5, #{title}, 0, sysdate, TO_DATE(#{begin}, 'YYYY-MM-DD
 		ORDER BY s.schedule_seq ASC
 	</select>
  
+ <!-- 내여행기 전체보기 -->
+ 	<select id="getTripAll" resultType="com.test.domain.TripDTO">
+		select * 
+from tblmember
+inner join tbltrip on tblmember.member_seq = tbltrip.member_seq
+	</select>
 </mapper>
 
 

@@ -31,5 +31,6 @@ public class ActivityDTO {
 	private String dates;			//선택 날짜		
 	
 	private String member_seq;	//멤버 seq
+	private String thumbnail;
 
 }

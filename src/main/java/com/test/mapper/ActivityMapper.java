@@ -9,6 +9,8 @@ import com.test.domain.ReviewDTO;
 public interface ActivityMapper {
 
    List<ActivityDTO> activitylist();
+   
+   List<ActivityDTO> activitylist2();
 
    ActivityDTO get(String activity_seq);
 
@@ -25,6 +27,8 @@ public interface ActivityMapper {
    String paydate(ActivityDTO dto);
 
    void payok(ActivityDTO dto);
+
+
 
 
 }

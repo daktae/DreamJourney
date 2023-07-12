@@ -90,6 +90,11 @@ public class AccommodateServiceImpl implements AccommodateService{
          //System.out.println(acco_seq);
       }
 
+	@Override
+	public List<AccommodateDTO> accommodatelist2() {
+		 return mapper.accommodatelist2();
+	}
+
    
    // 게시물 총 갯수
    /*

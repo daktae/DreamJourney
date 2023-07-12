@@ -230,6 +230,12 @@ public class MypageServiceImpl implements MypageService {
 		return mapper.getTrip();
 	}
 	
+	//후기전체보기
+	@Override
+	public List<TripDTO> getTripAll() {
+		return mapper.getTripAll();
+	}
+	
 	@Override
 	public void journeyshar(String trip_seq) {
 
