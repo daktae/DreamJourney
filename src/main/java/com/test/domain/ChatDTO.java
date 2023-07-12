@@ -11,5 +11,6 @@ public class ChatDTO {
 	private String regdate;
 	
 	private String seq;
+	private String nickname;
 
 }

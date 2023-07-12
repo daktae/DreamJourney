@@ -29,7 +29,7 @@ hr {
 
 #main {
 	width: 400px;
-	height: 510px;
+	height: 620px;
 	margin: 3px;
 
 	
@@ -241,7 +241,9 @@ hr {
 		window.name = name;
 		
 		// 웹 소켓 연결하기
+		console.log('웹 소켓 연결 직전');
 		ws = new WebSocket(url);
+		console.log('웹 소켓 연결 성공');
 		
 		ws.onopen = function(evt) {
 			log('서버 연결 성공');

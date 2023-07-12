@@ -507,7 +507,9 @@
 		let free_seq = seq;
 		let name = nickname;
 		
-		let child = window.open(`/dreamjourney/chat?free_seq=\${free_seq}&sender=\${name}`, 'chat', 'width=560 height=650');
+		console.log('nickname');
+		
+		let child = window.open(`/dreamjourney/chat?free_seq=\${free_seq}&sender=\${name}`, 'chat', 'width=560 height=750');
 		
 		
 		$('.in').prop('disabled', true);

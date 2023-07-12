@@ -52,6 +52,7 @@ public class BoardController {
 		model.addAttribute("nickname",session.getAttribute("nickname"));
 		model.addAttribute("seq",session.getAttribute("seq"));
 		
+		System.out.println(session.getAttribute("nickname"));
 		
 		model.addAttribute("bdetail", dto);
 		model.addAttribute("clist", cdto);
