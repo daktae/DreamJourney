@@ -2,22 +2,22 @@ package com.test.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.domain.AccommodateDTO;
-import com.test.domain.ActivityDTO;
 import com.test.domain.RoomDTO;
 import com.test.domain.TrandateDTO;
 import com.test.domain.TransportDTO;
 import com.test.service.AccommodateService;
+import com.test.service.ActivityService;
 
 @Controller
 public class ReservationController {
@@ -29,14 +29,17 @@ public class ReservationController {
 
 
 	@GetMapping("/reservation")
-	private String reservation() {
-
+	private String reservation(Model model, HttpSession session) {
+		model.addAttribute("list", aservice.activitylist());
 		return "/reservation/reservation";
 	}
 
 	
 	@Autowired
 	private AccommodateService service;
+	
+	@Autowired
+	private ActivityService aservice;
 	
 	
 	@GetMapping("/reservation/accommodate")
@@ -160,6 +163,7 @@ public class ReservationController {
 		    service.bookmark_on(acco_seq);
 		}
 	
+		
 	
 	// 게시물 목록 + 페이징 추가
 	/*

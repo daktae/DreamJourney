@@ -62,7 +62,7 @@ h3 {
    background-color: #EEE;
    float: right;
    width: 650px;
-   height: 800px;
+   height: 750px;
    margin-right: 30px;
    padding: 20px;
 }
@@ -75,7 +75,7 @@ h3 {
    justify-content: center;
    display: inline-block;
    width: 750px;
-   height: 800px;
+   height: 750px;
    padding: 20px;
 }
 
@@ -121,97 +121,23 @@ a:hover {
 </style>
 <body>
    <!-- pay.jsp > 결제 페이지 -->
-
-
-
-<!-- Topbar Start -->
-    <div class="container-fluid bg-light pt-3 d-none d-lg-block">
+   <%@ include file="/resources/inc/header.jsp"%>
+   
+   <!-- 제목 쓰는곳 -->
+    <div class="container-fluid page-header">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                       <c:if test="${param.name != null }">
-                          <p>${param.name }(${param.nickname })님 환영합니다</p>
-                       </c:if>
-                       <c:if test="${param.name == null }"> 
-                           <p><a href="/dreamjourney/login">로그인</a></p>
-                           <p class="text-body px-3">|</p>
-                           <p><a href="/dreamjourney/register">회원가입</a></p>
-                       </c:if>
-                    </div>
-                </div>
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                <h3 class="display-4 text-white text-uppercase">결제</h3>
+                
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
-
-
-
-   <!-- Navbar Start -->
-   <div class="container-fluid position-relative nav-bar p-0">
-      <div class="container-lg position-relative p-0 px-lg-3"
-         style="z-index: 9;">
-         <nav
-            class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-            <a href="" class="navbar-brand">
-               <h1 class="m-0 text-primary">
-                  <span class="text-dark">Dream</span>Journey
-               </h1>
-            </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse"
-               data-target="#navbarCollapse">
-               <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between px-5"
-               id="navbarCollapse">
-               <div class="navbar-nav ml-auto py-0">
-                  <a href="/dreamjourney/index" class="nav-item nav-link ">홈</a> <a
-                     href="/dreamjourney/reservation" class="nav-item nav-link active">예약/예매</a> <a
-                     href="service.html" class="nav-item nav-link">추천 여행지</a> <a
-                     href="/dreamjourney/board" class="nav-item nav-link">커뮤니티</a>
-
-                  <div class="nav-item dropdown">
-                     <a href="#" class="nav-link dropdown-toggle"
-                        data-toggle="dropdown">Contact</a>
-                     <div class="dropdown-menu border-0 rounded-0 m-0">
-
-                        <a href="single.html" class="dropdown-item">공지사항</a> <a
-                           href="single.html" class="dropdown-item">FAQ/문의</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </nav>
-      </div>
-   </div>
-   <!-- Navbar End -->
-
-
-
-   <!-- 제목 쓰는곳 -->
-   <div class="container-fluid page-header">
-      <div class="container">
-         <div
-            class="d-flex flex-column align-items-center justify-content-center"
-            style="min-height: 400px">
-            <h3 class="display-4 text-white text-uppercase">예약하기</h3>
-
-         </div>
-      </div>
-   </div>
-   <!-- Header End -->
-
-
+    <!-- Header End -->   
 
 
 
    <!-- 내용 작성 -->
-   <div class="container-fluid py-5" style="height: 1000px;">
+   <div class="container-fluid py-5" style="height: 850px;">
 
       <div class="pay_container">
          <div style="height: 270px;">
@@ -226,7 +152,7 @@ a:hover {
          <div class="info"><span class="material-symbols-outlined">person</span> ${dto.totalPeople}명</div>
          </div>
          <div style="height: 200px;">
-         <h3 style="margin-top: 80px;">예약자</h3>
+         <h3 style="margin-top: 30px;">예약자</h3>
          <hr>
          <div style="background-color: #DDD; padding: 15px;">
             <div>예약자 이름 : ${mdto.name }</div>
@@ -235,14 +161,12 @@ a:hover {
          </div>
          </div>
          <div style="height: 230px;">
-            <h3 style="margin-top: 30px;">결제 방법</h3>
+            <h3 style="margin-top: 10px;">결제 방법</h3>
             <hr>
-            <input type="radio" name="pay_radio" value="card" id="card"> 신용카드 
-             <br> <input type="radio" name="pay_radio" value="kakao"
-               class="pay_way"> 카카오페이 <br> <input type="radio"
-               name="pay_radio" value="naver" class="pay_way"> 네이버페이 <br>
-            <input type="radio" name="pay_radio" value="bank" class="pay_way">
-            무통장입금
+            <input type="radio" class="pay_way" name="pay_radio" value="신용카드" id="card"> 신용카드 
+             <br> <input type="radio" name="pay_radio" value="카카오페이" class="pay_way"> 카카오페이 
+             <br> <input type="radio" name="pay_radio" value="네이버페이" class="pay_way"> 네이버페이 
+             <br> <input type="radio" name="pay_radio" value="무통장입금" class="pay_way">무통장입금
          </div>
       </div>
 
@@ -314,6 +238,7 @@ a:hover {
 </body>
 <script>
 
+
 $('#test').click(function() {
    
 $.ajax({
@@ -370,13 +295,13 @@ $(document).ready(function() {
    
 /* 결제 API */
 $('#check_module').click(function() {
-   var IMP = window.IMP;   //생략 가능
-   var method = $('#')
+   var IMP = window.IMP;   
+   var method = $("input[type=radio][name=pay_radio]:checked").val();
    
    IMP.init('imp44006286');   //가맹점 식별코드
    IMP.request_pay({
        pg : 'html5_inicis',      //pg사 선택 시 결제할 곳
-       pay_method : 'card',      //지불 수단
+       pay_method : method,      //지불 수단
        merchant_uid: 'merchant_' + new Date().getTime(), //상점에서 생성한 고유 주문번호
        name : "${pdetail.title}",         //상품명
        amount : "${dto.totalPrice}",      //가격
@@ -389,7 +314,6 @@ $('#check_module').click(function() {
       console.log(rsp);
       if (rsp.success) {
          var msg = '결제가 완료되었습니다.';
-         
          $.ajax({
             url: "/dreamjourney/reservation/payok",
             type: "POST",
@@ -397,7 +321,10 @@ $('#check_module').click(function() {
             data: {
                "totalPrice" : "${dto.totalPrice}",
                "dates" : "${dto.dates}",
-               "activity_seq" : "${dto.activity_seq}"
+               "activity_seq" : "${pdetail.activity_seq}",
+               "title" : "${pdetail.title}",
+               "merchant_uid" : rsp.merchant_uid,
+               "paymethod" : rsp.pay_method
             },
             success: function(result) {
                   console.log('성공');

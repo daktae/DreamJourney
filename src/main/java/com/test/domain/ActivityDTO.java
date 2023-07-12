@@ -15,6 +15,7 @@ public class ActivityDTO {
 	private String adate_seq;	//액티비티 날짜 번호
 	private String adate;			//액티비티 날짜
 	private String sold;			//판매량
+	private String thumbnail;	//썸네일
 	private String image1;		//이미지
 	private String image2;		//이미지
 	private String image3;		//이미지
@@ -29,6 +30,7 @@ public class ActivityDTO {
 	private String totalPrice;		//총 가격
 	private String totalPeople;	//총 인원
 	private String dates;			//선택 날짜		
+	private String paymethod;	//결제 수단
 	
 	private String member_seq;	//멤버 seq
 

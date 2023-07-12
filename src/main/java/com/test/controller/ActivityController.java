@@ -28,11 +28,16 @@ public class ActivityController {
    
    //액티비티 글 리스트
    @GetMapping("/reservation/activity")
-   public String activity(Model model, HttpSession session) {
+   public String activity(Model model, HttpSession session, ActivityDTO dto) {
+	   
+	   String activity_seq = dto.getActivity_seq();
+	   String avgScore = service.avgScore(activity_seq);			//평균 평점
+	   
       model.addAttribute("list", service.activitylist());
-      
+      model.addAttribute("avgScroe", avgScore);
       return "/reservation/activity";
    }
+   
    
    
    //액티비티 글 상세보기
@@ -43,6 +48,7 @@ public class ActivityController {
       List<ReviewDTO> rdto = service.review(activity_seq);  	//리뷰
       String rcount = service.reviewCount(activity_seq);      	//리뷰 수 
       String address = dto.getAddress().substring(0, 2);         	//타이틀에 넣을 주소 2글자
+      String avgScore = service.avgScore(activity_seq);			//평균 평점
       
       List<String> cal = new ArrayList<String>();
       cal = service.cal(activity_seq);
@@ -51,13 +57,13 @@ public class ActivityController {
     	  String value = cal.get(i);
     	  cal.set(i,  "\"" + value + "\"");
       }
-      System.out.println(cal);
 
       model.addAttribute("adetail", dto);
       model.addAttribute("review", rdto);
       model.addAttribute("reviewCount", rcount);
       model.addAttribute("address", address);
       model.addAttribute("cal", cal);
+      model.addAttribute("avgScore", avgScore);
       
       return "/reservation/viewactivity";
    }
@@ -69,21 +75,19 @@ public class ActivityController {
       
       dto.setTotalPeople(dto.getTotalPeople().replace(",",""));
       
-      MemberDTO mdto = new MemberDTO();
-      
+      MemberDTO mdto = new MemberDTO();	//session으로부터 회원 정보 가져오기
       mdto.setMember_seq(session.getAttribute("seq").toString());
       mdto.setName(session.getAttribute("name").toString());
       mdto.setEmail(session.getAttribute("email").toString());
-      mdto.setNickname(session.getAttribute("nickname").toString());
       mdto.setTel(session.getAttribute("tel").toString());
       
-      ActivityDTO pdto = new ActivityDTO();
+      ActivityDTO pdto = new ActivityDTO();		//결제 정보 가져오기
       pdto.setActivity_seq(activity_seq);
       pdto.setDates(dates);
             
-      ActivityDTO pdto2 = service.pay(pdto);
+      ActivityDTO pdetail = service.pay(pdto);
       
-      model.addAttribute("pdetail", pdto2);
+      model.addAttribute("pdetail", pdetail);
       model.addAttribute("dto", dto);
       model.addAttribute("mdto", mdto);
       
@@ -113,7 +117,9 @@ public class ActivityController {
    //결제성공
    @PostMapping("/reservation/payok")
    @ResponseBody
-   public String payok(@RequestParam("totalPrice") String totalPrice, @RequestParam("dates") String dates, @RequestParam("activity_seq") String activity_seq) {
+   public String payok(Model model, @RequestParam("totalPrice") String totalPrice, @RequestParam("dates") String dates, 
+		   @RequestParam("activity_seq") String activity_seq, @RequestParam("title") String title, 
+		   @RequestParam("merchant_uid") String merchant_uid, @RequestParam("paymethod") String paymethod) {
        
        ActivityDTO dto = new ActivityDTO();
        dto.setTotalPrice(totalPrice);
@@ -124,6 +130,16 @@ public class ActivityController {
        dto.setAdate_seq(payday);
        
        service.payok(dto);
+       
+       ActivityDTO pdto = new ActivityDTO();
+       pdto.setTotalPrice(totalPrice);
+       pdto.setTitle(title);
+       pdto.setPaymethod(paymethod);
+       System.out.println(pdto);
+       System.out.println(merchant_uid);
+       
+       model.addAttribute("pdto", pdto);
+       model.addAttribute("merchant_uid", merchant_uid);
        
        return "/reservation/payok";
    }

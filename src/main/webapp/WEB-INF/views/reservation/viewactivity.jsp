@@ -143,6 +143,85 @@ footer {
    
 }
 
+.select{
+    letter-spacing: -.2px;
+    font-family: -apple-system,BlinkMacSystemFont,Malgun Gothic,맑은 고딕,Roboto,Helvetica,Arial,sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    touch-action: manipulation;
+    background-color: #FFF;
+    background-position: left 14px top 16px;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    border-radius: 4px;
+    color: #343a40;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 1;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: all .1s ease-out;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 200px;
+    padding: 16px 14px;
+    border: 1px solid #DDD;
+    }
+    
+    .select:hover {
+    	cursor:pointer;
+    	outline: 1px solid #AAA;
+    	box-shadow: 1px 1px 20px #ddd;
+    }
+    
+    .selectors{
+    color: #373a3c;
+    font-size: 10px;
+    letter-spacing: -.2px;
+    font-family: -apple-system,BlinkMacSystemFont,Malgun Gothic,맑은 고딕,Roboto,Helvetica,Arial,sans-serif;
+    line-height: 1.5;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 4px;
+    margin: 15px 8px 15px 0px;
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    }
+    
+    .btn1 {
+    letter-spacing: -.2px;
+    font-family: -apple-system,BlinkMacSystemFont,Malgun Gothic,맑은 고딕,Roboto,Helvetica,Arial,sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    background-color: #7AB730;
+    background-position: left 14px top 16px;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    border-radius: 4px;
+    color: #FFF;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    height: 48px;
+    line-height: 1;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: all .1s ease-out;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 80px;
+    padding: 13px 14px;
+    border: 1px solid #DDD;
+    pointer-events: none;
+    margin-right: 5px;
+    }
+    
+
 </style>
 <body>
    <%@ include file="/resources/inc/header.jsp"%>
@@ -150,23 +229,23 @@ footer {
 <div style="display:flex;justify-content: center;">
       <form method="POST" action="/dreamjourney/reservation/pay" id="form">
    <div style="margin-top: 100px; margin-bottom:100px;">
-   <div>
-   <button type="submit" class="btn btn-primary" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
-   </div>
          <div style="width: 780px; margin-right: 20px;">
             <div style="text-align: center;">
-               <h5>${adetail.category }</h5>
                <h1>[${address}] ${adetail.title }</h1>
             </div>
             <div style="text-align: right;">
             </div>
             <hr>
-            <div><a href="#review" id="star">
+            <div style="font-weight: bold;">
             <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
-            후기(${reviewCount }) > </a><div id="price" style="float: right;">
-                  1인
-                  <fmt:formatNumber value="${adetail.price }" pattern="#,###" />
-                  원
+            <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
+            <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
+            <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
+            <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
+             ${avgScore }
+            <a href="#review" id="star" style="margin-left: 10px;">후기(${reviewCount }) > </a>
+            <div id="price" style="float: right;">
+                  ${adetail.category }
                </div>
             </div>
             <hr>
@@ -177,12 +256,16 @@ footer {
                <div style="margin: 20px;">${adetail.content }</div>
             </div>
             <button id="showbtn" type="button">상품 설명 더 보기 <span class="material-symbols-outlined">stat_minus_2</span></button>
-            
-
+            <hr>
+			<h3>옵션 선택</h3>
+			<div class="selectors">
+               <span class="btn1 btn-primary">날짜</span> <input type="text" name="dates" id="datepicker" class="select" style="margin-right: 20px; width: 300px;" placeholder="날짜를 선택해주세요";>
+				<span class="btn1 btn-primary">인원</span> <input type="number" id="numberInput" class="select" min="1" max="${adetail.limit }" oninput="displayNumber()" name="totalPeople" style="text-align: center;">
+            </div>
             <hr>
             <h3>위치 안내</h3>
-            <div id="map" style="width: 780px; height: 400px; margin: 20px auto;"></div>
-            <div style="text-align: center;"><span class="material-symbols-outlined">location_on</span> ${adetail.address }</div>
+            <div id="map" style="width: 780px; height: 400px; margin: 30px auto;"></div>
+            <div style="text-align: center; border: 1px solid #DDD; background-color: #DDD; height: 55px;  margin: 30px 0; padding: 10px;"><span class="material-symbols-outlined">location_on</span> ${adetail.address }</div>
             <hr>
             <div id="review">
                <span style="font-weight: bold;">리뷰 (${reviewCount})</span>
@@ -200,14 +283,8 @@ footer {
 <!-- 티켓 -->
          <div id="myDiv"
             style="border: 1px solid #DDD; background-color: #FFF;display: inline-block; width: 300px; padding: 20px; text-align: center; margin: 0 10px; position: absolute; top:500px; left:75%;">
-            <div>티켓 선택 날짜
-               <input type="text" name="dates" id="datepicker" style="text-align : center;">
-            </div>
-            <div>
-               인원 선택<input type="number" id="numberInput" min="1"
-                  max="${adetail.limit }" oninput="displayNumber()" value="1" name="totalPeople" style="text-align: center;">
-            </div>
-            <div style="font-weight: bold; margin-bottom: 10px;">
+            
+            <div style="font-weight: bold; margin-bottom: 10px; font-size: 25px; color: black;">
                총 가격 <span id="totalPrice" name="totalPrice"><fmt:formatNumber value="${adetail.price }" pattern="#,###" /></span>원
             </div>
             <div>
@@ -218,7 +295,9 @@ footer {
             <br>
             
             <div>
-               <button type="submit" class="btn btn-primary reservation" style="width: 200px; margin: 5px 30px;" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
+               <button type="submit" class="btn btn-primary reservation" style="width: 200px; font-weight: bold; margin: 5px 30px;" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
+			   <button type="submit" class="btn btn-secondary" style="width: 200px; color: #656565; font-weight: bold; margin: 5px 30px; border: 1px solid #7AB730;" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
+               
                <input type="hidden" value="${adetail.activity_seq }" name="activity_seq">
                
             </div>
@@ -255,7 +334,6 @@ footer {
          },
          success: function(result) {
                console.log('성공');
-               location.href="/dreamjourney/reservation/payok";
             },
          error: function(a, b, c) {
             console.log(a, b, c);
@@ -276,7 +354,6 @@ footer {
 
 
    /* 캘린더 */
-   //선택 가능 날짜
   $('#datepicker').datepicker({
     dateFormat: 'yy-mm-dd',
     prevText: '이전 달',
@@ -291,7 +368,7 @@ footer {
     minDate: 0,
     beforeShowDay: disableSomeDay
   });
-   //제외할 날짜
+	//선택 가능 날짜
    var disabledDays = ${cal};
    
    //날짜 나타내기 전에 (beforeShowDay) 실행할 함수
@@ -301,21 +378,12 @@ footer {
       var dates = date.getDate();
       var year = date.getFullYear();
       
-      //console.log(month, dates, year);
-      
-      //배열에 해당하는 날짜는 0번째 index에 false를 담아 리턴해준다.
+      //배열에 해당하는 날짜는 0번째 index에 true를 담아 리턴해준다.
       for (i=0; i<disabledDays.length; i++) {
-         /* if ($.inArray(year + '-' + (month + 1) + '-' + dates, disabledDays) != -1) {
-            console.log(($.inArray(year + '-' + (month + 1) + '-' + dates, disabledDays) != -1));
-            return [false];
-         } */
          let temp = disabledDays[i].split('-');
-         //console.log('temp',  year ,parseInt(temp[0]) , month , parseInt(temp[1]) , dates , parseInt(temp[2]));
          if (year == parseInt(temp[0]) && month == parseInt(temp[1]) && dates == parseInt(temp[2])) {
-            //console.log(year, month, dates);
             return [true];
          }
-         
       }
       //해당하지 않는 날짜는 활성화
       return [false];
@@ -337,10 +405,10 @@ footer {
       var price = ${adetail.price};
       var totalPrice = price * number;
       
-      document.getElementById("totalPrice").innerText = totalPrice;
+      document.getElementById("totalPrice").innerText = totalPrice.toLocaleString();
       
       document.querySelector("input[name=totalPrice]").value = totalPrice;
-      //document.querySelector("input[name=totalPeople]").value = number;
+      document.querySelector("input[name=totalPeople]").value = number;
    }
 
    /* Kakao Maps API & 지오코딩 */
