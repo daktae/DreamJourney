@@ -324,7 +324,8 @@ $('#check_module').click(function() {
                "activity_seq" : "${pdetail.activity_seq}",
                "title" : "${pdetail.title}",
                "merchant_uid" : rsp.merchant_uid,
-               "paymethod" : rsp.pay_method
+               "paymethod" : rsp.pay_method,
+               "member_seq" : "${pdetail.member_seq}"
             },
             success: function(result) {
                   console.log('성공');

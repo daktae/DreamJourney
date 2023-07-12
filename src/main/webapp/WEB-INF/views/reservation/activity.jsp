@@ -35,6 +35,8 @@
 </head>
 <style>
 
+
+
 #showbtn {
    width: 300px;
    height: 60px;
@@ -115,7 +117,7 @@ box-shadow: 1px 1px 20px #ddd;
 	
 	.team-item {
 		width: 250px;
-		height: 370px;
+		height: 300px;
 	}
 	
 	.team-item:hover {
@@ -198,8 +200,8 @@ box-shadow: 1px 1px 20px #ddd;
                         <div class="text-center py-4" style="padding: 20px;">
                         	<div style="margin: 0; text-align: left;">${dto.category }</div>
                             <div class="text-truncate" id="title" style="text-weight: bold; font-size: 20px; text-align: justify;">${dto.title }</div>
-                            <div><img style="width: 60px; float: left;" src="/dreamjourney/resources/img/reservation/파란별.jpg">${avgScore }</div><br>
-                            <div class="m-0" id="content" style="text-align: justify; padding: 0 15px;">${dto.price }원 / 1인</div>
+                            <%-- <div><img style="width: 60px; float: left;" src="/dreamjourney/resources/img/reservation/파란별.jpg">${dto.avgScore }</div><br> --%>
+                            <div class="m-0" id="content" style="float: right; text-align: justify; padding: 0 5px;"><small>${dto.price }원 / 1인</small></div>
                         </div>
                     </div>
                 </div>
@@ -326,6 +328,7 @@ box-shadow: 1px 1px 20px #ddd;
 			}
 		});
 	});
+	
 
 
 </script>

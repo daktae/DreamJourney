@@ -28,13 +28,9 @@ public class ActivityController {
    
    //액티비티 글 리스트
    @GetMapping("/reservation/activity")
-   public String activity(Model model, HttpSession session, ActivityDTO dto) {
-	   
-	   String activity_seq = dto.getActivity_seq();
-	   String avgScore = service.avgScore(activity_seq);			//평균 평점
+   public String activity(Model model, HttpSession session) {
 	   
       model.addAttribute("list", service.activitylist());
-      model.addAttribute("avgScroe", avgScore);
       return "/reservation/activity";
    }
    
@@ -84,6 +80,7 @@ public class ActivityController {
       ActivityDTO pdto = new ActivityDTO();		//결제 정보 가져오기
       pdto.setActivity_seq(activity_seq);
       pdto.setDates(dates);
+      pdto.setMember_seq(session.getAttribute("seq").toString());
             
       ActivityDTO pdetail = service.pay(pdto);
       
@@ -148,9 +145,12 @@ public class ActivityController {
    //즐겨찾기
    @PostMapping("/reservation/viewactivity")
    @ResponseBody
-   public void bookmark_on(@RequestParam("activity_seq") String activity_seq) {
+   public void bookmark_on(@RequestParam("activity_seq") String activity_seq, HttpSession session) {
        
-       service.bookmark_on(activity_seq);
+	   ActivityDTO dto = new ActivityDTO();
+	   dto.setActivity_seq(activity_seq);
+	   dto.setMember_seq(session.getAttribute("seq").toString());
+       service.bookmark_on(dto);
    }
    
    @GetMapping("/reservation/payok")

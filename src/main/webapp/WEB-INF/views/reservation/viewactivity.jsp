@@ -242,7 +242,12 @@ footer {
             <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
             <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
             <img style='width: 20px;' src='/dreamjourney/resources/img/reservation/평점.png'>
+             <c:if test="${!empty avgScore }">
              ${avgScore }
+             </c:if>
+             <c:if test="${empty avgScore }">
+             0
+             </c:if>
             <a href="#review" id="star" style="margin-left: 10px;">후기(${reviewCount }) > </a>
             <div id="price" style="float: right;">
                   ${adetail.category }
@@ -296,7 +301,7 @@ footer {
             
             <div>
                <button type="submit" class="btn btn-primary reservation" style="width: 200px; font-weight: bold; margin: 5px 30px;" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
-			   <button type="submit" class="btn btn-secondary" style="width: 200px; color: #656565; font-weight: bold; margin: 5px 30px; border: 1px solid #7AB730;" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
+			   <button type="button" class="btn btn-secondary" style="width: 200px; color: #656565; font-weight: bold; margin: 5px 30px; border: 1px solid #7AB730;" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
                
                <input type="hidden" value="${adetail.activity_seq }" name="activity_seq">
                

@@ -16,7 +16,6 @@ public interface ActivityMapper {
 
    ActivityDTO pay(ActivityDTO pdto);
 
-   void bookmark_on(String activity_seq);
 
    String reviewCount(String activity_seq);
 
@@ -29,6 +28,8 @@ public interface ActivityMapper {
 List<String> cal(String activity_seq);
 
 String avgScore(String activity_seq);
+
+void bookmark_on(ActivityDTO dto);
 
 // RoomDTO rpay(RoomDTO rdto);
 

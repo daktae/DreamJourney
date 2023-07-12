@@ -50,10 +50,9 @@ public class ActivityServiceImpl implements ActivityService {
    
    //즐겨찾기 추가
    @Override
-   public void bookmark_on(String activity_seq) {
-      mapper.bookmark_on(activity_seq);
-      System.out.println(activity_seq);
-   }
+	public void bookmark_on(ActivityDTO dto) {
+	   mapper.bookmark_on(dto);
+	}
    
    //댓글 개수
    @Override
