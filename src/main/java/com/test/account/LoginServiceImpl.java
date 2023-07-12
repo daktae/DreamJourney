@@ -10,4 +10,5 @@ public interface LoginServiceImpl {
 
 	List<MemberDTO> glogin(MemberDTO dto, HttpSession session);
 	void updatepw(MemberDTO dto);
+	List<MemberDTO> idCheck(String tel);
 }

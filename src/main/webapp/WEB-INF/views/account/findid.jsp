@@ -95,9 +95,15 @@ function requestCert() {
 	            dataType:'json',		
 	            data: { imp_uid: rsp.imp_uid },
 	            success: function(data) {
-	               console.log("성공");
-	               console.log(data.tel);
-	               location.href="/dreamjourney/findidok?tel="+data.tel;
+	            	 if (data.isAdult) {
+                         /* 이름, 번호 대조  */
+                         if ((data.cnt)==1) {
+                        	location.href="/dreamjourney/findidok?tel="+data.tel;
+                         }else{
+                        		console.log(data.tel);
+								console.log(data.name);
+                         }
+	            	 }
 	            },
 	            error: function() {
 	                alert("에러입니다");
