@@ -33,6 +33,8 @@ List<String> cal(String activity_seq);
 
 String avgScore(String activity_seq);
 
+void bookmark_on(ActivityDTO dto);
+
 // RoomDTO rpay(RoomDTO rdto);
 
 

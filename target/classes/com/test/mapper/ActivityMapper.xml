@@ -8,8 +8,8 @@
    </select>
    
    <!-- 액티비티 전체 목록2 -->
-      <select id="activitylist2" resultType="com.test.domain.ActivityDTO">
-     select * from vwactivity
+   <select id="activitylist2" resultType="com.test.domain.ActivityDTO">
+     select * from tblActivity
    </select>
    
    <!-- 액티비티 상세보기 -->

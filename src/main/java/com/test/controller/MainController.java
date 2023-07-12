@@ -30,10 +30,9 @@ public class MainController {
 	private String index(Model model) {
 
 		model.addAttribute("aclist",acservice.accommodatelist2());
-		model.addAttribute("actlist", service.activitylist2());
+		model.addAttribute("actlist", service.activitylist());
 		model.addAttribute("tlist", tservice.getTripAll());
-		System.out.println("===========여행후기========");
-		System.out.println(tservice.getTripAll());
+		System.out.println(service.activitylist());
 		
 
 		return "index";

@@ -89,41 +89,41 @@ box-shadow: 1px 1px 20px #ddd;
    }
 
 
-   .text-truncate {
-      font-weight: bold;
-      font-size: 25px;
-   }
-   
-   .btn-square {
-      width: 100px;
-   }
-   
-   .text-truncate {
-      font-weight: bold;
-   }
-   
-   img {
-      width: 500px;
-   }
-   
-   a:hover {
-      text-decoration:none;
-   }
-   
-   .team-img {
-      width: 250px;
-      height: 170px;
-   }
-   
-   .team-item {
-      width: 250px;
-      height: 300px;
-   }
-   
-   .team-item:hover {
-      cursor: pointer;
-   }
-   
+	.text-truncate {
+		font-weight: bold;
+		font-size: 25px;
+	}
+	
+	.btn-square {
+		width: 100px;
+	}
+	
+	.text-truncate {
+		font-weight: bold;
+	}
+	
+	img {
+		width: 500px;
+	}
+	
+	a:hover {
+		text-decoration:none;
+	}
+	
+	.team-img {
+		width: 250px;
+		height: 170px;
+	}
+	
+	.team-item {
+		width: 250px;
+		height: 300px;
+	}
+	
+	.team-item:hover {
+		cursor: pointer;
+	}
+	
 </style>
 <body>
    <!-- activity.jsp > 액티비티 페이지 -->
@@ -318,6 +318,7 @@ box-shadow: 1px 1px 20px #ddd;
     <script src="/dreamjourney/resources/js/main.js"></script>
 </body>
 <script>
+<<<<<<< HEAD
    $(document).ready(function() {
       $('.m-0').each(function() {
          var contentDiv = $(this);
@@ -329,6 +330,19 @@ box-shadow: 1px 1px 20px #ddd;
       });
    });
    
+=======
+	$(document).ready(function() {
+		$('.m-0').each(function() {
+			var contentDiv = $(this);
+			var contentText = contentDiv.text();
+			if (contentText.length > 50) {
+				var content = contentText.substr(0, 50) + '...';
+				contentDiv.text(content);
+			}
+		});
+	});
+	
+>>>>>>> 4223c81a39de6c327d9d91fedfe5a7a124eddd9a
 
 
 </script>

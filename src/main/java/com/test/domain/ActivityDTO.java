@@ -26,6 +26,7 @@ public class ActivityDTO {
 	private String nickname;	//닉네임
 	private String rdate;			//리뷰 작성 날짜
 	private String rcount;		//리뷰 개수
+	private String avgScore;		//평점 평균
 	
 	private String totalPrice;		//총 가격
 	private String totalPeople;	//총 인원

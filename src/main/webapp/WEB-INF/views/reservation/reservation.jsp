@@ -72,6 +72,7 @@
 		padding-top: 0 !important;
 	}
    
+   
 </style>
 <body>
    <!-- reservation.jsp > 예약/예매 페이지 -->
@@ -160,7 +161,7 @@ directions_bus
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">오노마 오토그래프 컬렉션</h5>
+                            <h5 class="text_title" style="padding: 15px; text-weight: bold; font-size: 20px;" >오노마 오토그래프 컬렉션</h5>
                             <p class="m-0">대전 유성구 엑스포로 1 호텔 오노마 대전</p>
                         </div>
                     </div>
@@ -174,7 +175,7 @@ directions_bus
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">제주 미소 게스트하우스</h5>
+                            <h5 class="text_title" style="padding: 15px; text-weight: bold; font-size: 20px;">제주 미소 게스트하우스</h5>
                             <p class="m-0">제주특별자치도 제주시 관덕로 41 (일도1동)</p>
                         </div>
                     </div>
@@ -188,7 +189,7 @@ directions_bus
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">소피텔 앰배서더 서울 호텔 </h5>
+                            <h5 class="text_title" style="padding: 15px; text-weight: bold; font-size: 20px;">소피텔 앰배서더 서울 호텔 </h5>
                             <p class="m-0">서울 송파구 잠실로 209</p>
                         </div>
                     </div>
@@ -202,7 +203,7 @@ directions_bus
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h5 class="text-truncate">기장빌라드히멜</h5>
+                            <h5 class="text_title" style="padding: 15px; text-weight: bold; font-size: 20px;">기장빌라드히멜</h5>
                             <p class="m-0">부산광역시 기장군 일광읍 장곡길 89-10</p>
                         </div>
                     </div>
@@ -251,9 +252,6 @@ directions_bus
        
    </div>
                 
-
-
-    
 
 
     <!-- Back to Top -->

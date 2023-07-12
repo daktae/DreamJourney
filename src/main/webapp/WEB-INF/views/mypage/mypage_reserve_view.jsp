@@ -128,7 +128,7 @@
 					</tr>
 					<tr>
 						<th>여행자</th>
-						<td colspan="3">세션아이디</td>
+						<td colspan="3">${sessionScope.name}</td>
 					</tr>
 					<tr>
 						<th>주문정보</th>

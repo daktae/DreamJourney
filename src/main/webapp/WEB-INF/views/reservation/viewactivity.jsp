@@ -301,8 +301,7 @@ footer {
             
             <div>
                <button type="submit" class="btn btn-primary reservation" style="width: 200px; font-weight: bold; margin: 5px 30px;" onclick="/dreamjourney/reservation/pay?activity_seq=${adetail.activity_seq}">예약하기</button>
-            <button type="button" class="btn btn-secondary" style="width: 200px; color: #656565; font-weight: bold; margin: 5px 30px; border: 1px solid #7AB730;" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
-               
+			   <button type="button" class="btn btn-secondary" style="width: 200px; color: #656565; font-weight: bold; margin: 5px 30px; border: 1px solid #7AB730;" id="bookmark" name="bookmark""><i class="bi bi-star"></i> 즐겨찾기 추가</button>
                <input type="hidden" value="${adetail.activity_seq }" name="activity_seq">
                
             </div>

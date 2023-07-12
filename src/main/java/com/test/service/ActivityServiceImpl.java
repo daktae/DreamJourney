@@ -59,15 +59,9 @@ public class ActivityServiceImpl implements ActivityService {
    
    //즐겨찾기 추가
    @Override
-   public void bookmark_on(String activity_seq, String member_seq) {
-
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("member_seq", member_seq);
-		map.put("activity_seq", activity_seq);
-		
-		mapper.bookmark_on(map);
-		
-   }
+	public void bookmark_on(ActivityDTO dto) {
+	   mapper.bookmark_on(dto);
+	}
    
    //댓글 개수
    @Override

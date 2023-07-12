@@ -29,7 +29,6 @@ public class ActivityController {
    //액티비티 글 리스트
    @GetMapping("/reservation/activity")
    public String activity(Model model, HttpSession session) {
-      
       model.addAttribute("list", service.activitylist());
       return "/reservation/activity";
    }
@@ -81,9 +80,6 @@ public class ActivityController {
       pdto.setActivity_seq(activity_seq);
       pdto.setDates(dates);
       pdto.setMember_seq(session.getAttribute("seq").toString());
-      
-      System.out.println(pdto);
-      
       ActivityDTO pdetail = service.pay(pdto);
       
       model.addAttribute("pdetail", pdetail);
@@ -149,9 +145,10 @@ public class ActivityController {
    @ResponseBody
    public void bookmark_on(@RequestParam("activity_seq") String activity_seq, HttpSession session) {
        
-	   String member_seq = (String) session.getAttribute("seq");
-	   
-       service.bookmark_on(activity_seq, member_seq);
+	   ActivityDTO dto = new ActivityDTO();
+	   dto.setActivity_seq(activity_seq);
+	   dto.setMember_seq(session.getAttribute("seq").toString());
+       service.bookmark_on(dto);
    }
    
    @GetMapping("/reservation/payok")

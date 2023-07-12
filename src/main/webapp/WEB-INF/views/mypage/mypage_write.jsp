@@ -138,7 +138,6 @@ background-color: #82CD47;
 				
 			</div>
 
-<<<<<<< HEAD
 			<!-- <nav aria-label="Page navigation example">
 				<ul class="pagination">
 					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -149,8 +148,6 @@ background-color: #82CD47;
 				</ul>
 			</nav> -->
 
-=======
->>>>>>> 96a488b7aeac5ce56a9d6d067ccb948eeab5e1cb
 		</div>
 
 	</div>
