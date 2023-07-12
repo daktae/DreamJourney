@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 
 <!DOCTYPE html>
@@ -35,6 +35,8 @@
 </head>
 <style>
 
+
+
 #showbtn {
    width: 300px;
    height: 60px;
@@ -57,71 +59,71 @@ box-shadow: 1px 1px 20px #ddd;
 
 
 .pb-5 {
-	padding-bottom: 0px !important;
+   padding-bottom: 0px !important;
 }
 
-	.thumbnail {
-		width: 250px;
-		height: 170px;
-	}
+   .thumbnail {
+      width: 250px;
+      height: 170px;
+   }
 
-	.categoryAll {
-		display: inline-block;
-		width: 100%;
-		text-align:center;
-	}
-	
-	.categoryAll button:hover {
-		box-shadow: 1px 1px 20px #ddd;
-	}
+   .categoryAll {
+      display: inline-block;
+      width: 100%;
+      text-align:center;
+   }
+   
+   .categoryAll button:hover {
+      box-shadow: 1px 1px 20px #ddd;
+   }
 
-	.category {
-		display: inline-block;
-		border: 1px solid black;
-		padding: 20px;
-		margin: 0 10px;
-	}
+   .category {
+      display: inline-block;
+      border: 1px solid black;
+      padding: 20px;
+      margin: 0 10px;
+   }
 
-	.sub {
-		font-weight: bold;
-	}
+   .sub {
+      font-weight: bold;
+   }
 
 
-	.text-truncate {
-		font-weight: bold;
-		font-size: 25px;
-	}
-	
-	.btn-square {
-		width: 100px;
-	}
-	
-	.text-truncate {
-		font-weight: bold;
-	}
-	
-	img {
-		width: 500px;
-	}
-	
-	a:hover {
-		text-decoration:none;
-	}
-	
-	.team-img {
-		width: 250px;
-		height: 170px;
-	}
-	
-	.team-item {
-		width: 250px;
-		height: 370px;
-	}
-	
-	.team-item:hover {
-		cursor: pointer;
-	}
-	
+   .text-truncate {
+      font-weight: bold;
+      font-size: 25px;
+   }
+   
+   .btn-square {
+      width: 100px;
+   }
+   
+   .text-truncate {
+      font-weight: bold;
+   }
+   
+   img {
+      width: 500px;
+   }
+   
+   a:hover {
+      text-decoration:none;
+   }
+   
+   .team-img {
+      width: 250px;
+      height: 170px;
+   }
+   
+   .team-item {
+      width: 250px;
+      height: 300px;
+   }
+   
+   .team-item:hover {
+      cursor: pointer;
+   }
+   
 </style>
 <body>
    <!-- activity.jsp > 액티비티 페이지 -->
@@ -192,14 +194,14 @@ box-shadow: 1px 1px 20px #ddd;
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${dto.thumbnail }"alt="">
                             <div class="team-social">
-                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}">상세보기</a>
+                               <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}">상세보기</a>
                             </div>
                         </div>
                         <div class="text-center py-4" style="padding: 20px;">
-                        	<div style="margin: 0; text-align: left;">${dto.category }</div>
+                           <div style="margin: 0; text-align: left;">${dto.category }</div>
                             <div class="text-truncate" id="title" style="text-weight: bold; font-size: 20px; text-align: justify;">${dto.title }</div>
-                            <div><img style="width: 60px; float: left;" src="/dreamjourney/resources/img/reservation/파란별.jpg">${avgScore }</div><br>
-                            <div class="m-0" id="content" style="text-align: justify; padding: 0 15px;">${dto.price }원 / 1인</div>
+                            <%-- <div><img style="width: 60px; float: left;" src="/dreamjourney/resources/img/reservation/파란별.jpg">${dto.avgScore }</div><br> --%>
+                            <div class="m-0" id="content" style="float: right; text-align: justify; padding: 0 5px;"><small>${dto.price }원 / 1인</small></div>
                         </div>
                     </div>
                 </div>
@@ -213,7 +215,7 @@ box-shadow: 1px 1px 20px #ddd;
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${dto.thumbnail }"alt="">
                             <div class="team-social">
-                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${result.activity_seq}">상세보기</a>
+                               <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${result.activity_seq}">상세보기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -224,9 +226,9 @@ box-shadow: 1px 1px 20px #ddd;
                     </div>
                 </div>
                 </c:forEach>
-        		</c:if>
-        		<!-- (주소로만)검색결과가 없는경우 -->
-        		<c:if test="${actResultadr!=null && empty actResultadr}}">
+              </c:if>
+              <!-- (주소로만)검색결과가 없는경우 -->
+              <c:if test="${actResultadr!=null && empty actResultadr}}">
     <!-- 검색 결과가 없는 경우 -->
     <h5 style="margin-bottom:30px;">검색 결과가 없습니다.</h5>
 </c:if>
@@ -239,7 +241,7 @@ box-shadow: 1px 1px 20px #ddd;
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${result.thumbnail }"alt="">
                             <div class="team-social">
-                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${result.activity_seq}">상세보기</a>
+                               <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${result.activity_seq}">상세보기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -249,8 +251,8 @@ box-shadow: 1px 1px 20px #ddd;
                     </div>
                 </div>
                 </c:forEach>
-        		</c:if>
-        		<!-- (주소로만)검색결과가 없는경우 -->
+              </c:if>
+              <!-- (주소로만)검색결과가 없는경우 -->
 <c:if test="${actResulttitle != null && empty actResulttitle}">
     <!-- 검색 결과가 없는 경우 -->
     <h5 style="margin-bottom:30px;">검색 결과가 없습니다.</h5>
@@ -265,7 +267,7 @@ box-shadow: 1px 1px 20px #ddd;
                         <div class="team-img position-relative overflow-hidden">
                             <img class="img-fluid w-100 thumbnail" src="/dreamjourney/resources/img/reservation/${result.image1 }"alt="">
                             <div class="team-social">
-                            	<a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${result.activity_seq}">상세보기</a>
+                               <a class="btn btn-outline-primary btn-square" href="/dreamjourney/reservation/viewactivity?activity_seq=${result.activity_seq}">상세보기</a>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -275,9 +277,9 @@ box-shadow: 1px 1px 20px #ddd;
                     </div>
                 </div>
                 </c:forEach>
-        		</c:if>
-        		<!-- (주소로만)검색결과가 없는경우
-        		<!-- c:if test는 참일때만 실행하는데, actResult는 존재하므로 거짓이기 떄문에 "검색 결과가 없습니다." 라는 문구가 등장하지 않는다, empty 조건은 무조건적으로 실행한다, 또한 값이 존재하지 않거나 비어있을때 실행해야 한다. -->
+              </c:if>
+              <!-- (주소로만)검색결과가 없는경우
+              <!-- c:if test는 참일때만 실행하는데, actResult는 존재하므로 거짓이기 떄문에 "검색 결과가 없습니다." 라는 문구가 등장하지 않는다, empty 조건은 무조건적으로 실행한다, 또한 값이 존재하지 않거나 비어있을때 실행해야 한다. -->
 <c:if test="${actResult != null && empty actResult}">
     <!-- 검색 결과가 없는 경우 -->
     <h5 style="margin-bottom:30px;">검색 결과가 없습니다.</h5>
@@ -316,21 +318,21 @@ box-shadow: 1px 1px 20px #ddd;
     <script src="/dreamjourney/resources/js/main.js"></script>
 </body>
 <script>
-	$(document).ready(function() {
-		$('.m-0').each(function() {
-			var contentDiv = $(this);
-			var contentText = contentDiv.text();
-			if (contentText.length > 50) {
-				var content = contentText.substr(0, 50) + '...';
-				contentDiv.text(content);
-			}
-		});
-	});
+   $(document).ready(function() {
+      $('.m-0').each(function() {
+         var contentDiv = $(this);
+         var contentText = contentDiv.text();
+         if (contentText.length > 50) {
+            var content = contentText.substr(0, 50) + '...';
+            contentDiv.text(content);
+         }
+      });
+   });
+   
 
 
 </script>
 </html>
-
 
 
 

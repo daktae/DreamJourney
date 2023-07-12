@@ -28,13 +28,9 @@ public class ActivityController {
    
    //액티비티 글 리스트
    @GetMapping("/reservation/activity")
-   public String activity(Model model, HttpSession session, ActivityDTO dto) {
-	   
-	   String activity_seq = dto.getActivity_seq();
-	   String avgScore = service.avgScore(activity_seq);			//평균 평점
-	   
+   public String activity(Model model, HttpSession session) {
+      
       model.addAttribute("list", service.activitylist());
-      model.addAttribute("avgScroe", avgScore);
       return "/reservation/activity";
    }
    
