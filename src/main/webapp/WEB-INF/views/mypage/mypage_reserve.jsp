@@ -148,12 +148,6 @@ table.reserve_list {
 		<%@ include file="/resources/inc/mypage_sidemenu.jsp"%>
 		<div id="mypage_content">
 
-
-
-
-
-
-
 			<div id="mypage_reserve_search">
 				<button type="button" class="review-button m-2"
 					id="btn-transport">교통</button>
@@ -263,14 +257,6 @@ table.reserve_list {
 				</nav> -->
 
 			</div>
-
-
-
-
-
-
-
-
 
 		</div>
 	</div>

@@ -478,6 +478,17 @@ public class MypageController {
 		
 	}
 	
+	@PostMapping("/mypage/unregi")
+	private String unregi(String member_seq, HttpSession session) {
+		
+		
+		service.unregi(member_seq);
+
+		session.invalidate();
+		
+		return "redirect:/index";
+	}
+	
 	
 
 

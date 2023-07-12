@@ -1,6 +1,6 @@
 package com.test.account;
 
-import java.util.Random;
+import java.util.Random; 
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class FindPwEmailService {
 	@Autowired
 	private JavaMailSenderImpl mailSender;
+	
 	private int authNumber; 
 		public void makeRandomNumber() {
 			// 난수의 범위 111111 ~ 999999 (6자리 난수)

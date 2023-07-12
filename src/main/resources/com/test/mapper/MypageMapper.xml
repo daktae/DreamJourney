@@ -8,18 +8,19 @@
 		resultType="com.test.domain.BookmarkDTO">
 		select
 		ac.name as Accommodate_name,
-		ac.address as
-		Accommodate_address,
+		ac.address as Accommodate_address,
 		at.title as Activity_name,
-		at.address as
-		Activity_address,
+		at.address as Activity_address,
 		at.category as Activity_category,
 		at.price as	Activity_price,
 		f.name as Food_name,
 		f.address as Food_address,
-		ar.name
-		as Area_name,
-		ar.address as Area_address
+		ar.name	as Area_name,
+		ar.address as Area_address,
+		b.acco_seq,
+		b.activity_seq,
+		b.food_seq,
+		b.area_seq
 		from tblBookmark b
 		left outer
 		join tblAccommodate ac on b.acco_seq = ac.acco_seq
@@ -391,6 +392,10 @@ VALUES (trip_seq.nextVal, #{member_seq}, #{title}, 0, sysdate, TO_DATE(#{begin},
 	<select id="getmywrite" resultType="com.test.domain.MyWriteDTO">
 		SELECT * FROM tblFree WHERE member_seq = #{seq}
 	</select>
+	
+	<delete id="unregi">
+		update tblmember set name = '　', email = '　', pw = '　', nickname = '　', tel = '　', unresi = 'y' where member_seq = #{member_seq}
+	</delete>
  
 </mapper>
 

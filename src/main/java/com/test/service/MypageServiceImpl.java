@@ -293,4 +293,10 @@ public class MypageServiceImpl implements MypageService {
 		return mapper.getmywrite(seq);
 	}
 	
+	@Override
+	public void unregi(String member_seq) {
+		mapper.unregi(member_seq);
+	}
+	
+	
 }

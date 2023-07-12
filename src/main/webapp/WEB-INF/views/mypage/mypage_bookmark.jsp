@@ -172,7 +172,7 @@ border: none;
 			<div class="table-container">
 			<c:forEach items="${list}" var="dto">
 				<c:if test="${not empty dto.accommodate_name}">
-					<table class="table table-borderless bookmark table-accommodate" onclick="redirectToLink('#')">
+					<table class="table table-borderless bookmark table-accommodate" onclick="location.href = '/dreamjourney/reservation/accommodate_detail?acco_seq=${dto.acco_seq}'">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/호텔.jpg"
 								width="300" height="200"></td>
@@ -188,7 +188,7 @@ border: none;
 					</table>
 				</c:if>
 				<c:if test="${not empty dto.activity_name}">
-					<table class="table table-borderless bookmark table-activity" onclick="redirectToLink('#')">
+					<table class="table table-borderless bookmark table-activity" onclick="location.href = '/dreamjourney/reservation/viewactivity?activity_seq=${dto.activity_seq}'">
 						<tr>
 							<td colspan="2"><img src="../resources/img/mypage/액티비티.jpg"
 								width="300" height="200"></td>
